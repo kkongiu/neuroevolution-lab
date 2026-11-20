@@ -1,0 +1,36 @@
+name: Research campaign
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  paired-campaign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        replicate: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run a CPU-only paired experiment
+        env:
+          BASE_SEED: ${{ github.run_number }}
+          REPLICATE: ${{ matrix.replicate }}
+        shell: bash
+        run: |
+          SEED=$((BASE_SEED * 100 + REPLICATE))
+          python -m neuroevolution --generations 24 --population 16 --episodes 3 --steps 120 --seed "$SEED" --out "results/seed-$SEED"
+      - name: Save data and checkpoints
+        uses: actions/upload-artifact@v4
+        with:
+          name: replicate-${{ matrix.replicate }}
+          path: results/
+          retention-days: 30
