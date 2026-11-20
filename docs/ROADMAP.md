@@ -3,14 +3,21 @@
 ## M1 — Controlled structural neuroevolution (implemented)
 - Fixed-topology versus topology-mutable recurrent networks.
 - Deterministic changing-cue environment, train/holdout separation.
-- Checkpoints, paired starts, tests, SVG, GitHub Actions campaigns.
-- Outstanding: collect independent-seed results, plot confidence intervals, audit runtime budget.
+- Checkpoints, tests, SVG and GitHub Actions campaigns.
+- **First result:** 3 paired seed runs; positive mean effect but not robust; see [M1 report](../reports/M1_campaign_2026-11-20.md).
+- Outstanding: 20–30 independent seed replications, true out-of-distribution tasks, runtime audit.
+
+## M1-P — Continual plasticity pilot (implemented; independent branch of research)
+- **Within-lifetime** SGD on an 8-task sequence; four paired arms: continual, fresh, low-activity unit reset, matched random-unit reset.
+- Accuracy learning curves, seed-level AUC, forgetting, dead-unit fraction; controls on train/holdout leakage.
+- [Frozen protocol](PLASTICITY_PROTOCOL.md), automated tests, separate GitHub Actions campaign.
+- Gate: run independent seeds, inspect failure modes and decide whether the phenomenon is reproducible.
 
 ## M2 — Evolution of learning rules (planned)
-Introduce a constrained parameterized local update rule. Include a third control arm and measure whether inherited learning rules generalize beyond training regimes.
+If plasticity tests expose a reproducible problem, allow **bounded, inheritable** parameters of the learning/update rule to evolve. Compare with a fixed-rule controller under equal step/compute budgets. Introduce no arbitrary source-code execution.
 
 ## M3 — Novelty and exploration (planned)
-Add richer worlds, curiosity-like incentives with noisy-TV negative controls, and behavior descriptors for quality-diversity analyses.
+Richer worlds, curiosity-like incentives with noisy-TV negative controls, and behavior descriptors for quality-diversity analyses.
 
 ## M4 — Persistent objectives (speculative)
-Predefine observable tests for persistence and revision of self-generated subgoals. Keep operational evidence separate from claims about subjective experience or independent values.
+Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
