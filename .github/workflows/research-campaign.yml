@@ -1,6 +1,10 @@
 name: Research campaign
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/kickoff-*.md"
   schedule:
     - cron: "17 5 * * 1"
 
