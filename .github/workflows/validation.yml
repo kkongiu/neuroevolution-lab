@@ -21,9 +21,13 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Smoke experiment
         run: python -m neuroevolution --generations 2 --population 6 --episodes 2 --steps 40 --hidden 4 --flip-interval 10 --out results/smoke
+      - name: Plasticity smoke experiment
+        run: python -m neuroevolution.plasticity --seed-start 5 --seeds 2 --tasks 3 --steps 12 --batch-size 2 --width 6 --eval-size 24 --report-every 4 --out results/plasticity-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
           name: smoke-metrics
-          path: results/smoke/
+          path: |
+            results/smoke/
+            results/plasticity-smoke/
           retention-days: 30
