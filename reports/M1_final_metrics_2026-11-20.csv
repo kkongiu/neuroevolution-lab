@@ -1,0 +1,4 @@
+seed,generation,fixed_heldout_pct,topology_heldout_pct,difference_pp,fixed_post_flip_pct,topology_post_flip_pct,fixed_active_connections,topology_active_connections
+100,23,69.6875,72.60416667,2.91666667,61.25,56.875,72,49
+101,23,59.58333333,67.60416667,8.02083333,48.125,47.5,71,68
+102,23,70.9375,70.9375,0,52.5,52.5,86,66
