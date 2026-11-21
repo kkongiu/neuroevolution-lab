@@ -53,13 +53,21 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - State signals do change requested actions (59/108 shifted, 75/108 familiar), but their use does not yield demonstrated benefit. Preserving negative findings is mandatory.
 - Original summary.json incorrectly counted novel/return events for the first seed only; M3 raw task metrics confirm **73 novel / 47 return** events per 12-seed group (including initial task). The post-run diagnostic fix changes only aggregation and leaves published results unmodified.
 
-## M3.1 — Causal positive control: when preservation vs renewal helps (preregistered)
+## M3.1 — Causal positive control: when preservation vs renewal helps (completed)
 - [Frozen M3.1 protocol](M3_1_PROTOCOL.md). Two cloned contexts per pretrained model: intact and controlled hidden-unit disruption.
 - Evaluate **both potential outcomes** (preserve / renew) on identical heldout examples and adaptation streams; learn a threshold on a *training-only* diagnostic probe.
 - Train, validation, main final test, and shifted final test have disjoint seed ranges.
 - Compare learned state-based decisions against an independently optimized time-only rule, a shuffled **exact-dose-matched** control, always preserve, always renew and an oracle upper bound.
 - **Gate:** first verify on meta-training seeds that renewal harms intact networks but helps disrupted networks; a pass only demonstrates that the benchmark has two opposing causal incentives.
 - Positive-control effect is NOT open-ended self-improvement: the corruption is intentionally engineered, and the action space is explicitly restricted.
+
+### M3.1 empirical result — positive control succeeded, generality still unresolved
+- [M3.1 scientific report](../reports/M3_1_causal_repair_2026-11-21.md), [full GitHub run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44897210983), [per-seed archive](../reports/M3_1_seed_metrics_2026-11-21.csv).
+- Main final 24 seed: state-diagnostic threshold yields **90.51% learning AUC** vs **79.69%** for shuffled *exact-dose-matched* controls (+10.82 pp, paired bootstrap 95% +9.28/+12.33 pp), and **85.39%** for an independently optimized time-only policy (+5.12 pp).
+- Intact: renewal **harms AUC by 10.24 pp**; deliberately damaged network: renewal **helps by 30.39 pp**. Opposite effects were validated first on meta-training seeds before final tests.
+- Shifted XOR/circle 16 seed: smaller advantage (+2.80 pp versus matched shuffle), and oracle action agreement falls **96.88% → 65.63%**. It is a fragile out-of-distribution effect.
+- **Critical limitation:** accuracy before intervention practically reveals the deliberately inserted damage on the training family. The renewal operator is intentionally aligned with the damage mechanism. This is *only* a causal **positive-control benchmark**, not an emergent capability to discover how to repair arbitrary structural failures or invent goals.
+- Next: pre-register M3.2 for unlabelled, non-artificial learning interference with new seed splits, internal-state diagnostics and true memory preservation measurements.
 
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
