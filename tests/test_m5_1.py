@@ -117,7 +117,7 @@ class EcologicalViabilityTests(unittest.TestCase):
         self.assertEqual(eco.births, 1)
         # Energy accounting reflects the external test's manual energy
         # intervention (setting agent.energy 36->50): adjust initial ledger.
-        expected_residual = 50. - self.s.initial_energy
+        expected_residual = self.s.initial_energy - 50.
         self.assertAlmostEqual(base.energy_balance(eco), expected_residual)
 
     def test_original_neural_physics_identical_to_unmodified_m50(self):
