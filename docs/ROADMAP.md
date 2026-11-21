@@ -105,5 +105,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Protocol caveat: M3.3 adaptive controller's retention feature includes all previously stored contexts including the current context on return, while the text described other-context memory. Main cue/replay controls are unaffected; any fix needs new seeds.
 - Next research issue: [M3.4 latent context inference and bounded episodic memory](https://github.com/kkongiu/neuroevolution-lab/issues/14).
 
+## M3.4 — Online inference of latent context from labelled feedback (preregistered)
+- [Frozen M3.4 protocol](M3_4_PROTOCOL.md) committed *before* code/holdout execution.
+- Four latent opposing contexts; none supplied as an ID to the deployable model. A bounded kNN resolver compares **labelled support examples** to a separate FIFO prototype bank of prior training samples, allocates anonymous slots and supplies inferred one-hot slot cues to a persistent ReLU model.
+- Externally select the resolver threshold only on meta-train/validation seed partitions. Main/few-shot/shifted seed ranges are independent. Inference quality (slot purity and return consistency) is measured **separately** from predictive accuracy.
+- Control the **same trained model** by shuffling its final support sets (primary) and removing support/one-hot entirely. Additional neural baselines use true privileged oracle context, inferred cue + replay versus no-replay, same replay-budget FIFO versus reservoir, and blank-context replay.
+- Replay buffers hold at most 24 training examples per inferred slot, with every fourth SGD batch replaced by past examples; no holdout examples are stored.
+- Two transfer tests: only six labelled cues with one corrupted label on familiar line/XOR problems, and the same support degradation on unseen stripe/checker problems.
+- Gate: positive paired support-ablation accuracy, above 50% no-support, return consistency >65% and >3.5 distinct slots among first four truly new tasks on average. A result that improves only on provided easy support is **not** a demonstration of broad latent-context inference.
+- No new neural plasticity or arbitrary source modifications: the context resolver is a bounded, externally specified algorithm.
+
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.

@@ -1,0 +1,45 @@
+name: M3.4 latent context inference
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m3-4-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  latent-context-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate all unit tests including no-leakage checks
+        run: python -m unittest discover -s tests -v
+      - name: Run preregistered M3.4 and sealed tests
+        run: |
+          python -m neuroevolution.m3_4 \
+            --train-start 24000 --train-seeds 6 \
+            --validation-start 25000 --validation-seeds 3 \
+            --test-start 26000 --test-seeds 24 \
+            --few-start 27000 --few-seeds 12 \
+            --shifted-start 28000 --shifted-seeds 12 \
+            --contexts 4 --tasks 12 --width 24 \
+            --steps 48 --batch-size 4 --eval-size 64 \
+            --report-every 12 --learning-rate 0.04 \
+            --main-support 16 --hard-support 6 --hard-flips 1 \
+            --prototype-size 64 --buffer-size 24 \
+            --replay-every 4 --knn-k 7 \
+            --out results/m3-4
+      - name: Save full seed/episode/inference output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m3-4-latent-context-inference
+          path: results/m3-4/
+          if-no-files-found: warn
+          retention-days: 30
