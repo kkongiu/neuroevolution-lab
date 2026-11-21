@@ -15,8 +15,13 @@
 - **M1-P2 independent confirmation:** 24 **new** seed × 16 tasks. No evidence for progressively worsening gap between matched early/late task families (−0.30 pp; broad interval covering zero). Targeted renewal again beats random reset (+1.27 pp AUC on tasks 8–15). See [M1-P2 report](../reports/M1P2_confirmation_2026-11-20.md).
 - **Conclusion:** promising constrained renewal benefit, but not cumulative plasticity loss nor autonomous self-modification; preserve the null result.
 
-## M2 — Evolution of learning rules (planned)
-If plasticity tests expose a reproducible problem, allow **bounded, inheritable** parameters of the learning/update rule to evolve. Compare with a fixed-rule controller under equal step/compute budgets. Introduce no arbitrary source-code execution.
+## M2 — Evolving a bounded renewal policy (implementation in experiment branch)
+- A five-parameter meta-controller evolves **when to renew**, and the dose (0 / half / maximum 20%).
+- Frozen [M2 protocol](M2_PROTOCOL.md), fully disjoint meta-train/meta-validation/sealed-test seed sets.
+- Six comparison arms, including matched unit dose and shuffled matched schedule.
+- M2 changes *a constrained adaptation policy*, not the neural learning algorithm or arbitrary Python source.
+- Gate: only count real adaptive control if held-out advantage survives schedule-shuffled controls **and** the action histogram shows state-dependent variability.
+- M2 follow-up (not implemented): inherited local weight-update rules or a genuine learned neural optimizer with matched cost.
 
 ## M3 — Novelty and exploration (planned)
 Richer worlds, curiosity-like incentives with noisy-TV negative controls, and behavior descriptors for quality-diversity analyses.
