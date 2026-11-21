@@ -281,3 +281,17 @@ Run small deterministic smoke:
 ~~~bash
 python -m neuroevolution.m5_2b --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --hidden 2 --sparse-mutated-weights 3 --out results/m5-2b-smoke
 ~~~
+
+## M5.3A — Neural numerical capacity proved, evolutionary search still open
+
+[Preregistered 36-world representational experiment](docs/M5_3A_PROTOCOL.md): with unchanged original M5.0 ecology and neural actor, a manually **engineered numerical** 401-weight genotype survived **24/24** ordinary worlds; independently **externally supervised** 401-weight genotype also **24/24**, and a 51-weight supervised genotype **17/24**, compared with fixed random or shuffled controls **0/24**. All numerical weights were *cloned unchanged* into genuine children. The result proves these numerical neural architectures can express viable ecological behavior, **not** that the organism's genome evolved it through natural selection.
+
+**Negative OOD result:** all three engineered/externally trained genotypes failed in **12/12 shifted worlds** with increased walls and shorter food odor range; do not retroactively tune these sealed outcomes. [Full scientific report](reports/M5_3A_neural_representation_2026-11-21.md), [per-world data](reports/M5_3A_paired_worlds_2026-11-21.csv), [completed Actions run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44922015463).
+
+Engineering smoke (separate from sealed study):
+
+~~~bash
+python -m neuroevolution.m5_3a --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --teacher-seed-start 1100 --teacher-seed-count 2 --validation-teacher-start 1200 --validation-teacher-count 1 --teacher-ticks 35 --train-cap 150 --validation-cap 90 --epochs 3 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --negative-control-worlds 1 --no-food-controls 0 --hidden 12 --out results/m5-3a-smoke
+~~~
+
+**Remaining challenge:** whether an initially *random* heritable genotype can evolve food-seeking neural behavior on its own, and maintain it when the ecology changes.
