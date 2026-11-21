@@ -237,7 +237,7 @@ def _ranking(record: dict) -> tuple[int,int,int,int,int]:
 
 def external_search(settings: Settings, *,
                     trace:bool=False
-                    ) -> tuple[list[dict],list[dict],dict,dict]:
+                    ) -> tuple[list[dict],list[dict],list[dict],dict,dict]:
     """Fixed seed and budget. Absolutely no sealed-world accesses here."""
     settings.validate()
     rng=random.Random(settings.search_seed)
@@ -330,7 +330,7 @@ def external_search(settings: Settings, *,
         raise AssertionError("External search budget deviated")
     if selected not in finalists:
         raise AssertionError("External selection not drawn from predefined top")
-    return records,selection,selected,{
+    return records,development,selection,selected,{
         "external_optimizer":EXTERNAL_OPTIMIZER,
         "search_seed":settings.search_seed,
         "development_seeds":list(range(
@@ -503,7 +503,7 @@ def analyze(rows:list[dict],settings:Settings,
 def run(settings:Settings,out:Path,*,boots:int=BOOT_REPS) -> dict:
     settings.validate()
     out.mkdir(parents=True,exist_ok=True)
-    records,validation,selected,selection=external_search(settings,trace=True)
+    records,development,validation,selected,selection=external_search(settings,trace=True)
     bank=fixed_bank(selected,settings)
     (out/"frozen_selected_genotype_and_controls.json").write_text(
         json.dumps({
@@ -525,27 +525,9 @@ def run(settings:Settings,out:Path,*,boots:int=BOOT_REPS) -> dict:
                 "fa45399a24cb52f0f8d95436cad87a273e991a54"
         },indent=2,sort_keys=True)+"\n",encoding="utf-8"
     )
-    _write_csv(out/"external_search_development_metrics.csv",[
-        {
-            **record,
-            "source_parent_candidate_id":(
-                records[record["candidate_id"]]["parent_candidate_id"]
-            )
-        } for record in (
-            row for row in (
-                # Return full training metrics by regenerating EXACTLY
-                # original train candidate scores, no test worlds touched.
-                {
-                    "stage":"development","candidate_id":c["candidate_id"],
-                    "development_survived":c["development_score"][0],
-                    "development_final_population":c["development_score"][1],
-                    "development_food_eaten":c["development_score"][2],
-                    "development_births":c["development_score"][3],
-                    "gene_digest":c["gene_digest"],
-                } for c in records
-            )
-        )
-    ])
+    # Every candidate and every original developmental world is archived,
+    # preserving unsuccessful numerical candidates and non-survival outcomes.
+    _write_csv(out/"external_search_development_metrics.csv",development)
     _write_csv(out/"external_search_validation_metrics.csv",validation)
     (out/"external_search_all_96_gene_records.json").write_text(
         json.dumps(records,sort_keys=True,indent=2)+"\n",encoding="utf-8"
@@ -598,7 +580,7 @@ def run(settings:Settings,out:Path,*,boots:int=BOOT_REPS) -> dict:
         "external_optimization_researcher_supervision":True,
         "within_world_mutations":0,
         "search_candidates":len(records),
-        "development_trial_count":len(records)*settings.development_seeds,
+        "development_trial_count":len(development),
         "validation_trial_count":len(validation),
         "sealed_trial_count":len(heldouts),
         "selected_candidate":selection,
