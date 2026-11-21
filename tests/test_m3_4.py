@@ -102,8 +102,10 @@ class LatentContextInferenceTests(unittest.TestCase):
                           if len(memory.stored) == 1 else None)
 
     def test_inference_trace_deterministic_and_threshold_selected_without_test(self):
-        a, b = select_threshold(self.settings)
-        self.assertEqual(a, b)
+        a, history = select_threshold(self.settings)
+        a2, history2 = select_threshold(self.settings)
+        self.assertEqual(a, a2)
+        self.assertEqual(history, history2)
         self.assertIn(a, THRESHOLDS)
         data = task_world(205, self.settings, "main")
         one = trace_resolver(data, self.settings, a)
