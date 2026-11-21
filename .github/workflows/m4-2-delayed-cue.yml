@@ -1,0 +1,46 @@
+name: M4.2 delayed-cue memory experiment
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m4-2-kickoff-*.md"
+permissions:
+  contents: read
+
+jobs:
+  delayed-cue-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests including all previous milestones
+        run: python -m unittest discover -s tests -v
+      - name: Frozen M4.2 eight-run recurrent-vs-stateless memory campaign
+        run: |
+          python -m neuroevolution.m4_2 \
+            --train-start 55000 --train-worlds 10 \
+            --validation-start 56000 --validation-worlds 6 \
+            --test-start 57000 --test-worlds 32 \
+            --shifted-start 57500 --shifted-worlds 16 \
+            --reactive-start 58000 --reactive-worlds 12 \
+            --genetic-seed-start 85000 --genetic-runs 8 \
+            --size 13 --hidden 8 --ff-hidden 11 \
+            --stem-min 3 --stem-max 5 \
+            --shifted-stem-min 5 --shifted-stem-max 6 \
+            --cue-ticks 2 --horizon 20 \
+            --population 12 --generations 6 \
+            --elites 2 --immigrants 2 \
+            --initial-weight-sd 0.45 --mutation-sd 0.28 \
+            --out results/m4-2
+      - name: Preserve genomes, all paired trials and trajectories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m4-2-delayed-cue-memory
+          path: results/m4-2/
+          if-no-files-found: warn
+          retention-days: 30
