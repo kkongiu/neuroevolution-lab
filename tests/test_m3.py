@@ -97,6 +97,13 @@ class M3Tests(unittest.TestCase):
                           summary_a["shifted"]["comparisons"])
             self.assertEqual(summary_a["regular"]["opportunities"],
                              self.settings.test_seeds * (self.settings.tasks - 1))
+            for split, expected_seeds in (("regular", self.settings.test_seeds),
+                                           ("shifted", self.settings.shifted_seeds)):
+                stats = summary_a[split]
+                self.assertEqual(
+                    stats["novel_events"] + stats["return_events"],
+                    expected_seeds * (self.settings.tasks - 1),
+                )
 
 
 if __name__ == "__main__":

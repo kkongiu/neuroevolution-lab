@@ -279,10 +279,14 @@ def seed_metrics(results: list[dict]) -> dict:
             str(v): all_actions.count(v) for v in sorted(set(all_actions))
         },
         "opportunities": len(all_requested),
-        "novel_events": sum(row["status"] == "novel"
-                            for row in adaptive[0]["rows"][1:]),
-        "return_events": sum(row["status"] == "return"
-                             for row in adaptive[0]["rows"][1:]),
+        "novel_events": sum(
+            row["status"] == "novel"
+            for result in adaptive for row in result["rows"][1:]
+        ),
+        "return_events": sum(
+            row["status"] == "return"
+            for result in adaptive for row in result["rows"][1:]
+        ),
     }
 
 
