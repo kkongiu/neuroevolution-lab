@@ -1,0 +1,2952 @@
+{
+  "source_study": "M5.3B exact sealed source replays, no heldout M5.3C world evaluation",
+  "protocol_sha": "235fa05894c573b76f097073100069c25e172e9b",
+  "verification_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44924597561",
+  "source_worlds": [
+    {
+      "genealogy": [
+        {
+          "child": 21,
+          "expanded_genome_digest": "ff3a91cc89fb4e83",
+          "founder": 14,
+          "gene_digest": "7a284be2d70a7c9bbf88",
+          "gene_values": [
+            0.20102093824814077,
+            0.9284720149366201,
+            -0.22559664017912015,
+            0.6150225802422518,
+            0.17534493153411096,
+            0.06274841486140197,
+            -0.026942905539470752,
+            -0.4770468764265526,
+            -0.7767167284993267,
+            -0.9405362512569713
+          ],
+          "generation": 1,
+          "mutated_indices": [
+            1,
+            2
+          ],
+          "parent": 14,
+          "tick": 7
+        },
+        {
+          "child": 31,
+          "expanded_genome_digest": "26bae5d5549cec31",
+          "founder": 14,
+          "gene_digest": "61271cebec0f5784bed1",
+          "gene_values": [
+            0.20102093824814077,
+            0.9284720149366201,
+            -0.22559664017912015,
+            0.6150225802422518,
+            0.17534493153411096,
+            0.06274841486140197,
+            -0.026942905539470752,
+            -0.4770468764265526,
+            -0.35814940319492716,
+            -0.9988659500308016
+          ],
+          "generation": 2,
+          "mutated_indices": [
+            8,
+            9
+          ],
+          "parent": 21,
+          "tick": 40
+        },
+        {
+          "child": 46,
+          "expanded_genome_digest": "587585293c067cac",
+          "founder": 14,
+          "gene_digest": "95ade1c34fa8419ed46c",
+          "gene_values": [
+            0.20102093824814077,
+            0.9284720149366201,
+            -0.1124530214096955,
+            0.48669720417380014,
+            0.17534493153411096,
+            0.06274841486140197,
+            -0.026942905539470752,
+            -0.4770468764265526,
+            -0.35814940319492716,
+            -0.9988659500308016
+          ],
+          "generation": 3,
+          "mutated_indices": [
+            2,
+            3
+          ],
+          "parent": 31,
+          "tick": 68
+        },
+        {
+          "child": 54,
+          "expanded_genome_digest": "370d7e685aaf39fd",
+          "founder": 14,
+          "gene_digest": "02f22cc4f96b3d3b1818",
+          "gene_values": [
+            0.20102093824814077,
+            1.0405638432895898,
+            -0.1124530214096955,
+            0.48669720417380014,
+            0.17534493153411096,
+            -0.018103277620760444,
+            -0.026942905539470752,
+            -0.4770468764265526,
+            -0.35814940319492716,
+            -0.9988659500308016
+          ],
+          "generation": 4,
+          "mutated_indices": [
+            1,
+            5
+          ],
+          "parent": 46,
+          "tick": 96
+        },
+        {
+          "child": 58,
+          "expanded_genome_digest": "3b2f79c492bef697",
+          "founder": 14,
+          "gene_digest": "7abc073f73cc85062433",
+          "gene_values": [
+            0.20102093824814077,
+            1.0405638432895898,
+            -0.1124530214096955,
+            0.48669720417380014,
+            -0.10197061872317781,
+            -0.018103277620760444,
+            -0.026942905539470752,
+            -0.4770468764265526,
+            -0.35814940319492716,
+            -1.1098808012712398
+          ],
+          "generation": 5,
+          "mutated_indices": [
+            4,
+            9
+          ],
+          "parent": 54,
+          "tick": 101
+        },
+        {
+          "child": 64,
+          "expanded_genome_digest": "22e88b56bbe384ae",
+          "founder": 14,
+          "gene_digest": "11e74fa9356243b5f9fb",
+          "gene_values": [
+            0.20102093824814077,
+            1.0405638432895898,
+            -0.1124530214096955,
+            0.4770779641902398,
+            -0.10197061872317781,
+            -0.018103277620760444,
+            -0.026942905539470752,
+            -0.28611448413729557,
+            -0.35814940319492716,
+            -1.1098808012712398
+          ],
+          "generation": 6,
+          "mutated_indices": [
+            3,
+            7
+          ],
+          "parent": 58,
+          "tick": 114
+        },
+        {
+          "child": 74,
+          "expanded_genome_digest": "a722a90c4bfc17c1",
+          "founder": 14,
+          "gene_digest": "3a1e2c580582468fba39",
+          "gene_values": [
+            0.30385049352092985,
+            1.0405638432895898,
+            -0.1124530214096955,
+            0.4770779641902398,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.026942905539470752,
+            -0.28611448413729557,
+            -0.35814940319492716,
+            -1.1098808012712398
+          ],
+          "generation": 7,
+          "mutated_indices": [
+            0,
+            4
+          ],
+          "parent": 64,
+          "tick": 140
+        },
+        {
+          "child": 79,
+          "expanded_genome_digest": "725ecf0b7c408b39",
+          "founder": 14,
+          "gene_digest": "e88819f0037fc6624c89",
+          "gene_values": [
+            0.30385049352092985,
+            1.0405638432895898,
+            -0.1124530214096955,
+            0.4770779641902398,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.1427161550672088,
+            -0.28611448413729557,
+            -0.35814940319492716,
+            -0.9466021818108852
+          ],
+          "generation": 8,
+          "mutated_indices": [
+            6,
+            9
+          ],
+          "parent": 74,
+          "tick": 159
+        },
+        {
+          "child": 98,
+          "expanded_genome_digest": "bd833a72df742968",
+          "founder": 14,
+          "gene_digest": "4975803ff0533b1fa074",
+          "gene_values": [
+            0.3604173822941846,
+            1.0405638432895898,
+            -0.38208862028158846,
+            0.4770779641902398,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.1427161550672088,
+            -0.28611448413729557,
+            -0.35814940319492716,
+            -0.9466021818108852
+          ],
+          "generation": 9,
+          "mutated_indices": [
+            0,
+            2
+          ],
+          "parent": 79,
+          "tick": 241
+        },
+        {
+          "child": 102,
+          "expanded_genome_digest": "0d8ae8bbaa709153",
+          "founder": 14,
+          "gene_digest": "a63fab19927f1b6970dc",
+          "gene_values": [
+            0.3604173822941846,
+            1.0405638432895898,
+            -0.38208862028158846,
+            0.3554876889631082,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.1427161550672088,
+            -0.28611448413729557,
+            -0.35814940319492716,
+            -1.2459359151387797
+          ],
+          "generation": 10,
+          "mutated_indices": [
+            3,
+            9
+          ],
+          "parent": 98,
+          "tick": 257
+        },
+        {
+          "child": 121,
+          "expanded_genome_digest": "114b47baa063dab7",
+          "founder": 14,
+          "gene_digest": "17cfb0ee46308f79fa82",
+          "gene_values": [
+            0.3604173822941846,
+            1.0405638432895898,
+            -0.38208862028158846,
+            0.3554876889631082,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.4208349904060143,
+            -0.21550076415145614,
+            -0.35814940319492716,
+            -1.2459359151387797
+          ],
+          "generation": 11,
+          "mutated_indices": [
+            6,
+            7
+          ],
+          "parent": 102,
+          "tick": 306
+        },
+        {
+          "child": 122,
+          "expanded_genome_digest": "33160708243a2830",
+          "founder": 14,
+          "gene_digest": "cdb827a0893539d65084",
+          "gene_values": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.38208862028158846,
+            0.2823699906091002,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.4208349904060143,
+            -0.21550076415145614,
+            -0.35814940319492716,
+            -1.2459359151387797
+          ],
+          "generation": 12,
+          "mutated_indices": [
+            1,
+            3
+          ],
+          "parent": 121,
+          "tick": 313
+        },
+        {
+          "child": 130,
+          "expanded_genome_digest": "a571460305d20cf1",
+          "founder": 14,
+          "gene_digest": "b1563a72ccc3f2579e1c",
+          "gene_values": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.2354212184413397,
+            0.018263005055484727,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.4208349904060143,
+            -0.21550076415145614,
+            -0.35814940319492716,
+            -1.2459359151387797
+          ],
+          "generation": 13,
+          "mutated_indices": [
+            2,
+            3
+          ],
+          "parent": 122,
+          "tick": 330
+        },
+        {
+          "child": 139,
+          "expanded_genome_digest": "f71e250fdfae65ed",
+          "founder": 14,
+          "gene_digest": "52dc982f9c1926e07d91",
+          "gene_values": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.2354212184413397,
+            0.018263005055484727,
+            -0.3847384492280616,
+            -0.018103277620760444,
+            -0.47768256268271847,
+            -0.32607090500542596,
+            -0.35814940319492716,
+            -1.2459359151387797
+          ],
+          "generation": 14,
+          "mutated_indices": [
+            6,
+            7
+          ],
+          "parent": 130,
+          "tick": 354
+        },
+        {
+          "child": 142,
+          "expanded_genome_digest": "aaf4946efeab0d51",
+          "founder": 14,
+          "gene_digest": "cafdf193caaaf3247954",
+          "gene_values": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.2354212184413397,
+            0.018263005055484727,
+            -0.3847384492280616,
+            -0.2918978632629283,
+            -0.47768256268271847,
+            -0.32607090500542596,
+            -0.35814940319492716,
+            -0.9962748995885642
+          ],
+          "generation": 15,
+          "mutated_indices": [
+            5,
+            9
+          ],
+          "parent": 139,
+          "tick": 359
+        },
+        {
+          "child": 156,
+          "expanded_genome_digest": "3291f7ad64b9ab88",
+          "founder": 14,
+          "gene_digest": "796aff5e6e5e05a046ea",
+          "gene_values": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.26584059885069083,
+            0.018263005055484727,
+            -0.34626809968558475,
+            -0.2918978632629283,
+            -0.47768256268271847,
+            -0.32607090500542596,
+            -0.35814940319492716,
+            -0.9962748995885642
+          ],
+          "generation": 16,
+          "mutated_indices": [
+            2,
+            4
+          ],
+          "parent": 142,
+          "tick": 398
+        }
+      ],
+      "genotypes": {
+        "ancestor": {
+          "gene_digest": "104be8fd525a6c22a408",
+          "genes": [
+            0.20102093824814077,
+            1.0365624861492404,
+            -0.29687265627721204,
+            0.6150225802422518,
+            0.17534493153411096,
+            0.06274841486140197,
+            -0.026942905539470752,
+            -0.4770468764265526,
+            -0.7767167284993267,
+            -0.9405362512569713
+          ],
+          "native_401_genome_digest": "f95120f1fb1698ec"
+        },
+        "descendant": {
+          "gene_digest": "796aff5e6e5e05a046ea",
+          "genes": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.26584059885069083,
+            0.018263005055484727,
+            -0.34626809968558475,
+            -0.2918978632629283,
+            -0.47768256268271847,
+            -0.32607090500542596,
+            -0.35814940319492716,
+            -0.9962748995885642
+          ],
+          "native_401_genome_digest": "3291f7ad64b9ab88"
+        },
+        "independent_random": {
+          "gene_digest": "f162e134d571eb6e52eb",
+          "genes": [
+            -0.66325723935737,
+            0.8613774419800589,
+            -0.3858605723669944,
+            -1.5268298761007877,
+            1.1107771406675266,
+            0.5097022484027383,
+            -0.1128704230186736,
+            0.5779253632590532,
+            -0.4098469080977345,
+            -0.8925013168934446
+          ],
+          "native_401_genome_digest": "9c7f4e6f43e22e2c"
+        },
+        "last_step_reverted": {
+          "gene_digest": "cafdf193caaaf3247954",
+          "genes": [
+            0.3604173822941846,
+            1.0703635255624915,
+            -0.2354212184413397,
+            0.018263005055484727,
+            -0.3847384492280616,
+            -0.2918978632629283,
+            -0.47768256268271847,
+            -0.32607090500542596,
+            -0.35814940319492716,
+            -0.9962748995885642
+          ],
+          "native_401_genome_digest": "aaf4946efeab0d51"
+        },
+        "scrambled": {
+          "gene_digest": "abd6032b05440c6a5f44",
+          "genes": [
+            -0.26584059885069083,
+            -0.9962748995885642,
+            1.0703635255624915,
+            -0.32607090500542596,
+            -0.35814940319492716,
+            -0.34626809968558475,
+            0.018263005055484727,
+            -0.2918978632629283,
+            -0.47768256268271847,
+            0.3604173822941846
+          ],
+          "native_401_genome_digest": "a574d9eccc47d816"
+        }
+      },
+      "last_step_mutated_indices": [
+        2,
+        4
+      ],
+      "note": "Five families selected conditionally on M5.3B successful sources; NO held-out ecological outcome used to choose or alter candidates",
+      "original_source_alive_final": 14,
+      "original_source_arm": "sparse_2",
+      "original_source_births": 137,
+      "selected_final_founder_id": 14,
+      "selected_final_generation": 16,
+      "selected_final_id": 156,
+      "selection_rule": "max final living generation, then lowest ID",
+      "source_checkpoints": [
+        {
+          "arm": "sparse_2",
+          "births": 0,
+          "deaths": 0,
+          "energy_ledger_residual": 0,
+          "food_eaten": 0,
+          "food_spawned": 20,
+          "food_stock": 20,
+          "lineages_alive": 20,
+          "max_generation": 0,
+          "mean_generation": 0,
+          "population": 20,
+          "seed": 82006,
+          "split": "main",
+          "tick": 0,
+          "total_living_energy": 720
+        },
+        {
+          "arm": "sparse_2",
+          "births": 17,
+          "deaths": 23,
+          "energy_ledger_residual": 0,
+          "food_eaten": 53,
+          "food_spawned": 67,
+          "food_stock": 14,
+          "lineages_alive": 7,
+          "max_generation": 3,
+          "mean_generation": 1.0714285714285714,
+          "population": 14,
+          "seed": 82006,
+          "split": "main",
+          "tick": 50,
+          "total_living_energy": 277
+        },
+        {
+          "arm": "sparse_2",
+          "births": 36,
+          "deaths": 48,
+          "energy_ledger_residual": 0,
+          "food_eaten": 102,
+          "food_spawned": 114,
+          "food_stock": 12,
+          "lineages_alive": 1,
+          "max_generation": 5,
+          "mean_generation": 3.25,
+          "population": 8,
+          "seed": 82006,
+          "split": "main",
+          "tick": 100,
+          "total_living_energy": 227
+        },
+        {
+          "arm": "sparse_2",
+          "births": 57,
+          "deaths": 64,
+          "energy_ledger_residual": 0,
+          "food_eaten": 157,
+          "food_spawned": 161,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 8,
+          "mean_generation": 6,
+          "population": 13,
+          "seed": 82006,
+          "split": "main",
+          "tick": 150,
+          "total_living_energy": 260
+        },
+        {
+          "arm": "sparse_2",
+          "births": 69,
+          "deaths": 79,
+          "energy_ledger_residual": 0,
+          "food_eaten": 199,
+          "food_spawned": 204,
+          "food_stock": 5,
+          "lineages_alive": 1,
+          "max_generation": 10,
+          "mean_generation": 7.3,
+          "population": 10,
+          "seed": 82006,
+          "split": "main",
+          "tick": 200,
+          "total_living_energy": 182
+        },
+        {
+          "arm": "sparse_2",
+          "births": 80,
+          "deaths": 94,
+          "energy_ledger_residual": 0,
+          "food_eaten": 230,
+          "food_spawned": 251,
+          "food_stock": 21,
+          "lineages_alive": 1,
+          "max_generation": 10,
+          "mean_generation": 8.166666666666666,
+          "population": 6,
+          "seed": 82006,
+          "split": "main",
+          "tick": 250,
+          "total_living_energy": 165
+        },
+        {
+          "arm": "sparse_2",
+          "births": 101,
+          "deaths": 107,
+          "energy_ledger_residual": 0,
+          "food_eaten": 291,
+          "food_spawned": 297,
+          "food_stock": 6,
+          "lineages_alive": 1,
+          "max_generation": 12,
+          "mean_generation": 10.357142857142858,
+          "population": 14,
+          "seed": 82006,
+          "split": "main",
+          "tick": 300,
+          "total_living_energy": 179
+        },
+        {
+          "arm": "sparse_2",
+          "births": 118,
+          "deaths": 122,
+          "energy_ledger_residual": 0,
+          "food_eaten": 348,
+          "food_spawned": 352,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 14,
+          "mean_generation": 11.875,
+          "population": 16,
+          "seed": 82006,
+          "split": "main",
+          "tick": 350,
+          "total_living_energy": 281
+        },
+        {
+          "arm": "sparse_2",
+          "births": 137,
+          "deaths": 143,
+          "energy_ledger_residual": 0,
+          "food_eaten": 398,
+          "food_spawned": 402,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 16,
+          "mean_generation": 12.357142857142858,
+          "population": 14,
+          "seed": 82006,
+          "split": "main",
+          "tick": 400,
+          "total_living_energy": 254
+        }
+      ],
+      "source_seed": 82006
+    },
+    {
+      "genealogy": [
+        {
+          "child": 23,
+          "expanded_genome_digest": "e88de156b31d8764",
+          "founder": 13,
+          "gene_digest": "544073b5bd587c18d7d2",
+          "gene_values": [
+            1.275505424874579,
+            0.9793229054930792,
+            -0.48749625352122605,
+            -0.11792048410741712,
+            -0.5170215928325846,
+            -0.2984682236674711,
+            0.17471043697234503,
+            0.05914761814882298,
+            0.8699632318623929,
+            0.7823593835443121
+          ],
+          "generation": 1,
+          "mutated_indices": [
+            6,
+            7
+          ],
+          "parent": 13,
+          "tick": 10
+        },
+        {
+          "child": 34,
+          "expanded_genome_digest": "dedb36ba302a5782",
+          "founder": 13,
+          "gene_digest": "509fc8b193eccafa3ae8",
+          "gene_values": [
+            1.275505424874579,
+            0.9793229054930792,
+            -0.48749625352122605,
+            -0.07050817646602872,
+            -0.5170215928325846,
+            -0.2984682236674711,
+            0.0061734701503280975,
+            0.05914761814882298,
+            0.8699632318623929,
+            0.7823593835443121
+          ],
+          "generation": 2,
+          "mutated_indices": [
+            3,
+            6
+          ],
+          "parent": 23,
+          "tick": 60
+        },
+        {
+          "child": 39,
+          "expanded_genome_digest": "c20ad34f9ff88f26",
+          "founder": 13,
+          "gene_digest": "f50008a69b417b56e313",
+          "gene_values": [
+            1.341305405250389,
+            0.9793229054930792,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.5170215928325846,
+            -0.2984682236674711,
+            0.0061734701503280975,
+            0.05914761814882298,
+            0.8699632318623929,
+            0.7823593835443121
+          ],
+          "generation": 3,
+          "mutated_indices": [
+            0,
+            2
+          ],
+          "parent": 34,
+          "tick": 81
+        },
+        {
+          "child": 42,
+          "expanded_genome_digest": "adb6cbc06a3f8c37",
+          "founder": 13,
+          "gene_digest": "3192f1b74ba995716aed",
+          "gene_values": [
+            1.341305405250389,
+            0.9793229054930792,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.5170215928325846,
+            -0.2984682236674711,
+            -0.16418370681971747,
+            0.05914761814882298,
+            1.099499901761606,
+            0.7823593835443121
+          ],
+          "generation": 4,
+          "mutated_indices": [
+            6,
+            8
+          ],
+          "parent": 39,
+          "tick": 87
+        },
+        {
+          "child": 51,
+          "expanded_genome_digest": "bc67f55c833194c1",
+          "founder": 13,
+          "gene_digest": "73c75d4b82189cf830ed",
+          "gene_values": [
+            1.341305405250389,
+            0.9793229054930792,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.434455177799787,
+            -0.2984682236674711,
+            -0.19554783503136103,
+            0.05914761814882298,
+            1.099499901761606,
+            0.7823593835443121
+          ],
+          "generation": 5,
+          "mutated_indices": [
+            4,
+            6
+          ],
+          "parent": 42,
+          "tick": 116
+        },
+        {
+          "child": 52,
+          "expanded_genome_digest": "bc2ec599800b2ab7",
+          "founder": 13,
+          "gene_digest": "7fa2775133dea3211ce5",
+          "gene_values": [
+            1.341305405250389,
+            0.9793229054930792,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.434455177799787,
+            -0.2984682236674711,
+            -0.30503866033908217,
+            0.05914761814882298,
+            1.0046171160728552,
+            0.7823593835443121
+          ],
+          "generation": 6,
+          "mutated_indices": [
+            6,
+            8
+          ],
+          "parent": 51,
+          "tick": 121
+        },
+        {
+          "child": 69,
+          "expanded_genome_digest": "2eba0647a0b0e416",
+          "founder": 13,
+          "gene_digest": "fd0df1c61500b13f9d9d",
+          "gene_values": [
+            1.341305405250389,
+            0.6178110139902306,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.434455177799787,
+            -0.2984682236674711,
+            -0.30503866033908217,
+            0.05914761814882298,
+            1.0066134227792185,
+            0.7823593835443121
+          ],
+          "generation": 7,
+          "mutated_indices": [
+            1,
+            8
+          ],
+          "parent": 52,
+          "tick": 156
+        },
+        {
+          "child": 71,
+          "expanded_genome_digest": "293b1908f899f4c9",
+          "founder": 13,
+          "gene_digest": "670ee7edaadc53250d67",
+          "gene_values": [
+            1.341305405250389,
+            0.7200231734787472,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.33893416467498033,
+            -0.2984682236674711,
+            -0.30503866033908217,
+            0.05914761814882298,
+            1.0066134227792185,
+            0.7823593835443121
+          ],
+          "generation": 8,
+          "mutated_indices": [
+            1,
+            4
+          ],
+          "parent": 69,
+          "tick": 162
+        },
+        {
+          "child": 73,
+          "expanded_genome_digest": "e6163cb962511c94",
+          "founder": 13,
+          "gene_digest": "5fed501f6a61a8dd9a22",
+          "gene_values": [
+            1.341305405250389,
+            0.7004619050012207,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.33893416467498033,
+            -0.2984682236674711,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.8593734667620243,
+            0.7823593835443121
+          ],
+          "generation": 9,
+          "mutated_indices": [
+            1,
+            8
+          ],
+          "parent": 71,
+          "tick": 170
+        },
+        {
+          "child": 92,
+          "expanded_genome_digest": "700b5ffec3b82a40",
+          "founder": 13,
+          "gene_digest": "b3ceabc4773caa9d5100",
+          "gene_values": [
+            1.341305405250389,
+            0.7004619050012207,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.31298404165128957,
+            -0.04188995803625589,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.8593734667620243,
+            0.7823593835443121
+          ],
+          "generation": 10,
+          "mutated_indices": [
+            4,
+            5
+          ],
+          "parent": 73,
+          "tick": 214
+        },
+        {
+          "child": 106,
+          "expanded_genome_digest": "0261972e1d3d4894",
+          "founder": 13,
+          "gene_digest": "5f0290d11fae0535f849",
+          "gene_values": [
+            1.341305405250389,
+            0.8251675036453532,
+            -0.7094115659412431,
+            -0.07050817646602872,
+            -0.31298404165128957,
+            -0.04188995803625589,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "generation": 11,
+          "mutated_indices": [
+            1,
+            8
+          ],
+          "parent": 92,
+          "tick": 250
+        },
+        {
+          "child": 126,
+          "expanded_genome_digest": "9102b0d5940d8f6d",
+          "founder": 13,
+          "gene_digest": "7c738bb14045c95648c8",
+          "gene_values": [
+            1.341305405250389,
+            0.8251675036453532,
+            -0.7094115659412431,
+            0.022129102408410206,
+            -0.2752526091750893,
+            -0.04188995803625589,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "generation": 12,
+          "mutated_indices": [
+            3,
+            4
+          ],
+          "parent": 106,
+          "tick": 297
+        },
+        {
+          "child": 138,
+          "expanded_genome_digest": "5b2a1a18d3b8afc3",
+          "founder": 13,
+          "gene_digest": "c8bdd40ef3834faf1bdc",
+          "gene_values": [
+            1.341305405250389,
+            0.8251675036453532,
+            -0.7094115659412431,
+            -0.03331389679274664,
+            -0.30752766476119325,
+            -0.04188995803625589,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "generation": 13,
+          "mutated_indices": [
+            3,
+            4
+          ],
+          "parent": 126,
+          "tick": 326
+        },
+        {
+          "child": 145,
+          "expanded_genome_digest": "d903fb4aea23d6c2",
+          "founder": 13,
+          "gene_digest": "4dcfc9b8dba34be1885c",
+          "gene_values": [
+            1.3193740904555464,
+            0.8251675036453532,
+            -0.7094115659412431,
+            -0.03331389679274664,
+            -0.23625232921284567,
+            -0.04188995803625589,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "generation": 14,
+          "mutated_indices": [
+            0,
+            4
+          ],
+          "parent": 138,
+          "tick": 351
+        },
+        {
+          "child": 154,
+          "expanded_genome_digest": "ca840746b9ac4f8e",
+          "founder": 13,
+          "gene_digest": "aa64557a3b6e42e61abc",
+          "gene_values": [
+            1.3193740904555464,
+            0.8251675036453532,
+            -0.9547579923372029,
+            -0.03331389679274664,
+            -0.23625232921284567,
+            -0.04188995803625589,
+            -0.1919018705687125,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "generation": 15,
+          "mutated_indices": [
+            2,
+            6
+          ],
+          "parent": 145,
+          "tick": 379
+        }
+      ],
+      "genotypes": {
+        "ancestor": {
+          "gene_digest": "03a5a45004844d85d428",
+          "genes": [
+            1.275505424874579,
+            0.9793229054930792,
+            -0.48749625352122605,
+            -0.11792048410741712,
+            -0.5170215928325846,
+            -0.2984682236674711,
+            0.0805268008543544,
+            0.14376474279350335,
+            0.8699632318623929,
+            0.7823593835443121
+          ],
+          "native_401_genome_digest": "eb518788c6946e24"
+        },
+        "descendant": {
+          "gene_digest": "aa64557a3b6e42e61abc",
+          "genes": [
+            1.3193740904555464,
+            0.8251675036453532,
+            -0.9547579923372029,
+            -0.03331389679274664,
+            -0.23625232921284567,
+            -0.04188995803625589,
+            -0.1919018705687125,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "native_401_genome_digest": "ca840746b9ac4f8e"
+        },
+        "independent_random": {
+          "gene_digest": "82a27ffddee90a2624f1",
+          "genes": [
+            0.7786138610337897,
+            -0.3855200209550542,
+            0.19339058279005297,
+            -0.07828586755620642,
+            0.12913279823443316,
+            1.0542014481656665,
+            -0.1584375068886261,
+            -0.4369438491408696,
+            -0.8460730768088316,
+            -0.6971678813590116
+          ],
+          "native_401_genome_digest": "e979f7cf7021cf20"
+        },
+        "last_step_reverted": {
+          "gene_digest": "4dcfc9b8dba34be1885c",
+          "genes": [
+            1.3193740904555464,
+            0.8251675036453532,
+            -0.7094115659412431,
+            -0.03331389679274664,
+            -0.23625232921284567,
+            -0.04188995803625589,
+            -0.30503866033908217,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121
+          ],
+          "native_401_genome_digest": "d903fb4aea23d6c2"
+        },
+        "scrambled": {
+          "gene_digest": "31c6ddf032709852b262",
+          "genes": [
+            1.3193740904555464,
+            0.05914761814882298,
+            0.7763602676403544,
+            0.7823593835443121,
+            -0.04188995803625589,
+            -0.9547579923372029,
+            -0.1919018705687125,
+            0.8251675036453532,
+            -0.03331389679274664,
+            -0.23625232921284567
+          ],
+          "native_401_genome_digest": "ecee048ecaa6c937"
+        }
+      },
+      "last_step_mutated_indices": [
+        2,
+        6
+      ],
+      "note": "Five families selected conditionally on M5.3B successful sources; NO held-out ecological outcome used to choose or alter candidates",
+      "original_source_alive_final": 14,
+      "original_source_arm": "sparse_2",
+      "original_source_births": 143,
+      "selected_final_founder_id": 13,
+      "selected_final_generation": 15,
+      "selected_final_id": 154,
+      "selection_rule": "max final living generation, then lowest ID",
+      "source_checkpoints": [
+        {
+          "arm": "sparse_2",
+          "births": 0,
+          "deaths": 0,
+          "energy_ledger_residual": 0,
+          "food_eaten": 0,
+          "food_spawned": 20,
+          "food_stock": 20,
+          "lineages_alive": 20,
+          "max_generation": 0,
+          "mean_generation": 0,
+          "population": 20,
+          "seed": 82015,
+          "split": "main",
+          "tick": 0,
+          "total_living_energy": 720
+        },
+        {
+          "arm": "sparse_2",
+          "births": 12,
+          "deaths": 22,
+          "energy_ledger_residual": 0,
+          "food_eaten": 52,
+          "food_spawned": 60,
+          "food_stock": 8,
+          "lineages_alive": 9,
+          "max_generation": 2,
+          "mean_generation": 0.5,
+          "population": 10,
+          "seed": 82015,
+          "split": "main",
+          "tick": 50,
+          "total_living_energy": 185
+        },
+        {
+          "arm": "sparse_2",
+          "births": 29,
+          "deaths": 35,
+          "energy_ledger_residual": 0,
+          "food_eaten": 103,
+          "food_spawned": 108,
+          "food_stock": 5,
+          "lineages_alive": 2,
+          "max_generation": 4,
+          "mean_generation": 2.5714285714285716,
+          "population": 14,
+          "seed": 82015,
+          "split": "main",
+          "tick": 100,
+          "total_living_energy": 179
+        },
+        {
+          "arm": "sparse_2",
+          "births": 47,
+          "deaths": 52,
+          "energy_ledger_residual": 0,
+          "food_eaten": 149,
+          "food_spawned": 156,
+          "food_stock": 7,
+          "lineages_alive": 1,
+          "max_generation": 7,
+          "mean_generation": 5.4,
+          "population": 15,
+          "seed": 82015,
+          "split": "main",
+          "tick": 150,
+          "total_living_energy": 199
+        },
+        {
+          "arm": "sparse_2",
+          "births": 68,
+          "deaths": 71,
+          "energy_ledger_residual": 0,
+          "food_eaten": 201,
+          "food_spawned": 203,
+          "food_stock": 2,
+          "lineages_alive": 1,
+          "max_generation": 11,
+          "mean_generation": 8.294117647058824,
+          "population": 17,
+          "seed": 82015,
+          "split": "main",
+          "tick": 200,
+          "total_living_energy": 206
+        },
+        {
+          "arm": "sparse_2",
+          "births": 88,
+          "deaths": 91,
+          "energy_ledger_residual": 0,
+          "food_eaten": 253,
+          "food_spawned": 256,
+          "food_stock": 3,
+          "lineages_alive": 1,
+          "max_generation": 12,
+          "mean_generation": 10.235294117647058,
+          "population": 17,
+          "seed": 82015,
+          "split": "main",
+          "tick": 250,
+          "total_living_energy": 238
+        },
+        {
+          "arm": "sparse_2",
+          "births": 108,
+          "deaths": 110,
+          "energy_ledger_residual": 0,
+          "food_eaten": 305,
+          "food_spawned": 307,
+          "food_stock": 2,
+          "lineages_alive": 1,
+          "max_generation": 14,
+          "mean_generation": 11.61111111111111,
+          "population": 18,
+          "seed": 82015,
+          "split": "main",
+          "tick": 300,
+          "total_living_energy": 271
+        },
+        {
+          "arm": "sparse_2",
+          "births": 125,
+          "deaths": 133,
+          "energy_ledger_residual": 0,
+          "food_eaten": 350,
+          "food_spawned": 353,
+          "food_stock": 3,
+          "lineages_alive": 1,
+          "max_generation": 15,
+          "mean_generation": 12.416666666666666,
+          "population": 12,
+          "seed": 82015,
+          "split": "main",
+          "tick": 350,
+          "total_living_energy": 221
+        },
+        {
+          "arm": "sparse_2",
+          "births": 143,
+          "deaths": 149,
+          "energy_ledger_residual": 0,
+          "food_eaten": 393,
+          "food_spawned": 398,
+          "food_stock": 5,
+          "lineages_alive": 1,
+          "max_generation": 15,
+          "mean_generation": 12.928571428571429,
+          "population": 14,
+          "seed": 82015,
+          "split": "main",
+          "tick": 400,
+          "total_living_energy": 199
+        }
+      ],
+      "source_seed": 82015
+    },
+    {
+      "genealogy": [
+        {
+          "child": 22,
+          "expanded_genome_digest": "467a0094240a23b8",
+          "founder": 4,
+          "gene_digest": "d1e9e62470187e72b855",
+          "gene_values": [
+            0.4006493555977495,
+            0.8886825987608319,
+            0.2797024659482682,
+            -0.3711880499422671,
+            -0.6880170286555753,
+            -0.538608826233887,
+            -0.48062530644740203,
+            0.787969701259231,
+            -0.07730265109964195,
+            0.07394071415828984
+          ],
+          "generation": 1,
+          "mutated_indices": [
+            0,
+            6
+          ],
+          "parent": 4,
+          "tick": 7
+        },
+        {
+          "child": 48,
+          "expanded_genome_digest": "18543316ed041191",
+          "founder": 4,
+          "gene_digest": "d5b16d23e4d0c81b5f28",
+          "gene_values": [
+            0.4006493555977495,
+            1.1240480722841086,
+            0.2797024659482682,
+            -0.3711880499422671,
+            -0.6880170286555753,
+            -0.538608826233887,
+            -0.48062530644740203,
+            0.7678309689839541,
+            -0.07730265109964195,
+            0.07394071415828984
+          ],
+          "generation": 2,
+          "mutated_indices": [
+            1,
+            7
+          ],
+          "parent": 22,
+          "tick": 104
+        },
+        {
+          "child": 61,
+          "expanded_genome_digest": "69ac954314eafdc2",
+          "founder": 4,
+          "gene_digest": "e85b70dc5ad2a6409320",
+          "gene_values": [
+            0.4006493555977495,
+            1.1240480722841086,
+            0.20483634254579197,
+            -0.212623635586283,
+            -0.6880170286555753,
+            -0.538608826233887,
+            -0.48062530644740203,
+            0.7678309689839541,
+            -0.07730265109964195,
+            0.07394071415828984
+          ],
+          "generation": 3,
+          "mutated_indices": [
+            2,
+            3
+          ],
+          "parent": 48,
+          "tick": 150
+        },
+        {
+          "child": 65,
+          "expanded_genome_digest": "2bb2b889b6eeb1e5",
+          "founder": 4,
+          "gene_digest": "68666aa8bb71a895fd9d",
+          "gene_values": [
+            0.4006493555977495,
+            1.1240480722841086,
+            0.20483634254579197,
+            -0.212623635586283,
+            -0.6880170286555753,
+            -0.538608826233887,
+            -0.48062530644740203,
+            0.8996793364911398,
+            -0.07730265109964195,
+            -0.1760649182645006
+          ],
+          "generation": 4,
+          "mutated_indices": [
+            7,
+            9
+          ],
+          "parent": 61,
+          "tick": 157
+        },
+        {
+          "child": 73,
+          "expanded_genome_digest": "94e514093bc37445",
+          "founder": 4,
+          "gene_digest": "a669f303a28ed77d6824",
+          "gene_values": [
+            0.4006493555977495,
+            1.1240480722841086,
+            0.20483634254579197,
+            -0.212623635586283,
+            -0.777391659548769,
+            -0.6499273910739807,
+            -0.48062530644740203,
+            0.8996793364911398,
+            -0.07730265109964195,
+            -0.1760649182645006
+          ],
+          "generation": 5,
+          "mutated_indices": [
+            4,
+            5
+          ],
+          "parent": 65,
+          "tick": 186
+        },
+        {
+          "child": 81,
+          "expanded_genome_digest": "38a72fe62820c450",
+          "founder": 4,
+          "gene_digest": "df66ecf9c02014010636",
+          "gene_values": [
+            0.4006493555977495,
+            1.1240480722841086,
+            0.20483634254579197,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6175926382355572,
+            -0.48062530644740203,
+            0.8996793364911398,
+            -0.07730265109964195,
+            -0.1760649182645006
+          ],
+          "generation": 6,
+          "mutated_indices": [
+            3,
+            5
+          ],
+          "parent": 73,
+          "tick": 239
+        },
+        {
+          "child": 90,
+          "expanded_genome_digest": "26be18a2e927bf6c",
+          "founder": 4,
+          "gene_digest": "81a023988de347e5d85a",
+          "gene_values": [
+            0.4006493555977495,
+            1.1993191721816816,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6175926382355572,
+            -0.48062530644740203,
+            0.8996793364911398,
+            -0.07730265109964195,
+            -0.1760649182645006
+          ],
+          "generation": 7,
+          "mutated_indices": [
+            1,
+            2
+          ],
+          "parent": 81,
+          "tick": 289
+        },
+        {
+          "child": 94,
+          "expanded_genome_digest": "a5b4d26e150b70a0",
+          "founder": 4,
+          "gene_digest": "43f7a14fd1f8c5704a7f",
+          "gene_values": [
+            0.4006493555977495,
+            1.1993191721816816,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6175926382355572,
+            -0.48062530644740203,
+            1.1926661832529935,
+            -0.07730265109964195,
+            -0.18787636226262983
+          ],
+          "generation": 8,
+          "mutated_indices": [
+            7,
+            9
+          ],
+          "parent": 90,
+          "tick": 301
+        },
+        {
+          "child": 98,
+          "expanded_genome_digest": "d89cbb9b76905db3",
+          "founder": 4,
+          "gene_digest": "3b99716f1ef0dcbfa438",
+          "gene_values": [
+            0.4006493555977495,
+            1.1993191721816816,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6852678482717433,
+            -0.48062530644740203,
+            1.344703719086562,
+            -0.07730265109964195,
+            -0.18787636226262983
+          ],
+          "generation": 9,
+          "mutated_indices": [
+            5,
+            7
+          ],
+          "parent": 94,
+          "tick": 323
+        },
+        {
+          "child": 111,
+          "expanded_genome_digest": "6ca008c94a892cd1",
+          "founder": 4,
+          "gene_digest": "a216a94ed3ad1fb81198",
+          "gene_values": [
+            0.4006493555977495,
+            1.0898219096790844,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6852678482717433,
+            -0.48062530644740203,
+            1.344703719086562,
+            0.051578409479575774,
+            -0.18787636226262983
+          ],
+          "generation": 10,
+          "mutated_indices": [
+            1,
+            8
+          ],
+          "parent": 98,
+          "tick": 376
+        },
+        {
+          "child": 116,
+          "expanded_genome_digest": "17e4e60367b55796",
+          "founder": 4,
+          "gene_digest": "7659201e4d0a87bfbd7e",
+          "gene_values": [
+            0.4006493555977495,
+            1.0898219096790844,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6852678482717433,
+            -0.48062530644740203,
+            1.3820170845158577,
+            0.12839333474503278,
+            -0.18787636226262983
+          ],
+          "generation": 11,
+          "mutated_indices": [
+            7,
+            8
+          ],
+          "parent": 111,
+          "tick": 395
+        }
+      ],
+      "genotypes": {
+        "ancestor": {
+          "gene_digest": "5e02ddba2194b799efd2",
+          "genes": [
+            0.35582479322063065,
+            0.8886825987608319,
+            0.2797024659482682,
+            -0.3711880499422671,
+            -0.6880170286555753,
+            -0.538608826233887,
+            -0.4329144635902378,
+            0.787969701259231,
+            -0.07730265109964195,
+            0.07394071415828984
+          ],
+          "native_401_genome_digest": "df2ae73dc2f782dd"
+        },
+        "descendant": {
+          "gene_digest": "7659201e4d0a87bfbd7e",
+          "genes": [
+            0.4006493555977495,
+            1.0898219096790844,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6852678482717433,
+            -0.48062530644740203,
+            1.3820170845158577,
+            0.12839333474503278,
+            -0.18787636226262983
+          ],
+          "native_401_genome_digest": "17e4e60367b55796"
+        },
+        "independent_random": {
+          "gene_digest": "c1b01d951a01f5d07079",
+          "genes": [
+            0.5269603210498189,
+            -0.5140733443811872,
+            0.6920071260640192,
+            -0.48629227953598997,
+            -0.000752440964197403,
+            0.6853350982823746,
+            0.4403932116931157,
+            -0.10804559278482961,
+            0.5628968812818201,
+            0.8015639374856515
+          ],
+          "native_401_genome_digest": "24f77460e4627d73"
+        },
+        "last_step_reverted": {
+          "gene_digest": "a216a94ed3ad1fb81198",
+          "genes": [
+            0.4006493555977495,
+            1.0898219096790844,
+            0.4454878725383927,
+            -0.24337532048920857,
+            -0.777391659548769,
+            -0.6852678482717433,
+            -0.48062530644740203,
+            1.344703719086562,
+            0.051578409479575774,
+            -0.18787636226262983
+          ],
+          "native_401_genome_digest": "6ca008c94a892cd1"
+        },
+        "scrambled": {
+          "gene_digest": "38ba2049c60e197e6dbc",
+          "genes": [
+            -0.18787636226262983,
+            0.4006493555977495,
+            -0.6852678482717433,
+            -0.24337532048920857,
+            0.4454878725383927,
+            0.12839333474503278,
+            -0.48062530644740203,
+            -0.777391659548769,
+            1.3820170845158577,
+            1.0898219096790844
+          ],
+          "native_401_genome_digest": "6c2ad2531b65e135"
+        }
+      },
+      "last_step_mutated_indices": [
+        7,
+        8
+      ],
+      "note": "Five families selected conditionally on M5.3B successful sources; NO held-out ecological outcome used to choose or alter candidates",
+      "original_source_alive_final": 8,
+      "original_source_arm": "sparse_2",
+      "original_source_births": 97,
+      "selected_final_founder_id": 4,
+      "selected_final_generation": 11,
+      "selected_final_id": 116,
+      "selection_rule": "max final living generation, then lowest ID",
+      "source_checkpoints": [
+        {
+          "arm": "sparse_2",
+          "births": 0,
+          "deaths": 0,
+          "energy_ledger_residual": 0,
+          "food_eaten": 0,
+          "food_spawned": 20,
+          "food_stock": 20,
+          "lineages_alive": 20,
+          "max_generation": 0,
+          "mean_generation": 0,
+          "population": 20,
+          "seed": 82018,
+          "split": "main",
+          "tick": 0,
+          "total_living_energy": 720
+        },
+        {
+          "arm": "sparse_2",
+          "births": 12,
+          "deaths": 18,
+          "energy_ledger_residual": 0,
+          "food_eaten": 66,
+          "food_spawned": 72,
+          "food_stock": 6,
+          "lineages_alive": 10,
+          "max_generation": 2,
+          "mean_generation": 0.42857142857142855,
+          "population": 14,
+          "seed": 82018,
+          "split": "main",
+          "tick": 50,
+          "total_living_energy": 261
+        },
+        {
+          "arm": "sparse_2",
+          "births": 27,
+          "deaths": 33,
+          "energy_ledger_residual": 0,
+          "food_eaten": 119,
+          "food_spawned": 121,
+          "food_stock": 2,
+          "lineages_alive": 2,
+          "max_generation": 4,
+          "mean_generation": 2,
+          "population": 14,
+          "seed": 82018,
+          "split": "main",
+          "tick": 100,
+          "total_living_energy": 215
+        },
+        {
+          "arm": "sparse_2",
+          "births": 42,
+          "deaths": 49,
+          "energy_ledger_residual": 0,
+          "food_eaten": 166,
+          "food_spawned": 169,
+          "food_stock": 3,
+          "lineages_alive": 2,
+          "max_generation": 5,
+          "mean_generation": 2.8461538461538463,
+          "population": 13,
+          "seed": 82018,
+          "split": "main",
+          "tick": 150,
+          "total_living_energy": 210
+        },
+        {
+          "arm": "sparse_2",
+          "births": 55,
+          "deaths": 65,
+          "energy_ledger_residual": 0,
+          "food_eaten": 217,
+          "food_spawned": 219,
+          "food_stock": 2,
+          "lineages_alive": 2,
+          "max_generation": 6,
+          "mean_generation": 4.1,
+          "population": 10,
+          "seed": 82018,
+          "split": "main",
+          "tick": 200,
+          "total_living_energy": 232
+        },
+        {
+          "arm": "sparse_2",
+          "births": 67,
+          "deaths": 74,
+          "energy_ledger_residual": 0,
+          "food_eaten": 266,
+          "food_spawned": 270,
+          "food_stock": 4,
+          "lineages_alive": 2,
+          "max_generation": 7,
+          "mean_generation": 4.846153846153846,
+          "population": 13,
+          "seed": 82018,
+          "split": "main",
+          "tick": 250,
+          "total_living_energy": 242
+        },
+        {
+          "arm": "sparse_2",
+          "births": 74,
+          "deaths": 84,
+          "energy_ledger_residual": 0,
+          "food_eaten": 310,
+          "food_spawned": 318,
+          "food_stock": 8,
+          "lineages_alive": 2,
+          "max_generation": 7,
+          "mean_generation": 5.2,
+          "population": 10,
+          "seed": 82018,
+          "split": "main",
+          "tick": 300,
+          "total_living_energy": 249
+        },
+        {
+          "arm": "sparse_2",
+          "births": 84,
+          "deaths": 96,
+          "energy_ledger_residual": 0,
+          "food_eaten": 349,
+          "food_spawned": 355,
+          "food_stock": 6,
+          "lineages_alive": 2,
+          "max_generation": 10,
+          "mean_generation": 7.5,
+          "population": 8,
+          "seed": 82018,
+          "split": "main",
+          "tick": 350,
+          "total_living_energy": 191
+        },
+        {
+          "arm": "sparse_2",
+          "births": 97,
+          "deaths": 109,
+          "energy_ledger_residual": 0,
+          "food_eaten": 400,
+          "food_spawned": 410,
+          "food_stock": 10,
+          "lineages_alive": 2,
+          "max_generation": 11,
+          "mean_generation": 8.75,
+          "population": 8,
+          "seed": 82018,
+          "split": "main",
+          "tick": 400,
+          "total_living_energy": 167
+        }
+      ],
+      "source_seed": 82018
+    },
+    {
+      "genealogy": [
+        {
+          "child": 26,
+          "expanded_genome_digest": "a802e53196e1f647",
+          "founder": 0,
+          "gene_digest": "0b8b1d32a5eec267623d",
+          "gene_values": [
+            0.916712565644479,
+            1.5440340246831588,
+            -0.4142130142974318,
+            -0.734812504117016,
+            -0.9079050888303292,
+            -0.6344033525325233,
+            -0.8567447517333364,
+            -0.02684105557348158,
+            -0.00988502509718686,
+            -0.09253221944473429
+          ],
+          "generation": 1,
+          "mutated_indices": [
+            0,
+            6
+          ],
+          "parent": 0,
+          "tick": 10
+        },
+        {
+          "child": 31,
+          "expanded_genome_digest": "e8ca74251a13797f",
+          "founder": 0,
+          "gene_digest": "4a6e475ed4aee25509c8",
+          "gene_values": [
+            0.916712565644479,
+            1.479234801769644,
+            -0.4142130142974318,
+            -0.734812504117016,
+            -0.9079050888303292,
+            -0.6344033525325233,
+            -0.8567447517333364,
+            -0.02684105557348158,
+            -0.00988502509718686,
+            0.03279025618823457
+          ],
+          "generation": 2,
+          "mutated_indices": [
+            1,
+            9
+          ],
+          "parent": 26,
+          "tick": 29
+        },
+        {
+          "child": 38,
+          "expanded_genome_digest": "4d1aafc66edb0366",
+          "founder": 0,
+          "gene_digest": "7206094df6b5148f7045",
+          "gene_values": [
+            0.916712565644479,
+            1.7158096587489644,
+            -0.4142130142974318,
+            -0.734812504117016,
+            -0.783683081128085,
+            -0.6344033525325233,
+            -0.8567447517333364,
+            -0.02684105557348158,
+            -0.00988502509718686,
+            0.03279025618823457
+          ],
+          "generation": 3,
+          "mutated_indices": [
+            1,
+            4
+          ],
+          "parent": 31,
+          "tick": 54
+        },
+        {
+          "child": 46,
+          "expanded_genome_digest": "20250af0fa5001fe",
+          "founder": 0,
+          "gene_digest": "c71d79baeb0ae19d317b",
+          "gene_values": [
+            0.916712565644479,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.734812504117016,
+            -0.783683081128085,
+            -0.6344033525325233,
+            -0.8567447517333364,
+            -0.07293127132119138,
+            -0.00988502509718686,
+            0.03279025618823457
+          ],
+          "generation": 4,
+          "mutated_indices": [
+            1,
+            7
+          ],
+          "parent": 38,
+          "tick": 78
+        },
+        {
+          "child": 49,
+          "expanded_genome_digest": "c8c32c6a48ed36a9",
+          "founder": 0,
+          "gene_digest": "f53bf4f19a92c4ecd99d",
+          "gene_values": [
+            0.916712565644479,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.5290513228567262,
+            -0.783683081128085,
+            -0.45969094360539375,
+            -0.8567447517333364,
+            -0.07293127132119138,
+            -0.00988502509718686,
+            0.03279025618823457
+          ],
+          "generation": 5,
+          "mutated_indices": [
+            3,
+            5
+          ],
+          "parent": 46,
+          "tick": 84
+        },
+        {
+          "child": 60,
+          "expanded_genome_digest": "bd5ac8433f6eb0cd",
+          "founder": 0,
+          "gene_digest": "451c912f7b9896346f40",
+          "gene_values": [
+            1.2147244505471009,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.5290513228567262,
+            -0.783683081128085,
+            -0.6398612394853943,
+            -0.8567447517333364,
+            -0.07293127132119138,
+            -0.00988502509718686,
+            0.03279025618823457
+          ],
+          "generation": 6,
+          "mutated_indices": [
+            0,
+            5
+          ],
+          "parent": 49,
+          "tick": 112
+        },
+        {
+          "child": 67,
+          "expanded_genome_digest": "c272af3093a97345",
+          "founder": 0,
+          "gene_digest": "f959e2d68e6154fd4422",
+          "gene_values": [
+            1.2147244505471009,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.5290513228567262,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.8567447517333364,
+            -0.07293127132119138,
+            -0.00988502509718686,
+            -0.41770325321480367
+          ],
+          "generation": 7,
+          "mutated_indices": [
+            4,
+            9
+          ],
+          "parent": 60,
+          "tick": 139
+        },
+        {
+          "child": 83,
+          "expanded_genome_digest": "f6ac41ef74f0a507",
+          "founder": 0,
+          "gene_digest": "18d5887fc32dcd53ee4e",
+          "gene_values": [
+            1.1962593689022853,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.8567447517333364,
+            -0.07293127132119138,
+            -0.00988502509718686,
+            -0.41770325321480367
+          ],
+          "generation": 8,
+          "mutated_indices": [
+            0,
+            3
+          ],
+          "parent": 67,
+          "tick": 178
+        },
+        {
+          "child": 85,
+          "expanded_genome_digest": "c5598571441763a1",
+          "founder": 0,
+          "gene_digest": "41d54a3c08371ed5b707",
+          "gene_values": [
+            1.1962593689022853,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.8567447517333364,
+            0.01689360818588788,
+            -0.00988502509718686,
+            -0.2478736449454715
+          ],
+          "generation": 9,
+          "mutated_indices": [
+            7,
+            9
+          ],
+          "parent": 83,
+          "tick": 184
+        },
+        {
+          "child": 106,
+          "expanded_genome_digest": "e4bb716f3492d2f5",
+          "founder": 0,
+          "gene_digest": "58c0688db97b6077e2a1",
+          "gene_values": [
+            1.4648731892248492,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.7645881485608572,
+            0.01689360818588788,
+            -0.00988502509718686,
+            -0.2478736449454715
+          ],
+          "generation": 10,
+          "mutated_indices": [
+            0,
+            6
+          ],
+          "parent": 85,
+          "tick": 233
+        },
+        {
+          "child": 120,
+          "expanded_genome_digest": "f7b5322673529c00",
+          "founder": 0,
+          "gene_digest": "4edadf108e5e7823e505",
+          "gene_values": [
+            1.4648731892248492,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.6928086839308786,
+            0.01689360818588788,
+            -0.00988502509718686,
+            -0.29494850926637906
+          ],
+          "generation": 11,
+          "mutated_indices": [
+            6,
+            9
+          ],
+          "parent": 106,
+          "tick": 284
+        },
+        {
+          "child": 127,
+          "expanded_genome_digest": "f7fa6d5733836f21",
+          "founder": 0,
+          "gene_digest": "156c9c045b7241a2e79a",
+          "gene_values": [
+            1.378087501487364,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.7427164780537271,
+            0.01689360818588788,
+            -0.00988502509718686,
+            -0.29494850926637906
+          ],
+          "generation": 12,
+          "mutated_indices": [
+            0,
+            6
+          ],
+          "parent": 120,
+          "tick": 309
+        },
+        {
+          "child": 153,
+          "expanded_genome_digest": "e0f1a54ca4ff8070",
+          "founder": 0,
+          "gene_digest": "63fe896aec773b33bce7",
+          "gene_values": [
+            1.3194673609157523,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.7427164780537271,
+            -0.010155315628962592,
+            -0.00988502509718686,
+            -0.29494850926637906
+          ],
+          "generation": 13,
+          "mutated_indices": [
+            0,
+            7
+          ],
+          "parent": 127,
+          "tick": 377
+        },
+        {
+          "child": 159,
+          "expanded_genome_digest": "94117fd1ed351bd1",
+          "founder": 0,
+          "gene_digest": "5708c8d390264930c3c6",
+          "gene_values": [
+            1.3194673609157523,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0446285989845532,
+            -0.49206928015031726,
+            -0.7427164780537271,
+            -0.010155315628962592,
+            -0.00988502509718686,
+            -0.29494850926637906
+          ],
+          "generation": 14,
+          "mutated_indices": [
+            4,
+            5
+          ],
+          "parent": 153,
+          "tick": 389
+        }
+      ],
+      "genotypes": {
+        "ancestor": {
+          "gene_digest": "b06807e838decb9b01a1",
+          "genes": [
+            1.0070477961870308,
+            1.5440340246831588,
+            -0.4142130142974318,
+            -0.734812504117016,
+            -0.9079050888303292,
+            -0.6344033525325233,
+            -0.8435955954921008,
+            -0.02684105557348158,
+            -0.00988502509718686,
+            -0.09253221944473429
+          ],
+          "native_401_genome_digest": "ae509cfdf1659e76"
+        },
+        "descendant": {
+          "gene_digest": "5708c8d390264930c3c6",
+          "genes": [
+            1.3194673609157523,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0446285989845532,
+            -0.49206928015031726,
+            -0.7427164780537271,
+            -0.010155315628962592,
+            -0.00988502509718686,
+            -0.29494850926637906
+          ],
+          "native_401_genome_digest": "94117fd1ed351bd1"
+        },
+        "independent_random": {
+          "gene_digest": "2d2098babc2cdac41744",
+          "genes": [
+            -0.07823992589261931,
+            1.6231703315551,
+            -0.2737896711697829,
+            -0.09962380145823689,
+            -0.5798480052982652,
+            1.0215764179191367,
+            0.38960498447415903,
+            0.957967460240761,
+            0.5259237498056301,
+            -0.16376693093527991
+          ],
+          "native_401_genome_digest": "ffe8e2ed60a25449"
+        },
+        "last_step_reverted": {
+          "gene_digest": "63fe896aec773b33bce7",
+          "genes": [
+            1.3194673609157523,
+            1.3549332262245293,
+            -0.4142130142974318,
+            -0.7858111872789625,
+            -1.0784414047221738,
+            -0.6398612394853943,
+            -0.7427164780537271,
+            -0.010155315628962592,
+            -0.00988502509718686,
+            -0.29494850926637906
+          ],
+          "native_401_genome_digest": "e0f1a54ca4ff8070"
+        },
+        "scrambled": {
+          "gene_digest": "18767d56bd316bf550bf",
+          "genes": [
+            -0.7858111872789625,
+            -0.7427164780537271,
+            -0.49206928015031726,
+            -1.0446285989845532,
+            -0.29494850926637906,
+            -0.00988502509718686,
+            1.3194673609157523,
+            -0.4142130142974318,
+            -0.010155315628962592,
+            1.3549332262245293
+          ],
+          "native_401_genome_digest": "b78e9cee569b05ed"
+        }
+      },
+      "last_step_mutated_indices": [
+        4,
+        5
+      ],
+      "note": "Five families selected conditionally on M5.3B successful sources; NO held-out ecological outcome used to choose or alter candidates",
+      "original_source_alive_final": 11,
+      "original_source_arm": "sparse_2",
+      "original_source_births": 142,
+      "selected_final_founder_id": 0,
+      "selected_final_generation": 14,
+      "selected_final_id": 159,
+      "selection_rule": "max final living generation, then lowest ID",
+      "source_checkpoints": [
+        {
+          "arm": "sparse_2",
+          "births": 0,
+          "deaths": 0,
+          "energy_ledger_residual": 0,
+          "food_eaten": 0,
+          "food_spawned": 20,
+          "food_stock": 20,
+          "lineages_alive": 20,
+          "max_generation": 0,
+          "mean_generation": 0,
+          "population": 20,
+          "seed": 82019,
+          "split": "main",
+          "tick": 0,
+          "total_living_energy": 720
+        },
+        {
+          "arm": "sparse_2",
+          "births": 17,
+          "deaths": 20,
+          "energy_ledger_residual": 0,
+          "food_eaten": 56,
+          "food_spawned": 67,
+          "food_stock": 11,
+          "lineages_alive": 11,
+          "max_generation": 3,
+          "mean_generation": 0.6470588235294118,
+          "population": 17,
+          "seed": 82019,
+          "split": "main",
+          "tick": 50,
+          "total_living_energy": 234
+        },
+        {
+          "arm": "sparse_2",
+          "births": 37,
+          "deaths": 39,
+          "energy_ledger_residual": 0,
+          "food_eaten": 110,
+          "food_spawned": 116,
+          "food_stock": 6,
+          "lineages_alive": 2,
+          "max_generation": 5,
+          "mean_generation": 3.6666666666666665,
+          "population": 18,
+          "seed": 82019,
+          "split": "main",
+          "tick": 100,
+          "total_living_energy": 201
+        },
+        {
+          "arm": "sparse_2",
+          "births": 51,
+          "deaths": 59,
+          "energy_ledger_residual": 0,
+          "food_eaten": 160,
+          "food_spawned": 164,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 7,
+          "mean_generation": 4.75,
+          "population": 12,
+          "seed": 82019,
+          "split": "main",
+          "tick": 150,
+          "total_living_energy": 186
+        },
+        {
+          "arm": "sparse_2",
+          "births": 72,
+          "deaths": 79,
+          "energy_ledger_residual": 0,
+          "food_eaten": 210,
+          "food_spawned": 212,
+          "food_stock": 2,
+          "lineages_alive": 1,
+          "max_generation": 10,
+          "mean_generation": 6.538461538461538,
+          "population": 13,
+          "seed": 82019,
+          "split": "main",
+          "tick": 200,
+          "total_living_energy": 179
+        },
+        {
+          "arm": "sparse_2",
+          "births": 90,
+          "deaths": 99,
+          "energy_ledger_residual": 0,
+          "food_eaten": 256,
+          "food_spawned": 260,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 11,
+          "mean_generation": 8.181818181818182,
+          "population": 11,
+          "seed": 82019,
+          "split": "main",
+          "tick": 250,
+          "total_living_energy": 166
+        },
+        {
+          "arm": "sparse_2",
+          "births": 105,
+          "deaths": 115,
+          "energy_ledger_residual": 0,
+          "food_eaten": 297,
+          "food_spawned": 302,
+          "food_stock": 5,
+          "lineages_alive": 1,
+          "max_generation": 12,
+          "mean_generation": 9.6,
+          "population": 10,
+          "seed": 82019,
+          "split": "main",
+          "tick": 300,
+          "total_living_energy": 147
+        },
+        {
+          "arm": "sparse_2",
+          "births": 126,
+          "deaths": 129,
+          "energy_ledger_residual": 0,
+          "food_eaten": 358,
+          "food_spawned": 360,
+          "food_stock": 2,
+          "lineages_alive": 1,
+          "max_generation": 14,
+          "mean_generation": 9.764705882352942,
+          "population": 17,
+          "seed": 82019,
+          "split": "main",
+          "tick": 350,
+          "total_living_energy": 278
+        },
+        {
+          "arm": "sparse_2",
+          "births": 142,
+          "deaths": 151,
+          "energy_ledger_residual": 0,
+          "food_eaten": 402,
+          "food_spawned": 408,
+          "food_stock": 6,
+          "lineages_alive": 1,
+          "max_generation": 14,
+          "mean_generation": 12.090909090909092,
+          "population": 11,
+          "seed": 82019,
+          "split": "main",
+          "tick": 400,
+          "total_living_energy": 156
+        }
+      ],
+      "source_seed": 82019
+    },
+    {
+      "genealogy": [
+        {
+          "child": 27,
+          "expanded_genome_digest": "6e9f4c88856ccd81",
+          "founder": 9,
+          "gene_digest": "9fefd8ebb082fdf2a847",
+          "gene_values": [
+            0.816681826218669,
+            2.010603351801722,
+            -0.029001045506540996,
+            0.10700932394331274,
+            0.6216882659087695,
+            -0.314068751448149,
+            0.49484600528255157,
+            -0.10076872714741376,
+            1.7802985103205646,
+            0.6075297290023177
+          ],
+          "generation": 1,
+          "mutated_indices": [
+            6,
+            8
+          ],
+          "parent": 9,
+          "tick": 14
+        },
+        {
+          "child": 34,
+          "expanded_genome_digest": "fe42691212885afd",
+          "founder": 9,
+          "gene_digest": "bd18ea440d30c2451d8b",
+          "gene_values": [
+            0.8109674736079883,
+            2.010603351801722,
+            -0.029001045506540996,
+            0.10700932394331274,
+            0.6216882659087695,
+            -0.314068751448149,
+            0.49484600528255157,
+            -0.13294820269476254,
+            1.7802985103205646,
+            0.6075297290023177
+          ],
+          "generation": 2,
+          "mutated_indices": [
+            0,
+            7
+          ],
+          "parent": 27,
+          "tick": 64
+        },
+        {
+          "child": 36,
+          "expanded_genome_digest": "ae78a75f9597ea2e",
+          "founder": 9,
+          "gene_digest": "a43215b9a09983cfb915",
+          "gene_values": [
+            0.8109674736079883,
+            2.010603351801722,
+            -0.029001045506540996,
+            0.2230832013245035,
+            0.5918567167282053,
+            -0.314068751448149,
+            0.49484600528255157,
+            -0.13294820269476254,
+            1.7802985103205646,
+            0.6075297290023177
+          ],
+          "generation": 3,
+          "mutated_indices": [
+            3,
+            4
+          ],
+          "parent": 34,
+          "tick": 87
+        },
+        {
+          "child": 43,
+          "expanded_genome_digest": "d61257e6e68d60c5",
+          "founder": 9,
+          "gene_digest": "bcace442c39c4c06eb03",
+          "gene_values": [
+            0.8109674736079883,
+            2.010603351801722,
+            -0.029001045506540996,
+            0.2230832013245035,
+            0.5918567167282053,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.1842555571161345,
+            1.7802985103205646,
+            0.6075297290023177
+          ],
+          "generation": 4,
+          "mutated_indices": [
+            5,
+            7
+          ],
+          "parent": 36,
+          "tick": 101
+        },
+        {
+          "child": 61,
+          "expanded_genome_digest": "1f3fcd615b882096",
+          "founder": 9,
+          "gene_digest": "547ea2d95cffb36b1c49",
+          "gene_values": [
+            0.8109674736079883,
+            1.9154134025487455,
+            -0.029001045506540996,
+            0.053259020952698105,
+            0.5918567167282053,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.1842555571161345,
+            1.7802985103205646,
+            0.6075297290023177
+          ],
+          "generation": 5,
+          "mutated_indices": [
+            1,
+            3
+          ],
+          "parent": 43,
+          "tick": 171
+        },
+        {
+          "child": 79,
+          "expanded_genome_digest": "c62eb5ac8b0d2ea2",
+          "founder": 9,
+          "gene_digest": "65e552ae9c61e3277458",
+          "gene_values": [
+            0.8109674736079883,
+            2.1406541968382506,
+            -0.029001045506540996,
+            0.053259020952698105,
+            0.3175535537488689,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.1842555571161345,
+            1.7802985103205646,
+            0.6075297290023177
+          ],
+          "generation": 6,
+          "mutated_indices": [
+            1,
+            4
+          ],
+          "parent": 61,
+          "tick": 225
+        },
+        {
+          "child": 90,
+          "expanded_genome_digest": "88b23845c6246948",
+          "founder": 9,
+          "gene_digest": "29bb7f006592ca191206",
+          "gene_values": [
+            0.8109674736079883,
+            2.1406541968382506,
+            -0.07608986463694743,
+            0.053259020952698105,
+            0.3175535537488689,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.1842555571161345,
+            1.8985204504227595,
+            0.6075297290023177
+          ],
+          "generation": 7,
+          "mutated_indices": [
+            2,
+            8
+          ],
+          "parent": 79,
+          "tick": 248
+        },
+        {
+          "child": 108,
+          "expanded_genome_digest": "f7068f4176c58c45",
+          "founder": 9,
+          "gene_digest": "12409427b61459b2b4b4",
+          "gene_values": [
+            0.8109674736079883,
+            2.1406541968382506,
+            -0.07608986463694743,
+            0.04968175124999457,
+            0.2105544429333163,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.1842555571161345,
+            1.8985204504227595,
+            0.6075297290023177
+          ],
+          "generation": 8,
+          "mutated_indices": [
+            3,
+            4
+          ],
+          "parent": 90,
+          "tick": 298
+        },
+        {
+          "child": 109,
+          "expanded_genome_digest": "6fcbd65cb39c07bf",
+          "founder": 9,
+          "gene_digest": "0466a430dd0d770cb30a",
+          "gene_values": [
+            0.8109674736079883,
+            2.1406541968382506,
+            0.0024043499685374586,
+            0.04968175124999457,
+            0.2105544429333163,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.1842555571161345,
+            1.8985204504227595,
+            0.4531416314818354
+          ],
+          "generation": 9,
+          "mutated_indices": [
+            2,
+            9
+          ],
+          "parent": 108,
+          "tick": 304
+        },
+        {
+          "child": 120,
+          "expanded_genome_digest": "889ef4da0bbf73e7",
+          "founder": 9,
+          "gene_digest": "c217e204b088ae2a12db",
+          "gene_values": [
+            0.8109674736079883,
+            2.1406541968382506,
+            0.0024043499685374586,
+            0.04968175124999457,
+            0.25481959630916867,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.19775931594934318,
+            1.8985204504227595,
+            0.4531416314818354
+          ],
+          "generation": 10,
+          "mutated_indices": [
+            4,
+            7
+          ],
+          "parent": 109,
+          "tick": 348
+        },
+        {
+          "child": 128,
+          "expanded_genome_digest": "d64806838ff94301",
+          "founder": 9,
+          "gene_digest": "ec2df39021fc60287f85",
+          "gene_values": [
+            0.8109674736079883,
+            2.3196783664015617,
+            0.0024043499685374586,
+            0.04968175124999457,
+            0.25481959630916867,
+            -0.2994427380880513,
+            0.2956215789735772,
+            0.19775931594934318,
+            1.8985204504227595,
+            0.4531416314818354
+          ],
+          "generation": 11,
+          "mutated_indices": [
+            1,
+            6
+          ],
+          "parent": 120,
+          "tick": 392
+        }
+      ],
+      "genotypes": {
+        "ancestor": {
+          "gene_digest": "3aa24c43f4998f9143fe",
+          "genes": [
+            0.816681826218669,
+            2.010603351801722,
+            -0.029001045506540996,
+            0.10700932394331274,
+            0.6216882659087695,
+            -0.314068751448149,
+            0.31019158675605485,
+            -0.10076872714741376,
+            1.7902119384743702,
+            0.6075297290023177
+          ],
+          "native_401_genome_digest": "e0924a49e9481b97"
+        },
+        "descendant": {
+          "gene_digest": "ec2df39021fc60287f85",
+          "genes": [
+            0.8109674736079883,
+            2.3196783664015617,
+            0.0024043499685374586,
+            0.04968175124999457,
+            0.25481959630916867,
+            -0.2994427380880513,
+            0.2956215789735772,
+            0.19775931594934318,
+            1.8985204504227595,
+            0.4531416314818354
+          ],
+          "native_401_genome_digest": "d64806838ff94301"
+        },
+        "independent_random": {
+          "gene_digest": "939c0960a28e410ef2b5",
+          "genes": [
+            0.28994900361771386,
+            -0.5017076690123351,
+            -0.8672226677361412,
+            -0.06890212771809699,
+            0.6967415172849817,
+            1.2541854921385513,
+            -0.05911933286074213,
+            0.21058791552711686,
+            0.019322780130525345,
+            -0.1437997363292921
+          ],
+          "native_401_genome_digest": "120bcfafdbb35fc1"
+        },
+        "last_step_reverted": {
+          "gene_digest": "c217e204b088ae2a12db",
+          "genes": [
+            0.8109674736079883,
+            2.1406541968382506,
+            0.0024043499685374586,
+            0.04968175124999457,
+            0.25481959630916867,
+            -0.2994427380880513,
+            0.49484600528255157,
+            0.19775931594934318,
+            1.8985204504227595,
+            0.4531416314818354
+          ],
+          "native_401_genome_digest": "889ef4da0bbf73e7"
+        },
+        "scrambled": {
+          "gene_digest": "d236761f1eadcf917f8e",
+          "genes": [
+            0.19775931594934318,
+            0.25481959630916867,
+            1.8985204504227595,
+            0.8109674736079883,
+            2.3196783664015617,
+            -0.2994427380880513,
+            0.04968175124999457,
+            0.0024043499685374586,
+            0.4531416314818354,
+            0.2956215789735772
+          ],
+          "native_401_genome_digest": "0156ee1b47d1b115"
+        }
+      },
+      "last_step_mutated_indices": [
+        1,
+        6
+      ],
+      "note": "Five families selected conditionally on M5.3B successful sources; NO held-out ecological outcome used to choose or alter candidates",
+      "original_source_alive_final": 14,
+      "original_source_arm": "sparse_2",
+      "original_source_births": 114,
+      "selected_final_founder_id": 9,
+      "selected_final_generation": 11,
+      "selected_final_id": 128,
+      "selection_rule": "max final living generation, then lowest ID",
+      "source_checkpoints": [
+        {
+          "arm": "sparse_2",
+          "births": 0,
+          "deaths": 0,
+          "energy_ledger_residual": 0,
+          "food_eaten": 0,
+          "food_spawned": 20,
+          "food_stock": 20,
+          "lineages_alive": 20,
+          "max_generation": 0,
+          "mean_generation": 0,
+          "population": 20,
+          "seed": 82023,
+          "split": "main",
+          "tick": 0,
+          "total_living_energy": 720
+        },
+        {
+          "arm": "sparse_2",
+          "births": 13,
+          "deaths": 22,
+          "energy_ledger_residual": 0,
+          "food_eaten": 49,
+          "food_spawned": 58,
+          "food_stock": 9,
+          "lineages_alive": 8,
+          "max_generation": 2,
+          "mean_generation": 0.45454545454545453,
+          "population": 11,
+          "seed": 82023,
+          "split": "main",
+          "tick": 50,
+          "total_living_energy": 231
+        },
+        {
+          "arm": "sparse_2",
+          "births": 23,
+          "deaths": 32,
+          "energy_ledger_residual": 0,
+          "food_eaten": 102,
+          "food_spawned": 110,
+          "food_stock": 8,
+          "lineages_alive": 1,
+          "max_generation": 3,
+          "mean_generation": 1.7272727272727273,
+          "population": 11,
+          "seed": 82023,
+          "split": "main",
+          "tick": 100,
+          "total_living_energy": 200
+        },
+        {
+          "arm": "sparse_2",
+          "births": 36,
+          "deaths": 42,
+          "energy_ledger_residual": 0,
+          "food_eaten": 151,
+          "food_spawned": 156,
+          "food_stock": 5,
+          "lineages_alive": 1,
+          "max_generation": 5,
+          "mean_generation": 3.142857142857143,
+          "population": 14,
+          "seed": 82023,
+          "split": "main",
+          "tick": 150,
+          "total_living_energy": 316
+        },
+        {
+          "arm": "sparse_2",
+          "births": 50,
+          "deaths": 60,
+          "energy_ledger_residual": 0,
+          "food_eaten": 199,
+          "food_spawned": 205,
+          "food_stock": 6,
+          "lineages_alive": 1,
+          "max_generation": 6,
+          "mean_generation": 4.2,
+          "population": 10,
+          "seed": 82023,
+          "split": "main",
+          "tick": 200,
+          "total_living_energy": 182
+        },
+        {
+          "arm": "sparse_2",
+          "births": 72,
+          "deaths": 76,
+          "energy_ledger_residual": 0,
+          "food_eaten": 258,
+          "food_spawned": 260,
+          "food_stock": 2,
+          "lineages_alive": 1,
+          "max_generation": 8,
+          "mean_generation": 6.1875,
+          "population": 16,
+          "seed": 82023,
+          "split": "main",
+          "tick": 250,
+          "total_living_energy": 210
+        },
+        {
+          "arm": "sparse_2",
+          "births": 89,
+          "deaths": 89,
+          "energy_ledger_residual": 0,
+          "food_eaten": 311,
+          "food_spawned": 312,
+          "food_stock": 1,
+          "lineages_alive": 1,
+          "max_generation": 9,
+          "mean_generation": 7.2,
+          "population": 20,
+          "seed": 82023,
+          "split": "main",
+          "tick": 300,
+          "total_living_energy": 235
+        },
+        {
+          "arm": "sparse_2",
+          "births": 101,
+          "deaths": 110,
+          "energy_ledger_residual": 0,
+          "food_eaten": 352,
+          "food_spawned": 356,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 10,
+          "mean_generation": 8.272727272727273,
+          "population": 11,
+          "seed": 82023,
+          "split": "main",
+          "tick": 350,
+          "total_living_energy": 163
+        },
+        {
+          "arm": "sparse_2",
+          "births": 114,
+          "deaths": 120,
+          "energy_ledger_residual": 0,
+          "food_eaten": 393,
+          "food_spawned": 397,
+          "food_stock": 4,
+          "lineages_alive": 1,
+          "max_generation": 11,
+          "mean_generation": 9.571428571428571,
+          "population": 14,
+          "seed": 82023,
+          "split": "main",
+          "tick": 400,
+          "total_living_energy": 230
+        }
+      ],
+      "source_seed": 82023
+    }
+  ]
+}

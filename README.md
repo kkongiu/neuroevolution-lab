@@ -307,3 +307,11 @@ Run separate engineering smoke:
 ~~~bash
 python -m neuroevolution.m5_3b --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --hidden 12 --sparse-gene-count 2 --initial-gene-sd 0.65 --gene-mutation-sd 0.16 --out results/m5-3b-smoke
 ~~~
+
+## M5.3C — Genetically selected descendants are viable, but not consistently better than founders
+
+The prospective [genotype transplant study](docs/M5_3C_PROTOCOL.md) recovers all five previously successful original M5.3B random-founder evolutionary populations, selects the most-generation final living descendant per family by a **frozen deterministic rule**, and then clones the *unchanged* genes of each descendant, its actual ancestor, final-step mutation reverted, shuffled genes, and a separately sampled random control into **24 NEW ordinary and 12 NEW hard worlds**. All actions remain numerical native M5.0 neural; no new mutation or scripted action during transplant.
+
+Among the 120 heldout **ordinary** world×family evaluations: **110 descendants survive, 104 actual ancestors, 113 last-step mutation reverted, zero shuffled and zero sampled random controls**. Descendant-minus-founder +5 percentage points, crossed-source-family/world bootstrap descriptive **[−20,+30]**, 3 families improve/2 worsen; **preregistered novel-mutation improvement gate FAILS**. Undoing the latest mutation is not harmful (113 vs 110). Shuffled genes fail 0/120, demonstrating numerical configuration matters, but not that natural mutation improved it. **All descendants and ancestors 0/60 in new harder worlds**. These families were *selected because they survived previously*; high homogeneous cloned-genotype transplant viability does not establish broad success of random-founder neuroevolution.
+
+[Full honest scientific report](reports/M5_3C_genotype_ancestor_transplants_2026-11-21.md), [all 900 world outcomes](reports/M5_3C_world_transplants_2026-11-21.csv), [exact verified historical birth-by-birth source genealogies](reports/M5_3C_full_verified_source_genealogies_2026-11-21.json), [original complete 900-trial Actions run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44924136791) (165 tests green).
