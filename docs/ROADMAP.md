@@ -134,13 +134,23 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Externally selected query thresholds on separated meta-seeds: margin **0.70**, entropy **0.75**. This is a bounded, **researcher-written information-request algorithm**, NOT self-generated curiosity or autonomous goals.
 - Next preregistration question: [M3.6 — reliability and cost-aware spatial querying](https://github.com/kkongiu/neuroevolution-lab/issues/18), with a non-mandatory query budget and comparably costly baselines; do not retune M3.5 or reuse its sealed test seeds.
 
-## M4.0 — Spatial food-seeking and evolutionary survival (implemented for controlled validation)
+## M4.0 — Spatial food-seeking and evolutionary survival (completed; primary negative)
 - [M4.0 preregistered protocol](M4_0_PROTOCOL.md), distinct from M3.5 information-seeking work.
 - Bounded 13×13 grid with randomly generated obstacles, BFS-reachable edible food, energy expenditure, mortality, 100-step episodes. Sensory inputs: adjacent barriers/food, limited odor, energy, feedback.
 - 12-unit Elman RNN controls 4 moves; numeric weights inherited and Gaussian-mutated **between generations**, not updated inside a lifetime.
 - Train on 8 deterministic independent mazes across 8 generations ×12 genomes, select generation winner only on 4 separate validation worlds, and evaluate one frozen policy on 32 **held-out** and 16 harder shifted worlds.
 - Matched world controls: fixed random RNN, wall-avoiding random movement, deliberately strong greedy odor rule, same champion with no odor. Primary paired food collected versus wall-avoiding random; necessary secondary versus random RNN. Survival, navigation and collisions are diagnostics.
 - No predators or organism reproduction inside the ecosystem yet. Future study should add spatiotemporal memory tests, food regeneration and reproduction one variable at a time, with selection and measurement preregistered. No autonomy/consciousness inference.
+
+### M4.0 scientific result — evolved policy fails against wall avoidance
+- [Complete M4.0 report](../reports/M4_0_survival_world_2026-11-21.md), [GitHub Actions original campaign](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44904926385), [48-world food dataset](../reports/M4_0_food_by_world_2026-11-21.csv).
+- One frozen recurrent organism selected by **validation at generation 2** after 768 evolutionary candidate-world evaluations; final 32 unseen worlds. Evolved food **2.19** vs wall-avoiding random **3.69** (**−1.50 food**, paired bootstrap 95% **−2.53/−0.47**): **preregistered primary hypothesis failed**.
+- It collects more than one fixed unevolved random network (**0.56 food**) but far less than a hand-coded greedy odor follower (**8.47 food**). No evidence of useful odor reliance: evolved **2.19**, same genome with odor sensors zeroed **2.59**.
+- Evolver averages **17.66 wall collisions per life**, dies of starvation in **all 32** main-world tests. The specific failure mode is poor motor action selection, even when local wall sensors are available.
+- Shifted test (16 unseen harder mazes): evolved **1.31** foods vs wall-avoiding random **2.00**, greedy odor **2.69**; primary advantage not generalized.
+- Training best fitness improves from **3.29** to **6.90**, but validation peak at generation **2** rather than later improved train leaders suggests possible environment overfitting. Only **one genetic evolution run**: world-level replication is not genome-run replication.
+- **Next issue [M4.1](https://github.com/kkongiu/neuroevolution-lab/issues/20):** isolate wall-action masking and replicate evolution across independent search seeds on NEW held-out worlds. Do not retroactively change the M4.0 policy, reward weights or seed splits.
+- No predators, in-world organism reproduction, within-lifetime weight training or emergent self-chosen objectives yet. An implemented ecology is not proof of intelligence.
 
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
