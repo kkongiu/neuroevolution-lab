@@ -1,0 +1,57 @@
+name: M5.4B0 numerical short-odor representability
+on:
+  push:
+    branches: ["experiment/m5-4b0-short-odor-neural-capacity"]
+    paths:
+      - "campaigns/m5-4b0-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  sealed-numeric-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Complete historical, provenance, and neural-control regression suite
+        run: python -m unittest discover -s tests -v
+      - name: Exactly 96 externally supervised numeric candidates and new heldout tests
+        run: |
+          python -m neuroevolution.m5_4b0 \
+            --out results/m5-4b0 \
+            --development-start 88000 --development-seeds 4 \
+            --validation-start 88100 --validation-seeds 8 \
+            --search-seed 88191 --initial-pool 48 \
+            --generations 3 --offspring-per-generation 16 \
+            --keep-elites 6 --external-mutation-sd 0.22 \
+            --random-controls 4 \
+            --seed-start 88200 --seeds 24 \
+            --shifted-start 88300 --shifted-seeds 12 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 2 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --max-age 100 --hidden 12 --checkpoint-every 50 \
+            --initial-gene-sd 0.65 --gene-mutation-sd 0.16 \
+            --sparse-gene-count 2 --no-food-controls 0 \
+            --bootstrap-reps 20000
+      - name: Archive all 684 physical world evaluations and actual original genes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-4b0-numeric-short-odor-representability
+          path: results/m5-4b0/
+          retention-days: 30
+          if-no-files-found: warn

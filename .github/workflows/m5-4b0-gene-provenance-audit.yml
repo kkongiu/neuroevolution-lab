@@ -1,0 +1,57 @@
+name: M5.4B0 exact external genotype search provenance audit
+on:
+  push:
+    branches: ["experiment/m5-4b0-short-odor-neural-capacity"]
+    paths:
+      - "campaigns/m5-4b0-gene-audit-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  gene-provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Independently reproduce ONLY pre-heldout external optimizer and exact gene bank
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from neuroevolution import m5_4b0 as experiment
+          s=experiment.Settings()
+          records,development,validation,selected,selection=experiment.external_search(s)
+          frozen=json.loads(Path(
+              "reports/M5_4B0_frozen_selected_genes_and_sealed_statistics_2026-11-21.json"
+          ).read_text())
+          assert len(records)==96 and len(development)==384 and len(validation)==48
+          assert selected["candidate_id"]==83
+          assert selection==frozen["selected_numerical_genotype"]
+          bank=experiment.fixed_bank(selected,s)
+          for c in records:
+              print("M5.4B0 VERIFIED CANDIDATE "+
+                    json.dumps(c,sort_keys=True),flush=True)
+          for row in development:
+              print("M5.4B0 VERIFIED DEVELOPMENT "+
+                    json.dumps(row,sort_keys=True),flush=True)
+          for row in validation:
+              print("M5.4B0 VERIFIED VALIDATION "+
+                    json.dumps(row,sort_keys=True),flush=True)
+          print("M5.4B0 VERIFIED CONTROL BANK "+json.dumps({
+              name:{
+                  "genes":list(genes),
+                  "gene_digest":experiment.genome.gene_digest(genes),
+                  "expanded_genome_digest":experiment.physics.genome_digest(
+                      experiment.genome.to_weights(genes)
+                  )
+              }
+              for name,genes in bank.items()
+          },sort_keys=True),flush=True)
+          print("M5.4B0 VERIFIED SELECTION "+json.dumps(
+              selection,sort_keys=True),flush=True)
+          print("M5.4B0 PROVENANCE INDEPENDENTLY VERIFIED",flush=True)
+          PY

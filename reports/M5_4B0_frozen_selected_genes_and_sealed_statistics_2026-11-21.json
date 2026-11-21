@@ -1,0 +1,348 @@
+{
+  "original_protocol_commit": "fa45399a24cb52f0f8d95436cad87a273e991a54",
+  "original_study_url": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44930989280",
+  "selected_numerical_genotype": {
+    "all_finalist_ids": [
+      82,
+      32,
+      80,
+      76,
+      87,
+      83
+    ],
+    "development_seeds": [
+      88000,
+      88001,
+      88002,
+      88003
+    ],
+    "external_optimizer": "researcher_external_numeric_search",
+    "n_development_candidates": 96,
+    "n_validation_candidates": 6,
+    "not_scripted_organism": true,
+    "not_within_world_evolution": true,
+    "search_seed": 88191,
+    "selected_candidate_id": 83,
+    "selected_development_score": [
+      0,
+      0,
+      269,
+      8
+    ],
+    "selected_genes": [
+      0.3651422372057312,
+      0.5869919509992657,
+      0.7649521148225779,
+      -0.0732502469297187,
+      -0.09555992019617877,
+      0.0640860086873577,
+      -1.0432363903376274,
+      0.2435632869167703,
+      0.3637938740210589,
+      -1.6751909700321899
+    ],
+    "selected_genome_digest": "2b0fb7d3bfa87690",
+    "selected_validation_score": [
+      0,
+      0,
+      568,
+      17
+    ],
+    "validation_seeds": [
+      88100,
+      88101,
+      88102,
+      88103,
+      88104,
+      88105,
+      88106,
+      88107
+    ]
+  },
+  "scientific_results": {
+    "chosen_genes": {
+      "all_finalist_ids": [
+        82,
+        32,
+        80,
+        76,
+        87,
+        83
+      ],
+      "development_seeds": [
+        88000,
+        88001,
+        88002,
+        88003
+      ],
+      "external_optimizer": "researcher_external_numeric_search",
+      "n_development_candidates": 96,
+      "n_validation_candidates": 6,
+      "not_scripted_organism": true,
+      "not_within_world_evolution": true,
+      "search_seed": 88191,
+      "selected_candidate_id": 83,
+      "selected_development_score": [
+        0,
+        0,
+        269,
+        8
+      ],
+      "selected_genes": [
+        0.3651422372057312,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.0640860086873577,
+        -1.0432363903376274,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.6751909700321899
+      ],
+      "selected_genome_digest": "2b0fb7d3bfa87690",
+      "selected_validation_score": [
+        0,
+        0,
+        568,
+        17
+      ],
+      "validation_seeds": [
+        88100,
+        88101,
+        88102,
+        88103,
+        88104,
+        88105,
+        88106,
+        88107
+      ]
+    },
+    "gates": {
+      "main_witness_native_births_ge12of24": true,
+      "main_witness_random_controls_gain_ge25pp": false,
+      "main_witness_survives_ge12of24": false,
+      "numeric_architecture_short_odor_representation": false,
+      "scripted_ecological_viability_ge18of24": true,
+      "shifted_witness_random_controls_gain": false,
+      "shifted_witness_survives_ge6of12": false,
+      "short_odor_ood_transfer": false
+    },
+    "main": {
+      "by_arm": {
+        "random_0": {
+          "mean_births": 0,
+          "mean_food_eaten": 75.91666666666667,
+          "surviving_worlds": 0,
+          "worlds": 24,
+          "worlds_with_real_births": 0
+        },
+        "random_1": {
+          "mean_births": 16,
+          "mean_food_eaten": 35.833333333333336,
+          "surviving_worlds": 0,
+          "worlds": 24,
+          "worlds_with_real_births": 24
+        },
+        "random_2": {
+          "mean_births": 12.041666666666666,
+          "mean_food_eaten": 30.291666666666668,
+          "surviving_worlds": 0,
+          "worlds": 24,
+          "worlds_with_real_births": 24
+        },
+        "random_3": {
+          "mean_births": 0.8333333333333334,
+          "mean_food_eaten": 7.458333333333333,
+          "surviving_worlds": 0,
+          "worlds": 24,
+          "worlds_with_real_births": 15
+        },
+        "scrambled": {
+          "mean_births": 2.125,
+          "mean_food_eaten": 7.541666666666667,
+          "surviving_worlds": 0,
+          "worlds": 24,
+          "worlds_with_real_births": 20
+        },
+        "scripted_greedy_novelty": {
+          "mean_births": 115.25,
+          "mean_food_eaten": 398.1666666666667,
+          "surviving_worlds": 24,
+          "worlds": 24,
+          "worlds_with_real_births": 24
+        },
+        "witness": {
+          "mean_births": 1.4166666666666667,
+          "mean_food_eaten": 74.875,
+          "surviving_worlds": 0,
+          "worlds": 24,
+          "worlds_with_real_births": 19
+        }
+      },
+      "witness_minus_random4_mean_survival": {
+        "by_world": {
+          "88200": 0,
+          "88201": 0,
+          "88202": 0,
+          "88203": 0,
+          "88204": 0,
+          "88205": 0,
+          "88206": 0,
+          "88207": 0,
+          "88208": 0,
+          "88209": 0,
+          "88210": 0,
+          "88211": 0,
+          "88212": 0,
+          "88213": 0,
+          "88214": 0,
+          "88215": 0,
+          "88216": 0,
+          "88217": 0,
+          "88218": 0,
+          "88219": 0,
+          "88220": 0,
+          "88221": 0,
+          "88222": 0,
+          "88223": 0
+        },
+        "mean_delta": 0,
+        "paired_world_bootstrap_95": [
+          0,
+          0
+        ]
+      },
+      "witness_minus_scrambled_survival": {
+        "by_world": {
+          "88200": 0,
+          "88201": 0,
+          "88202": 0,
+          "88203": 0,
+          "88204": 0,
+          "88205": 0,
+          "88206": 0,
+          "88207": 0,
+          "88208": 0,
+          "88209": 0,
+          "88210": 0,
+          "88211": 0,
+          "88212": 0,
+          "88213": 0,
+          "88214": 0,
+          "88215": 0,
+          "88216": 0,
+          "88217": 0,
+          "88218": 0,
+          "88219": 0,
+          "88220": 0,
+          "88221": 0,
+          "88222": 0,
+          "88223": 0
+        },
+        "mean_delta": 0,
+        "paired_world_bootstrap_95": [
+          0,
+          0
+        ]
+      }
+    },
+    "shifted": {
+      "by_arm": {
+        "random_0": {
+          "mean_births": 0,
+          "mean_food_eaten": 61.833333333333336,
+          "surviving_worlds": 0,
+          "worlds": 12,
+          "worlds_with_real_births": 0
+        },
+        "random_1": {
+          "mean_births": 14.75,
+          "mean_food_eaten": 34.083333333333336,
+          "surviving_worlds": 0,
+          "worlds": 12,
+          "worlds_with_real_births": 12
+        },
+        "random_2": {
+          "mean_births": 11.833333333333334,
+          "mean_food_eaten": 27.333333333333332,
+          "surviving_worlds": 0,
+          "worlds": 12,
+          "worlds_with_real_births": 12
+        },
+        "random_3": {
+          "mean_births": 0.75,
+          "mean_food_eaten": 8.916666666666666,
+          "surviving_worlds": 0,
+          "worlds": 12,
+          "worlds_with_real_births": 8
+        },
+        "scrambled": {
+          "mean_births": 2.6666666666666665,
+          "mean_food_eaten": 8.416666666666666,
+          "surviving_worlds": 0,
+          "worlds": 12,
+          "worlds_with_real_births": 11
+        },
+        "scripted_greedy_novelty": {
+          "mean_births": 87.33333333333333,
+          "mean_food_eaten": 296.3333333333333,
+          "surviving_worlds": 12,
+          "worlds": 12,
+          "worlds_with_real_births": 12
+        },
+        "witness": {
+          "mean_births": 1.5,
+          "mean_food_eaten": 60.833333333333336,
+          "surviving_worlds": 0,
+          "worlds": 12,
+          "worlds_with_real_births": 7
+        }
+      },
+      "witness_minus_random4_mean_survival": {
+        "by_world": {
+          "88300": 0,
+          "88301": 0,
+          "88302": 0,
+          "88303": 0,
+          "88304": 0,
+          "88305": 0,
+          "88306": 0,
+          "88307": 0,
+          "88308": 0,
+          "88309": 0,
+          "88310": 0,
+          "88311": 0
+        },
+        "mean_delta": 0,
+        "paired_world_bootstrap_95": [
+          0,
+          0
+        ]
+      },
+      "witness_minus_scrambled_survival": {
+        "by_world": {
+          "88300": 0,
+          "88301": 0,
+          "88302": 0,
+          "88303": 0,
+          "88304": 0,
+          "88305": 0,
+          "88306": 0,
+          "88307": 0,
+          "88308": 0,
+          "88309": 0,
+          "88310": 0,
+          "88311": 0
+        },
+        "mean_delta": 0,
+        "paired_world_bootstrap_95": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "science_scope": "EXTERNAL researcher-led optimization of fixed 10-gene numerical motor; no natural within-world evolution",
+  "selected_test_genotype_never_changed_in_heldout": true
+}
