@@ -1,0 +1,3 @@
+# M5.3C full-precision lineage archival after the sealed experiment
+
+The complete 900-transplant study finished **successfully** in [Actions run #44924136791](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44924136791), 165 tests green, all preregistered main/shifted gates preserved. This helper performs **NO new held-out ecological evaluation** and does not select or alter any genotype. It replays only five original, already-sealed M5.3B source lineages to verify the exact genotype bank committed in `reports/M5_3C_frozen_candidate_genotypes_2026-11-21.json`, prints the complete birth-by-birth original numerical ancestry, and permits permanent archive of detailed origin records. Original study protocol and negative/positive outcomes remain unchanged.
