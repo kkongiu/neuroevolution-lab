@@ -1,0 +1,49 @@
+name: M4.1 replicated masked navigation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m4-1-kickoff-*.md"
+permissions:
+  contents: read
+
+jobs:
+  masked-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests including all prior milestones
+        run: python -m unittest discover -s tests -v
+      - name: Frozen M4.1 full evolutionary and heldout campaign
+        run: |
+          python -m neuroevolution.m4_1 \
+            --train-start 45000 --train-worlds 6 \
+            --validation-start 46000 --validation-worlds 4 \
+            --test-start 47000 --test-worlds 24 \
+            --shifted-start 48000 --shifted-worlds 12 \
+            --genetic-seed-start 81000 --genetic-runs 8 \
+            --size 13 --obstacle-density 0.16 \
+            --shifted-obstacle-density 0.26 \
+            --food-count 12 --shifted-food-count 8 \
+            --odor-radius 5 --shifted-odor-radius 2 \
+            --initial-energy 24 --max-energy 42 \
+            --food-energy 16 --movement-cost 1 \
+            --collision-extra-cost 0.3 --horizon 100 \
+            --hidden 12 --population 10 --generations 6 \
+            --elites 2 --immigrants 2 \
+            --initial-weight-sd 0.45 --mutation-sd 0.28 \
+            --random-neural-seed 73001 \
+            --out results/m4-1
+      - name: Archive all 8 genetic genomes, world results, and traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m4-1-masked-navigation
+          path: results/m4-1/
+          if-no-files-found: warn
+          retention-days: 30
