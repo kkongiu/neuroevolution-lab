@@ -59,6 +59,10 @@ La rete ricorrente Elman ha **8 neuroni tanh e 260 pesi**; la feedforward ha **1
 
 Le otto RNN selezionate non performano tutte ugualmente: successo nel main **57,81%–86,72%**, media 74,02%. Il campione con risultato migliore **non** è stato scelto usando il test finale: ogni run contribuisce.
 
+### Nota di audit sul controllo simbolico
+
+Il controllo denominato internamente `scripted_one_bit` **memorizza in realtà l'indice assoluto della direzione cardinale (quattro valori, quindi fino a due bit)**, non una variabile binaria esplicita. Dato che il bivio presenta comunque soltanto due rami, **un bit relativo ai due rami sarebbe sufficiente** per risolverlo, ma non è la codifica implementata. Il successo 100% del controllo rimane valido; il nome storico nel codice è solo un'etichetta, non una misura esatta della memoria richiesta.
+
 ### Una precisazione metodologica importante: i tre controlli non sono tre repliche statisticamente indipendenti
 
 Dato il disegno appaiato (stessa osservazione finale e due obiettivi opposti), **feedforward, rete con memoria resettata, assenza di cue e scelta casuale ottengono esattamente 50% per ogni coppia**, per costruzione matematica. Inoltre, invertire il cue in un problema binario simmetrico scambia l'esito: il successo medio con cue invertito è **1 − successo RNN**, e il suo contrasto è quindi collegato alla metrica primaria. **I tre gate sono controlli causali logicamente distinti ma non tre prove statistiche indipendenti.** Non gonfiamo l'evidenza sommando i tre intervalli come se provenissero da esperimenti separati.
