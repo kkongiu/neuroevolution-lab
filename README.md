@@ -269,3 +269,15 @@ python -m neuroevolution.m5_2a --seed-start 700 --seeds 2 --shifted-start 900 --
 ~~~
 
 The full sealed study is archived in [GitHub Actions #44920201061](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44920201061); never retune it after reading the test results. M5.2B will test compact autonomous neural foraging and genuine heritable selection.
+
+## M5.2B — Testing genuine neural mutation, with no scripted skills
+
+A [preregistered 51-weight recurrent genome](docs/M5_2B_PROTOCOL.md) keeps all five behaviors under actual inherited neural control. Compare exactly three neonatal mutated parameters, all-parameter mutation, strict cloning and fully random offspring. **Negative result:** [36-world M5.2B study](reports/M5_2B_compact_neural_2026-11-21.md) found **0/24** main-world survival for every arm after 400 ticks, and **0/12** in each shifted arm, despite correct physical births and [successful Actions validation](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44921004288). [Per-world outcomes](reports/M5_2B_world_survival_births_2026-11-21.csv).
+
+This genuinely tests inherited **neural decisions** unlike the scripted motor controls in M5.2A, but does not show adaptive selection. Reducing genome dimensionality and mutation scope alone did not overcome the foraging bottleneck. Before adjusting mutation hyperparameters, a separate experiment should verify if the chosen neural architecture can *represent* viable foraging and whether mutations can discover that region from uninformed initial weights.
+
+Run small deterministic smoke:
+
+~~~bash
+python -m neuroevolution.m5_2b --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --hidden 2 --sparse-mutated-weights 3 --out results/m5-2b-smoke
+~~~
