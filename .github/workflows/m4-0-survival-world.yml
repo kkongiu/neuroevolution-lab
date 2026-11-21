@@ -1,0 +1,49 @@
+name: M4.0 food survival evolution
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m4-0-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  preregistered-survival-world:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test world physics, evolution and all previous milestones
+        run: python -m unittest discover -s tests -v
+      - name: Preregistered evolutionary survival and unseen-world campaign
+        run: |
+          python -m neuroevolution.m4_0 \
+            --train-start 41000 --train-worlds 8 \
+            --validation-start 42000 --validation-worlds 4 \
+            --test-start 43000 --test-worlds 32 \
+            --shifted-start 44000 --shifted-worlds 16 \
+            --size 13 --obstacle-density 0.16 \
+            --shifted-obstacle-density 0.26 \
+            --food-count 12 --shifted-food-count 8 \
+            --odor-radius 5 --shifted-odor-radius 2 \
+            --initial-energy 24 --max-energy 42 \
+            --food-energy 16 --movement-cost 1 \
+            --collision-extra-cost 0.3 --horizon 100 \
+            --hidden 12 --population 12 --generations 8 \
+            --elites 2 --immigrants 2 \
+            --initial-weight-sd 0.45 --mutation-sd 0.28 \
+            --evolution-seed 61042 --random-neural-seed 73001 \
+            --out results/m4-0
+      - name: Save results and maps/traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m4-0-survival-world
+          path: results/m4-0/
+          if-no-files-found: warn
+          retention-days: 30
