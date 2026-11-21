@@ -295,3 +295,15 @@ python -m neuroevolution.m5_3a --seed-start 700 --seeds 2 --shifted-start 900 --
 ~~~
 
 **Remaining challenge:** whether an initially *random* heritable genotype can evolve food-seeking neural behavior on its own, and maintain it when the ecology changes.
+
+## M5.3B — First measurable inheritance signal from random neural founders
+
+The [fully preregistered genetic experiment](docs/M5_3B_PROTOCOL.md) uses **independently random ten-gene founders**; genes mechanically expand into the native 401-weight neural actor using a **researcher-specified spatial weight-sharing architecture**. Unlike M5.3A, there is **no engineered or supervised founder genome** and no runtime scripted movement; real in-world births copy, mutate, clone or redraw numerical genotypes, and all 5 actions come from the original RNN actor. The architecture has strong designer-supplied inductive bias, so we are NOT evolving new wiring or discovering the sensor definitions.
+
+On 24 main worlds, **sparse mutation 5/24 survived**, dense mutation 5/24, exact clone 3/24, independently redrawn offspring 0/24. Sparse versus random offspring survival **+20.83 pp**, world-paired descriptive bootstrap [+4.17,+37.50] pp; **an inheritance signal**. **But** novel-mutation benefit versus clones is unconfirmed, overall ecological viability misses the preregistered 12/24 gate, and all arms go extinct on **12/12 harder shifted worlds**. Keep negative conclusions. [Full scientific report](reports/M5_3B_de_novo_genetic_selection_2026-11-21.md), [all world outcomes](reports/M5_3B_paired_worlds_2026-11-21.csv), [sealed GitHub run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44922843440).
+
+Run separate engineering smoke:
+
+~~~bash
+python -m neuroevolution.m5_3b --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --hidden 12 --sparse-gene-count 2 --initial-gene-sd 0.65 --gene-mutation-sd 0.16 --out results/m5-3b-smoke
+~~~
