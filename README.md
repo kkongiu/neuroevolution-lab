@@ -69,6 +69,18 @@ python -m neuroevolution.m3 --out results/m3
 
 Outputs: an auditable frozen summary, meta-training trace, final per-seed and per-task CSVs, separate measures for novel and returning tasks. See the [M3 protocol](docs/M3_PROTOCOL.md).
 
+## M3.1 — Causal value of structural renewal
+
+A **preregistered, deliberately engineered positive-control environment** creates two paired contexts from exactly the same pretrained network: intact representations, and a controlled disruption of influential hidden units. Both interventions—preserve and renew—are run counterfactually from the same starting state on the same data, so the causal effect of renewal can be measured instead of guessed.
+
+A small learned threshold uses *current labelled training-probe accuracy* to decide whether to replace selected hidden units. Independent comparison policies use only episode position, reset-all, preserve-all, and a **shuffled action sequence with the same reset count**. An oracle based on heldout counterfactual outcomes serves solely as a non-deployable upper bound. Main and shifted task-family tests use sealed independent seeds.
+
+~~~bash
+python -m neuroevolution.m3_1 --out results/m3_1
+~~~
+
+Read [the frozen M3.1 protocol](docs/M3_1_PROTOCOL.md). A success here would **not** show general meta-learning or self-generated goals: the damage operator and its possible repair are deliberately constructed and externally specified.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
@@ -82,5 +94,7 @@ Outputs: an auditable frozen summary, meta-training trace, final per-seed and pe
 [M2B fixed-budget timing campaign](.github/workflows/m2b-budgeted-timing.yml): manually triggered or launched by an explicit kickoff marker, with new sealed seed sets.
 
 [M3 unpredictable recurrence campaign](.github/workflows/m3-novelty-recurrence.yml): preregistered meta-training and independent regular/shifted final tests. Launch manually or by an explicit kickoff marker.
+
+[M3.1 causal intervention workflow](.github/workflows/m3-1-causal-repair.yml): explicit kickoff/manual GitHub run, paired potential outcomes, archived metrics.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.
