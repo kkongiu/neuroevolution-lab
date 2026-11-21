@@ -5,6 +5,7 @@
 - [Frozen protocol](../docs/M5_4A_PROTOCOL.md), preregistered commit **`d9beaedff7f43f2acbba8e6cd8c29b698b47d42b`** before M5.4A code or any new-world results.
 - [Original successful read-only Actions experiment #44926123502](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44926123502), **174 regression tests green**, **2,112 full 400-tick environment×policy outcomes** completed.
 - [Permanent COMPLETE 2,112-trial world-level numeric outcome table](M5_4A_all_2112_world_factorial_outcomes_2026-11-21.csv).
+- [Permanent verified 24 matched wall-map, food, founder, renewal candidate pool and preselected numeric genotype digests](M5_4A_paired_map_geometry_sha_2026-11-21.json), independently reconstructed in [read-only geometry-only Actions audit #44927320481](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44927320481) with **zero** new organism testing. All 24 environments were accepted on first geometry-generation attempt (max attempt = 0).
 - [Full numerical factorial results, preregistered 20k/5k crossed bootstrap, main and validation, scripted and original founder controls](M5_4A_factorial_stats_2026-11-21.json).
 - Original GitHub Actions artifact **`m5-4a-paired-ecology-factorial`, ID 14715663924** (30-day retention) contains full `world_metrics.csv`, `summary.json`, original numerical founder genotypes, matched map/food/founder hashes `coupled_world_geometry.json`, checkpoint population trajectories, all first-world event ledgers and `factorial_survival.svg`.
 
