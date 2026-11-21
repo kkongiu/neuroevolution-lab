@@ -1,0 +1,52 @@
+name: M5.4A causal ecological full factorial
+on:
+  push:
+    branches: ["experiment/m5-4a-environment-factorial"]
+    paths:
+      - "campaigns/m5-4a-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  paired-factorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test full ecological regression and causal pairing invariants
+        run: python -m unittest discover -s tests -v
+      - name: Sealed all-eight-axis matched ecological factor intervention
+        run: |
+          python -m neuroevolution.m5_4a \
+            --seed-start 86000 --seeds 16 \
+            --shifted-start 87000 --shifted-seeds 8 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 5 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --max-age 100 --hidden 12 \
+            --scripted-reproduction-threshold 46 \
+            --checkpoint-every 50 --negative-control-worlds 1 \
+            --no-food-controls 0 \
+            --bootstrap-main 20000 --bootstrap-validation 5000 \
+            --out results/m5-4a
+      - name: Archive all 2112 world trial physical/genetic and factorial evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-4a-paired-ecology-factorial
+          path: results/m5-4a/
+          retention-days: 30
+          if-no-files-found: warn
