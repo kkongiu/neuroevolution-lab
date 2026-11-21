@@ -119,6 +119,20 @@ python -m neuroevolution.m3_4 --out results/m3_4
 
 See the frozen [M3.4 protocol](docs/M3_4_PROTOCOL.md). The resolver is an **algorithm we designed**, not spontaneous neural invention of a cognitive strategy. Labelled support examples are available: the system cannot infer contradictory context identities with no informative observations.
 
+## M3.5 — Spend an equal information budget where feedback seems needed
+
+M3.4's kNN resolver could infer returning latent contexts from labelled support, but performed poorly with **six noisy examples** and new rule families. M3.5 now tests **active information requests**: after six labelled support points with one corrupted label, choose **four of twelve episodes** in which to request **two fresh labelled points**, a total of **eight extra labels per sequence**.
+
+A bounded, externally programmed **uncertainty-margin** scheduler competes against an independently meta-selected entropy heuristic, random request episodes, periodic requests (all at identical information cost), no requests, and requests at every episode (higher-cost diagnostic). No policy chooses which x,y points are labelled: the two extra IID points arrive from an independent sampling stream **only if** an intervention was requested.
+
+All policies share M3.4's fixed 0.84 context-admission threshold, kNN k=7 prototypes, one persistent ReLU network, FIFO replay memory, equal SGD steps, same task streams, and independent meta-train/validation/sealed test seeds. Final outcomes are evaluated separately for familiar line/XOR tasks, unseen stripe/checker families, and an added error in the supplementary feedback.
+
+~~~bash
+python -m neuroevolution.m3_5 --out results/m3_5
+~~~
+
+See the [preregistered M3.5 protocol](docs/M3_5_PROTOCOL.md). Successful request timing would indicate only the value of this **programmed information-budget policy**, not a spontaneously invented active-learning method or autonomous objective.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
@@ -140,5 +154,7 @@ See the frozen [M3.4 protocol](docs/M3_4_PROTOCOL.md). The resolver is an **algo
 [M3.3 contextual memory campaign](.github/workflows/m3-3-contextual-memory.yml): isolated train/validation/sealed tests, paired conflicting context panels and replay experiments.
 
 [M3.4 latent context inference campaign](.github/workflows/m3-4-latent-context-inference.yml): preregistered threshold selection and three independent test splits, with paired support ablations and complete CSV metrics.
+
+[M3.5 fixed-information-budget campaign](.github/workflows/m3-5-active-information.yml): blinded support requests with identical query counts and independent shifted/noisy tests.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.

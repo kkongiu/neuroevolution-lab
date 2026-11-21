@@ -1,0 +1,44 @@
+name: M3.5 active information requests
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m3-5-kickoff-*.md"
+permissions:
+  contents: read
+
+jobs:
+  active-feedback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test prior milestones, budgets and absence of heldout leakage
+        run: python -m unittest discover -s tests -v
+      - name: Preregistered M3.5 — same-budget uncertainty versus random/periodic
+        run: |
+          python -m neuroevolution.m3_5 \
+            --train-start 29000 --train-seeds 6 \
+            --validation-start 29500 --validation-seeds 3 \
+            --test-start 30000 --test-seeds 24 \
+            --shifted-start 31000 --shifted-seeds 12 \
+            --few-start 32000 --few-seeds 12 \
+            --tasks 12 --width 24 --steps 48 --batch-size 4 \
+            --eval-size 64 --report-every 12 --learning-rate 0.04 \
+            --main-support 6 --hard-support 6 --hard-flips 1 \
+            --prototype-size 64 --buffer-size 24 --replay-every 4 \
+            --knn-k 7 --reservoir-threshold 0.84 \
+            --request-quota 4 --extra-per-request 2 \
+            --out results/m3-5
+      - name: Preserve complete seed and individual query outcomes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m3-5-active-information
+          path: results/m3-5/
+          if-no-files-found: warn
+          retention-days: 30

@@ -115,5 +115,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - The resolver is **externally written kNN with an offline meta-selected threshold**, not autonomous algorithm invention. Labelled support signals are required; no claim of general unsupervised context discovery.
 - [M3.5 issue](https://github.com/kkongiu/neuroevolution-lab/issues/16): test whether querying one more labelled example when uncertain outperforms random/periodic requests *at matched information cost*, with new seed splits.
 
+## M3.5 — Active feedback seeking under an equal global query budget (preregistered)
+- [Frozen M3.5 protocol](M3_5_PROTOCOL.md), created before the full simulation code and any final-seed experiments.
+- Six initial labelled support observations per episode, with exactly one wrong label; four of twelve episodes may request two **new IID labelled examples** at a fixed total cost of eight labels per seed.
+- Primary: margin-uncertainty scheduler versus **random-request schedule**, identical information budget and persistent M3.4 neural/associative architecture. Necessary secondary versus periodic requests at the same cost; independent entropy heuristic as exploratory.
+- Counterfactual controls: no extra information; all episodes requesting extra information (higher cost). No use of hidden context ID or future request labels in request decisions.
+- Meta-train/validation thresholds on new disjoint seed groups. Final test: 24 independent known-family seeds, 12 shifted-family seeds, 12 known-family seeds with **one extra corrupted requested label**.
+- Audit meta-accuracy separately from final memory: return-context consistency, context-slot clustering, first-visit distinctness, four-context balanced memory, worst-context accuracy, forgetting, learning AUC, query counts, forced actions and kNN overhead.
+- Success requires a positive paired main advantage **beyond random at identical information cost**, and support versus periodic; do not relabel poor shifted-family generalization as a success.
+- Context resolver and querying policy are externally programmed; simulated neural networks cannot generate or run code or establish independent objectives.
+
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
