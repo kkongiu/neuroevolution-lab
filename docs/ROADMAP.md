@@ -105,15 +105,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Protocol caveat: M3.3 adaptive controller's retention feature includes all previously stored contexts including the current context on return, while the text described other-context memory. Main cue/replay controls are unaffected; any fix needs new seeds.
 - Next research issue: [M3.4 latent context inference and bounded episodic memory](https://github.com/kkongiu/neuroevolution-lab/issues/14).
 
-## M3.4 — Online inference of latent context from labelled feedback (preregistered)
-- [Frozen M3.4 protocol](M3_4_PROTOCOL.md) committed *before* code/holdout execution.
-- Four latent opposing contexts; none supplied as an ID to the deployable model. A bounded kNN resolver compares **labelled support examples** to a separate FIFO prototype bank of prior training samples, allocates anonymous slots and supplies inferred one-hot slot cues to a persistent ReLU model.
-- Externally select the resolver threshold only on meta-train/validation seed partitions. Main/few-shot/shifted seed ranges are independent. Inference quality (slot purity and return consistency) is measured **separately** from predictive accuracy.
-- Control the **same trained model** by shuffling its final support sets (primary) and removing support/one-hot entirely. Additional neural baselines use true privileged oracle context, inferred cue + replay versus no-replay, same replay-budget FIFO versus reservoir, and blank-context replay.
-- Replay buffers hold at most 24 training examples per inferred slot, with every fourth SGD batch replaced by past examples; no holdout examples are stored.
-- Two transfer tests: only six labelled cues with one corrupted label on familiar line/XOR problems, and the same support degradation on unseen stripe/checker problems.
-- Gate: positive paired support-ablation accuracy, above 50% no-support, return consistency >65% and >3.5 distinct slots among first four truly new tasks on average. A result that improves only on provided easy support is **not** a demonstration of broad latent-context inference.
-- No new neural plasticity or arbitrary source modifications: the context resolver is a bounded, externally specified algorithm.
+## M3.4 — Online context recognition from labelled experiences (completed)
+- [Frozen M3.4 protocol](M3_4_PROTOCOL.md) committed before implementation/full test, [report](../reports/M3_4_latent_context_inference_2026-11-21.md), [original sealed run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44901460644), [48-seed archive](../reports/M3_4_seed_metrics_2026-11-21.csv).
+- The deployable kNN resolver sees **training-only labelled support examples**, never hidden context IDs; it supplies anonymous slots to a persistent six-input ReLU network.
+- Main **24 independent test seeds** (16 clean support examples): **100%** context-return consistency and 4/4 distinct first visits. Final inferred-context memory **72.18%**, versus 50.00% no support and 38.95% after adversarial final-support rotation; primary paired +33.24 pp (descriptive bootstrap +28.74/+37.50 pp).
+- This main success is in a **deliberately easy/structured task**: the meta-train/meta-validation contexts were also perfectly classified. The adversarial support shuffle is below chance because swapped opposing contexts mislead the model; zero-support 50% is a *mathematical* ceiling.
+- With six support examples including one corrupted label: return consistency **62.5%** (below preregistered >65% threshold), final memory **66.37%**. With shifted stripe/checker families: return consistency **30.2%**, final memory **54.30%**, versus privileged oracle ID **59.64%**. **Robust latent-context inference is NOT established.**
+- Replay FIFO vs no replay improves main memory by **+2.98 pp**, but descriptive bootstrap interval (−0.02/+6.05 pp) includes zero; FIFO vs reservoir similarly uncertain. No demonstrated replay advantage on shifted families.
+- The resolver is **externally written kNN with an offline meta-selected threshold**, not autonomous algorithm invention. Labelled support signals are required; no claim of general unsupervised context discovery.
+- [M3.5 issue](https://github.com/kkongiu/neuroevolution-lab/issues/16): test whether querying one more labelled example when uncertain outperforms random/periodic requests *at matched information cost*, with new seed splits.
 
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
