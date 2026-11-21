@@ -1,0 +1,47 @@
+name: M4.3 causal delayed recall
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m4-3-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  causal-recall:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Full suite including analytical no-memory controls
+        run: python -m unittest discover -s tests -v
+      - name: Frozen M4.3 eight-run motor-free memory campaign
+        run: |
+          python -m neuroevolution.m4_3 \
+            --train-start 60000 --train-worlds 8 \
+            --validation-start 61000 --validation-worlds 8 \
+            --test-start 62000 --test-worlds 64 \
+            --shifted-start 63000 --shifted-worlds 32 \
+            --guided-start 64000 --guided-worlds 16 \
+            --genetic-seed-start 90000 --genetic-runs 8 \
+            --size 13 --hidden 8 --ff-hidden 11 \
+            --population 14 --generations 8 \
+            --elites 2 --immigrants 2 \
+            --cue-ticks 2 --horizon 20 \
+            --stem-min 3 --stem-max 5 \
+            --shifted-stem-min 5 --shifted-stem-max 6 \
+            --initial-weight-sd 0.45 --mutation-sd 0.28 \
+            --out results/m4-3
+      - name: Retain all champions, paired worlds and motor transfer metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m4-3-causal-delayed-recall
+          path: results/m4-3/
+          if-no-files-found: warn
+          retention-days: 30
