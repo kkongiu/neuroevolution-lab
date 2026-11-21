@@ -110,3 +110,5 @@ Do **NOT** retroactively retune or reuse heldout seeds 84000â€“84023 and 85000â€
 An alternative, less ambitious and cleaner immediate step is an observational **within-ecology founder lineage and beneficial mutation frequency audit** on the original M5.3B birth ledger, without making new survival claims. Either must have its own protocol and untouched sealed test seeds.
 
 **Safety/implementation:** simulated agents cannot access tools, filesystem, networks or source code; only static numeric gene vectors are transmitted at original costed simulated births.
+
+- [FULL independently verified source genealogy and 10-gene ancestry for all five families](M5_3C_full_verified_source_genealogies_2026-11-21.json); [independent read-only source replay verification workflow #44924597561](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44924597561). This permanently preserves each intermediate parent/child gene vector, exact changed gene indices, original genetic SHA digests and original world checkpoints, independently verified against the exact previously frozen finalist-genotype bank. The lineage audit performed no M5.3C heldout-world evaluation.
