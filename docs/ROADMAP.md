@@ -189,7 +189,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - All earlier M4.0/M4.1 negative records preserved. **Next issue:** [M4.3 causal recall without motor confound](https://github.com/kkongiu/neuroevolution-lab/issues/24); preregister a pure memory decision with guaranteed fork arrival before reintroducing free navigation.
 - Recurrent state is not within-life synaptic learning; numerical weights are externally evolved. No self-chosen objectives, reproduction or predators.
 
-## M4.3 — Motor-independent causal delayed recall (preregistered)
+## M4.3 — Motor-independent causal delayed recall (completed; bounded causal success)
 - [Frozen M4.3 protocol](M4_3_PROTOCOL.md), registered before implementation and any test-world evolution.
 - Paired opposite target directions, one transient cue (two input ticks), then neutral input with **no action-dependent locomotion or external clock**. Two legal choices at the same final observation; **100% guaranteed decision arrival**. This isolates delayed recall from physical motor success.
 - Exact memoryless ceiling: FF, same-RNN state reset and blank cue each score **50% per paired seed**; a handcrafted one-bit memory reference scores 100%. Contradictory oracles become an actual test of hidden-state retention.
@@ -197,6 +197,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Sealed **64 main paired worlds** with delays 2/4/6; **32 shifted paired worlds** with unseen delays 8/9/10. Separate **16 guided-versus-free corridor pairs** to evaluate movement transfer without corrupting the memory-only primary.
 - Primary RNN minus FF paired food-choice success, hierarchical bootstrap by 8 genetic runs and 64 world pairs, plus **necessary same-genome RNN reset and cue-flip causal effects**, all preregistered. Main-only success is not robust delayed recall if shifted performance collapses.
 - No source edits/within-life weight learning by simulated organisms. Negative/null controls retained; M4.0–M4.2 immutable.
+
+### M4.3 published evidence: within-life hidden-state memory demonstrated on symbolic cue
+- [Full M4.3 scientific report](../reports/M4_3_causal_delayed_recall_2026-11-21.md), [successful sealed GitHub campaign](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44909467363), [per-genetic-run archive](../reports/M4_3_success_by_genetic_run_2026-11-21.csv).
+- On **8 independent genetic runs ×64 paired opposite-goal worlds**, evolved recurrent circuit **74.02%** correct after cue disappears, versus feedforward **50%** (**primary +24.02 pp**, hierarchical bootstrap descriptive 95% **+16.50/+31.54 pp**, **8/8** run wins). This is a ***motor-free symbolic memory test*** with all agents guaranteed fork readout.
+- The **same RNN** with its hidden state zeroed right before choosing returns **50%** (causal reset Δ+24.02 pp, 95% **+16.89/+31.84 pp**); flipped cue yields **25.98%** (Δ+48.05 pp, 95% **+32.42/+62.89 pp**). All main preregistered gates pass. Blank-cue RNN and analytical FF control remain **50%**, scripted one-bit memory **100%**.
+- Caution: the 50% FF/reset/blank outcomes follow mathematically from balanced opposite targets, and flipped-cue results are linked to normal accuracy. The three contrasts are **not independent replications**. Reset remains a direct same-genotype intervention.
+- On **32 shifted world pairs with unseen delay 8–10**, RNN **60.55%** vs 50% control; primary interval **−0.39/+21.68 pp**, **not confirmed**. Guided corridor transfer RNN **62.50%**; free autonomous movement **23.83%**, with fork arrival **52.73%**. Memory is not yet a functional free-roaming navigation policy.
+- **Next issue:** [M4.4 integrate causal recall with motor planning](https://github.com/kkongiu/neuroevolution-lab/issues/26). Preregister new genetics/world seeds, fully separate arrival and recalled choice, and report both main and out-of-distribution tests. Do NOT overwrite M4.0/M4.1/M4.2 negative findings.
+- None of these runs demonstrate within-lifetime synaptic learning, ecological reproduction, map learning, predator avoidance or autonomous objectives.
 
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
