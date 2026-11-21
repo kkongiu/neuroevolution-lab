@@ -1,0 +1,2690 @@
+{
+  "source": "Original exact external genotype search replay; no sealed world accessed",
+  "protocol_sha": "fa45399a24cb52f0f8d95436cad87a273e991a54",
+  "original_study_url": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44930989280",
+  "independent_audit": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44931268792",
+  "candidate_records": [
+    {
+      "candidate_id": 0,
+      "development_score": [
+        0,
+        0,
+        34,
+        0
+      ],
+      "expanded_genome_digest": "e6bf19da0bd7ec7f",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "403ee0bc834ea0d5d18e",
+      "gene_values": [
+        -0.2145385822297946,
+        0.5160853844780295,
+        -0.7124781173910268,
+        0.7923808517608179,
+        0.09587293038656718,
+        -0.1955816558146819,
+        0.4939254892334794,
+        -0.07754430184845225,
+        0.5062284852247947,
+        -1.0074853457030748
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 1,
+      "development_score": [
+        0,
+        0,
+        146,
+        66
+      ],
+      "expanded_genome_digest": "d7a3ab233525de68",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "062949c982d2e29457fe",
+      "gene_values": [
+        0.5583232127174542,
+        -0.8732757642493134,
+        0.6766347774727924,
+        -0.13863062202098952,
+        -0.3569008376346394,
+        -0.040624855363993254,
+        -1.1477113556791827,
+        0.4107692810968417,
+        0.32130374169236864,
+        0.045904441000956274
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 2,
+      "development_score": [
+        0,
+        0,
+        29,
+        18
+      ],
+      "expanded_genome_digest": "12e1b998ae6618a7",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "8876180df3cb554c495b",
+      "gene_values": [
+        -0.9091612179994759,
+        0.3341672568617377,
+        -0.040853527394691835,
+        -0.6681798266484615,
+        0.1887980813043929,
+        -0.8843945842099473,
+        -0.8245007916413066,
+        0.8080920675494523,
+        -0.3746657098763367,
+        -0.199224814616854
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 3,
+      "development_score": [
+        0,
+        0,
+        114,
+        55
+      ],
+      "expanded_genome_digest": "4cec3eababa3241b",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "8a9380ffe90ce0264598",
+      "gene_values": [
+        0.8843439344536171,
+        0.5905939140632188,
+        -0.3291815702673768,
+        -1.5017187817483528,
+        0.781405400894048,
+        -0.3043397261351886,
+        -0.649483475664306,
+        -0.03816890123250054,
+        0.34763531229051436,
+        -0.8092541262322994
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 4,
+      "development_score": [
+        0,
+        0,
+        34,
+        8
+      ],
+      "expanded_genome_digest": "97bb5198c65ff3c9",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "3b8ae331c01d46874748",
+      "gene_values": [
+        0.05745653111547584,
+        -0.7733677664791524,
+        -0.006185317949591621,
+        -0.2781781652303618,
+        0.3358709001568211,
+        0.3788141749020091,
+        -0.061622187611973585,
+        0.20270501235961727,
+        0.36776456035155175,
+        -0.9876569691073889
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 5,
+      "development_score": [
+        0,
+        0,
+        10,
+        4
+      ],
+      "expanded_genome_digest": "e5fa7d68aa6a4c6e",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "1ad9d4616f9affff06b4",
+      "gene_values": [
+        -1.0732633245388044,
+        0.706620645489331,
+        0.11038114422331533,
+        0.3137197801105593,
+        -0.18264259444532335,
+        0.5122836298961189,
+        -0.38633527546477014,
+        -0.30588651011908763,
+        0.5662668509498472,
+        0.9660754002339449
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 6,
+      "development_score": [
+        0,
+        0,
+        44,
+        19
+      ],
+      "expanded_genome_digest": "3923d23d7c98a9c1",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "7897041912b94883d334",
+      "gene_values": [
+        -0.3302168233587862,
+        -0.7626601726470489,
+        -0.5300159149709912,
+        0.8909552892469357,
+        1.1263856785279298,
+        1.115799278504508,
+        0.21708339296620394,
+        0.195365053973986,
+        0.40776582932980143,
+        1.3963486320638725
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 7,
+      "development_score": [
+        0,
+        0,
+        162,
+        11
+      ],
+      "expanded_genome_digest": "ee7f34ddb568b656",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "082dd76d6bb6c0d2f573",
+      "gene_values": [
+        0.806703218647584,
+        0.30974402944387264,
+        -0.4481426639492694,
+        -1.492187932895155,
+        0.5605419352699531,
+        0.05103452728698434,
+        0.07240206068297599,
+        0.1934649911504036,
+        -0.12920037441459928,
+        0.04180556261475145
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 8,
+      "development_score": [
+        0,
+        0,
+        30,
+        22
+      ],
+      "expanded_genome_digest": "653a9d40117655f3",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "d7283366becf12f40a89",
+      "gene_values": [
+        -1.0501072696821312,
+        -0.044332600957839106,
+        0.595246164128103,
+        -1.5860043533933073,
+        -0.9910356193485634,
+        0.14257887951815257,
+        0.28749414222164577,
+        -0.5409948917560505,
+        -0.6256107205541668,
+        -0.8135514786983729
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 9,
+      "development_score": [
+        0,
+        0,
+        146,
+        44
+      ],
+      "expanded_genome_digest": "5e62f47c23cfed09",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "f74564ac44302e37cc25",
+      "gene_values": [
+        0.3006511480274997,
+        0.2326149353670473,
+        0.8618429408254185,
+        -0.9030516821772605,
+        -0.07663963373941378,
+        0.26202928213893095,
+        1.2118365692581459,
+        0.0537491480192338,
+        -0.5399040516112562,
+        0.7025399006326375
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 10,
+      "development_score": [
+        0,
+        0,
+        39,
+        19
+      ],
+      "expanded_genome_digest": "59a1c2bea1ed3ee1",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "b1ae3e3ff6fd6fd23e1c",
+      "gene_values": [
+        -0.7252371184425269,
+        -0.14732607301744474,
+        0.051267393341381,
+        -0.7566454540051031,
+        0.2931379530198836,
+        0.49224049060404257,
+        0.12281169654063986,
+        -0.5262507329232584,
+        -0.9907474165134512,
+        0.03220863094640085
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 11,
+      "development_score": [
+        0,
+        0,
+        109,
+        58
+      ],
+      "expanded_genome_digest": "d0388d27f5cd1903",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "65a5d458601c0829f46c",
+      "gene_values": [
+        0.7404984735351782,
+        -0.8751485995853666,
+        0.5468703201386136,
+        -1.3083651534424465,
+        0.2571362521646209,
+        0.13429858272844503,
+        -0.06152529190851215,
+        -0.210513692346715,
+        -0.5041175314470906,
+        -0.44539043218252766
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 12,
+      "development_score": [
+        0,
+        0,
+        138,
+        59
+      ],
+      "expanded_genome_digest": "a252c2015d4da5de",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "3e059114a77026bfe6c9",
+      "gene_values": [
+        0.6033313844904964,
+        0.049557337881050746,
+        1.2601824105917934,
+        0.9986814366240343,
+        0.8987965150544437,
+        0.887919863080908,
+        -0.6557420938428697,
+        -0.5702498468901636,
+        0.8306933886826456,
+        0.7102773402789336
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 13,
+      "development_score": [
+        0,
+        0,
+        5,
+        2
+      ],
+      "expanded_genome_digest": "d7970a19b7bcd68d",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "73e2ff53d3145ca1a1f0",
+      "gene_values": [
+        -1.1713192570356779,
+        -0.7724299628793105,
+        -0.6377297239727867,
+        -0.18546410945391203,
+        0.48035934704018124,
+        -0.4247972445744483,
+        0.6106562322391378,
+        -0.4760950143863897,
+        0.2430649043541048,
+        0.18110060428647323
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 14,
+      "development_score": [
+        0,
+        0,
+        119,
+        57
+      ],
+      "expanded_genome_digest": "d91cd70d33b87b76",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "2e86427ef72444ecdf21",
+      "gene_values": [
+        0.7898865338870225,
+        0.3121764132126502,
+        -0.5207630321037203,
+        0.7523427635498987,
+        -0.6619352221034104,
+        -1.025169160995738,
+        0.00700035648764455,
+        -0.5274111707394142,
+        -0.4136016098285339,
+        0.2099652836808585
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 15,
+      "development_score": [
+        0,
+        0,
+        127,
+        48
+      ],
+      "expanded_genome_digest": "680f220a0d39f9a8",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "fc462889cb3b48fd7597",
+      "gene_values": [
+        0.6125990964700091,
+        -0.08571383804389622,
+        -0.7883073958711818,
+        -0.1152536421942091,
+        -0.04767217730047258,
+        0.6232498100627301,
+        0.9322847513480836,
+        0.884287508782557,
+        -0.1228573295433633,
+        0.4640542628033761
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 16,
+      "development_score": [
+        0,
+        0,
+        95,
+        43
+      ],
+      "expanded_genome_digest": "3d9883937930bc33",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "5cd94bc8d207fd4bd825",
+      "gene_values": [
+        -0.2236855622071129,
+        1.1232194311714028,
+        0.6112837216485386,
+        -0.4331997814562917,
+        -0.9198560574853767,
+        -0.2999351979283071,
+        0.1539749172028738,
+        0.7745339268977403,
+        0.5288281782440654,
+        -0.5079016178606472
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 17,
+      "development_score": [
+        0,
+        0,
+        168,
+        79
+      ],
+      "expanded_genome_digest": "0b43c451eaaba550",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "01bb920a15fb9d805fb3",
+      "gene_values": [
+        -0.1782422681772858,
+        1.0608958148119583,
+        -0.8760629618139917,
+        0.4632147369820231,
+        -0.4213784088240087,
+        0.1726346663256067,
+        -0.33367622318274637,
+        -1.3482455488144953,
+        0.5368997674626804,
+        1.1859473976403065
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 18,
+      "development_score": [
+        0,
+        0,
+        163,
+        41
+      ],
+      "expanded_genome_digest": "743ec5e0fe02cb6e",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "2c4fba45a5549f985692",
+      "gene_values": [
+        0.5038291204055875,
+        0.925171666907037,
+        -0.06297681976544922,
+        0.07590182217919579,
+        0.05009405560154091,
+        -0.07202464180763277,
+        -0.988248701966366,
+        0.45210268541566445,
+        -0.6446307868073521,
+        0.279091864221409
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 19,
+      "development_score": [
+        0,
+        0,
+        26,
+        15
+      ],
+      "expanded_genome_digest": "363d8373a793ca8a",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "6b6e1e6eacabcc775351",
+      "gene_values": [
+        -1.0381232297620877,
+        -0.12651485493864326,
+        -0.7313703911592246,
+        1.9211649393719032,
+        -0.1535871006367247,
+        -0.8153063461672887,
+        -0.12899678527869865,
+        -0.4367378084993251,
+        0.7382627512327824,
+        0.3373493154749859
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 20,
+      "development_score": [
+        0,
+        0,
+        40,
+        24
+      ],
+      "expanded_genome_digest": "c1893b875e1077eb",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "4adc0c1235a09a911953",
+      "gene_values": [
+        -0.38767768639549954,
+        -0.38849135907152466,
+        0.5257867790997439,
+        -0.9786047107527243,
+        0.12420913958414537,
+        -0.32423285352545556,
+        -0.34247909951874267,
+        -0.2346173287550343,
+        -0.156281513972556,
+        -0.33451744994070093
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 21,
+      "development_score": [
+        0,
+        0,
+        132,
+        49
+      ],
+      "expanded_genome_digest": "5021151f66a71afb",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "ea7677e3d875272c3b8a",
+      "gene_values": [
+        0.31795777474707704,
+        1.2502916575936527,
+        -0.21220078202000145,
+        -0.6170811014647233,
+        -0.08884772851803492,
+        0.8364917099235861,
+        -0.18969174573774591,
+        -0.25064276862651313,
+        -1.131844365729356,
+        0.04838256812556299
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 22,
+      "development_score": [
+        0,
+        0,
+        64,
+        38
+      ],
+      "expanded_genome_digest": "b5030b74bc02843f",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "97dede4fbe233250bf68",
+      "gene_values": [
+        0.29922899664126956,
+        -1.208209666977143,
+        -0.0023630142926158834,
+        -0.5130492830800026,
+        -1.3163022901964814,
+        0.647998353231295,
+        0.13458056253140094,
+        -0.3631490418481427,
+        -0.3762817406317948,
+        -0.2807942928605232
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 23,
+      "development_score": [
+        0,
+        0,
+        152,
+        73
+      ],
+      "expanded_genome_digest": "a484d4664c2d95b8",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "8bc01b912f70b911e082",
+      "gene_values": [
+        0.3962374682779455,
+        -0.07277848605478189,
+        0.3658992719361743,
+        -0.7514068596104893,
+        -0.26169724022186674,
+        -0.25258027233426494,
+        0.34429013554291005,
+        -0.31800631443924454,
+        -0.02303621690467311,
+        0.12074313417654062
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 24,
+      "development_score": [
+        0,
+        0,
+        204,
+        23
+      ],
+      "expanded_genome_digest": "a444fca51e2deca2",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "7b9864c13990c6afd281",
+      "gene_values": [
+        0.166410315937413,
+        0.48347034314154164,
+        0.03132095844730263,
+        0.5306498614239442,
+        -0.4994546138845892,
+        0.17676358002803996,
+        -0.28328338103114137,
+        -0.029750547719274448,
+        0.13115694239786835,
+        -0.6292196821865931
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 25,
+      "development_score": [
+        0,
+        0,
+        13,
+        7
+      ],
+      "expanded_genome_digest": "3c9ae8dd1b9691f8",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "201325cf7a53ceaeacaf",
+      "gene_values": [
+        -1.2383228373955204,
+        -0.08586625045677831,
+        0.0515285050607439,
+        0.42841371140933854,
+        -0.7623793572938987,
+        0.6883006338092673,
+        -0.43525594985506905,
+        -0.5552864456628792,
+        1.0533524379472163,
+        1.3255828162600956
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 26,
+      "development_score": [
+        0,
+        0,
+        25,
+        19
+      ],
+      "expanded_genome_digest": "cea3ec5549736713",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "7efd4f444ad8c1c9e602",
+      "gene_values": [
+        -0.6611602919967238,
+        -0.08334495387603692,
+        -0.23675437626919854,
+        0.33301730079490427,
+        -0.12542060571194125,
+        -0.5409554988119286,
+        0.5469287679505426,
+        0.046008124850638765,
+        0.371359629319231,
+        0.30625464316504025
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 27,
+      "development_score": [
+        0,
+        0,
+        51,
+        32
+      ],
+      "expanded_genome_digest": "29f3ac64683bded5",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "32edc49d9f57e493458a",
+      "gene_values": [
+        -0.016104983795282527,
+        -0.01379823188889514,
+        -0.5135463194807377,
+        -0.22214543958805752,
+        -0.7787045781263631,
+        -0.7061500016529841,
+        -0.23119905903216456,
+        -0.716037022862079,
+        -0.22621415385160723,
+        0.2545338879794469
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 28,
+      "development_score": [
+        0,
+        0,
+        105,
+        62
+      ],
+      "expanded_genome_digest": "c1b5a6af26a60042",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "e7b127f58e7f7db15e26",
+      "gene_values": [
+        0.2871189112554803,
+        -0.34065719211987633,
+        -0.6634127068702546,
+        -1.467263532386679,
+        0.5270934160042422,
+        -0.10318017771267275,
+        -0.859470946345528,
+        -0.12960147989423937,
+        -0.4562411095000711,
+        -1.226414425649832
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 29,
+      "development_score": [
+        0,
+        0,
+        51,
+        24
+      ],
+      "expanded_genome_digest": "32c520b991ba14e2",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "1383cce80a8f6ff3c9b6",
+      "gene_values": [
+        -0.15486990660013578,
+        0.30845104047304717,
+        -0.6290945929499965,
+        -0.3065989383853298,
+        0.09001330559752782,
+        0.6980571872860574,
+        0.8651188445302861,
+        0.4599366126210073,
+        0.527338216354639,
+        -0.061777936321524986
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 30,
+      "development_score": [
+        0,
+        0,
+        27,
+        8
+      ],
+      "expanded_genome_digest": "0bb515e5d33ab909",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "5cb1068fba79864b96b0",
+      "gene_values": [
+        -1.3939369190172852,
+        -0.21150928747664627,
+        0.9740286595011953,
+        -1.2974847666439318,
+        0.27884184341446955,
+        0.03227730696040077,
+        0.08256039298262487,
+        0.04720884244387914,
+        0.3804937626778037,
+        0.36456881648939216
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 31,
+      "development_score": [
+        0,
+        0,
+        9,
+        3
+      ],
+      "expanded_genome_digest": "1c1f5f1f8992e5c3",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "6fd826fba590388f4d13",
+      "gene_values": [
+        -1.1407837824739158,
+        -0.14915176444606096,
+        0.6696508414739472,
+        0.942296637355043,
+        -0.09746609728630715,
+        0.7090139416018153,
+        -0.24075859372168504,
+        -1.1292538365827747,
+        -0.17597906046129522,
+        0.04982172386968051
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 32,
+      "development_rank": 1,
+      "development_score": [
+        0,
+        0,
+        273,
+        10
+      ],
+      "expanded_genome_digest": "69c5b33f2ec0f6ba",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "8dfa0a81e76c4327eb32",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": null,
+      "validation_score": [
+        0,
+        0,
+        567,
+        17
+      ]
+    },
+    {
+      "candidate_id": 33,
+      "development_score": [
+        0,
+        0,
+        206,
+        70
+      ],
+      "expanded_genome_digest": "81202df3f2ac69c7",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "06a917f72c24deec6448",
+      "gene_values": [
+        0.47487849230450113,
+        1.061201740723284,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.7011767135534924,
+        1.2662325448636207,
+        0.2941798439800752,
+        0.3645192595741834,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 34,
+      "development_score": [
+        0,
+        0,
+        159,
+        60
+      ],
+      "expanded_genome_digest": "1e2b78f6efa2adf6",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "45ae15f8d65d519a1eba",
+      "gene_values": [
+        0.6136662287543139,
+        0.158898303715372,
+        0.8810487005847325,
+        -0.7091585165762591,
+        -0.17998267872108048,
+        -0.12230346031453132,
+        0.10191966626199768,
+        0.6113182839023455,
+        -0.33326101060102453,
+        0.5717521413727582
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 35,
+      "development_score": [
+        0,
+        0,
+        141,
+        73
+      ],
+      "expanded_genome_digest": "48dc333fb0f72e4c",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "08337bb43227e089c8c3",
+      "gene_values": [
+        0.36826736562145573,
+        -0.2125914596501509,
+        0.9081810502916448,
+        -2.0546939936459503,
+        -0.580998339992752,
+        -0.45679805558390535,
+        -0.14543376201208785,
+        -0.8493614736254941,
+        -0.5281842532326542,
+        -1.966639087337802
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 36,
+      "development_score": [
+        0,
+        0,
+        46,
+        1
+      ],
+      "expanded_genome_digest": "e48a6a338f1fffa3",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "9ebf4cf2af92b1faccd7",
+      "gene_values": [
+        -0.3358223686905754,
+        0.9299196210109794,
+        -0.9314596305914582,
+        1.3455344961835223,
+        0.05724414148012827,
+        0.5490730738032107,
+        1.176589678718108,
+        0.7075833472679324,
+        0.6322414781885848,
+        -0.21802709123033448
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 37,
+      "development_score": [
+        0,
+        0,
+        114,
+        1
+      ],
+      "expanded_genome_digest": "c2e5a4be7c61e4e5",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "7b6860ac975a0370a6f8",
+      "gene_values": [
+        0.3723355836490842,
+        -0.6067115357167395,
+        -0.8015662016121726,
+        0.4905038780171682,
+        0.1184033877465558,
+        0.0583599089272397,
+        0.4100477321850997,
+        -0.11293941559689777,
+        0.3118056750302686,
+        -0.49242587297504764
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 38,
+      "development_score": [
+        0,
+        0,
+        31,
+        11
+      ],
+      "expanded_genome_digest": "d65ee6a09377790e",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "c59360c8896d03ee7f81",
+      "gene_values": [
+        -0.4560674757036268,
+        0.6439137515461781,
+        0.8187659310706051,
+        -0.1121497289959467,
+        -0.23248666909514853,
+        0.7418740349309012,
+        -0.0934604029817948,
+        -1.1740887419406538,
+        -1.2167811295410271,
+        0.9107623546329322
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 39,
+      "development_score": [
+        0,
+        0,
+        56,
+        32
+      ],
+      "expanded_genome_digest": "5df1eb9c1b869c76",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "36b4be88e2764873c7e4",
+      "gene_values": [
+        -0.08108597319259443,
+        -0.22834642998037213,
+        -0.20464852263003785,
+        -0.868426562729897,
+        0.3313777765756804,
+        0.73988853192304,
+        -0.09794723305409912,
+        -0.6908629659267718,
+        0.43162516110001475,
+        -0.6284009184578472
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 40,
+      "development_score": [
+        0,
+        0,
+        24,
+        16
+      ],
+      "expanded_genome_digest": "2c51116f8ff86ffe",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "e5c0145785bf4f784761",
+      "gene_values": [
+        -0.6099259779361184,
+        -0.23260834144883877,
+        -0.08376965189551738,
+        0.5623982429543296,
+        0.4233948979028093,
+        0.40406828244997195,
+        0.08247307559540676,
+        -0.6871860015398148,
+        0.3948721634377234,
+        1.12641397344692
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 41,
+      "development_score": [
+        0,
+        0,
+        140,
+        68
+      ],
+      "expanded_genome_digest": "3211a152b00111c8",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "6b8354875943870293aa",
+      "gene_values": [
+        0.7245677811240374,
+        -1.0234408720132122,
+        -0.723372831806545,
+        0.29726853759851063,
+        -0.4468200510166487,
+        0.11402144121675221,
+        -0.6830793207300425,
+        -0.2312726820148531,
+        0.15615789615686188,
+        1.0614327967241688
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 42,
+      "development_score": [
+        0,
+        0,
+        129,
+        56
+      ],
+      "expanded_genome_digest": "3ffc2de6a59f1cad",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "6875d59118c38facd5d4",
+      "gene_values": [
+        0.11659129152347789,
+        0.6018102847102506,
+        -0.20614430899712038,
+        0.34673761997432667,
+        -0.6147347668416906,
+        -0.6381346096388024,
+        -0.4388639057090523,
+        0.7294400147502497,
+        0.2590562761777327,
+        -0.421901506380013
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 43,
+      "development_score": [
+        0,
+        0,
+        31,
+        13
+      ],
+      "expanded_genome_digest": "7d1a6687a95cea4c",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "3a5a906378a6c3b09b46",
+      "gene_values": [
+        -0.7228434585870213,
+        -1.2967098067486038,
+        -0.44023781614091356,
+        0.3140229227648039,
+        -0.705130557067408,
+        0.4875315273597282,
+        0.6161685736065577,
+        -0.9086175669278944,
+        0.13066670325270352,
+        -0.34247494529859585
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 44,
+      "development_score": [
+        0,
+        0,
+        179,
+        89
+      ],
+      "expanded_genome_digest": "779e099cda1cb9bb",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "11f5ed7e94a088ea5e18",
+      "gene_values": [
+        0.5720124138277778,
+        0.2261741373155037,
+        0.07648508556556513,
+        -0.09303597959097382,
+        -0.15214889475019036,
+        -0.6406140180604826,
+        -0.07341835714800864,
+        -0.012437132808537543,
+        0.4776583182179541,
+        0.7894675230907474
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 45,
+      "development_score": [
+        0,
+        0,
+        35,
+        19
+      ],
+      "expanded_genome_digest": "0c6f9fd98c819374",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "b19618bd2352c856b8fb",
+      "gene_values": [
+        -0.5934147059644302,
+        -0.16793577525563355,
+        -0.7821879215568753,
+        0.05566867913702881,
+        -1.2896701038505618,
+        0.3755580541637739,
+        0.4823544711063289,
+        -0.026738925441309413,
+        -1.0672980771679053,
+        0.21704874938424562
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 46,
+      "development_score": [
+        0,
+        0,
+        44,
+        22
+      ],
+      "expanded_genome_digest": "e4b171d3fd3ea845",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "d03333663bcba5b5e49a",
+      "gene_values": [
+        -0.7556079388391419,
+        0.2370127274484866,
+        0.6122111121737817,
+        -0.9867120843649618,
+        0.44795124823834265,
+        0.049257666941742335,
+        -0.6854525665202827,
+        0.23132113632665335,
+        0.19068774466742935,
+        -0.5825126255937657
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 47,
+      "development_score": [
+        0,
+        0,
+        39,
+        20
+      ],
+      "expanded_genome_digest": "d81b2376a488646e",
+      "external_optimization_round": 0,
+      "externally_mutated_gene_indices": [],
+      "gene_digest": "43ef145c906dc813c99e",
+      "gene_values": [
+        -0.5305770142005021,
+        -0.38427212464432486,
+        -0.35017484144495226,
+        -0.6994991479874756,
+        -0.773628051600409,
+        0.10796900570741876,
+        0.5211127146420359,
+        0.7703035830312184,
+        -0.5413940526266693,
+        0.3992351791064017
+      ],
+      "parent_candidate_id": null
+    },
+    {
+      "candidate_id": 48,
+      "development_score": [
+        0,
+        0,
+        76,
+        3
+      ],
+      "expanded_genome_digest": "f2427d54ee568110",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        0,
+        6
+      ],
+      "gene_digest": "df714826cf22879eeec5",
+      "gene_values": [
+        -0.1356093184543612,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.9897727849432705,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 49,
+      "development_score": [
+        0,
+        0,
+        209,
+        15
+      ],
+      "expanded_genome_digest": "88ca827ccaef8f80",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        3,
+        7
+      ],
+      "gene_digest": "7ae3fb81ba9f1cca77ea",
+      "gene_values": [
+        0.47487849230450113,
+        1.061201740723284,
+        0.5921256001587551,
+        0.7244404505298594,
+        -0.7011767135534924,
+        1.2662325448636207,
+        0.2941798439800752,
+        0.40332560143734475,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 33
+    },
+    {
+      "candidate_id": 50,
+      "development_score": [
+        0,
+        0,
+        162,
+        19
+      ],
+      "expanded_genome_digest": "1342fb1523804a36",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        2,
+        3
+      ],
+      "gene_digest": "d855ff1368cede8e1076",
+      "gene_values": [
+        0.166410315937413,
+        0.48347034314154164,
+        0.05462971714550892,
+        0.7314941133064622,
+        -0.4994546138845892,
+        0.17676358002803996,
+        -0.28328338103114137,
+        -0.029750547719274448,
+        0.13115694239786835,
+        -0.6292196821865931
+      ],
+      "parent_candidate_id": 24
+    },
+    {
+      "candidate_id": 51,
+      "development_score": [
+        0,
+        0,
+        172,
+        80
+      ],
+      "expanded_genome_digest": "ddcdaec84b329395",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        4,
+        7
+      ],
+      "gene_digest": "d24e4750f636d372276a",
+      "gene_values": [
+        0.5720124138277778,
+        0.2261741373155037,
+        0.07648508556556513,
+        -0.09303597959097382,
+        0.07652967335389996,
+        -0.6406140180604826,
+        -0.07341835714800864,
+        -0.12860478177436022,
+        0.4776583182179541,
+        0.7894675230907474
+      ],
+      "parent_candidate_id": 44
+    },
+    {
+      "candidate_id": 52,
+      "development_score": [
+        0,
+        0,
+        177,
+        82
+      ],
+      "expanded_genome_digest": "a2fde77848065cb0",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        4,
+        5
+      ],
+      "gene_digest": "2bb153bbc86108a62659",
+      "gene_values": [
+        -0.1782422681772858,
+        1.0608958148119583,
+        -0.8760629618139917,
+        0.4632147369820231,
+        -0.441737200414673,
+        0.07998145573667026,
+        -0.33367622318274637,
+        -1.3482455488144953,
+        0.5368997674626804,
+        1.1859473976403065
+      ],
+      "parent_candidate_id": 17
+    },
+    {
+      "candidate_id": 53,
+      "development_score": [
+        0,
+        0,
+        163,
+        41
+      ],
+      "expanded_genome_digest": "104d95509a1dac64",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        2,
+        3
+      ],
+      "gene_digest": "231d215863100b2e3b84",
+      "gene_values": [
+        0.5038291204055875,
+        0.925171666907037,
+        -0.1513797401988732,
+        0.3489171440244635,
+        0.05009405560154091,
+        -0.07202464180763277,
+        -0.988248701966366,
+        0.45210268541566445,
+        -0.6446307868073521,
+        0.279091864221409
+      ],
+      "parent_candidate_id": 18
+    },
+    {
+      "candidate_id": 54,
+      "development_score": [
+        0,
+        0,
+        267,
+        12
+      ],
+      "expanded_genome_digest": "cd5df4247fac95f5",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        0,
+        3
+      ],
+      "gene_digest": "ff7d42b852badeafd01d",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.7649521148225779,
+        0.17442456880112683,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 55,
+      "development_score": [
+        0,
+        0,
+        223,
+        72
+      ],
+      "expanded_genome_digest": "8026968a0bfe6e3c",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        1,
+        5
+      ],
+      "gene_digest": "dc8f88612275e5c9cf21",
+      "gene_values": [
+        0.47487849230450113,
+        0.9011390636678382,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.7011767135534924,
+        1.2732717637614,
+        0.2941798439800752,
+        0.3645192595741834,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 33
+    },
+    {
+      "candidate_id": 56,
+      "development_score": [
+        0,
+        0,
+        125,
+        24
+      ],
+      "expanded_genome_digest": "45c06b9b4116d9ba",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        1,
+        5
+      ],
+      "gene_digest": "2731c329c9cae0ed9316",
+      "gene_values": [
+        0.166410315937413,
+        -0.029527798129424132,
+        0.03132095844730263,
+        0.5306498614239442,
+        -0.4994546138845892,
+        0.19025583223946313,
+        -0.28328338103114137,
+        -0.029750547719274448,
+        0.13115694239786835,
+        -0.6292196821865931
+      ],
+      "parent_candidate_id": 24
+    },
+    {
+      "candidate_id": 57,
+      "development_score": [
+        0,
+        0,
+        179,
+        89
+      ],
+      "expanded_genome_digest": "339efd5a7875febf",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        1,
+        7
+      ],
+      "gene_digest": "29d4ac1fac40c2b1025c",
+      "gene_values": [
+        0.5720124138277778,
+        0.20595438435645083,
+        0.07648508556556513,
+        -0.09303597959097382,
+        -0.15214889475019036,
+        -0.6406140180604826,
+        -0.07341835714800864,
+        0.13614062772075736,
+        0.4776583182179541,
+        0.7894675230907474
+      ],
+      "parent_candidate_id": 44
+    },
+    {
+      "candidate_id": 58,
+      "development_score": [
+        0,
+        0,
+        157,
+        77
+      ],
+      "expanded_genome_digest": "c5efdb2988535ead",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        7,
+        9
+      ],
+      "gene_digest": "a970086f7cdb1e5d8093",
+      "gene_values": [
+        -0.1782422681772858,
+        1.0608958148119583,
+        -0.8760629618139917,
+        0.4632147369820231,
+        -0.4213784088240087,
+        0.1726346663256067,
+        -0.33367622318274637,
+        -1.7406323781478317,
+        0.5368997674626804,
+        1.289485986713051
+      ],
+      "parent_candidate_id": 17
+    },
+    {
+      "candidate_id": 59,
+      "development_score": [
+        0,
+        0,
+        183,
+        45
+      ],
+      "expanded_genome_digest": "8ebb773dd4e4b494",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        1,
+        9
+      ],
+      "gene_digest": "17680c5c637eab7b974d",
+      "gene_values": [
+        0.5038291204055875,
+        1.2298917991523384,
+        -0.06297681976544922,
+        0.07590182217919579,
+        0.05009405560154091,
+        -0.07202464180763277,
+        -0.988248701966366,
+        0.45210268541566445,
+        -0.6446307868073521,
+        0.09146855066545534
+      ],
+      "parent_candidate_id": 18
+    },
+    {
+      "candidate_id": 60,
+      "development_score": [
+        0,
+        0,
+        210,
+        40
+      ],
+      "expanded_genome_digest": "c3cf5d1461f35bb2",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        5,
+        8
+      ],
+      "gene_digest": "8bb6b3519e23b2bf0a87",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.3116880256921977,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.23378151714799475,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 61,
+      "development_score": [
+        0,
+        0,
+        194,
+        8
+      ],
+      "expanded_genome_digest": "099a02290b967938",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        5,
+        8
+      ],
+      "gene_digest": "84b3567e7d3063f03b8d",
+      "gene_values": [
+        0.47487849230450113,
+        1.061201740723284,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.7011767135534924,
+        1.3054495029914337,
+        0.2941798439800752,
+        0.3645192595741834,
+        -0.013948630427868133,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 33
+    },
+    {
+      "candidate_id": 62,
+      "development_score": [
+        0,
+        0,
+        168,
+        21
+      ],
+      "expanded_genome_digest": "1fe72cd7d03bcf26",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        0,
+        4
+      ],
+      "gene_digest": "50bf5e7a3ae6d72c9cd7",
+      "gene_values": [
+        0.8216757317000716,
+        0.48347034314154164,
+        0.03132095844730263,
+        0.5306498614239442,
+        -0.27726990942477836,
+        0.17676358002803996,
+        -0.28328338103114137,
+        -0.029750547719274448,
+        0.13115694239786835,
+        -0.6292196821865931
+      ],
+      "parent_candidate_id": 24
+    },
+    {
+      "candidate_id": 63,
+      "development_score": [
+        0,
+        0,
+        166,
+        86
+      ],
+      "expanded_genome_digest": "3b8406ec4c8aef83",
+      "external_optimization_round": 1,
+      "externally_mutated_gene_indices": [
+        2,
+        6
+      ],
+      "gene_digest": "d8c7edeb2dde04b7fc0c",
+      "gene_values": [
+        0.5720124138277778,
+        0.2261741373155037,
+        0.06277047547196299,
+        -0.09303597959097382,
+        -0.15214889475019036,
+        -0.6406140180604826,
+        0.046169694618389684,
+        -0.012437132808537543,
+        0.4776583182179541,
+        0.7894675230907474
+      ],
+      "parent_candidate_id": 44
+    },
+    {
+      "candidate_id": 64,
+      "development_score": [
+        0,
+        0,
+        149,
+        28
+      ],
+      "expanded_genome_digest": "d7fde6dd56645041",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        4,
+        5
+      ],
+      "gene_digest": "7cdddc220b95f3b264c7",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        0.06504875226608463,
+        0.1450261288369127,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 65,
+      "development_score": [
+        0,
+        0,
+        25,
+        2
+      ],
+      "expanded_genome_digest": "ca21bb6ae5533825",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        0,
+        2
+      ],
+      "gene_digest": "b217dbb605c8ccc278da",
+      "gene_values": [
+        -0.20714330195958536,
+        0.5869919509992657,
+        0.8623854653708226,
+        0.17442456880112683,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 54
+    },
+    {
+      "candidate_id": 66,
+      "development_score": [
+        0,
+        0,
+        179,
+        66
+      ],
+      "expanded_genome_digest": "bb4cc90a62fafac6",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        5,
+        7
+      ],
+      "gene_digest": "4e52b11bc613dc4de5a3",
+      "gene_values": [
+        0.47487849230450113,
+        0.9011390636678382,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.7011767135534924,
+        1.4629611245235121,
+        0.2941798439800752,
+        0.4709186964882384,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 55
+    },
+    {
+      "candidate_id": 67,
+      "development_score": [
+        0,
+        0,
+        147,
+        41
+      ],
+      "expanded_genome_digest": "d56d58a7d74a6fd2",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        4,
+        6
+      ],
+      "gene_digest": "bdedbe5bf37c86b10260",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        0.11256412829705466,
+        0.3116880256921977,
+        -0.892461023711322,
+        0.2435632869167703,
+        0.23378151714799475,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 60
+    },
+    {
+      "candidate_id": 68,
+      "development_score": [
+        0,
+        0,
+        230,
+        22
+      ],
+      "expanded_genome_digest": "f234d5e0cd02c93f",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        5,
+        9
+      ],
+      "gene_digest": "eabafb9072010d9b50dd",
+      "gene_values": [
+        0.47487849230450113,
+        1.061201740723284,
+        0.5921256001587551,
+        0.7244404505298594,
+        -0.7011767135534924,
+        1.0163431290807552,
+        0.2941798439800752,
+        0.40332560143734475,
+        -0.09892195379149403,
+        -0.8331814905927711
+      ],
+      "parent_candidate_id": 49
+    },
+    {
+      "candidate_id": 69,
+      "development_score": [
+        0,
+        0,
+        219,
+        15
+      ],
+      "expanded_genome_digest": "0e18d93e12cc9186",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        3,
+        9
+      ],
+      "gene_digest": "fb0191ef0585fe876375",
+      "gene_values": [
+        0.47487849230450113,
+        1.061201740723284,
+        0.5921256001587551,
+        0.6702488197696502,
+        -0.7011767135534924,
+        1.2662325448636207,
+        0.2941798439800752,
+        0.3645192595741834,
+        -0.09892195379149403,
+        -0.8156624250538953
+      ],
+      "parent_candidate_id": 33
+    },
+    {
+      "candidate_id": 70,
+      "development_score": [
+        0,
+        0,
+        266,
+        13
+      ],
+      "expanded_genome_digest": "80a997d8f86c316b",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        0,
+        6
+      ],
+      "gene_digest": "5fcd69b7543f454fd8d6",
+      "gene_values": [
+        0.3651422372057312,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -1.0432363903376274,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 71,
+      "development_score": [
+        0,
+        0,
+        264,
+        12
+      ],
+      "expanded_genome_digest": "46303245c9bc814a",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        2,
+        3
+      ],
+      "gene_digest": "291963097097d8053b88",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.5607510259162478,
+        0.05104802129891711,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 54
+    },
+    {
+      "candidate_id": 72,
+      "development_score": [
+        0,
+        0,
+        183,
+        66
+      ],
+      "expanded_genome_digest": "585a2feaf487331a",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        5,
+        6
+      ],
+      "gene_digest": "8b80c6511c3af05ffcd9",
+      "gene_values": [
+        0.47487849230450113,
+        0.9011390636678382,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.7011767135534924,
+        1.5219190702899643,
+        0.0854026170420926,
+        0.3645192595741834,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 55
+    },
+    {
+      "candidate_id": 73,
+      "development_score": [
+        0,
+        0,
+        257,
+        48
+      ],
+      "expanded_genome_digest": "9786c83a56687469",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        1,
+        9
+      ],
+      "gene_digest": "e77b6cf17ad44ee01005",
+      "gene_values": [
+        0.08739797097219727,
+        0.7989418287169479,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.3116880256921977,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.23378151714799475,
+        -0.9459614726012742
+      ],
+      "parent_candidate_id": 60
+    },
+    {
+      "candidate_id": 74,
+      "development_score": [
+        0,
+        0,
+        196,
+        76
+      ],
+      "expanded_genome_digest": "93961ec91a58c627",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        0,
+        9
+      ],
+      "gene_digest": "20d8e5c761beed9d8605",
+      "gene_values": [
+        0.7813847530536724,
+        1.061201740723284,
+        0.5921256001587551,
+        0.7244404505298594,
+        -0.7011767135534924,
+        1.2662325448636207,
+        0.2941798439800752,
+        0.40332560143734475,
+        -0.09892195379149403,
+        -1.3830307130151198
+      ],
+      "parent_candidate_id": 49
+    },
+    {
+      "candidate_id": 75,
+      "development_score": [
+        0,
+        0,
+        222,
+        70
+      ],
+      "expanded_genome_digest": "c73fb0d5fb663457",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        0,
+        4
+      ],
+      "gene_digest": "1b315a3c90670ed7dd2e",
+      "gene_values": [
+        0.22284240389517979,
+        1.061201740723284,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.778938450425111,
+        1.2662325448636207,
+        0.2941798439800752,
+        0.3645192595741834,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 33
+    },
+    {
+      "candidate_id": 76,
+      "development_rank": 3,
+      "development_score": [
+        0,
+        0,
+        269,
+        12
+      ],
+      "expanded_genome_digest": "8cbfc6682e32c125",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        5,
+        7
+      ],
+      "gene_digest": "2d230d020237415448d9",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        -0.02218312592870853,
+        -0.8462669023475908,
+        0.30903797364744745,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32,
+      "validation_score": [
+        0,
+        0,
+        567,
+        17
+      ]
+    },
+    {
+      "candidate_id": 77,
+      "development_score": [
+        0,
+        0,
+        197,
+        15
+      ],
+      "expanded_genome_digest": "9bdbbf14d0a91760",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        3,
+        7
+      ],
+      "gene_digest": "d6f0cc05882094e2d8fa",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.7649521148225779,
+        0.4424159092692026,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.18633204288761612,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 54
+    },
+    {
+      "candidate_id": 78,
+      "development_score": [
+        0,
+        0,
+        254,
+        82
+      ],
+      "expanded_genome_digest": "bd01f0f3c3891b6b",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        5,
+        6
+      ],
+      "gene_digest": "069d38b7ba3edc781259",
+      "gene_values": [
+        0.47487849230450113,
+        0.9011390636678382,
+        0.5921256001587551,
+        0.4439091653223545,
+        -0.7011767135534924,
+        0.8681578893044708,
+        0.1210888754015634,
+        0.3645192595741834,
+        -0.09892195379149403,
+        -0.8760367061131396
+      ],
+      "parent_candidate_id": 55
+    },
+    {
+      "candidate_id": 79,
+      "development_score": [
+        0,
+        0,
+        164,
+        31
+      ],
+      "expanded_genome_digest": "e6cc74657449af5b",
+      "external_optimization_round": 2,
+      "externally_mutated_gene_indices": [
+        1,
+        6
+      ],
+      "gene_digest": "461de229cb3e359ab871",
+      "gene_values": [
+        0.08739797097219727,
+        0.4647043880791603,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.3116880256921977,
+        -1.100337649683566,
+        0.2435632869167703,
+        0.23378151714799475,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 60
+    },
+    {
+      "candidate_id": 80,
+      "development_rank": 2,
+      "development_score": [
+        0,
+        0,
+        272,
+        10
+      ],
+      "expanded_genome_digest": "247b5ceb9907e9c3",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        6,
+        9
+      ],
+      "gene_digest": "be6e9fb42024a5536a57",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.6478776937204626,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.0723354112186954
+      ],
+      "parent_candidate_id": 32,
+      "validation_score": [
+        0,
+        0,
+        559,
+        15
+      ]
+    },
+    {
+      "candidate_id": 81,
+      "development_score": [
+        0,
+        0,
+        268,
+        13
+      ],
+      "expanded_genome_digest": "6b2781a57eec3f05",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        2,
+        6
+      ],
+      "gene_digest": "1fce12b562430001716e",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.9544718186017683,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        -0.02218312592870853,
+        -0.9140431628800476,
+        0.30903797364744745,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 76
+    },
+    {
+      "candidate_id": 82,
+      "development_rank": 0,
+      "development_score": [
+        0,
+        0,
+        282,
+        10
+      ],
+      "expanded_genome_digest": "2f29d5b4d102fa04",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        1,
+        6
+      ],
+      "gene_digest": "36d1ea6376fa9a8f0a12",
+      "gene_values": [
+        0.06919903869633104,
+        0.8824401858237787,
+        0.7649521148225779,
+        0.17442456880112683,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.7364294703300883,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 54,
+      "validation_score": [
+        0,
+        0,
+        556,
+        13
+      ]
+    },
+    {
+      "candidate_id": 83,
+      "development_rank": 5,
+      "development_score": [
+        0,
+        0,
+        269,
+        8
+      ],
+      "expanded_genome_digest": "2b0fb7d3bfa87690",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        5,
+        9
+      ],
+      "gene_digest": "1259a23ac5ecf9b83efa",
+      "gene_values": [
+        0.3651422372057312,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.0640860086873577,
+        -1.0432363903376274,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.6751909700321899
+      ],
+      "parent_candidate_id": 70,
+      "validation_score": [
+        0,
+        0,
+        568,
+        17
+      ]
+    },
+    {
+      "candidate_id": 84,
+      "development_score": [
+        0,
+        0,
+        268,
+        4
+      ],
+      "expanded_genome_digest": "d89180e8c76acf6b",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        2,
+        7
+      ],
+      "gene_digest": "1e5d5fd83d263bf9dbff",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.4666348119126692,
+        0.05104802129891711,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        -0.09172507777297365,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 71
+    },
+    {
+      "candidate_id": 85,
+      "development_score": [
+        0,
+        0,
+        244,
+        19
+      ],
+      "expanded_genome_digest": "fe0c655a00960600",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        0,
+        8
+      ],
+      "gene_digest": "b6aa1032440f58321fab",
+      "gene_values": [
+        0.06936829729167526,
+        0.7989418287169479,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.3116880256921977,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3735563553401182,
+        -0.9459614726012742
+      ],
+      "parent_candidate_id": 73
+    },
+    {
+      "candidate_id": 86,
+      "development_score": [
+        0,
+        0,
+        247,
+        11
+      ],
+      "expanded_genome_digest": "25e6ddb8b09393b7",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        4,
+        6
+      ],
+      "gene_digest": "0735d5ce35a2e75f08ff",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.24202606025058743,
+        0.027176282616873222,
+        -0.9213332790953057,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 87,
+      "development_rank": 4,
+      "development_score": [
+        0,
+        0,
+        269,
+        12
+      ],
+      "expanded_genome_digest": "4027f88cd5b318a5",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        3,
+        8
+      ],
+      "gene_digest": "0042b68ad0ac21e74945",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        -0.09062099348466521,
+        -0.09555992019617877,
+        -0.02218312592870853,
+        -0.8462669023475908,
+        0.30903797364744745,
+        0.3668222638269613,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 76,
+      "validation_score": [
+        0,
+        0,
+        567,
+        17
+      ]
+    },
+    {
+      "candidate_id": 88,
+      "development_score": [
+        0,
+        0,
+        267,
+        12
+      ],
+      "expanded_genome_digest": "ef7442b8165c9e45",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        5,
+        9
+      ],
+      "gene_digest": "bac430f0b91d352b35b0",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.7649521148225779,
+        0.17442456880112683,
+        -0.09555992019617877,
+        0.15171819192298747,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.3098581921669696
+      ],
+      "parent_candidate_id": 54
+    },
+    {
+      "candidate_id": 89,
+      "development_score": [
+        0,
+        0,
+        173,
+        54
+      ],
+      "expanded_genome_digest": "8726b3a1aac75f06",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        1,
+        5
+      ],
+      "gene_digest": "a903eb47bc1d4f44a64e",
+      "gene_values": [
+        0.3651422372057312,
+        0.7674948096488718,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        -0.36160440859264825,
+        -1.0432363903376274,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 70
+    },
+    {
+      "candidate_id": 90,
+      "development_score": [
+        0,
+        0,
+        266,
+        8
+      ],
+      "expanded_genome_digest": "ec0cbdd49e8514cd",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        2,
+        9
+      ],
+      "gene_digest": "cbfe6509b70b20c18122",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.5058058914103458,
+        0.05104802129891711,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.6458282291382844
+      ],
+      "parent_candidate_id": 71
+    },
+    {
+      "candidate_id": 91,
+      "development_score": [
+        0,
+        0,
+        225,
+        39
+      ],
+      "expanded_genome_digest": "5cac0b3a5cc819db",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        1,
+        2
+      ],
+      "gene_digest": "2527f5fd4ee59e61f86c",
+      "gene_values": [
+        0.08739797097219727,
+        0.7218294838944956,
+        0.38859648622491877,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.3116880256921977,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.23378151714799475,
+        -0.9459614726012742
+      ],
+      "parent_candidate_id": 73
+    },
+    {
+      "candidate_id": 92,
+      "development_score": [
+        0,
+        0,
+        195,
+        14
+      ],
+      "expanded_genome_digest": "75b264fa5d0e0d9a",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        3,
+        4
+      ],
+      "gene_digest": "a60f4da885fbbf93603d",
+      "gene_values": [
+        0.08739797097219727,
+        0.5869919509992657,
+        0.7649521148225779,
+        0.37890170000742124,
+        -0.16293015664067861,
+        0.027176282616873222,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 32
+    },
+    {
+      "candidate_id": 93,
+      "development_score": [
+        0,
+        0,
+        201,
+        53
+      ],
+      "expanded_genome_digest": "75ee6ffa200db064",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        1,
+        5
+      ],
+      "gene_digest": "29537b79424ba2e84d73",
+      "gene_values": [
+        0.08739797097219727,
+        0.7861559385035215,
+        0.7649521148225779,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        -0.21962004801864352,
+        -0.8462669023475908,
+        0.30903797364744745,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 76
+    },
+    {
+      "candidate_id": 94,
+      "development_score": [
+        0,
+        0,
+        267,
+        12
+      ],
+      "expanded_genome_digest": "f971fda43e7d9c73",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        2,
+        5
+      ],
+      "gene_digest": "ef151366b3f021954af2",
+      "gene_values": [
+        0.06919903869633104,
+        0.5869919509992657,
+        0.7194636776893607,
+        0.17442456880112683,
+        -0.09555992019617877,
+        -0.005140651920952782,
+        -0.8462669023475908,
+        0.2435632869167703,
+        0.3637938740210589,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 54
+    },
+    {
+      "candidate_id": 95,
+      "development_score": [
+        0,
+        0,
+        230,
+        71
+      ],
+      "expanded_genome_digest": "05d4dbb7199e839e",
+      "external_optimization_round": 3,
+      "externally_mutated_gene_indices": [
+        2,
+        8
+      ],
+      "gene_digest": "27b39a11ff400c7fbd5c",
+      "gene_values": [
+        0.3651422372057312,
+        0.5869919509992657,
+        0.8982850335637942,
+        -0.0732502469297187,
+        -0.09555992019617877,
+        0.027176282616873222,
+        -1.0432363903376274,
+        0.2435632869167703,
+        0.2170677280769206,
+        -1.246579199387607
+      ],
+      "parent_candidate_id": 70
+    }
+  ]
+}
