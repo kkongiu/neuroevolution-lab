@@ -46,5 +46,12 @@ New [frozen M2B protocol](M2B_PROTOCOL.md): every competitive controller must sp
 - This is still an externally evolved, constrained policy, **not** open-ended autonomous discovery of interests.
 Richer worlds, curiosity-like incentives with noisy-TV negative controls, and behavior descriptors for quality-diversity analyses.
 
+### M3 first result — null advantage under recurrence and partial distribution shift
+- [M3 report](../reports/M3_novelty_recurrence_2026-11-21.md), [GitHub run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44884705352), [per-seed metrics](../reports/M3_test_seed_auc_2026-11-21.csv).
+- On shifted task families, adaptive AUC 65.90% versus independently evolved time-only 66.29%, difference **−0.39 pp**, bootstrap percentile 95% **−1.23 / +0.33 pp**: *primary hypothesis not confirmed*.
+- On familiar families, adaptive 73.89% versus time-only 74.66%, difference **−0.77 pp**.
+- State signals do change requested actions (59/108 shifted, 75/108 familiar), but their use does not yield demonstrated benefit. Preserving negative findings is mandatory.
+- Original summary.json incorrectly counted novel/return events for the first seed only; M3 raw task metrics confirm **73 novel / 47 return** events per 12-seed group (including initial task). The post-run diagnostic fix changes only aggregation and leaves published results unmodified.
+
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
