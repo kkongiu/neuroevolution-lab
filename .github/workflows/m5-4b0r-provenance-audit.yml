@@ -47,7 +47,17 @@ jobs:
                   if kind=="recurrent" else
                   "original_feedforward_10_full_candidate_genes"
               ]
-              assert records==historic
+              # Archive snapshots capture the candidate at development
+              # creation, BEFORE only the selected six receive additional
+              # validation_score/development_rank annotations. Compare the
+              # full original numeric genes, original ancestry and source
+              # scores without demanding those later selection annotations.
+              at_generation_time=[
+                  {k:v for k,v in record.items()
+                   if k not in ("development_rank","validation_score")}
+                  for record in records
+              ]
+              assert at_generation_time==historic
               assert summary==science["sources"][index]
               assert summary["chosen_candidate_id"]==(
                   science["selected"][kind]["candidate_id"]
