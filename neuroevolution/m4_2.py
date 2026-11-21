@@ -515,7 +515,8 @@ def summarize_delayed(records: list[dict], genetics: list[int],
     by_key = {(r["genetic_seed"], r["world_seed"], r["side"], r["arm"]): r
               for r in records}
     measures = ("success", "fork_reached", "committed", "correct_branch",
-                "steps", "corrected", "illegal_preferences", "visited", "starved")
+                "steps", "corrected", "illegal_preferences", "collisions",
+                "visited", "starved")
     means = {
         arm: {m: statistics.mean(
             by_key[g, s, side, arm][m]
