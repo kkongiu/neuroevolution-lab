@@ -179,6 +179,22 @@ python -m neuroevolution.m4_2 --out results/m4_2
 
 Read [M4.2 preregistration](docs/M4_2_PROTOCOL.md) and the [sealed GitHub campaign workflow](.github/workflows/m4-2-delayed-cue.yml). **There is no within-lifetime synaptic learning, predator, biological reproduction, autonomous objective invention or source-code editing by simulated organisms.**
 
+## M4.3 — Isolate actual recall from motor control
+
+M4.2's RNN beat a feedforward net partly because it reached the fork more often, while deleting its memory at the fork did not conclusively damage food success. **M4.3 removes that confound entirely.** A simulated circuit sees a two-tick symbolic direction cue, then **2–6 identically neutral observations** (or 8–10 at shifted test), and finally **exactly the same two-choice fork input** for opposite food goals. Neural output actions during cue and waiting are discarded: **every model reaches the decision at the same time and with the same information**.
+
+A stateless feedforward model, the same RNN with state reset at the decision, and the RNN with all cues removed must therefore obtain **exactly 50% per paired world**; a programmed one-bit memory control must obtain 100%. These are tested *analytically in unit tests*, with actual code execution. The train-only fixed curriculum gradually increases cue-to-decision delay (0/1/2 → 1/2/4 → 2/4/6). Cue-at-decision delay 0 is a training scaffold, **never a final-test condition**.
+
+Eight separately evolved populations for an 8-hidden tanh recurrent network (260 weights) and 11-hidden stateless feedforward (268 weights) share **identical candidate × paired-world evaluation budgets**. Final main test uses **64 new paired worlds** and the OOD test **32 longer-delay pairs**, with resampling over genetic starts and world pairs. No parameters may be retuned on final worlds.
+
+On each RNN champion evaluate (1) normal, (2) hidden state **zeroed immediately before decision**, (3) initial target cue **flipped**, (4) initial cue removed. Only a positive main advantage over FF **AND** the same-genome reset/cue controls counts as evidence of functional memory. An independently reported 16-world scaffold vs free-corridor transfer measures movement separately.
+
+~~~bash
+python -m neuroevolution.m4_3 --out results/m4_3
+~~~
+
+Read [M4.3 frozen protocol](docs/M4_3_PROTOCOL.md) and the [read-only GitHub Actions campaign](.github/workflows/m4-3-causal-recall.yml). Even a positive result is a narrow artificial cue-memory result, **not** synaptic learning in life, autonomous goals or ecological reproduction.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.

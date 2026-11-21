@@ -189,6 +189,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - All earlier M4.0/M4.1 negative records preserved. **Next issue:** [M4.3 causal recall without motor confound](https://github.com/kkongiu/neuroevolution-lab/issues/24); preregister a pure memory decision with guaranteed fork arrival before reintroducing free navigation.
 - Recurrent state is not within-life synaptic learning; numerical weights are externally evolved. No self-chosen objectives, reproduction or predators.
 
+## M4.3 — Motor-independent causal delayed recall (preregistered)
+- [Frozen M4.3 protocol](M4_3_PROTOCOL.md), registered before implementation and any test-world evolution.
+- Paired opposite target directions, one transient cue (two input ticks), then neutral input with **no action-dependent locomotion or external clock**. Two legal choices at the same final observation; **100% guaranteed decision arrival**. This isolates delayed recall from physical motor success.
+- Exact memoryless ceiling: FF, same-RNN state reset and blank cue each score **50% per paired seed**; a handcrafted one-bit memory reference scores 100%. Contradictory oracles become an actual test of hidden-state retention.
+- Frozen 8-gen curriculum over delays (0,1,2) → (1,2,4) → (2,4,6); 8 independent genetic initializations; RNN 260 parameters vs FF 268 with the same 86,016 total training trials and matching validation selection budget.
+- Sealed **64 main paired worlds** with delays 2/4/6; **32 shifted paired worlds** with unseen delays 8/9/10. Separate **16 guided-versus-free corridor pairs** to evaluate movement transfer without corrupting the memory-only primary.
+- Primary RNN minus FF paired food-choice success, hierarchical bootstrap by 8 genetic runs and 64 world pairs, plus **necessary same-genome RNN reset and cue-flip causal effects**, all preregistered. Main-only success is not robust delayed recall if shifted performance collapses.
+- No source edits/within-life weight learning by simulated organisms. Negative/null controls retained; M4.0–M4.2 immutable.
+
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
