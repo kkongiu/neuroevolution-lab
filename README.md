@@ -107,6 +107,18 @@ python -m neuroevolution.m3_3 --out results/m3_3
 
 Read [frozen M3.3 protocol](docs/M3_3_PROTOCOL.md) before results. A positive cue result validates *solvability given a supplied task ID*, not spontaneous context discovery; memory and renewal results are evaluated separately.
 
+## M3.4 — Recognize hidden context from experience, without an oracle ID
+
+In M3.3 the experimenter provided the correct one-hot context identifier. **M3.4 removes that privilege.** A simple **externally coded k-nearest-neighbour associative memory** allocates up to four anonymous context slots by comparing a small labelled support set with training-only samples from previous episodes. A persistent six-input ReLU network learns to use the inferred one-hot slot cue rather than the true context ID.
+
+The scientific tests are explicitly separated: compare correct support with **shuffled final support on the identical trained network**, no-support and zero-context controls; compare online inferred cues with a nondeployable oracle-ID reference; and test fixed-buffer **FIFO vs reservoir replay** plus no replay under identical SGD budgets. Further sealed tests reduce support to six labelled examples with one corrupted label, with/without new stripe/checker task families.
+
+~~~bash
+python -m neuroevolution.m3_4 --out results/m3_4
+~~~
+
+See the frozen [M3.4 protocol](docs/M3_4_PROTOCOL.md). The resolver is an **algorithm we designed**, not spontaneous neural invention of a cognitive strategy. Labelled support examples are available: the system cannot infer contradictory context identities with no informative observations.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
@@ -126,5 +138,7 @@ Read [frozen M3.3 protocol](docs/M3_3_PROTOCOL.md) before results. A positive cu
 [M3.2 natural interference campaign](.github/workflows/m3-2-natural-interference.yml): isolated train/validation/final tests, explicit GitHub kickoff, archiving complete counterfactual data.
 
 [M3.3 contextual memory campaign](.github/workflows/m3-3-contextual-memory.yml): isolated train/validation/sealed tests, paired conflicting context panels and replay experiments.
+
+[M3.4 latent context inference campaign](.github/workflows/m3-4-latent-context-inference.yml): preregistered threshold selection and three independent test splits, with paired support ablations and complete CSV metrics.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.
