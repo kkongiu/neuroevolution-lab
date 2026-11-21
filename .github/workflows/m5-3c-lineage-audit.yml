@@ -1,0 +1,41 @@
+name: M5.3C exact historical lineage preservation
+on:
+  push:
+    branches: ["experiment/m5-3c-genotype-transplant"]
+    paths:
+      - "campaigns/m5-3c-lineage-audit-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  source-lineage-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify committed frozen genotype bank and emit FULL birth-by-birth ancestry
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from neuroevolution.m5_3c import recover_candidates, ARMS
+          path=Path("reports/M5_3C_frozen_candidate_genotypes_2026-11-21.json")
+          committed=json.loads(path.read_text())["source_genotypes"]
+          original=recover_candidates()
+          assert len(committed)==len(original)==5
+          for a,b in zip(committed,original):
+              for key in ("source_seed","selected_final_id",
+                          "selected_final_generation",
+                          "selected_final_founder_id",
+                          "last_step_mutated_indices"):
+                  assert a[key]==b[key],(key,a[key],b[key])
+              for arm in ARMS:
+                  assert a["genotypes"][arm]==b["genotypes"][arm]
+          print("M5.3C FULL SOURCE LINEAGES JSON "+
+                json.dumps(original,sort_keys=True))
+          print("M5.3C FULL SOURCE LINEAGES VERIFIED",flush=True)
+          PY
