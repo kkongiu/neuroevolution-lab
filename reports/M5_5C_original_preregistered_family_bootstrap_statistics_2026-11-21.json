@@ -1,0 +1,488 @@
+{
+  "bootstrap_reps": 20000,
+  "frozen_bank_sha256": "d4cb17b20ec35e7d05474dd04dff464eb0c197106b2a63c669b69c66e7284eab",
+  "full_transfer_trials": 1728,
+  "gates": {
+    "all_transfer_births_exact_clones": true,
+    "fear_gene_gain_mechanism_supported": false,
+    "full_genotype_gene_reversion_exact_identity": true,
+    "new_avoidance_behavior_evolved": false,
+    "prospective_strong_mutation_advantage_all_requirements_met": false,
+    "source_family_selection_conditioning_reported": true
+  },
+  "hard": {
+    "arms": {
+      "fear_gene_only": {
+        "mean_births": 35.302083333333336,
+        "mean_population_auc": 3.946759259259259,
+        "mean_predation_deaths": 31.552083333333332,
+        "survival_worlds": 5
+      },
+      "fear_gene_reversion": {
+        "mean_births": 36.25,
+        "mean_population_auc": 3.982638888888889,
+        "mean_predation_deaths": 32.75,
+        "survival_worlds": 9
+      },
+      "full_gene_reversion": {
+        "mean_births": 37.229166666666664,
+        "mean_population_auc": 4.054398148148148,
+        "mean_predation_deaths": 32.645833333333336,
+        "survival_worlds": 6
+      },
+      "matched_random_genome": {
+        "mean_births": 33.90625,
+        "mean_population_auc": 3.662037037037037,
+        "mean_predation_deaths": 33.125,
+        "survival_worlds": 2
+      },
+      "mutant_descendant": {
+        "mean_births": 34.302083333333336,
+        "mean_population_auc": 3.8819444444444446,
+        "mean_predation_deaths": 31.5,
+        "survival_worlds": 7
+      },
+      "own_original_founder": {
+        "mean_births": 37.229166666666664,
+        "mean_population_auc": 4.054398148148148,
+        "mean_predation_deaths": 32.645833333333336,
+        "survival_worlds": 6
+      }
+    },
+    "comparisons": {
+      "fear_only_minus_own_founder_population_auc": {
+        "mean_family_paired_effect": -0.10763888888888888,
+        "per_independent_source_family": {
+          "94000": -0.11111111111111105,
+          "94001": 0.0,
+          "94002": 0.0,
+          "94003": 0.0,
+          "94004": 0.0,
+          "94005": 0.046296296296296315,
+          "94006": -0.7962962962962963,
+          "94007": 0.0
+        },
+        "positive_source_families": 1,
+        "source_family_bootstrap_95": [
+          -0.3125,
+          0.011574074074074079
+        ],
+        "strictly_positive_lower95": false
+      },
+      "fear_only_minus_own_founder_survived": {
+        "mean_family_paired_effect": -0.010416666666666666,
+        "per_independent_source_family": {
+          "94000": 0,
+          "94001": 0,
+          "94002": 0,
+          "94003": 0,
+          "94004": 0,
+          "94005": 0,
+          "94006": -0.08333333333333333,
+          "94007": 0
+        },
+        "positive_source_families": 0,
+        "source_family_bootstrap_95": [
+          -0.03125,
+          0.0
+        ],
+        "strictly_positive_lower95": false
+      },
+      "full_reversion_minus_own_founder_population_auc": {
+        "mean_family_paired_effect": 0.0,
+        "per_independent_source_family": {
+          "94000": 0.0,
+          "94001": 0.0,
+          "94002": 0.0,
+          "94003": 0.0,
+          "94004": 0.0,
+          "94005": 0.0,
+          "94006": 0.0,
+          "94007": 0.0
+        },
+        "positive_source_families": 0,
+        "source_family_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "strictly_positive_lower95": false
+      },
+      "full_reversion_minus_own_founder_survived": {
+        "mean_family_paired_effect": 0,
+        "per_independent_source_family": {
+          "94000": 0,
+          "94001": 0,
+          "94002": 0,
+          "94003": 0,
+          "94004": 0,
+          "94005": 0,
+          "94006": 0,
+          "94007": 0
+        },
+        "positive_source_families": 0,
+        "source_family_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_fear_reverted_population_auc": {
+        "mean_family_paired_effect": -0.10069444444444443,
+        "per_independent_source_family": {
+          "94000": 0.1944444444444445,
+          "94001": 0.0,
+          "94002": 0.0,
+          "94003": 0.0,
+          "94004": 0.0,
+          "94005": -0.14814814814814814,
+          "94006": -0.8981481481481481,
+          "94007": 0.04629629629629628
+        },
+        "positive_source_families": 2,
+        "source_family_bootstrap_95": [
+          -0.34953703703703703,
+          0.060185185185185196
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_fear_reverted_survived": {
+        "mean_family_paired_effect": -0.020833333333333332,
+        "per_independent_source_family": {
+          "94000": 0,
+          "94001": 0,
+          "94002": 0,
+          "94003": 0,
+          "94004": 0,
+          "94005": 0,
+          "94006": -0.16666666666666666,
+          "94007": 0
+        },
+        "positive_source_families": 0,
+        "source_family_bootstrap_95": [
+          -0.0625,
+          0.0
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_matched_random_population_auc": {
+        "mean_family_paired_effect": 0.2199074074074074,
+        "per_independent_source_family": {
+          "94000": -0.23148148148148143,
+          "94001": -0.7592592592592593,
+          "94002": 1.2592592592592593,
+          "94003": -0.27777777777777773,
+          "94004": 0.2685185185185185,
+          "94005": 0.7222222222222222,
+          "94006": -0.5185185185185185,
+          "94007": 1.2962962962962963
+        },
+        "positive_source_families": 4,
+        "source_family_bootstrap_95": [
+          -0.28009259259259256,
+          0.7523148148148149
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_matched_random_survived": {
+        "mean_family_paired_effect": 0.05208333333333333,
+        "per_independent_source_family": {
+          "94000": 0,
+          "94001": 0,
+          "94002": 0.16666666666666666,
+          "94003": 0.08333333333333333,
+          "94004": -0.08333333333333333,
+          "94005": 0.08333333333333333,
+          "94006": 0,
+          "94007": 0.16666666666666666
+        },
+        "positive_source_families": 4,
+        "source_family_bootstrap_95": [
+          0.0,
+          0.11458333333333333
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_own_founder_population_auc": {
+        "mean_family_paired_effect": -0.17245370370370372,
+        "per_independent_source_family": {
+          "94000": 0.05555555555555558,
+          "94001": -0.8425925925925926,
+          "94002": 0.3333333333333335,
+          "94003": -0.055555555555555504,
+          "94004": -0.925925925925926,
+          "94005": 0.4166666666666666,
+          "94006": -1.0555555555555556,
+          "94007": 0.6944444444444443
+        },
+        "positive_source_families": 4,
+        "source_family_bootstrap_95": [
+          -0.6203703703703703,
+          0.25925925925925924
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_own_founder_survived": {
+        "mean_family_paired_effect": 0.010416666666666664,
+        "per_independent_source_family": {
+          "94000": 0,
+          "94001": 0,
+          "94002": 0.16666666666666666,
+          "94003": 0.08333333333333333,
+          "94004": -0.25,
+          "94005": 0.08333333333333333,
+          "94006": -0.08333333333333333,
+          "94007": 0.08333333333333333
+        },
+        "positive_source_families": 4,
+        "source_family_bootstrap_95": [
+          -0.08333333333333333,
+          0.08333333333333333
+        ],
+        "strictly_positive_lower95": false
+      }
+    },
+    "independent_source_families": 8,
+    "nested_transfer_seeds_per_source": 12
+  },
+  "independent_transfer_hard_worlds": 12,
+  "independent_transfer_main_worlds": 24,
+  "inference_warning": "Eight independently selected source families, not independent world/family combinations. All behavior modules are human designed; a positive transplant effect would establish genotype causation under artificial predator ecology, not an invented sensory rule.",
+  "main": {
+    "arms": {
+      "fear_gene_only": {
+        "mean_births": 91.99479166666667,
+        "mean_population_auc": 7.811342592592593,
+        "mean_predation_deaths": 62.213541666666664,
+        "survival_worlds": 100
+      },
+      "fear_gene_reversion": {
+        "mean_births": 93.31770833333333,
+        "mean_population_auc": 7.809027777777778,
+        "mean_predation_deaths": 63.015625,
+        "survival_worlds": 102
+      },
+      "full_gene_reversion": {
+        "mean_births": 92.21354166666667,
+        "mean_population_auc": 7.851851851851852,
+        "mean_predation_deaths": 61.776041666666664,
+        "survival_worlds": 104
+      },
+      "matched_random_genome": {
+        "mean_births": 87.17708333333333,
+        "mean_population_auc": 7.221064814814815,
+        "mean_predation_deaths": 63.307291666666664,
+        "survival_worlds": 91
+      },
+      "mutant_descendant": {
+        "mean_births": 90.83333333333333,
+        "mean_population_auc": 7.689236111111111,
+        "mean_predation_deaths": 61.088541666666664,
+        "survival_worlds": 95
+      },
+      "own_original_founder": {
+        "mean_births": 92.21354166666667,
+        "mean_population_auc": 7.851851851851852,
+        "mean_predation_deaths": 61.776041666666664,
+        "survival_worlds": 104
+      }
+    },
+    "comparisons": {
+      "fear_only_minus_own_founder_population_auc": {
+        "mean_family_paired_effect": -0.040509259259259266,
+        "per_independent_source_family": {
+          "94000": 0.7361111111111113,
+          "94001": 0.0,
+          "94002": 0.050925925925925895,
+          "94003": 0.0,
+          "94004": 0.0,
+          "94005": -0.0046296296296295765,
+          "94006": -1.0694444444444446,
+          "94007": -0.037037037037037056
+        },
+        "positive_source_families": 2,
+        "source_family_bootstrap_95": [
+          -0.39930555555555564,
+          0.2725694444444445
+        ],
+        "strictly_positive_lower95": false
+      },
+      "fear_only_minus_own_founder_survived": {
+        "mean_family_paired_effect": -0.020833333333333332,
+        "per_independent_source_family": {
+          "94000": 0.16666666666666666,
+          "94001": 0,
+          "94002": 0,
+          "94003": 0,
+          "94004": 0,
+          "94005": 0,
+          "94006": -0.3333333333333333,
+          "94007": 0
+        },
+        "positive_source_families": 1,
+        "source_family_bootstrap_95": [
+          -0.125,
+          0.0625
+        ],
+        "strictly_positive_lower95": false
+      },
+      "full_reversion_minus_own_founder_population_auc": {
+        "mean_family_paired_effect": 0.0,
+        "per_independent_source_family": {
+          "94000": 0.0,
+          "94001": 0.0,
+          "94002": 0.0,
+          "94003": 0.0,
+          "94004": 0.0,
+          "94005": 0.0,
+          "94006": 0.0,
+          "94007": 0.0
+        },
+        "positive_source_families": 0,
+        "source_family_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "strictly_positive_lower95": false
+      },
+      "full_reversion_minus_own_founder_survived": {
+        "mean_family_paired_effect": 0,
+        "per_independent_source_family": {
+          "94000": 0,
+          "94001": 0,
+          "94002": 0,
+          "94003": 0,
+          "94004": 0,
+          "94005": 0,
+          "94006": 0,
+          "94007": 0
+        },
+        "positive_source_families": 0,
+        "source_family_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_fear_reverted_population_auc": {
+        "mean_family_paired_effect": -0.11979166666666663,
+        "per_independent_source_family": {
+          "94000": 0.055555555555555636,
+          "94001": 0.0,
+          "94002": 0.0,
+          "94003": 0.0,
+          "94004": 0.0,
+          "94005": 0.3981481481481481,
+          "94006": -1.449074074074074,
+          "94007": 0.0370370370370372
+        },
+        "positive_source_families": 3,
+        "source_family_bootstrap_95": [
+          -0.5318287037037036,
+          0.15625
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_fear_reverted_survived": {
+        "mean_family_paired_effect": -0.03645833333333333,
+        "per_independent_source_family": {
+          "94000": -0.041666666666666664,
+          "94001": 0,
+          "94002": 0,
+          "94003": 0,
+          "94004": 0,
+          "94005": 0.08333333333333333,
+          "94006": -0.3333333333333333,
+          "94007": 0
+        },
+        "positive_source_families": 1,
+        "source_family_bootstrap_95": [
+          -0.13020833333333331,
+          0.026041666666666664
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_matched_random_population_auc": {
+        "mean_family_paired_effect": 0.4681712962962963,
+        "per_independent_source_family": {
+          "94000": -0.40740740740740733,
+          "94001": -1.347222222222222,
+          "94002": 1.8009259259259258,
+          "94003": 2.4166666666666665,
+          "94004": -0.37037037037037035,
+          "94005": -1.0092592592592593,
+          "94006": -0.6851851851851851,
+          "94007": 3.3472222222222223
+        },
+        "positive_source_families": 3,
+        "source_family_bootstrap_95": [
+          -0.6163194444444444,
+          1.6765046296296295
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_matched_random_survived": {
+        "mean_family_paired_effect": 0.020833333333333336,
+        "per_independent_source_family": {
+          "94000": -0.16666666666666666,
+          "94001": -0.25,
+          "94002": 0.20833333333333334,
+          "94003": 0.375,
+          "94004": -0.16666666666666666,
+          "94005": -0.16666666666666666,
+          "94006": -0.125,
+          "94007": 0.4583333333333333
+        },
+        "positive_source_families": 3,
+        "source_family_bootstrap_95": [
+          -0.15104166666666666,
+          0.20833333333333334
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_own_founder_population_auc": {
+        "mean_family_paired_effect": -0.16261574074074076,
+        "per_independent_source_family": {
+          "94000": 0.8842592592592593,
+          "94001": 0.44444444444444453,
+          "94002": -0.574074074074074,
+          "94003": 0.14814814814814817,
+          "94004": -0.9537037037037038,
+          "94005": 0.03703703703703698,
+          "94006": -1.2870370370370372,
+          "94007": 0.0
+        },
+        "positive_source_families": 4,
+        "source_family_bootstrap_95": [
+          -0.6423611111111112,
+          0.2974537037037038
+        ],
+        "strictly_positive_lower95": false
+      },
+      "mutant_minus_own_founder_survived": {
+        "mean_family_paired_effect": -0.046875,
+        "per_independent_source_family": {
+          "94000": 0.041666666666666664,
+          "94001": 0,
+          "94002": -0.041666666666666664,
+          "94003": 0.08333333333333333,
+          "94004": -0.25,
+          "94005": 0.041666666666666664,
+          "94006": -0.25,
+          "94007": 0
+        },
+        "positive_source_families": 3,
+        "source_family_bootstrap_95": [
+          -0.140625,
+          0.03125
+        ],
+        "strictly_positive_lower95": false
+      }
+    },
+    "independent_source_families": 8,
+    "nested_transfer_seeds_per_source": 24
+  },
+  "physical_ticks_per_world": 400,
+  "population_checkpoints": 15552,
+  "protocol_commit": "5f8d2b803b3a30143027483c4e071265b5c7851e",
+  "source_worlds": 8
+}

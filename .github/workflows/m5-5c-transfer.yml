@@ -1,0 +1,59 @@
+name: M5.5C frozen independent 1728-world own-founder causal transfer
+on:
+  push:
+    branches: ["experiment/m5-5c-own-founder-lineage-transplant"]
+    paths:
+      - "campaigns/m5-5c-transfer-kickoff-*.md"
+
+permissions:
+  contents: write
+
+jobs:
+  independent-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regression tests and exact founder-reversion physics before test worlds
+        run: python -m unittest discover -s tests -v
+      - name: Require original source selection source-bank commit before touching heldout worlds
+        run: |
+          test -s reports/M5_5C_FROZEN_SOURCE_CANDIDATES_2026-11-21.json
+          python - <<'PY'
+          from pathlib import Path
+          from neuroevolution.m5_5c import load_frozen_bank
+          a=load_frozen_bank(Path("reports/M5_5C_FROZEN_SOURCE_CANDIDATES_2026-11-21.json"))
+          assert len(a["candidates"]) == 8
+          assert a["heldout_transfer_worlds_examined"] == 0
+          print("SOURCE BANK FREEZE VERIFIED",a["candidate_bank_sha256"])
+          PY
+      - name: Full original preregistered 8 families times 36 independent worlds times 6 arms
+        run: |
+          python -m neuroevolution.m5_5c \
+            --bank reports/M5_5C_FROZEN_SOURCE_CANDIDATES_2026-11-21.json \
+            --bootstrap-reps 20000 --out results/m5-5c
+      - name: Preserve complete original genetic transfer worlds and all physical checkpoints
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-5c-original-1728-causal-source-lineage-transplant
+          path: results/m5-5c/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Permanently publish complete original outcomes and source-family statistics
+        if: success()
+        run: |
+          mkdir -p reports
+          cp results/m5-5c/all_original_transplants.csv reports/M5_5C_all_1728_original_causal_transplants_2026-11-21.csv
+          cp results/m5-5c/all_original_checkpoints.csv reports/M5_5C_all_15552_original_physical_checkpoints_2026-11-21.csv
+          cp results/m5-5c/summary.json reports/M5_5C_original_preregistered_family_bootstrap_statistics_2026-11-21.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/M5_5C_all_1728_original_causal_transplants_2026-11-21.csv \
+            reports/M5_5C_all_15552_original_physical_checkpoints_2026-11-21.csv \
+            reports/M5_5C_original_preregistered_family_bootstrap_statistics_2026-11-21.json
+          git commit -m "research(m5.5c): permanently archive all 1728 frozen genotype causal transplants and 15552 physical checkpoints"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
