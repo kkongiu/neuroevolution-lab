@@ -1,0 +1,52 @@
+name: M5.3B de novo shared-gene neural evolution
+on:
+  push:
+    branches: ["experiment/m5-3b-de-novo-genetic-search"]
+    paths:
+      - "campaigns/m5-3b-kickoff-*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evolution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Full unit regressions and in-world genotype mutation audit
+        run: python -m unittest discover -s tests -v
+      - name: Sealed 24+12 de novo random-genotype ecological comparisons
+        run: |
+          python -m neuroevolution.m5_3b \
+            --seed-start 82000 --seeds 24 \
+            --shifted-start 83000 --shifted-seeds 12 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 5 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --max-age 100 --hidden 12 \
+            --initial-gene-sd 0.65 --gene-mutation-sd 0.16 \
+            --sparse-gene-count 2 \
+            --checkpoint-every 50 --no-food-controls 0 \
+            --out results/m5-3b
+      - name: Archive actual genetic selection, real births, ecological world metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-3b-de-novo-genetic-selection
+          path: results/m5-3b/
+          retention-days: 30
+          if-no-files-found: warn
