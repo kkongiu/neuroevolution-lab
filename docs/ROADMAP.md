@@ -152,7 +152,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Next issue [M4.1](https://github.com/kkongiu/neuroevolution-lab/issues/20):** isolate wall-action masking and replicate evolution across independent search seeds on NEW held-out worlds. Do not retroactively change the M4.0 policy, reward weights or seed splits.
 - No predators, in-world organism reproduction, within-lifetime weight training or emergent self-chosen objectives yet. An implemented ecology is not proof of intelligence.
 
-## M4.1 — Controlled legal movement and replicated navigation evolution (implemented; full test pending)
+## M4.1 — Controlled legal movement and replicated navigation evolution (completed; primary null)
 - [Preregistered M4.1 protocol](M4_1_PROTOCOL.md), committed before implementation and new heldout tests.
 - Same energy, finite food, odor, walls and fitness as M4.0, but variable reachable start and rotated maps. Motor mask depends ONLY on existing adjacent-wall sensor flags; it corrects illegal preferred actions without knowing food location.
 - **8 independent genetic starting populations**, each evolved separately with and without action masking, with exactly 6 generations × 10 candidates × 6 new training worlds per generation; select each leader solely on 4 validation worlds.
@@ -160,6 +160,16 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Primary: evolved masked minus wall-avoiding random food on 24 sealed worlds, with **hierarchical paired bootstrap over both 8 genetic replicates and shared 24 world seeds**, >0 and lower bound >0 and >=6/8 independently positive replicates. Necessary secondary evolved masked vs random masked RNN.
 - Record actual collisions **and corrected preferences**, energy, survival, visited cells, odors and validation histories. Null-no-food worlds check that food is not manufactured by the simulation.
 - Safety mask is researcher-coded assistance, not evidence that the network learned to avoid walls. Keep M4.0's negative results unchanged.
+
+### M4.1 scientific result — mask fixes collisions, not food-seeking competence
+- [Complete M4.1 scientific report](../reports/M4_1_masked_navigation_2026-11-21.md), [full GitHub Actions run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44906089697), [food per independent genetic run](../reports/M4_1_food_by_genetic_run_2026-11-21.csv).
+- **8 independently initialized genetic runs × 2 evolved training modes**, each with exactly 360 candidate-world training trials. Test 24 new main worlds and 12 harder shifted worlds, randomized reachable starts and rotated grids; **no M4.0 results retuned**.
+- Main **preregistered primary NULL**: masked-trained/ masked-deployed RNN **2.245 food**, legal random walker **2.292**; paired hierarchical mean difference **−0.047** (bootstrap 95% **−1.156/+1.057**), **4/8 genetic runs positive**, below the gate of six.
+- Mask has an independently established **causal positive effect** on the SAME genotype: **+0.797 food** (**+0.323/+1.266**), 8/8 genetic runs positive; actual collisions zero, but **23.73 proposed illegal moves per life** still corrected by the programmed decoder. Do not call this learned wall avoidance.
+- Evolved masked RNN beats masked random RNN by **+1.344 food** (+0.677/+2.042) but loses **−6.630 food** against a hand-coded odor follower (−8.182/−5.010). No beneficial reliance on odor observed: same champion no-odor **2.313** vs intact **2.245**.
+- Training with mask versus without, **both deployed masked**, yields **−0.021 food** (bootstrap includes zero). Thus the measured improvement is mainly the assistance of the **motor decoder**, not a learned food-search policy.
+- Harder shifted-world test also null versus walker: evolved **1.063**, random legal **1.083**. All **64 no-food negative controls** yield zero food.
+- Next proposed experiment: [M4.2 delayed-cue memory vs matched feedforward](https://github.com/kkongiu/neuroevolution-lab/issues/22). Preregister actual information requirements and test recurrence with a hidden-state reset ablation, rather than introducing predators or reproduction too early.
 
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
