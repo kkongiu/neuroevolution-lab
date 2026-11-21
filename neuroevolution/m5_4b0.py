@@ -609,8 +609,11 @@ def run(settings:Settings,out:Path,*,boots:int=BOOT_REPS) -> dict:
 def _write_csv(path:Path,rows:list[dict]) -> None:
     if not rows:
         raise ValueError("Empty scientific data output")
+    # Scripted M5.1 checkpoints include explicit local policy diagnostics.
+    # Retain their extra columns instead of silently dropping audit evidence.
+    keys=list(dict.fromkeys(key for row in rows for key in row))
     with path.open("w",encoding="utf-8",newline="") as f:
-        writer=csv.DictWriter(f,fieldnames=list(rows[0]))
+        writer=csv.DictWriter(f,fieldnames=keys)
         writer.writeheader()
         writer.writerows(rows)
 
