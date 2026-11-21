@@ -25,6 +25,8 @@ jobs:
         run: python -m neuroevolution.plasticity --seed-start 5 --seeds 2 --tasks 3 --steps 12 --batch-size 2 --width 6 --eval-size 24 --report-every 4 --out results/plasticity-smoke
       - name: M2 meta-controller smoke experiment
         run: python -m neuroevolution.meta --train-start 14 --train-seeds 2 --validation-start 100 --validation-seeds 1 --test-start 200 --test-seeds 2 --tasks 3 --steps 12 --batch-size 2 --width 6 --eval-size 16 --report-every 4 --generations 2 --population 4 --out results/m2-smoke
+      - name: M2B budgeted timing smoke experiment
+        run: python -m neuroevolution.meta_budget --train-start 40 --train-seeds 2 --validation-start 90 --validation-seeds 1 --test-start 140 --test-seeds 2 --tasks 3 --steps 12 --batch-size 2 --width 6 --eval-size 16 --report-every 4 --generations 2 --population 4 --out results/m2b-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -33,4 +35,5 @@ jobs:
             results/smoke/
             results/plasticity-smoke/
             results/m2-smoke/
+            results/m2b-smoke/
           retention-days: 30

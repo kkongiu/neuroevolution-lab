@@ -1,0 +1,42 @@
+name: M2B budgeted timing
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m2b-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  m2b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Run M2B on sealed independent seeds
+        run: |
+          python -m neuroevolution.meta_budget \
+            --train-start 4000 --train-seeds 4 \
+            --validation-start 5000 --validation-seeds 3 \
+            --test-start 6000 --test-seeds 16 \
+            --tasks 8 --steps 64 --batch-size 2 \
+            --width 16 --eval-size 48 --report-every 16 \
+            --learning-rate 0.04 --max-reset-fraction 0.20 \
+            --budget-fraction 0.50 --generations 5 --population 8 \
+            --retention-cost 0.05 --search-seed 911 \
+            --out results/m2b
+      - name: Archive results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m2b-budgeted-timing
+          path: results/m2b/
+          if-no-files-found: warn
+          retention-days: 30
