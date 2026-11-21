@@ -86,7 +86,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Fundamental design limitation: changing task rules can produce **mutually incompatible labels for identical 2D inputs without context cues**, making perfect retention impossible. Do not claim a general inability of neural networks to self-adapt from this environment.
 - Suggested M3.3: introduce an observable context/task cue or compositional, non-contradictory task relationships, freeze new seed splits, test achievable lifelong memory and adaptation under comparable resource budgets.
 
-## M3.3 — Compatible contextual memory and replay (preregistered pilot)
+## M3.3 — Compatible contextual memory and replay (completed; adaptive-renewal null)
 - [Frozen M3.3 protocol](M3_3_PROTOCOL.md) created before experiment implementation.
 - Four explicit context IDs (one-hot) resolve two pairs of logically opposed labels for identical 2D points. Context-blind matched-capacity control is provably restricted to 50% balanced accuracy on paired holdout panels.
 - One persistent 20-unit ReLU MLP learns 12 contexts episodes, each context seen at least once. Evaluate final memory on all four contexts, plus peak-to-final forgetting.
@@ -95,6 +95,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Independent seed partitions plus partial OOD stripe/checker-opposition test.
 - **Primary:** final four-context balanced accuracy, cue+replay vs matched context blind. **Secondary:** replay ablation. **Exploratory:** does neural state-aware renewal outperform time and accuracy-only on learning AUC without losing contextual retention?
 - No autonomous objective invention or neural source-code rewriting. Interpret the provided context cue as an external scaffold, not general reasoning.
+
+### M3.3 empirical result — contextual memory improves, forced renewal not justified
+- [M3.3 full report](../reports/M3_3_contextual_memory_2026-11-21.md), [sealed GitHub run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44900094399), [36-seed archive](../reports/M3_3_seeds_2026-11-21.csv).
+- Main **24 seeds**: context + replay, without renewal, **74.33%** final balanced four-context accuracy versus **50.00%** for a matched blind architecture: **+24.33 pp** (paired bootstrap 95% +22.23/+26.45). The 50% bound is **guaranteed by opposing paired labels**, not evidence of general intelligence.
+- Replay versus no replay (both with context and zero reset): **+5.03 pp final memory** on familiar tasks (+2.07/+8.06 pp), **−5.88 pp peak forgetting**, but **−1.07 pp current-task learning AUC**: a measurable stability–plasticity trade-off.
+- On shifted stripe/checker families, context still helps (+12.43 pp versus blind) but replay offers **no confirmed gain** (−0.62 pp, interval includes zero). Worst-context accuracy is only ~52.8% on main, so memory remains unreliable for some contexts.
+- Learned adaptive renewal did NOT beat independent time-only or accuracy-only (+0.03 pp AUC, wide uncertainty); its final memory **70.51%** is below context+replay/no-reset **74.33%**. Do not advance to autonomous self-modification claims.
+- Protocol caveat: M3.3 adaptive controller's retention feature includes all previously stored contexts including the current context on return, while the text described other-context memory. Main cue/replay controls are unaffected; any fix needs new seeds.
+- Next research issue: [M3.4 latent context inference and bounded episodic memory](https://github.com/kkongiu/neuroevolution-lab/issues/14).
 
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
