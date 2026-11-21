@@ -258,6 +258,7 @@ def _diagnosed_action(eco: base.Ecology, agent_id: int, tick: int,
     ))
     diagnostic.eligible_reproduction_opportunities += int(reproduction_ok)
     old_pos = agent.position
+    old_moves = eco.move_actions
     old_births = eco.births
     old_food = eco.food_eaten
     if arm == "neural_heritable":
@@ -282,8 +283,8 @@ def _diagnosed_action(eco: base.Ecology, agent_id: int, tick: int,
     made_food = eco.food_eaten - old_food
     diagnostic.action_births += made_birth
     diagnostic.action_food_consumed += made_food
+    diagnostic.motor_actions += eco.move_actions - old_moves
     if moved_to is not None and moved_to != old_pos:
-        diagnostic.motor_actions += 1
         visits = diagnostic.agent_visits[agent.id]
         previous = visits.get(moved_to, 0)
         diagnostic.traversed_previously_visited_cells += int(previous > 0)
@@ -376,7 +377,7 @@ def simulate(seed: int, settings: Settings, arm: str, *,
     }
     if row["action_births"] != row["births"] or row["action_food_consumed"] != row["food_eaten"]:
         raise AssertionError("Diagnostics must reconcile with physical events")
-    if arm == "greedy_no_reproduction" and (eco.births or agents):
+    if arm == "greedy_no_reproduction" and (eco.births or (settings.ticks >= settings.max_age and agents)):
         raise AssertionError("No-birth control must lose all founders by age 100")
     if arm == "greedy_no_regrowth" and eco.food_spawned != settings.initial_food:
         raise AssertionError("No-regrowth arm unexpectedly spawned food")
