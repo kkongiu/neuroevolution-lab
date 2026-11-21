@@ -215,7 +215,9 @@ def scripted_ecological_control(seed:int,settings: Settings, *,
         "energy_ledger_residual":source["energy_ledger_residual"],
         "all_actions_native_m50_neural":0,
         "programmed_policy":1,
-        "internal_birth_mutations":0
+        # M5.1 script keeps arbitrary *nonfunctional* bookkeeping genomes;
+        # those may mutate, but never choose its scripted motor/birth actions.
+        "internal_birth_mutations":None
     }
     return row,checks,trace
 
