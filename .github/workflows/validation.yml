@@ -43,6 +43,8 @@ jobs:
         run: python -m neuroevolution.m4_0 --train-start 10 --train-worlds 2 --validation-start 100 --validation-worlds 1 --test-start 200 --test-worlds 3 --shifted-start 300 --shifted-worlds 2 --size 11 --food-count 6 --shifted-food-count 4 --odor-radius 4 --shifted-odor-radius 2 --horizon 35 --hidden 5 --population 6 --generations 2 --elites 2 --immigrants 1 --out results/m4-0-smoke
       - name: M4.1 masked-navigation replicated smoke
         run: python -m neuroevolution.m4_1 --train-start 10 --train-worlds 2 --validation-start 100 --validation-worlds 1 --test-start 200 --test-worlds 3 --shifted-start 300 --shifted-worlds 2 --genetic-seed-start 800 --genetic-runs 2 --size 11 --hidden 5 --horizon 35 --food-count 6 --shifted-food-count 4 --odor-radius 4 --shifted-odor-radius 2 --population 6 --generations 2 --elites 2 --immigrants 1 --out results/m4-1-smoke
+      - name: M4.2 delayed-cue memory smoke
+        run: python -m neuroevolution.m4_2 --train-start 10 --train-worlds 2 --validation-start 100 --validation-worlds 1 --test-start 200 --test-worlds 3 --shifted-start 300 --shifted-worlds 2 --reactive-start 400 --reactive-worlds 2 --genetic-seed-start 800 --genetic-runs 2 --size 13 --hidden 4 --ff-hidden 5 --stem-min 3 --stem-max 4 --shifted-stem-min 4 --shifted-stem-max 5 --cue-ticks 2 --horizon 14 --population 6 --generations 2 --elites 2 --immigrants 1 --out results/m4-2-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -60,4 +62,5 @@ jobs:
             results/m3-5-smoke/
             results/m4-0-smoke/
             results/m4-1-smoke/
+            results/m4-2-smoke/
           retention-days: 30
