@@ -1,0 +1,32 @@
+name: M5.5B preregistered physical predator selection feasibility
+on:
+  push:
+    branches: ["experiment/m5-5b-predator-selection-feasibility"]
+    paths:
+      - "campaigns/m5-5b-start-*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  predator-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Historical tests plus new physical predation and hereditary gene tests
+        run: python -m unittest discover -s tests -v
+      - name: Frozen 180 physical world x 400 tick predator/no-predator comparison
+        run: python -m neuroevolution.m5_5b --out results/m5-5b
+      - name: Archive complete physical enemy trajectories, deaths and genetic ancestry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-5b-preregistered-180-world-predator-feasibility
+          path: results/m5-5b/
+          retention-days: 30
+          if-no-files-found: warn
