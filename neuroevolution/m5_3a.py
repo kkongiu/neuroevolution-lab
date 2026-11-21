@@ -77,7 +77,7 @@ class Settings(teacher.Settings):
             if any(one & x for x in splits[i + 1:]):
                 raise ValueError("M5.3A training/validation/test seed leakage")
         if self.ticks >= 400 and (
-            self.hidden != 12 or self.teacher_ticks != 200 or
+            self.teacher_ticks != 200 or
             self.teacher_seed_count != 6 or
             self.validation_teacher_count != 2 or
             self.train_cap != 4500 or self.validation_cap != 1500 or
@@ -475,6 +475,8 @@ def population_svg(checkpoints: list[dict], settings: Settings) -> str:
 
 def run(settings: Settings, out: Path) -> dict:
     settings.validate()
+    if settings.ticks >= 400 and settings.hidden != 12:
+        raise ValueError("Full campaign entrypoint must use original 12-unit baseline")
     out.mkdir(parents=True, exist_ok=True)
     genome_bank, development = genotypes(settings)
     rows, checkpoints, traces = [], [], []
