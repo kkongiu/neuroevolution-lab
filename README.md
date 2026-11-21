@@ -149,6 +149,20 @@ python -m neuroevolution.m4_0 --out results/m4_0
 
 Results also include CSV, a reproducible saved champion, example world SVG maps and JSON movement traces. Read [the M4.0 frozen protocol](docs/M4_0_PROTOCOL.md) and the [M4.0 Actions campaign](.github/workflows/m4-0-survival-world.yml). **Predators, within-world reproduction and within-lifetime weight learning are NOT yet present.**
 
+## M4.1 — Correct illegal moves, then test evolved food-search skill
+
+M4.0's evolved neural agent hit walls ~18 times per lifetime and lost against a wall-avoiding random walker. M4.1 **isolates physical motor legality from neural planning**. A new decoder takes the recurrent network's four action logits and chooses the highest-scoring **locally legal** direction. The network still receives only M4.0's local wall, food odor and energy sensors. Every blocked preferred action is recorded separately from actual collisions.
+
+For causal comparisons, M4.1 **evolves two networks from exactly the same initial genomes** for each of **eight independent genetic initializations**: one training with the motor mask, the other without it. Each genome is later tested **with and without** the decoder on the same mazes. Evolved masked genomes are also compared against independently initialized masked random networks, the wall-avoiding random walk, an intentionally strong greedy odor follower, and a same-genome odor ablation.
+
+Each training generation uses newly seeded maze maps, and each map is rotated with a fresh reachable starting position. The genomes are selected only on independent validation worlds and then evaluated unchanged on **24 unseen main mazes** and **12 shifted mazes** (more walls, fewer food items, shorter odor range). Use the full two-level genetic-run/world-seed bootstrap and do not treat repeated worlds as independent evolutionary replicates.
+
+~~~bash
+python -m neuroevolution.m4_1 --out results/m4_1
+~~~
+
+Read the [M4.1 frozen protocol](docs/M4_1_PROTOCOL.md) and [campaign workflow](.github/workflows/m4-1-masked-navigation.yml). This is still **externally driven numeric evolution between lifetimes**, not in-lifetime learning, emergent reproduction, or autonomous choice of objectives.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.

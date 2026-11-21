@@ -152,6 +152,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Next issue [M4.1](https://github.com/kkongiu/neuroevolution-lab/issues/20):** isolate wall-action masking and replicate evolution across independent search seeds on NEW held-out worlds. Do not retroactively change the M4.0 policy, reward weights or seed splits.
 - No predators, in-world organism reproduction, within-lifetime weight training or emergent self-chosen objectives yet. An implemented ecology is not proof of intelligence.
 
+## M4.1 — Controlled legal movement and replicated navigation evolution (implemented; full test pending)
+- [Preregistered M4.1 protocol](M4_1_PROTOCOL.md), committed before implementation and new heldout tests.
+- Same energy, finite food, odor, walls and fitness as M4.0, but variable reachable start and rotated maps. Motor mask depends ONLY on existing adjacent-wall sensor flags; it corrects illegal preferred actions without knowing food location.
+- **8 independent genetic starting populations**, each evolved separately with and without action masking, with exactly 6 generations × 10 candidates × 6 new training worlds per generation; select each leader solely on 4 validation worlds.
+- On final 24 main/12 shifted mazes, cross-over both evolved genomes with both decoder settings. Add random masked RNN for each genetic seed, strong greedy odor control, matched wall-avoiding random, and no-odor masked-genome ablation.
+- Primary: evolved masked minus wall-avoiding random food on 24 sealed worlds, with **hierarchical paired bootstrap over both 8 genetic replicates and shared 24 world seeds**, >0 and lower bound >0 and >=6/8 independently positive replicates. Necessary secondary evolved masked vs random masked RNN.
+- Record actual collisions **and corrected preferences**, energy, survival, visited cells, odors and validation histories. Null-no-food worlds check that food is not manufactured by the simulation.
+- Safety mask is researcher-coded assistance, not evidence that the network learned to avoid walls. Keep M4.0's negative results unchanged.
+
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
