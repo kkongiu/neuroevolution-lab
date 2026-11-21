@@ -26,6 +26,20 @@ This writes `measurements.csv`, `summary.json`, and `curves.svg`. Run with a new
 
 Read [the preregistered plasticity protocol](docs/PLASTICITY_PROTOCOL.md) before interpreting the results.
 
+## M2 — Bounded meta-learning of renewal decisions
+
+A five-weight meta-controller is **evolved** on one set of task sequences, selected on a separate validation set, then tested on completely disjoint seeds. It can decide **0 / half / maximum (20%)** neural unit replacements at task boundaries using training data only. No code generation or arbitrary self-modification is possible.
+
+Its independent test compares six approaches: learned decisions, no reset, fixed 20% low-activity renewal, **random units with the exact same reset counts per task**, a **shuffled schedule with the same total number** of low-activity resets, and a freshly initialized network.
+
+Run the whole predefined M2 protocol:
+
+~~~bash
+python -m neuroevolution.meta --out results/m2
+~~~
+
+Outputs: meta-training history, per-seed metrics, per-task metrics, self-contained SVG, and paired bootstrap confidence intervals. Read the [M2 frozen protocol](docs/M2_PROTOCOL.md). **A winning average against no-reset alone is not enough**; dose-matched and timing-matched controls are primary.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
@@ -33,5 +47,7 @@ Read [the preregistered plasticity protocol](docs/PLASTICITY_PROTOCOL.md) before
 [Original M1 research campaign](.github/workflows/research-campaign.yml): original structural neuroevolution, manually or weekly.
 
 [Plasticity campaign](.github/workflows/plasticity-campaign.yml): 24 paired seeds, manually started or explicitly triggered with a kickoff marker. Archives generated metrics and SVG for later scientific review.
+
+[M2 campaign](.github/workflows/m2-adaptive-renewal.yml): isolated training/validation/test and archived metrics; manually launched or explicitly triggered by a kickoff marker.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.
