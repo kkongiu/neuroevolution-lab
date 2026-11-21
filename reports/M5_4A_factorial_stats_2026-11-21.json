@@ -1,0 +1,631 @@
+{
+  "protocol_sha": "d9beaedff7f43f2acbba8e6cd8c29b698b47d42b",
+  "original_sealed_campaign": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44926123502",
+  "total_world_genotype_trials": 2112,
+  "number_of_original_source_neural_families": 5,
+  "source_conditioning": "five previously successful M5.3B world families, NOT random representative evolving worlds",
+  "main": {
+    "by_condition": {
+      "w0o0r0": {
+        "descendant_survival_rate": 0.9125,
+        "mean_descendant_births": 129.6875,
+        "mean_descendant_food_eaten": 374.1
+      },
+      "w0o0r1": {
+        "descendant_survival_rate": 0.7875,
+        "mean_descendant_births": 88.5,
+        "mean_descendant_food_eaten": 255.8875
+      },
+      "w0o1r0": {
+        "descendant_survival_rate": 0.05,
+        "mean_descendant_births": 46.8375,
+        "mean_descendant_food_eaten": 117.1375
+      },
+      "w0o1r1": {
+        "descendant_survival_rate": 0,
+        "mean_descendant_births": 25.4375,
+        "mean_descendant_food_eaten": 56.0125
+      },
+      "w1o0r0": {
+        "descendant_survival_rate": 0.8875,
+        "mean_descendant_births": 125.9125,
+        "mean_descendant_food_eaten": 362.2
+      },
+      "w1o0r1": {
+        "descendant_survival_rate": 0.775,
+        "mean_descendant_births": 87.2875,
+        "mean_descendant_food_eaten": 255.325
+      },
+      "w1o1r0": {
+        "descendant_survival_rate": 0.0375,
+        "mean_descendant_births": 48.475,
+        "mean_descendant_food_eaten": 121.55
+      },
+      "w1o1r1": {
+        "descendant_survival_rate": 0.025,
+        "mean_descendant_births": 29.6125,
+        "mean_descendant_food_eaten": 69.7875
+      }
+    },
+    "dominance_pairwise": {
+      "odor_minus_regrowth": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.8875,
+          -0.53125
+        ],
+        "mean_difference_of_marginal_effects": -0.7375,
+        "worse_with_upper_below_zero": true
+      },
+      "odor_minus_walls": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.9375,
+          -0.60625
+        ],
+        "mean_difference_of_marginal_effects": -0.80625,
+        "worse_with_upper_below_zero": true
+      }
+    },
+    "effect_order_most_negative_first": [
+      "odor",
+      "regrowth",
+      "walls"
+    ],
+    "effects": {
+      "odor": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.928125,
+          -0.6375
+        ],
+        "harmful_supported": true,
+        "mean_stress_minus_benign": -0.8125,
+        "source_family_effects": {
+          "82006": -0.90625,
+          "82015": -0.921875,
+          "82018": -0.484375,
+          "82019": -0.890625,
+          "82023": -0.859375
+        }
+      },
+      "regrowth": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.128125,
+          -0.028125
+        ],
+        "harmful_supported": true,
+        "mean_stress_minus_benign": -0.075,
+        "source_family_effects": {
+          "82006": -0.0625,
+          "82015": -0.046875,
+          "82018": -0.109375,
+          "82019": -0.046875,
+          "82023": -0.109375
+        }
+      },
+      "walls": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.0625,
+          0.046875
+        ],
+        "harmful_supported": false,
+        "mean_stress_minus_benign": -0.00625,
+        "source_family_effects": {
+          "82006": 0,
+          "82015": -0.015625,
+          "82018": -0.015625,
+          "82019": -0.015625,
+          "82023": 0.015625
+        }
+      }
+    },
+    "factor_bottleneck_supported": true,
+    "interaction_point_estimates": {
+      "odor_x_regrowth": 0.0875,
+      "walls_x_odor": 0.025,
+      "walls_x_odor_x_regrowth": 0.025,
+      "walls_x_regrowth": 0.025
+    },
+    "most_negative_factor": "odor",
+    "source_families": 5,
+    "worlds": 16
+  },
+  "validation": {
+    "by_condition": {
+      "w0o0r0": {
+        "descendant_survival_rate": 0.875,
+        "mean_descendant_births": 127.8,
+        "mean_descendant_food_eaten": 362.05
+      },
+      "w0o0r1": {
+        "descendant_survival_rate": 0.8,
+        "mean_descendant_births": 92.45,
+        "mean_descendant_food_eaten": 263.625
+      },
+      "w0o1r0": {
+        "descendant_survival_rate": 0.075,
+        "mean_descendant_births": 48.025,
+        "mean_descendant_food_eaten": 119.375
+      },
+      "w0o1r1": {
+        "descendant_survival_rate": 0,
+        "mean_descendant_births": 27.975,
+        "mean_descendant_food_eaten": 61.475
+      },
+      "w1o0r0": {
+        "descendant_survival_rate": 0.875,
+        "mean_descendant_births": 124.975,
+        "mean_descendant_food_eaten": 356.5
+      },
+      "w1o0r1": {
+        "descendant_survival_rate": 0.675,
+        "mean_descendant_births": 85.7,
+        "mean_descendant_food_eaten": 246.65
+      },
+      "w1o1r0": {
+        "descendant_survival_rate": 0.1,
+        "mean_descendant_births": 49.925,
+        "mean_descendant_food_eaten": 129.725
+      },
+      "w1o1r1": {
+        "descendant_survival_rate": 0,
+        "mean_descendant_births": 23.4,
+        "mean_descendant_food_eaten": 50.45
+      }
+    },
+    "dominance_pairwise": {
+      "odor_minus_regrowth": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.85,
+          -0.4125
+        ],
+        "mean_difference_of_marginal_effects": -0.65,
+        "worse_with_upper_below_zero": true
+      },
+      "odor_minus_walls": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.9125,
+          -0.5
+        ],
+        "mean_difference_of_marginal_effects": -0.7375,
+        "worse_with_upper_below_zero": true
+      }
+    },
+    "effect_order_most_negative_first": [
+      "odor",
+      "regrowth",
+      "walls"
+    ],
+    "effects": {
+      "odor": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.9125,
+          -0.55625
+        ],
+        "harmful_supported": true,
+        "mean_stress_minus_benign": -0.7625,
+        "source_family_effects": {
+          "82006": -0.84375,
+          "82015": -0.875,
+          "82018": -0.4375,
+          "82019": -0.875,
+          "82023": -0.78125
+        }
+      },
+      "regrowth": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.2125,
+          0.00625
+        ],
+        "harmful_supported": false,
+        "mean_stress_minus_benign": -0.1125,
+        "source_family_effects": {
+          "82006": -0.15625,
+          "82015": -0.125,
+          "82018": 0,
+          "82019": -0.125,
+          "82023": -0.15625
+        }
+      },
+      "walls": {
+        "crossed_bootstrap_descriptive_95": [
+          -0.1,
+          0.04375
+        ],
+        "harmful_supported": false,
+        "mean_stress_minus_benign": -0.025,
+        "source_family_effects": {
+          "82006": -0.03125,
+          "82015": -0.0625,
+          "82018": 0,
+          "82019": 0,
+          "82023": -0.03125
+        }
+      }
+    },
+    "factor_bottleneck_supported": true,
+    "interaction_point_estimates": {
+      "odor_x_regrowth": 0.05,
+      "walls_x_odor": 0.075,
+      "walls_x_odor_x_regrowth": 0.1,
+      "walls_x_regrowth": -0.075
+    },
+    "most_negative_factor": "odor",
+    "source_families": 5,
+    "worlds": 8
+  },
+  "gates": {
+    "scripted_all_hard_physical_viability": true,
+    "scripted_all_hard_validation_survivors": 8,
+    "single_dominant_main_stressor": true,
+    "validation_sign_concordance": {
+      "odor": true,
+      "regrowth": true,
+      "walls": true
+    }
+  },
+  "by_policy": {
+    "main": {
+      "ancestor": {
+        "w0o0r0": {
+          "mean_food_eaten": 365.7125,
+          "survived_worlds": 72,
+          "trials": 80
+        },
+        "w0o0r1": {
+          "mean_food_eaten": 232.6875,
+          "survived_worlds": 55,
+          "trials": 80
+        },
+        "w0o1r0": {
+          "mean_food_eaten": 86.7125,
+          "survived_worlds": 0,
+          "trials": 80
+        },
+        "w0o1r1": {
+          "mean_food_eaten": 56.1875,
+          "survived_worlds": 0,
+          "trials": 80
+        },
+        "w1o0r0": {
+          "mean_food_eaten": 353.9,
+          "survived_worlds": 72,
+          "trials": 80
+        },
+        "w1o0r1": {
+          "mean_food_eaten": 221.7125,
+          "survived_worlds": 44,
+          "trials": 80
+        },
+        "w1o1r0": {
+          "mean_food_eaten": 113.875,
+          "survived_worlds": 6,
+          "trials": 80
+        },
+        "w1o1r1": {
+          "mean_food_eaten": 59.65,
+          "survived_worlds": 0,
+          "trials": 80
+        }
+      },
+      "descendant": {
+        "w0o0r0": {
+          "mean_food_eaten": 374.1,
+          "survived_worlds": 73,
+          "trials": 80
+        },
+        "w0o0r1": {
+          "mean_food_eaten": 255.8875,
+          "survived_worlds": 63,
+          "trials": 80
+        },
+        "w0o1r0": {
+          "mean_food_eaten": 117.1375,
+          "survived_worlds": 4,
+          "trials": 80
+        },
+        "w0o1r1": {
+          "mean_food_eaten": 56.0125,
+          "survived_worlds": 0,
+          "trials": 80
+        },
+        "w1o0r0": {
+          "mean_food_eaten": 362.2,
+          "survived_worlds": 71,
+          "trials": 80
+        },
+        "w1o0r1": {
+          "mean_food_eaten": 255.325,
+          "survived_worlds": 62,
+          "trials": 80
+        },
+        "w1o1r0": {
+          "mean_food_eaten": 121.55,
+          "survived_worlds": 3,
+          "trials": 80
+        },
+        "w1o1r1": {
+          "mean_food_eaten": 69.7875,
+          "survived_worlds": 2,
+          "trials": 80
+        }
+      },
+      "scripted_greedy_novelty": {
+        "w0o0r0": {
+          "mean_food_eaten": 398.6875,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w0o0r1": {
+          "mean_food_eaten": 295.0625,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w0o1r0": {
+          "mean_food_eaten": 395.3125,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w0o1r1": {
+          "mean_food_eaten": 290.25,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w1o0r0": {
+          "mean_food_eaten": 394.75,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w1o0r1": {
+          "mean_food_eaten": 291.625,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w1o1r0": {
+          "mean_food_eaten": 390.1875,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "w1o1r1": {
+          "mean_food_eaten": 287.75,
+          "survived_worlds": 16,
+          "trials": 16
+        }
+      }
+    },
+    "validation": {
+      "ancestor": {
+        "w0o0r0": {
+          "mean_food_eaten": 351.475,
+          "survived_worlds": 33,
+          "trials": 40
+        },
+        "w0o0r1": {
+          "mean_food_eaten": 234.225,
+          "survived_worlds": 29,
+          "trials": 40
+        },
+        "w0o1r0": {
+          "mean_food_eaten": 94.625,
+          "survived_worlds": 1,
+          "trials": 40
+        },
+        "w0o1r1": {
+          "mean_food_eaten": 47.6,
+          "survived_worlds": 0,
+          "trials": 40
+        },
+        "w1o0r0": {
+          "mean_food_eaten": 329.7,
+          "survived_worlds": 31,
+          "trials": 40
+        },
+        "w1o0r1": {
+          "mean_food_eaten": 207.275,
+          "survived_worlds": 21,
+          "trials": 40
+        },
+        "w1o1r0": {
+          "mean_food_eaten": 96.675,
+          "survived_worlds": 2,
+          "trials": 40
+        },
+        "w1o1r1": {
+          "mean_food_eaten": 61.275,
+          "survived_worlds": 1,
+          "trials": 40
+        }
+      },
+      "descendant": {
+        "w0o0r0": {
+          "mean_food_eaten": 362.05,
+          "survived_worlds": 35,
+          "trials": 40
+        },
+        "w0o0r1": {
+          "mean_food_eaten": 263.625,
+          "survived_worlds": 32,
+          "trials": 40
+        },
+        "w0o1r0": {
+          "mean_food_eaten": 119.375,
+          "survived_worlds": 3,
+          "trials": 40
+        },
+        "w0o1r1": {
+          "mean_food_eaten": 61.475,
+          "survived_worlds": 0,
+          "trials": 40
+        },
+        "w1o0r0": {
+          "mean_food_eaten": 356.5,
+          "survived_worlds": 35,
+          "trials": 40
+        },
+        "w1o0r1": {
+          "mean_food_eaten": 246.65,
+          "survived_worlds": 27,
+          "trials": 40
+        },
+        "w1o1r0": {
+          "mean_food_eaten": 129.725,
+          "survived_worlds": 4,
+          "trials": 40
+        },
+        "w1o1r1": {
+          "mean_food_eaten": 50.45,
+          "survived_worlds": 0,
+          "trials": 40
+        }
+      },
+      "scripted_greedy_novelty": {
+        "w0o0r0": {
+          "mean_food_eaten": 398.375,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w0o0r1": {
+          "mean_food_eaten": 302,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w0o1r0": {
+          "mean_food_eaten": 395.875,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w0o1r1": {
+          "mean_food_eaten": 296.25,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w1o0r0": {
+          "mean_food_eaten": 394.25,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w1o0r1": {
+          "mean_food_eaten": 298.625,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w1o1r0": {
+          "mean_food_eaten": 388.125,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "w1o1r1": {
+          "mean_food_eaten": 290.625,
+          "survived_worlds": 8,
+          "trials": 8
+        }
+      }
+    }
+  },
+  "derived_by_policy_effects": {
+    "main": {
+      "descendant": {
+        "axes": {
+          "walls": -0.006249999999999995,
+          "odor": -0.8125,
+          "regrowth": -0.07499999999999998
+        },
+        "basic": {
+          "mean_food_eaten": 374.1,
+          "survived_worlds": 73,
+          "trials": 80
+        },
+        "hard": {
+          "mean_food_eaten": 69.7875,
+          "survived_worlds": 2,
+          "trials": 80
+        }
+      },
+      "ancestor": {
+        "axes": {
+          "walls": -0.01562499999999999,
+          "odor": -0.7406250000000001,
+          "regrowth": -0.159375
+        },
+        "basic": {
+          "mean_food_eaten": 365.7125,
+          "survived_worlds": 72,
+          "trials": 80
+        },
+        "hard": {
+          "mean_food_eaten": 59.65,
+          "survived_worlds": 0,
+          "trials": 80
+        }
+      },
+      "scripted_greedy_novelty": {
+        "axes": {
+          "walls": 0,
+          "odor": 0,
+          "regrowth": 0
+        },
+        "basic": {
+          "mean_food_eaten": 398.6875,
+          "survived_worlds": 16,
+          "trials": 16
+        },
+        "hard": {
+          "mean_food_eaten": 287.75,
+          "survived_worlds": 16,
+          "trials": 16
+        }
+      }
+    },
+    "validation": {
+      "descendant": {
+        "axes": {
+          "walls": -0.024999999999999998,
+          "odor": -0.7625,
+          "regrowth": -0.11249999999999999
+        },
+        "basic": {
+          "mean_food_eaten": 362.05,
+          "survived_worlds": 35,
+          "trials": 40
+        },
+        "hard": {
+          "mean_food_eaten": 50.45,
+          "survived_worlds": 0,
+          "trials": 40
+        }
+      },
+      "ancestor": {
+        "axes": {
+          "walls": -0.049999999999999975,
+          "odor": -0.6875,
+          "regrowth": -0.1
+        },
+        "basic": {
+          "mean_food_eaten": 351.475,
+          "survived_worlds": 33,
+          "trials": 40
+        },
+        "hard": {
+          "mean_food_eaten": 61.275,
+          "survived_worlds": 1,
+          "trials": 40
+        }
+      },
+      "scripted_greedy_novelty": {
+        "axes": {
+          "walls": 0,
+          "odor": 0,
+          "regrowth": 0
+        },
+        "basic": {
+          "mean_food_eaten": 398.375,
+          "survived_worlds": 8,
+          "trials": 8
+        },
+        "hard": {
+          "mean_food_eaten": 290.625,
+          "survived_worlds": 8,
+          "trials": 8
+        }
+      }
+    }
+  }
+}

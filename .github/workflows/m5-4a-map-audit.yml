@@ -1,0 +1,61 @@
+name: M5.4A exact environment map audit
+on:
+  push:
+    branches: ["experiment/m5-4a-environment-factorial"]
+    paths:
+      - "campaigns/m5-4a-map-audit-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  map-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Print exact frozen map and source-genotype hashes; no organism evaluation
+        run: |
+          python - <<'PY'
+          import json
+          from neuroevolution import m5_4a as experiment
+          s=experiment.Settings()
+          s.validate()
+          bank,_=experiment.candidate_bank()
+          data=[]
+          for split,ids in (
+              ("main",range(s.seed_start,s.seed_start+s.seeds)),
+              ("validation",range(s.shifted_start,
+                                   s.shifted_start+s.shifted_seeds)),
+          ):
+              for seed in ids:
+                  p=experiment.coupled_world(seed,s)
+                  data.append({
+                      "split":split,"seed":seed,"map_attempt":p["attempt"],
+                      "low_wall_count":p["low_wall_count"],
+                      "high_wall_count":p["high_wall_count"],
+                      "low_reachable_count":p["low_reachable_count"],
+                      "high_reachable_count":p["high_reachable_count"],
+                      "low_high_map_hashes":p["wall_hashes"],
+                      "initial_food_hash":p["initial_food_digest"],
+                      "initial_founder_hash":p["founder_position_digest"],
+                      "common_candidate_pool_hash":
+                          p["food_candidate_pool_digest"],
+                  })
+          assert len(data)==24
+          print("M5.4A COUPLED MAPS "+json.dumps(data,sort_keys=True),
+                flush=True)
+          print("M5.4A GENOME DIGESTS "+json.dumps({
+              str(src):{
+                  kind:experiment.base.genome_digest(
+                      experiment.gene.to_weights(values)
+                  )
+                  for kind,values in pair.items()
+              }
+              for src,pair in bank.items()
+          },sort_keys=True),flush=True)
+          print("M5.4A MAPS VERIFIED",flush=True)
+          PY
