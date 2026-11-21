@@ -95,6 +95,18 @@ python -m neuroevolution.m3_2 --out results/m3_2
 
 Read the [M3.2 frozen protocol](docs/M3_2_PROTOCOL.md). A negative outcome will be published without retuning final seeds.
 
+## M3.3 — Memory becomes logically possible with context
+
+M3.2's hidden task rules could contradict each other on the same x,y input. **M3.3 introduces an explicit context cue**: four context labels, two pairs of exact opposing classification rules, and the same x,y coordinates in paired test panels. A six-input MLP sees x, y, and a one-hot context code. A blind control gets four zero context inputs with identical capacity, seeds, SGD steps and examples, and therefore has a mathematical 50% balanced-accuracy ceiling.
+
+The experiment also tests a bounded **training-only episodic replay buffer** (replacing one in four SGD batches, not adding extra compute) and whether an externally evolved controller can schedule **three equal-dose neuron renewals** better than independently evolved accuracy-only or clock-only controllers. All methods face the same sequence, and their last-stage memory is measured on heldout panels from all four contexts.
+
+~~~bash
+python -m neuroevolution.m3_3 --out results/m3_3
+~~~
+
+Read [frozen M3.3 protocol](docs/M3_3_PROTOCOL.md) before results. A positive cue result validates *solvability given a supplied task ID*, not spontaneous context discovery; memory and renewal results are evaluated separately.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
@@ -112,5 +124,7 @@ Read the [M3.2 frozen protocol](docs/M3_2_PROTOCOL.md). A negative outcome will 
 [M3.1 causal intervention workflow](.github/workflows/m3-1-causal-repair.yml): explicit kickoff/manual GitHub run, paired potential outcomes, archived metrics.
 
 [M3.2 natural interference campaign](.github/workflows/m3-2-natural-interference.yml): isolated train/validation/final tests, explicit GitHub kickoff, archiving complete counterfactual data.
+
+[M3.3 contextual memory campaign](.github/workflows/m3-3-contextual-memory.yml): isolated train/validation/sealed tests, paired conflicting context panels and replay experiments.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.

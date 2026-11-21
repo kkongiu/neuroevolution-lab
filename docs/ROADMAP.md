@@ -86,5 +86,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Fundamental design limitation: changing task rules can produce **mutually incompatible labels for identical 2D inputs without context cues**, making perfect retention impossible. Do not claim a general inability of neural networks to self-adapt from this environment.
 - Suggested M3.3: introduce an observable context/task cue or compositional, non-contradictory task relationships, freeze new seed splits, test achievable lifelong memory and adaptation under comparable resource budgets.
 
+## M3.3 — Compatible contextual memory and replay (preregistered pilot)
+- [Frozen M3.3 protocol](M3_3_PROTOCOL.md) created before experiment implementation.
+- Four explicit context IDs (one-hot) resolve two pairs of logically opposed labels for identical 2D points. Context-blind matched-capacity control is provably restricted to 50% balanced accuracy on paired holdout panels.
+- One persistent 20-unit ReLU MLP learns 12 contexts episodes, each context seen at least once. Evaluate final memory on all four contexts, plus peak-to-final forgetting.
+- Training-only replay buffer replaces one in four SGD mini-batches; compare cue+replay vs cue+no-replay and cue-blind+replay.
+- Fixed budget of three neural renewal events; independently meta-trained state-aware, accuracy-only and clock-only policies, with uniform/shuffled/random-unit matched controls.
+- Independent seed partitions plus partial OOD stripe/checker-opposition test.
+- **Primary:** final four-context balanced accuracy, cue+replay vs matched context blind. **Secondary:** replay ablation. **Exploratory:** does neural state-aware renewal outperform time and accuracy-only on learning AUC without losing contextual retention?
+- No autonomous objective invention or neural source-code rewriting. Interpret the provided context cue as an external scaffold, not general reasoning.
+
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
