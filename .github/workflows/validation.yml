@@ -39,6 +39,8 @@ jobs:
         run: python -m neuroevolution.m3_4 --train-start 30 --train-seeds 2 --validation-start 100 --validation-seeds 1 --test-start 200 --test-seeds 2 --few-start 300 --few-seeds 2 --shifted-start 400 --shifted-seeds 2 --tasks 8 --steps 8 --batch-size 2 --width 6 --eval-size 12 --report-every 2 --main-support 8 --hard-support 4 --hard-flips 1 --prototype-size 12 --buffer-size 4 --replay-every 2 --knn-k 3 --out results/m3-4-smoke
       - name: M3.5 active-information smoke
         run: python -m neuroevolution.m3_5 --train-start 20 --train-seeds 2 --validation-start 100 --validation-seeds 1 --test-start 200 --test-seeds 2 --shifted-start 300 --shifted-seeds 2 --few-start 400 --few-seeds 2 --tasks 8 --steps 8 --batch-size 2 --width 6 --eval-size 12 --report-every 2 --main-support 6 --hard-support 6 --hard-flips 1 --prototype-size 12 --buffer-size 4 --knn-k 3 --replay-every 2 --extra-per-request 2 --request-quota 2 --out results/m3-5-smoke
+      - name: M4.0 evolving survival world smoke
+        run: python -m neuroevolution.m4_0 --train-start 10 --train-worlds 2 --validation-start 100 --validation-worlds 1 --test-start 200 --test-worlds 3 --shifted-start 300 --shifted-worlds 2 --size 11 --food-count 6 --shifted-food-count 4 --odor-radius 4 --shifted-odor-radius 2 --horizon 35 --hidden 5 --population 6 --generations 2 --elites 2 --immigrants 1 --out results/m4-0-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -54,4 +56,5 @@ jobs:
             results/m3-3-smoke/
             results/m3-4-smoke/
             results/m3-5-smoke/
+            results/m4-0-smoke/
           retention-days: 30
