@@ -1,0 +1,413 @@
+{
+  "protocol_sha": "d9beaedff7f43f2acbba8e6cd8c29b698b47d42b",
+  "independent_verification_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44927320481",
+  "notice": "Deterministic reconstruction only: no organism actions, no new heldout selection, no changed original physics",
+  "map_seed_records": [
+    {
+      "common_candidate_pool_hash": "3a654b07dc17f4553bb9",
+      "high_reachable_count": 140,
+      "high_wall_count": 84,
+      "initial_food_hash": "75811cd159dbcfe70ccf",
+      "initial_founder_hash": "c74c48e7f1740b5e367f",
+      "low_high_map_hashes": [
+        "be436fe3fc933bf8613e",
+        "ef57aa373519155d7842"
+      ],
+      "low_reachable_count": 150,
+      "low_wall_count": 75,
+      "map_attempt": 0,
+      "seed": 86000,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "c67326972b1b015b6a23",
+      "high_reachable_count": 134,
+      "high_wall_count": 90,
+      "initial_food_hash": "e0005bc20aad878c0ba9",
+      "initial_founder_hash": "4f661a72308d7e6dbb89",
+      "low_high_map_hashes": [
+        "02418d43ac0a144a9e33",
+        "f7c3d3d807e06b2e0f16"
+      ],
+      "low_reachable_count": 153,
+      "low_wall_count": 72,
+      "map_attempt": 0,
+      "seed": 86001,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "edd3c472cd427224ba50",
+      "high_reachable_count": 143,
+      "high_wall_count": 81,
+      "initial_food_hash": "27c44514eca4edf76fc5",
+      "initial_founder_hash": "863f2bf3cec18d7727bf",
+      "low_high_map_hashes": [
+        "22f6e3247f7343dd541a",
+        "27778457f490a8870231"
+      ],
+      "low_reachable_count": 153,
+      "low_wall_count": 71,
+      "map_attempt": 0,
+      "seed": 86002,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "f24b9d4033ffa03c6225",
+      "high_reachable_count": 134,
+      "high_wall_count": 90,
+      "initial_food_hash": "c428b0ca7beef2c76d59",
+      "initial_founder_hash": "772cda0a9c403ad9fc5b",
+      "low_high_map_hashes": [
+        "0ff46fe91dc936618156",
+        "eaf0481c40a96334ce1e"
+      ],
+      "low_reachable_count": 147,
+      "low_wall_count": 78,
+      "map_attempt": 0,
+      "seed": 86003,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "a5bf990ce81d84e6f2f3",
+      "high_reachable_count": 143,
+      "high_wall_count": 82,
+      "initial_food_hash": "93633f2ee5c427bbf19f",
+      "initial_founder_hash": "2dd2daa5edf859f462bc",
+      "low_high_map_hashes": [
+        "1a57f3fb88a089a325a0",
+        "c702e8c11344b861f778"
+      ],
+      "low_reachable_count": 155,
+      "low_wall_count": 70,
+      "map_attempt": 0,
+      "seed": 86004,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "40b45acae77cd17bba42",
+      "high_reachable_count": 133,
+      "high_wall_count": 92,
+      "initial_food_hash": "37e2becdd937fdd6fbb5",
+      "initial_founder_hash": "4224e4a89763dc34252e",
+      "low_high_map_hashes": [
+        "bd92aff2b43a5e112e04",
+        "eebc331a142a0c799cc7"
+      ],
+      "low_reachable_count": 147,
+      "low_wall_count": 78,
+      "map_attempt": 0,
+      "seed": 86005,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "cc995a7918ec91150c8a",
+      "high_reachable_count": 129,
+      "high_wall_count": 92,
+      "initial_food_hash": "61358b1df77b9fbe8628",
+      "initial_founder_hash": "a2fe03c7414c7844d991",
+      "low_high_map_hashes": [
+        "14d06d3c0354b4a8c450",
+        "7a27d954da0996bc538a"
+      ],
+      "low_reachable_count": 149,
+      "low_wall_count": 74,
+      "map_attempt": 0,
+      "seed": 86006,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "12011b7a7fc794c9c1c2",
+      "high_reachable_count": 133,
+      "high_wall_count": 92,
+      "initial_food_hash": "9fc2a48ffb73d0e83b5f",
+      "initial_founder_hash": "15a04ef508ebe95bb1c9",
+      "low_high_map_hashes": [
+        "6494a0fabd6f8b38a3ca",
+        "436d660b5be15dc7f6a4"
+      ],
+      "low_reachable_count": 148,
+      "low_wall_count": 77,
+      "map_attempt": 0,
+      "seed": 86007,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "5988fd553252ad198854",
+      "high_reachable_count": 145,
+      "high_wall_count": 80,
+      "initial_food_hash": "8638d7cc3d16ae9594d5",
+      "initial_founder_hash": "6ba071f674f2872a78e6",
+      "low_high_map_hashes": [
+        "b0c10b3980eb24c9ffd8",
+        "6e06b2e605787a82ec96"
+      ],
+      "low_reachable_count": 154,
+      "low_wall_count": 71,
+      "map_attempt": 0,
+      "seed": 86008,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "d71504626fb6c474ec25",
+      "high_reachable_count": 139,
+      "high_wall_count": 85,
+      "initial_food_hash": "ab3da7ab4a0109fd5ef6",
+      "initial_founder_hash": "dd9e17ed1dfdb5caa5a8",
+      "low_high_map_hashes": [
+        "5775bd2577cea40d9676",
+        "6eef44d21c06d96c61e4"
+      ],
+      "low_reachable_count": 147,
+      "low_wall_count": 78,
+      "map_attempt": 0,
+      "seed": 86009,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "82350d25ca9aa9646815",
+      "high_reachable_count": 130,
+      "high_wall_count": 94,
+      "initial_food_hash": "80949cd772783503968d",
+      "initial_founder_hash": "0f0a615878dc2315022a",
+      "low_high_map_hashes": [
+        "ba15b7c303956041fdac",
+        "bfdef78f354fc7f6d147"
+      ],
+      "low_reachable_count": 149,
+      "low_wall_count": 76,
+      "map_attempt": 0,
+      "seed": 86010,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "39d8f3eb66b4d6dc5178",
+      "high_reachable_count": 121,
+      "high_wall_count": 101,
+      "initial_food_hash": "5430d1241cb2bc3e07ca",
+      "initial_founder_hash": "4376053dbc822507373c",
+      "low_high_map_hashes": [
+        "c6a7af8757c1536a94e5",
+        "bdb78d7bba63fc3f1838"
+      ],
+      "low_reachable_count": 142,
+      "low_wall_count": 83,
+      "map_attempt": 0,
+      "seed": 86011,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "8ad68e4784b076803a86",
+      "high_reachable_count": 142,
+      "high_wall_count": 83,
+      "initial_food_hash": "8a3eef9194cc03305802",
+      "initial_founder_hash": "d9cb5ce3681f72349b73",
+      "low_high_map_hashes": [
+        "8cf464c3d3f32b33c8cd",
+        "75a8a50e770767ea7870"
+      ],
+      "low_reachable_count": 153,
+      "low_wall_count": 72,
+      "map_attempt": 0,
+      "seed": 86012,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "a5cef70c6f30c25fdf3a",
+      "high_reachable_count": 137,
+      "high_wall_count": 88,
+      "initial_food_hash": "a7a5a623f858dcef2f73",
+      "initial_founder_hash": "9d3a69b681cb6536cfaf",
+      "low_high_map_hashes": [
+        "b152dac9201b090b0d33",
+        "d3cafda8348c9eb938cb"
+      ],
+      "low_reachable_count": 151,
+      "low_wall_count": 74,
+      "map_attempt": 0,
+      "seed": 86013,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "f709312f5aa8843ff0b9",
+      "high_reachable_count": 135,
+      "high_wall_count": 90,
+      "initial_food_hash": "2834acdbaa18dacc8067",
+      "initial_founder_hash": "778da2ec0d976ccd376e",
+      "low_high_map_hashes": [
+        "d20c7e25b8c1bd686bdf",
+        "cb4f92f9c0c95c66e4f7"
+      ],
+      "low_reachable_count": 146,
+      "low_wall_count": 79,
+      "map_attempt": 0,
+      "seed": 86014,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "60b9ddacd82cde0f879c",
+      "high_reachable_count": 141,
+      "high_wall_count": 84,
+      "initial_food_hash": "17e875be686b61eb8d14",
+      "initial_founder_hash": "2ae9d523bbe5e9016cb6",
+      "low_high_map_hashes": [
+        "f77290b1c32cf4283d76",
+        "326617c83c49b9d64f57"
+      ],
+      "low_reachable_count": 148,
+      "low_wall_count": 77,
+      "map_attempt": 0,
+      "seed": 86015,
+      "split": "main"
+    },
+    {
+      "common_candidate_pool_hash": "efcbdd737997a0bb9d39",
+      "high_reachable_count": 125,
+      "high_wall_count": 99,
+      "initial_food_hash": "bc4378329b13138d9d9f",
+      "initial_founder_hash": "0f56eb56fd1f31bb6e17",
+      "low_high_map_hashes": [
+        "74bbe894210a2ae9d632",
+        "5da16e123b74b8a5b8ab"
+      ],
+      "low_reachable_count": 142,
+      "low_wall_count": 83,
+      "map_attempt": 0,
+      "seed": 87000,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "f96518dbb1b62070d540",
+      "high_reachable_count": 136,
+      "high_wall_count": 89,
+      "initial_food_hash": "66ecd50b432b43319082",
+      "initial_founder_hash": "1999183993497672c8e5",
+      "low_high_map_hashes": [
+        "0ea21dfb71339e229f1a",
+        "b29117b44700dc966072"
+      ],
+      "low_reachable_count": 147,
+      "low_wall_count": 78,
+      "map_attempt": 0,
+      "seed": 87001,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "8b067855bf3f2c45baef",
+      "high_reachable_count": 136,
+      "high_wall_count": 89,
+      "initial_food_hash": "da47e0262610d6f3d79b",
+      "initial_founder_hash": "f5986b87a44a1d4cd6bd",
+      "low_high_map_hashes": [
+        "8f4d626b1ed718743f6e",
+        "284f99358829cf64c399"
+      ],
+      "low_reachable_count": 155,
+      "low_wall_count": 70,
+      "map_attempt": 0,
+      "seed": 87002,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "50a425a6cd78d7509abd",
+      "high_reachable_count": 134,
+      "high_wall_count": 87,
+      "initial_food_hash": "1412107a31e05a474408",
+      "initial_founder_hash": "54fb936e1bdf5677c89d",
+      "low_high_map_hashes": [
+        "0d4bf9e392faa35f8c60",
+        "493b683e5381839bfe3e"
+      ],
+      "low_reachable_count": 153,
+      "low_wall_count": 72,
+      "map_attempt": 0,
+      "seed": 87003,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "a7c9ce01b0bf508c52e1",
+      "high_reachable_count": 119,
+      "high_wall_count": 104,
+      "initial_food_hash": "a0f1ea4336908ac01505",
+      "initial_founder_hash": "d748877aaa01b1c01510",
+      "low_high_map_hashes": [
+        "ca2a8c14b08a6b0a6cb9",
+        "efb6d330ddda39098642"
+      ],
+      "low_reachable_count": 140,
+      "low_wall_count": 85,
+      "map_attempt": 0,
+      "seed": 87004,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "08038867f309a6b9a635",
+      "high_reachable_count": 133,
+      "high_wall_count": 91,
+      "initial_food_hash": "4e0b687a5e525985ce69",
+      "initial_founder_hash": "0f01f1409407716e02fe",
+      "low_high_map_hashes": [
+        "5968fe3025c03931fdc1",
+        "a51a6ab4d7a482fbc04c"
+      ],
+      "low_reachable_count": 146,
+      "low_wall_count": 79,
+      "map_attempt": 0,
+      "seed": 87005,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "4402bd103a46370ed09b",
+      "high_reachable_count": 138,
+      "high_wall_count": 86,
+      "initial_food_hash": "2b9ce431fdf11c558df0",
+      "initial_founder_hash": "e89877db193fb78fd3de",
+      "low_high_map_hashes": [
+        "f126ce74553f6d5cd935",
+        "468c23932776ef8bc2f8"
+      ],
+      "low_reachable_count": 146,
+      "low_wall_count": 78,
+      "map_attempt": 0,
+      "seed": 87006,
+      "split": "validation"
+    },
+    {
+      "common_candidate_pool_hash": "356c7e92328e469ae08c",
+      "high_reachable_count": 134,
+      "high_wall_count": 91,
+      "initial_food_hash": "2d00f7ee4243fa148b99",
+      "initial_founder_hash": "ef2c0ecadfd994125817",
+      "low_high_map_hashes": [
+        "1ac1cd26b3201b98fc40",
+        "17cb62d750e73f830829"
+      ],
+      "low_reachable_count": 146,
+      "low_wall_count": 79,
+      "map_attempt": 0,
+      "seed": 87007,
+      "split": "validation"
+    }
+  ],
+  "exact_preselected_genotype_digests": {
+    "82006": {
+      "ancestor": "f95120f1fb1698ec",
+      "descendant": "3291f7ad64b9ab88"
+    },
+    "82015": {
+      "ancestor": "eb518788c6946e24",
+      "descendant": "ca840746b9ac4f8e"
+    },
+    "82018": {
+      "ancestor": "df2ae73dc2f782dd",
+      "descendant": "17e4e60367b55796"
+    },
+    "82019": {
+      "ancestor": "ae509cfdf1659e76",
+      "descendant": "94117fd1ed351bd1"
+    },
+    "82023": {
+      "ancestor": "e0924a49e9481b97",
+      "descendant": "d64806838ff94301"
+    }
+  }
+}
