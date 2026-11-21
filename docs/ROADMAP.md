@@ -69,7 +69,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Critical limitation:** accuracy before intervention practically reveals the deliberately inserted damage on the training family. The renewal operator is intentionally aligned with the damage mechanism. This is *only* a causal **positive-control benchmark**, not an emergent capability to discover how to repair arbitrary structural failures or invent goals.
 - Next: pre-register M3.2 for unlabelled, non-artificial learning interference with new seed splits, internal-state diagnostics and true memory preservation measurements.
 
-## M3.2 — Continuous training with natural task interference (implemented, awaiting full independent campaign)
+## M3.2 — Continuous training with natural task interference (completed; primary null)
 - [Frozen M3.2 protocol](M3_2_PROTOCOL.md), distinct from the engineered M3.1 positive control.
 - One evolving network faces 12 tasks with latent task returns and novelties; **no artificial damage**.
 - Fixed total of four renewal actions; three independently evolved policies: full neural diagnostics, accuracy-only, and time-only; fixed uniform/shuffled/random-unit controls.
@@ -77,6 +77,14 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - On final seeds, both interventions are cloned from each adaptive trajectory's pre-decision state, then trained identically to record one-step AUC/forgetting effects.
 - Primary gate: held-out seed-level AUC vs independent time-only; necessary secondary: improvement over independent accuracy-only without concealing memory loss.
 - Interpretive caution: some latent label rules conflict on the same unlabeled 2D inputs, so old-task retention can be fundamentally limited; this is **not** arbitrary self-programming.
+
+### M3.2 actual result — primary negative, operator-selection signal
+- [M3.2 report](../reports/M3_2_natural_interference_2026-11-21.md), [sealed GitHub run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44899315401), [32-seed archive](../reports/M3_2_seeds_2026-11-21.csv).
+- Main 20 test seeds: full-state adaptive AUC **74.46%**, independently optimized time-only **74.77%** (−0.316 pp, paired bootstrap 95% −0.837/+0.100 pp), and accuracy-only **74.84%** (−0.382 pp). **Neither preregistered success gate passed**.
+- At exactly the same renewal times/counts, low-activity unit selection versus random-unit selection was **+1.494 pp** on regular tasks (exploratory), but with greater forgetting; effect is **not robust** on shifted checker/wedge tasks.
+- One-step potential outcomes were evaluated from **352** real pre-intervention states (no synthetic damage). Main mean renewal effect was +0.439 pp learning AUC, but +0.710 pp forgetting. Local oracle agreement only 46.8% (main) and 53.8% (shifted).
+- Fundamental design limitation: changing task rules can produce **mutually incompatible labels for identical 2D inputs without context cues**, making perfect retention impossible. Do not claim a general inability of neural networks to self-adapt from this environment.
+- Suggested M3.3: introduce an observable context/task cue or compositional, non-contradictory task relationships, freeze new seed splits, test achievable lifelong memory and adaptation under comparable resource budgets.
 
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
