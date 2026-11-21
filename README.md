@@ -81,6 +81,20 @@ python -m neuroevolution.m3_1 --out results/m3_1
 
 Read [the frozen M3.1 protocol](docs/M3_1_PROTOCOL.md). A success here would **not** show general meta-learning or self-generated goals: the damage operator and its possible repair are deliberately constructed and externally specified.
 
+## M3.2 — Natural lifelong interference (no injected damage)
+
+M3.1 proved that a pre-engineered artificial neural failure could be detected and repaired. **M3.2 removes that external corruption.** One persistent ReLU network learns 12 supervised tasks sequentially. Some tasks recur and others arrive for the first time, causing representational interference solely via normal SGD.
+
+An externally evolved policy can choose *when* to renew three low-activation units, with **exactly four intervention events per lifetime**. Independent controllers see (i) all training-only diagnostics including output-gradient conflict, (ii) accuracy/time only, or (iii) time only. Exact-budget controls shuffle action times, spread them evenly, or select random neurons.
+
+For the adaptive policy, at each final-test boundary we also clone the **actual persistent network** and evaluate both one-step interventions on identical training data; the holdout-based oracle is **never shown to the policy**. We report learning AUC, old-task forgetting, and the narrow one-step counterfactual effect separately. Partial OOD tests use checker/wedge problems absent from training.
+
+~~~bash
+python -m neuroevolution.m3_2 --out results/m3_2
+~~~
+
+Read the [M3.2 frozen protocol](docs/M3_2_PROTOCOL.md). A negative outcome will be published without retuning final seeds.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
@@ -96,5 +110,7 @@ Read [the frozen M3.1 protocol](docs/M3_1_PROTOCOL.md). A success here would **n
 [M3 unpredictable recurrence campaign](.github/workflows/m3-novelty-recurrence.yml): preregistered meta-training and independent regular/shifted final tests. Launch manually or by an explicit kickoff marker.
 
 [M3.1 causal intervention workflow](.github/workflows/m3-1-causal-repair.yml): explicit kickoff/manual GitHub run, paired potential outcomes, archived metrics.
+
+[M3.2 natural interference campaign](.github/workflows/m3-2-natural-interference.yml): isolated train/validation/final tests, explicit GitHub kickoff, archiving complete counterfactual data.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.
