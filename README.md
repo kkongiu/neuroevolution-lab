@@ -386,3 +386,19 @@ python -m neuroevolution.m5_5b --out results/m5-5b
 ~~~
 
 **Scientific status:** a real nontrivial physical selection environment has been found; spontaneous beneficial mutation and transferable evolutionary adaptation have **not** been demonstrated. See the [prospective protocol](docs/M5_5B_PROTOCOL.md). Reserved independent confirmation and ancestor/descendant-gene-reversion tests are next.
+
+## M5.5C — Independent causal transplant of actual mutated descendants versus OWN founders
+
+Our physical-predator M5.5B feasibility produced a 3-predator regime with useful survival pressure, but its sparse newborn mutation advantage was statistically unproven. M5.5C prospectively freezes **eight original, genuinely born and physically reproducing mutant descendants** (one from each original independent source world) and their **exact own original naive founding nine-gene genotypes**, then tests six frozen genotype interventions in **24 totally new MAIN + 12 totally new HARD worlds**. This is **1,728 original 400-tick world-policy trials**, **15,552 checkpoints**, and 20,000 bootstraps on the eight **SOURCE FAMILIES** (not misleadingly on thousands of descendant agents or reused worlds). See [the preregistered protocol](docs/M5_5C_PROTOCOL.md), [previously committed full-precision source genotype bank](reports/M5_5C_FROZEN_SOURCE_CANDIDATES_2026-11-21.json), and [complete scientific result](reports/M5_5C_own_founder_caused_fitness_test_2026-11-21.md).
+
+**Original, completed independent test found NO transferred beneficial mutation evidence:** MAIN 400-tick source-family/world survivals for original founding nine-gene genotype **104/192** vs its own selected physically born mutant descendant **95/192**; paired survival **−4.69pp [95% −14.06,+3.13]**, checkpoint population **−0.163 [−0.642,+0.297]**, both intervals including zero. The mutated ninth fear gene alone did not improve outcomes; all-nine-gene **full reversion perfectly reproduced the original founder in EVERY matched world**, an essential anti-confound audit. HARD 3-predator transfer worlds likewise give no population advantage for mutants. Every trial and checkpoint is permanently preserved in [original full results](reports/M5_5C_all_1728_original_causal_transplants_2026-11-21.csv), [15,552 physical checkpoints](reports/M5_5C_all_15552_original_physical_checkpoints_2026-11-21.csv), and [source-family bootstrap statistics](reports/M5_5C_original_preregistered_family_bootstrap_statistics_2026-11-21.json).
+
+Reproduce the frozen study (run only from a committed bank, never select candidates from heldout worlds):
+~~~bash
+python -m unittest discover -s tests -v
+python -m neuroevolution.m5_5c \
+  --bank reports/M5_5C_FROZEN_SOURCE_CANDIDATES_2026-11-21.json \
+  --out results/m5-5c
+~~~
+
+**Scientific interpretation:** physically real predation and heredity work, but actual born selected numerical mutants have not displayed reproducible cross-world genetic adaptation. The local threat sensor and primitive avoidance logic are programmed, NOT learned or spontaneously evolved. Negative outcomes will not be hidden or retrospectively retuned.
