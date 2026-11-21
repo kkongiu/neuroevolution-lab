@@ -216,6 +216,22 @@ Outputs include per-world CSV, 50-tick population checkpoints, detailed birth/li
 
 **Boundary:** This is a designed artificial ecosystem. Energy/reproductive thresholds, food dynamics, neuron topology, odor sensors and mutational rules are **still written by the researcher**. It does NOT yet exhibit within-life synaptic learning, network rewiring, predators, consciousness, independent goal invention, or executable self-replication. Null or extinct populations must be reported honestly.
 
+## M5.1 — Can our existing ecology sustain any sensible forager?
+
+In M5.0, every population died out despite plentiful uncollected food. **M5.1 diagnoses this failure without changing M5.0's physical laws** and without inserting hand-coded competence into neural genotypes.
+
+On **16 new main world seeds** (73000–73015) and **8 harder new shifted worlds** (74000–74007), compare the SAME 15×15 ecology, founding genomes, food events, energy and reproduction physics under four behavior policies: (i) the **unaltered original M5.0 neural action choice** with in-world heritable mutation, (ii) scripted greedy local food-odor follower plus fixed reproductive energy threshold, (iii) a *stronger programmed reference* using local food and a small personal visit-count memory, and (iv) a legal random walker with the exact same scripted reproduction rule.
+
+The three scripted policies are **not evolved**: child genomes are tracked for continuity but do not determine their scripted actions. Scripted policies use age and in the novelty version their own visited-cell counts, which the neural controller does **not** receive; they are **diagnostic upper references**, not fair tests of emergent cognitive intelligence.
+
+The fixed primary question is whether the programmed novelty forager leaves ≥1 living organism at tick 400 in ≥8/16 worlds and reaches generation depth ≥3 in ≥8/16 worlds. A separate necessary forage check requires a positive seed-paired food-consumption advantage for the purely reactive greedy follower over legal random motion. Four no-reproduction and four no-food-renewal controls test environmental limits; all inherit the unmodified M5.0 metabolism and birth-energy rules. Track food eaten, 50-tick population changes, actual births, starvation, odor alignment, food-adjacent opportunities and energy conservation.
+
+~~~bash
+python -m neuroevolution.m5_1 --out results/m5_1
+~~~
+
+Read the [preregistered protocol](docs/M5_1_PROTOCOL.md) and [read-only GitHub Actions campaign](.github/workflows/m5-1-ecological-viability.yml). Results include world-by-arm CSV, checkpoint CSV, population curve SVG, sample world maps, and event genealogies. Null findings are valuable: if even simple scripted agents die despite abundant food, the physical ecology itself needs further diagnosis before any new genetic search.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
