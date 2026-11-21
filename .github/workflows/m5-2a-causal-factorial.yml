@@ -1,0 +1,53 @@
+name: M5.2A causal factorial campaign
+on:
+  push:
+    branches: ["experiment/m5-2-causal-factorial"]
+    paths:
+      - "campaigns/m5-2a-kickoff-*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  factorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regression suite and exact physics identity controls
+        run: python -m unittest discover -s tests -v
+      - name: Frozen M5.2A 20+10 independent paired worlds
+        run: |
+          python -m neuroevolution.m5_2a \
+            --seed-start 75000 --seeds 20 \
+            --shifted-start 76000 --shifted-seeds 10 \
+            --negative-control-worlds 1 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 5 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --scripted-reproduction-threshold 46 \
+            --max-age 100 --hidden 12 \
+            --initial-weight-sd 0.45 --mutation-sd 0.12 \
+            --checkpoint-every 50 --no-food-controls 0 \
+            --out results/m5-2a
+      - name: Archive sealed world-level results, interactions, event logs and charts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-2a-causal-factorial
+          path: results/m5-2a/
+          if-no-files-found: warn
+          retention-days: 30
