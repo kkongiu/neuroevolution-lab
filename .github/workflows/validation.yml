@@ -59,6 +59,8 @@ jobs:
         run: python -m neuroevolution.m5_3a --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --teacher-seed-start 1100 --teacher-seed-count 2 --validation-teacher-start 1200 --validation-teacher-count 1 --teacher-ticks 35 --train-cap 150 --validation-cap 90 --epochs 3 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --negative-control-worlds 1 --no-food-controls 0 --hidden 12 --out results/m5-3a-smoke
       - name: M5.3B genuine genetic evolution smoke
         run: python -m neuroevolution.m5_3b --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --hidden 12 --sparse-gene-count 2 --initial-gene-sd 0.65 --gene-mutation-sd 0.16 --out results/m5-3b-smoke
+      - name: M5.3C original-genealogy and transplant smoke
+        run: python -m neuroevolution.m5_3c --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --bootstrap-reps 200 --no-food-controls 0 --hidden 12 --out results/m5-3c-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -84,4 +86,5 @@ jobs:
             results/m5-2b-smoke/
             results/m5-3a-smoke/
             results/m5-3b-smoke/
+            results/m5-3c-smoke/
           retention-days: 30
