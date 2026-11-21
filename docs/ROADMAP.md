@@ -207,7 +207,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Next issue:** [M4.4 integrate causal recall with motor planning](https://github.com/kkongiu/neuroevolution-lab/issues/26). Preregister new genetics/world seeds, fully separate arrival and recalled choice, and report both main and out-of-distribution tests. Do NOT overwrite M4.0/M4.1/M4.2 negative findings.
 - None of these runs demonstrate within-lifetime synaptic learning, ecological reproduction, map learning, predator avoidance or autonomous objectives.
 
-## M5.0 — Continuous ecological selection and organism reproduction (new track; implementation validated, sealed campaign pending)
+## M5.0 — Continuous ecological selection and organism reproduction (complete; primary negative)
 - [Frozen M5.0 protocol](M5_0_PROTOCOL.md), committed before code and any final-seed run. Leaves all M4.x scientific results unchanged.
 - **No external training fitness or generational selection**: a population of 20 recurrent neural organisms physically occupies one continuous 15×15 world; finite energy, movement, walls, competition for renewable food, death and **explicit in-world reproduce choice**.
 - Each birth creates an actual child with parent ID, inherited lineage/generation and a separate 12-energy endowment drawn from 20 energy units charged to the parent. Parent and child cannot generate net energy; track exact cumulative food input, basal expenditure and dissipation.
@@ -216,6 +216,16 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Records every food gain, birth parent/child, genome digest, unique founding lineage and population at scheduled checkpoints, with deterministic replays and SVG maps.
 - **This is not unlimited open-ended natural evolution**: genotype length/topology, laws of reproduction, birth energy and resources are still designed; no within-life weight learning, predators or independent objectives. A few births do not establish cognitive adaptation.
 - Next phase only if data justify it: repeatable multigenerational persistence, perturb environmental resources, separate selection of pre-existing genotypes from beneficial novel mutations, eventually embodied perception/learning with causal controls.
+
+### M5.0 empirical outcome — births and inherited generations, but all worlds go extinct
+- [Scientific report](../reports/M5_0_persistent_ecology_2026-11-21.md), [original successful GitHub Actions campaign](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44911495711), [60 ecosystem world/arm outcomes](../reports/M5_0_world_metrics_2026-11-21.csv). Full raw lineage and 50-tick population data archived with Actions artifact.
+- **In-world reproduction genuinely executed** by local RNN organisms; parents pay reproductive energy and children receive inherited/genetically mutated weights and have their own age, body, and lineage. **No outside fitness ranking or genetic champion selection** exists in M5.0.
+- Main **12 independent worlds ×400 ticks**: inherited+mutated genotypes **23.42 births/world**, newborns with independent random genomes **20.83**, exact clones **20.17**. Primary Δ+2.58 births, paired bootstrap 95% **−2.58/+9.17**, only **6/12** positive worlds (required 9/12): **failed**. Generation≥3 in **6/12**, required 9/12: **failed**. One world reached generation 8 but also died.
+- **ALL populations in ALL arms go extinct**, normal and harder shifted. Main mean extinction time **146.9 ticks** inherited, **130.6** random, **126.5** clones. In the shifted 8 worlds, inherited births **17.13** vs random **18.00**, Δ−0.88 with inconclusive paired interval.
+- The average inherited run at tick **100** has just **2.92 living organisms** while **31.33/32 food slots** are occupied: failure likely involves foraging/motor policy, not only lack of global resources. **Zero-food control:** four worlds, no births and all founders die at tick 36. Energy bookkeeping exactly balanced.
+- Genome cosine parent-child **~0.967** with small mutation, **1.000** for exact clones, **~0.001** for independent random newborns: inheritance interventions verified, but not beneficial adaptation.
+- **Next issue [M5.1 ecological viability & behavioral diagnosis](https://github.com/kkongiu/neuroevolution-lab/issues/28):** check whether a simple scripted greedy food follower with the SAME physical birth law can maintain a population; separate locomotion, perception and reproduction bottlenecks. Do NOT modify old frozen M5.0 test seeds or reclassify null as success.
+- Still researcher-designed ecology, not proof of independent goal formation, within-life synaptic learning, adaptive structural evolution, predators or digital consciousness.
 
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
