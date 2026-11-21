@@ -1,0 +1,66 @@
+name: M5.4B0-R independent exact 192-genome provenance audit
+on:
+  push:
+    branches: ["experiment/m5-4b0r-eighteen-gene-recurrence"]
+    paths:
+      - "campaigns/m5-4b0r-audit-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  source-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Replay ONLY 768 development and 96 validation worlds; assert source archive and selected genes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from neuroevolution import m5_4b0r as study
+
+          science=json.loads(Path(
+              "reports/M5_4B0R_frozen_recurrent_genes_and_preregistered_statistics_2026-11-21.json"
+          ).read_text())
+          original=json.loads(Path(
+              "reports/M5_4B0R_all_192_external_numeric_genomes_and_ancestry_2026-11-21.json"
+          ).read_text())
+          original_unsafe=study.simulate_numeric
+          def enforce_source_fence(seed, settings, genes, **kwargs):
+              if not (89000 <= seed < 89004 or 89100 <= seed < 89108):
+                  raise AssertionError("PROVENANCE AUDIT MUST NOT OPEN SEALED WORLD")
+              if kwargs.get("shifted",False):
+                  raise AssertionError("Never alter original external search ecology")
+              return original_unsafe(seed,settings,genes,**kwargs)
+          study.simulate_numeric=enforce_source_fence
+          for index,kind in enumerate(("recurrent","feedforward")):
+              records,development,validation,winner,summary=(
+                  study.external_search(study.Settings(),kind,report=False)
+              )
+              historic=original[
+                  "recurrent_18_full_candidate_genes"
+                  if kind=="recurrent" else
+                  "original_feedforward_10_full_candidate_genes"
+              ]
+              assert records==historic
+              assert summary==science["sources"][index]
+              assert summary["chosen_candidate_id"]==(
+                  science["selected"][kind]["candidate_id"]
+              )
+              assert summary["chosen_genes"]==science["selected"][kind]["genes"]
+              assert len(records)==96 and len(development)==384 and len(validation)==48
+              for row in development:
+                  print("M5.4B0R AUDIT SOURCE "+
+                        json.dumps(row,sort_keys=True),flush=True)
+              for row in validation:
+                  print("M5.4B0R AUDIT SOURCE "+
+                        json.dumps(row,sort_keys=True),flush=True)
+              print("M5.4B0R VERIFIED ARCHITECTURE "+
+                    json.dumps(summary,sort_keys=True),flush=True)
+          print("M5.4B0R VERIFIED 192 EXACT CANDIDATES + 864 UNSEALED WORLD OUTCOMES",flush=True)
+          PY
