@@ -1,0 +1,42 @@
+name: M3 novelty and recurrence
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m3-kickoff-*.md"
+permissions:
+  contents: read
+
+jobs:
+  m3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run all unit tests before evaluation
+        run: python -m unittest discover -s tests -v
+      - name: Frozen M3 campaign with independent test seeds and shifted task families
+        run: |
+          python -m neuroevolution.m3 \
+            --train-start 8000 --train-seeds 4 \
+            --validation-start 9000 --validation-seeds 3 \
+            --test-start 10000 --test-seeds 12 \
+            --shifted-start 11000 --shifted-seeds 12 \
+            --tasks 10 --steps 48 --batch-size 2 \
+            --width 16 --eval-size 48 --report-every 12 \
+            --learning-rate 0.04 --max-reset-fraction 0.20 \
+            --budget-fraction 0.45 --generations 5 --population 8 \
+            --retention-cost 0.05 --search-seed 911 \
+            --out results/m3
+      - name: Preserve all results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m3-novelty-recurrence
+          path: results/m3/
+          if-no-files-found: warn
+          retention-days: 30
