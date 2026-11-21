@@ -171,7 +171,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Harder shifted-world test also null versus walker: evolved **1.063**, random legal **1.083**. All **64 no-food negative controls** yield zero food.
 - Next proposed experiment: [M4.2 delayed-cue memory vs matched feedforward](https://github.com/kkongiu/neuroevolution-lab/issues/22). Preregister actual information requirements and test recurrence with a hidden-state reset ablation, rather than introducing predators or reproduction too early.
 
-## M4.2 — Spatial delayed-cue memory with causal recurrent-state intervention (preregistered)
+## M4.2 — Spatial delayed-cue memory: completed; causal-memory null
 - [M4.2 frozen protocol](M4_2_PROTOCOL.md) committed BEFORE implementation/evaluation. A new T-fork task gives two symmetric goal targets on identical geometry, but only a 2-step initial cardinal-direction cue, disappearing before the fork.
 - Trial ends on entry to one of two one-way fork gates (correct branch yields one food); this is a deliberately narrow cognitive-memory diagnostic, NOT an open survival ecology.
 - **No scent, neighboring food, global map, exposed time or energy clock at the fork**, avoiding hidden task-label leakage. Real energy still decays physically.
@@ -180,6 +180,14 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Primary: evolved RNN minus independent feedforward final binary food success, hierarchical paired bootstrap over 8 genetic starts and shared 32 world-pairs; necessary secondary reset-at-fork effect and flipped cue effect; report train/validation overfit diagnostics.
 - Exploratory transfer only: frozen champions face 12 new open M4.1 mazes with full odor alongside greedy odor/random, and with recurrent odor disabled. A learned cue-memory policy is not expected automatically to forage efficiently.
 - Not a demonstration of self-chosen goals or within-life weight learning. Null results stay null. Do not rewrite M4.0/M4.1 or reuse their final seeds.
+
+### M4.2 empirical result — architectural gain ≠ demonstrated memory
+- [Scientific report](../reports/M4_2_delayed_cue_memory_2026-11-21.md), [sealed GitHub campaign](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44908425038), [per-genetic-run seed archive](../reports/M4_2_success_by_genetic_run_2026-11-21.csv).
+- Main **8 independent genetic runs ×32 paired worlds**: recurrent success **39.26%**, near-size-matched feedforward **28.13%** (primary **+11.13 pp**, hierarchical bootstrap 95% **+2.34/+20.90 pp**, 7/8 genetic starts positive). Primary **architecture** criterion passes.
+- **Necessary causal-memory gates FAIL**: same RNN with memory reset at fork **33.01%**, Δ+6.25 pp (bootstrap **−1.95/+14.45**); cue inverted **30.47%**, Δ+8.79 pp (**−6.64/+23.44**). RNN also reaches the fork more than FF (72.07% vs56.25%), confounding locomotion and recall. Programmed one-bit cue memory gets 100%; RNN does not beat legal random (34.38%) with clear evidence.
+- **Longer delay shifted 16 pairs**: RNN **26.17%** vs FF **25.00%**, no generalization confirmation. In free-roaming open survival mazes, RNN gathers **1.50** food vs legal random **2.58** and odor-greedy **7.92**; odor ablation Δ+0.14 (uncertain).
+- All earlier M4.0/M4.1 negative records preserved. **Next issue:** [M4.3 causal recall without motor confound](https://github.com/kkongiu/neuroevolution-lab/issues/24); preregister a pure memory decision with guaranteed fork arrival before reintroducing free navigation.
+- Recurrent state is not within-life synaptic learning; numerical weights are externally evolved. No self-chosen objectives, reproduction or predators.
 
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
