@@ -1,0 +1,1039 @@
+{
+  "title": "M5.5B original preregistered predator exploratory matched-world statistics",
+  "git_actions_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44948142490",
+  "original_source_head": "b9d0f4bf00b667dae68249214e6db4616db33d37",
+  "preregistered_protocol_commit": "bac95063d9c0a32fcec2380cd87f36d35b081790",
+  "bootstrap_reps": 20000,
+  "preregistered_world_seeds": {
+    "main": [
+      94000,
+      94007
+    ],
+    "hard": [
+      94100,
+      94103
+    ]
+  },
+  "predator_levels": [
+    0,
+    1,
+    3
+  ],
+  "original_world_policy_trials": 180,
+  "physical_ticks_per_world": 400,
+  "independent_matched_worlds": 12,
+  "physics_checks": "221 Python unit tests passed; all 180 energy residuals <=1e-6; all 36 pressure/seed groups have 5 exact matching source world+founder SHA",
+  "artifact_id": 14723743999,
+  "full_original_stats": {
+    "feasible_pressure_levels": [
+      3
+    ],
+    "hard": {
+      "0": {
+        "arms": {
+          "fear_blind_clone": {
+            "mean_births": 78.25,
+            "mean_population_auc": 10.63888888888889,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 0
+          },
+          "innate_clone": {
+            "mean_births": 78.25,
+            "mean_population_auc": 10.63888888888889,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 0
+          },
+          "innate_dense_mutation": {
+            "mean_births": 82.5,
+            "mean_population_auc": 10.75,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 4,
+            "worlds_with_predation": 0
+          },
+          "innate_random_newborn": {
+            "mean_births": 79,
+            "mean_population_auc": 10.916666666666668,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 0
+          },
+          "innate_sparse_mutation": {
+            "mean_births": 74.75,
+            "mean_population_auc": 10.527777777777779,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 4,
+            "worlds_with_predation": 0
+          }
+        },
+        "comparisons": {
+          "clone_minus_fear_blind_population_auc": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "clone_minus_fear_blind_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "dense_minus_clone_population_auc": {
+            "mean_paired_difference": 0.11111111111111027,
+            "per_world": {
+              "94100": 0.33333333333333215,
+              "94101": 0.11111111111111072,
+              "94102": 0.22222222222222143,
+              "94103": -0.2222222222222232
+            },
+            "world_paired_bootstrap_95": [
+              -0.11111111111111205,
+              0.2777777777777768
+            ]
+          },
+          "dense_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "random_newborn_minus_clone_population_auc": {
+            "mean_paired_difference": 0.2777777777777777,
+            "per_world": {
+              "94100": -0.5555555555555554,
+              "94101": 0.3333333333333339,
+              "94102": -0.3333333333333339,
+              "94103": 1.666666666666666
+            },
+            "world_paired_bootstrap_95": [
+              -0.44444444444444464,
+              1.166666666666666
+            ]
+          },
+          "random_newborn_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "sparse_minus_clone_population_auc": {
+            "mean_paired_difference": -0.1111111111111116,
+            "per_world": {
+              "94100": -0.3333333333333339,
+              "94101": -0.22222222222222143,
+              "94102": -0.11111111111111249,
+              "94103": 0.22222222222222143
+            },
+            "world_paired_bootstrap_95": [
+              -0.27777777777777857,
+              0.11111111111111072
+            ]
+          },
+          "sparse_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          }
+        },
+        "worlds": 4
+      },
+      "1": {
+        "arms": {
+          "fear_blind_clone": {
+            "mean_births": 85.25,
+            "mean_population_auc": 8.222222222222221,
+            "mean_predation_deaths": 51.75,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 4
+          },
+          "innate_clone": {
+            "mean_births": 76.5,
+            "mean_population_auc": 8.805555555555555,
+            "mean_predation_deaths": 26.25,
+            "survivor_worlds": 3,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 4
+          },
+          "innate_dense_mutation": {
+            "mean_births": 85,
+            "mean_population_auc": 8.88888888888889,
+            "mean_predation_deaths": 26.25,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 4,
+            "worlds_with_predation": 4
+          },
+          "innate_random_newborn": {
+            "mean_births": 85.75,
+            "mean_population_auc": 10.027777777777779,
+            "mean_predation_deaths": 22.25,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 4
+          },
+          "innate_sparse_mutation": {
+            "mean_births": 81.75,
+            "mean_population_auc": 9.86111111111111,
+            "mean_predation_deaths": 24.25,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 4,
+            "worlds_with_predation": 4
+          }
+        },
+        "comparisons": {
+          "clone_minus_fear_blind_population_auc": {
+            "mean_paired_difference": 0.5833333333333333,
+            "per_world": {
+              "94100": 2.8888888888888893,
+              "94101": 0.3333333333333339,
+              "94102": -2.1111111111111116,
+              "94103": 1.2222222222222214
+            },
+            "world_paired_bootstrap_95": [
+              -1.2777777777777783,
+              2.2500000000000004
+            ]
+          },
+          "clone_minus_fear_blind_survived": {
+            "mean_paired_difference": -0.25,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": -1,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              -0.75,
+              0
+            ]
+          },
+          "dense_minus_clone_population_auc": {
+            "mean_paired_difference": 0.08333333333333326,
+            "per_world": {
+              "94100": -0.3333333333333339,
+              "94101": 1.666666666666666,
+              "94102": 0.5555555555555562,
+              "94103": -1.5555555555555554
+            },
+            "world_paired_bootstrap_95": [
+              -1.0277777777777775,
+              1.166666666666666
+            ]
+          },
+          "dense_minus_clone_survived": {
+            "mean_paired_difference": 0.25,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 1,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0.75
+            ]
+          },
+          "random_newborn_minus_clone_population_auc": {
+            "mean_paired_difference": 1.222222222222222,
+            "per_world": {
+              "94100": 0.7777777777777768,
+              "94101": 1.2222222222222214,
+              "94102": 3.000000000000001,
+              "94103": -0.11111111111111072
+            },
+            "world_paired_bootstrap_95": [
+              0.22222222222222232,
+              2.4444444444444446
+            ]
+          },
+          "random_newborn_minus_clone_survived": {
+            "mean_paired_difference": 0.25,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 1,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0.75
+            ]
+          },
+          "sparse_minus_clone_population_auc": {
+            "mean_paired_difference": 1.0555555555555551,
+            "per_world": {
+              "94100": 0.6666666666666661,
+              "94101": 1.5555555555555554,
+              "94102": 0.8888888888888884,
+              "94103": 1.1111111111111107
+            },
+            "world_paired_bootstrap_95": [
+              0.7777777777777772,
+              1.3888888888888886
+            ]
+          },
+          "sparse_minus_clone_survived": {
+            "mean_paired_difference": 0.25,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 1,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0.75
+            ]
+          }
+        },
+        "worlds": 4
+      },
+      "3": {
+        "arms": {
+          "fear_blind_clone": {
+            "mean_births": 11.5,
+            "mean_population_auc": 2.2222222222222223,
+            "mean_predation_deaths": 27.25,
+            "survivor_worlds": 0,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 4
+          },
+          "innate_clone": {
+            "mean_births": 25.25,
+            "mean_population_auc": 3.5555555555555554,
+            "mean_predation_deaths": 27,
+            "survivor_worlds": 0,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 4
+          },
+          "innate_dense_mutation": {
+            "mean_births": 33,
+            "mean_population_auc": 3.75,
+            "mean_predation_deaths": 32,
+            "survivor_worlds": 0,
+            "worlds_with_mutated_births": 4,
+            "worlds_with_predation": 4
+          },
+          "innate_random_newborn": {
+            "mean_births": 27,
+            "mean_population_auc": 3.694444444444444,
+            "mean_predation_deaths": 28.75,
+            "survivor_worlds": 0,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 4
+          },
+          "innate_sparse_mutation": {
+            "mean_births": 29.5,
+            "mean_population_auc": 3.75,
+            "mean_predation_deaths": 27.25,
+            "survivor_worlds": 0,
+            "worlds_with_mutated_births": 4,
+            "worlds_with_predation": 4
+          }
+        },
+        "comparisons": {
+          "clone_minus_fear_blind_population_auc": {
+            "mean_paired_difference": 1.333333333333333,
+            "per_world": {
+              "94100": 1,
+              "94101": 1.4444444444444442,
+              "94102": 1.4444444444444442,
+              "94103": 1.4444444444444442
+            },
+            "world_paired_bootstrap_95": [
+              1.1111111111111112,
+              1.4444444444444442
+            ]
+          },
+          "clone_minus_fear_blind_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "dense_minus_clone_population_auc": {
+            "mean_paired_difference": 0.19444444444444464,
+            "per_world": {
+              "94100": 0.11111111111111116,
+              "94101": 0.3333333333333335,
+              "94102": -0.22222222222222188,
+              "94103": 0.5555555555555558
+            },
+            "world_paired_bootstrap_95": [
+              -0.08333333333333304,
+              0.44444444444444464
+            ]
+          },
+          "dense_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "random_newborn_minus_clone_population_auc": {
+            "mean_paired_difference": 0.13888888888888884,
+            "per_world": {
+              "94100": -0.22222222222222232,
+              "94101": -0.5555555555555554,
+              "94102": -0.11111111111111116,
+              "94103": 1.4444444444444442
+            },
+            "world_paired_bootstrap_95": [
+              -0.4444444444444443,
+              1.0277777777777777
+            ]
+          },
+          "random_newborn_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "sparse_minus_clone_population_auc": {
+            "mean_paired_difference": 0.19444444444444453,
+            "per_world": {
+              "94100": 0.4444444444444442,
+              "94101": -0.11111111111111116,
+              "94102": -0.33333333333333304,
+              "94103": 0.7777777777777781
+            },
+            "world_paired_bootstrap_95": [
+              -0.2222222222222221,
+              0.6111111111111112
+            ]
+          },
+          "sparse_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94100": 0,
+              "94101": 0,
+              "94102": 0,
+              "94103": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          }
+        },
+        "worlds": 4
+      }
+    },
+    "main": {
+      "0": {
+        "arms": {
+          "fear_blind_clone": {
+            "mean_births": 102.875,
+            "mean_population_auc": 13.5,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 0
+          },
+          "innate_clone": {
+            "mean_births": 102.875,
+            "mean_population_auc": 13.5,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 0
+          },
+          "innate_dense_mutation": {
+            "mean_births": 107.125,
+            "mean_population_auc": 13.694444444444445,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 8,
+            "worlds_with_predation": 0
+          },
+          "innate_random_newborn": {
+            "mean_births": 109.5,
+            "mean_population_auc": 13.444444444444445,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 0
+          },
+          "innate_sparse_mutation": {
+            "mean_births": 105.5,
+            "mean_population_auc": 13.527777777777779,
+            "mean_predation_deaths": 0,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 8,
+            "worlds_with_predation": 0
+          }
+        },
+        "comparisons": {
+          "clone_minus_fear_blind_population_auc": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "clone_minus_fear_blind_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "dense_minus_clone_population_auc": {
+            "mean_paired_difference": 0.19444444444444464,
+            "per_world": {
+              "94000": 0.22222222222222143,
+              "94001": 0.33333333333333215,
+              "94002": -0.7777777777777768,
+              "94003": 1,
+              "94004": -0.11111111111111072,
+              "94005": 0.7777777777777786,
+              "94006": 0.6666666666666679,
+              "94007": -0.5555555555555554
+            },
+            "world_paired_bootstrap_95": [
+              -0.2361111111111105,
+              0.5972222222222223
+            ]
+          },
+          "dense_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "random_newborn_minus_clone_population_auc": {
+            "mean_paired_difference": -0.05555555555555536,
+            "per_world": {
+              "94000": 0.8888888888888893,
+              "94001": -0.2222222222222232,
+              "94002": -0.8888888888888893,
+              "94003": 0.3333333333333339,
+              "94004": 0.5555555555555554,
+              "94005": -0.11111111111111072,
+              "94006": -0.6666666666666661,
+              "94007": -0.33333333333333215
+            },
+            "world_paired_bootstrap_95": [
+              -0.4444444444444442,
+              0.3472222222222221
+            ]
+          },
+          "random_newborn_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "sparse_minus_clone_population_auc": {
+            "mean_paired_difference": 0.0277777777777779,
+            "per_world": {
+              "94000": 0,
+              "94001": 0.11111111111111072,
+              "94002": -1.333333333333334,
+              "94003": 0.5555555555555554,
+              "94004": 0.3333333333333339,
+              "94005": 0.8888888888888893,
+              "94006": 0.3333333333333339,
+              "94007": -0.6666666666666661
+            },
+            "world_paired_bootstrap_95": [
+              -0.4583333333333335,
+              0.44444444444444486
+            ]
+          },
+          "sparse_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          }
+        },
+        "worlds": 8
+      },
+      "1": {
+        "arms": {
+          "fear_blind_clone": {
+            "mean_births": 112.75,
+            "mean_population_auc": 9.375,
+            "mean_predation_deaths": 74.125,
+            "survivor_worlds": 7,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 8
+          },
+          "innate_clone": {
+            "mean_births": 107.125,
+            "mean_population_auc": 11.916666666666666,
+            "mean_predation_deaths": 26.625,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 8
+          },
+          "innate_dense_mutation": {
+            "mean_births": 105.875,
+            "mean_population_auc": 12.222222222222221,
+            "mean_predation_deaths": 23.75,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 8,
+            "worlds_with_predation": 8
+          },
+          "innate_random_newborn": {
+            "mean_births": 110.875,
+            "mean_population_auc": 12.472222222222221,
+            "mean_predation_deaths": 27.875,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 8
+          },
+          "innate_sparse_mutation": {
+            "mean_births": 109.875,
+            "mean_population_auc": 12.11111111111111,
+            "mean_predation_deaths": 27.125,
+            "survivor_worlds": 8,
+            "worlds_with_mutated_births": 8,
+            "worlds_with_predation": 8
+          }
+        },
+        "comparisons": {
+          "clone_minus_fear_blind_population_auc": {
+            "mean_paired_difference": 2.541666666666666,
+            "per_world": {
+              "94000": 1.8888888888888875,
+              "94001": 2.8888888888888875,
+              "94002": 6.666666666666667,
+              "94003": 0.6666666666666661,
+              "94004": 3.222222222222223,
+              "94005": 1.666666666666666,
+              "94006": 0.11111111111111072,
+              "94007": 3.2222222222222214
+            },
+            "world_paired_bootstrap_95": [
+              1.3611111111111105,
+              3.958333333333333
+            ]
+          },
+          "clone_minus_fear_blind_survived": {
+            "mean_paired_difference": 0.125,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 1,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0.375
+            ]
+          },
+          "dense_minus_clone_population_auc": {
+            "mean_paired_difference": 0.3055555555555556,
+            "per_world": {
+              "94000": -1.666666666666666,
+              "94001": 0.6666666666666679,
+              "94002": 1.2222222222222214,
+              "94003": 0.8888888888888893,
+              "94004": 1.2222222222222214,
+              "94005": 0.3333333333333339,
+              "94006": -0.3333333333333339,
+              "94007": 0.11111111111111072
+            },
+            "world_paired_bootstrap_95": [
+              -0.3749999999999998,
+              0.8611111111111109
+            ]
+          },
+          "dense_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "random_newborn_minus_clone_population_auc": {
+            "mean_paired_difference": 0.5555555555555558,
+            "per_world": {
+              "94000": -0.11111111111111072,
+              "94001": -0.33333333333333215,
+              "94002": 1.4444444444444446,
+              "94003": 1.8888888888888893,
+              "94004": 0.7777777777777768,
+              "94005": 0.44444444444444464,
+              "94006": 0.2222222222222232,
+              "94007": 0.11111111111111072
+            },
+            "world_paired_bootstrap_95": [
+              0.09722222222222254,
+              1.0694444444444449
+            ]
+          },
+          "random_newborn_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          },
+          "sparse_minus_clone_population_auc": {
+            "mean_paired_difference": 0.19444444444444464,
+            "per_world": {
+              "94000": -0.11111111111111072,
+              "94001": 0.2222222222222232,
+              "94002": 0.44444444444444464,
+              "94003": -0.3333333333333339,
+              "94004": 0.11111111111111072,
+              "94005": 0.7777777777777786,
+              "94006": 0.6666666666666661,
+              "94007": -0.22222222222222143
+            },
+            "world_paired_bootstrap_95": [
+              -0.0694444444444442,
+              0.4583333333333335
+            ]
+          },
+          "sparse_minus_clone_survived": {
+            "mean_paired_difference": 0,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              0,
+              0
+            ]
+          }
+        },
+        "worlds": 8
+      },
+      "3": {
+        "arms": {
+          "fear_blind_clone": {
+            "mean_births": 20.125,
+            "mean_population_auc": 2.611111111111111,
+            "mean_predation_deaths": 32.875,
+            "survivor_worlds": 0,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 8
+          },
+          "innate_clone": {
+            "mean_births": 80.125,
+            "mean_population_auc": 7.194444444444444,
+            "mean_predation_deaths": 54.75,
+            "survivor_worlds": 3,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 8
+          },
+          "innate_dense_mutation": {
+            "mean_births": 65.875,
+            "mean_population_auc": 5.861111111111111,
+            "mean_predation_deaths": 50.625,
+            "survivor_worlds": 2,
+            "worlds_with_mutated_births": 8,
+            "worlds_with_predation": 8
+          },
+          "innate_random_newborn": {
+            "mean_births": 98.375,
+            "mean_population_auc": 8.097222222222221,
+            "mean_predation_deaths": 73.375,
+            "survivor_worlds": 5,
+            "worlds_with_mutated_births": 0,
+            "worlds_with_predation": 8
+          },
+          "innate_sparse_mutation": {
+            "mean_births": 90.75,
+            "mean_population_auc": 7.861111111111111,
+            "mean_predation_deaths": 60.25,
+            "survivor_worlds": 4,
+            "worlds_with_mutated_births": 8,
+            "worlds_with_predation": 8
+          }
+        },
+        "comparisons": {
+          "clone_minus_fear_blind_population_auc": {
+            "mean_paired_difference": 4.583333333333333,
+            "per_world": {
+              "94000": 1.8888888888888884,
+              "94001": 7.111111111111111,
+              "94002": 1.7777777777777777,
+              "94003": 5.333333333333333,
+              "94004": 2.2222222222222223,
+              "94005": 7.555555555555555,
+              "94006": 2,
+              "94007": 8.777777777777777
+            },
+            "world_paired_bootstrap_95": [
+              2.694444444444444,
+              6.499999999999999
+            ]
+          },
+          "clone_minus_fear_blind_survived": {
+            "mean_paired_difference": 0.375,
+            "per_world": {
+              "94000": 0,
+              "94001": 1,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 1,
+              "94006": 0,
+              "94007": 1
+            },
+            "world_paired_bootstrap_95": [
+              0.125,
+              0.75
+            ]
+          },
+          "dense_minus_clone_population_auc": {
+            "mean_paired_difference": -1.333333333333333,
+            "per_world": {
+              "94000": 4.666666666666667,
+              "94001": -5.999999999999999,
+              "94002": 2,
+              "94003": -3.7777777777777777,
+              "94004": 2.5555555555555554,
+              "94005": -0.6666666666666661,
+              "94006": -1.4444444444444446,
+              "94007": -7.999999999999999
+            },
+            "world_paired_bootstrap_95": [
+              -4.222222222222221,
+              1.4861111111111112
+            ]
+          },
+          "dense_minus_clone_survived": {
+            "mean_paired_difference": -0.125,
+            "per_world": {
+              "94000": 1,
+              "94001": -1,
+              "94002": 0,
+              "94003": 0,
+              "94004": 0,
+              "94005": 0,
+              "94006": 0,
+              "94007": -1
+            },
+            "world_paired_bootstrap_95": [
+              -0.5,
+              0.25
+            ]
+          },
+          "random_newborn_minus_clone_population_auc": {
+            "mean_paired_difference": 0.9027777777777779,
+            "per_world": {
+              "94000": 4.777777777777778,
+              "94001": -1.1111111111111107,
+              "94002": 5.555555555555555,
+              "94003": 0.44444444444444464,
+              "94004": 3,
+              "94005": -6.777777777777777,
+              "94006": 4.999999999999999,
+              "94007": -3.666666666666666
+            },
+            "world_paired_bootstrap_95": [
+              -2.1111111111111107,
+              3.6666666666666665
+            ]
+          },
+          "random_newborn_minus_clone_survived": {
+            "mean_paired_difference": 0.25,
+            "per_world": {
+              "94000": 1,
+              "94001": 0,
+              "94002": 1,
+              "94003": 1,
+              "94004": 0,
+              "94005": -1,
+              "94006": 1,
+              "94007": -1
+            },
+            "world_paired_bootstrap_95": [
+              -0.375,
+              0.75
+            ]
+          },
+          "sparse_minus_clone_population_auc": {
+            "mean_paired_difference": 0.6666666666666667,
+            "per_world": {
+              "94000": -0.6666666666666665,
+              "94001": 0.44444444444444464,
+              "94002": 6,
+              "94003": -3.333333333333333,
+              "94004": 3.999999999999999,
+              "94005": -3.666666666666666,
+              "94006": 2.2222222222222223,
+              "94007": 0.3333333333333339
+            },
+            "world_paired_bootstrap_95": [
+              -1.4861111111111107,
+              2.888888888888889
+            ]
+          },
+          "sparse_minus_clone_survived": {
+            "mean_paired_difference": 0.125,
+            "per_world": {
+              "94000": 0,
+              "94001": 0,
+              "94002": 1,
+              "94003": 0,
+              "94004": 1,
+              "94005": -1,
+              "94006": 0,
+              "94007": 0
+            },
+            "world_paired_bootstrap_95": [
+              -0.25,
+              0.5
+            ]
+          }
+        },
+        "worlds": 8
+      }
+    }
+  },
+  "inference": "Programmed innate danger detection improves performance; mutation benefit and causal adapted lineage have not been proven."
+}

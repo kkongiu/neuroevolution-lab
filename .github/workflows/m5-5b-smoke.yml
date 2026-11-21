@@ -1,0 +1,34 @@
+name: M5.5B focused predator physics checks
+on:
+  push:
+    branches: ["experiment/m5-5b-predator-selection-feasibility"]
+    paths:
+      - "campaigns/m5-5b-smoke-*.md"
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: New physical predator and genetic controls
+        run: python -m unittest discover -s tests -p test_m5_5b.py -v
+      - name: Tiny reproducible predator/full genetics and ecological bookkeeping smoke
+        run: |
+          python -m neuroevolution.m5_5b --seed-start 300 --seeds 2 \
+            --shifted-start 400 --shifted-seeds 1 \
+            --ticks 30 --size 11 --initial-food 9 --food-cap 14 \
+            --initial-population 8 --max-population 18 \
+            --checkpoint-every 10 --no-food-controls 0 \
+            --bootstrap-reps 100 --out results/m5-5b-smoke
+      - name: Preserve tiny physical predator reproducibility
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-5b-smoke-physical-predators
+          path: results/m5-5b-smoke/
+          retention-days: 7
