@@ -195,6 +195,27 @@ python -m neuroevolution.m4_3 --out results/m4_3
 
 Read [M4.3 frozen protocol](docs/M4_3_PROTOCOL.md) and the [read-only GitHub Actions campaign](.github/workflows/m4-3-causal-recall.yml). Even a positive result is a narrow artificial cue-memory result, **not** synaptic learning in life, autonomous goals or ecological reproduction.
 
+## M5.0 — A persistent in-world ecology, not another externally selected task
+
+This is a **separate project track** motivated by M4.0–M4.3: training neural nets to solve experimenter-written tasks is not the same as observing adaptive organisms. M5.0 introduces a **continuous, energy-limited spatial world** in which real simulated organisms must forage, survive, and explicitly **choose to reproduce** to make descendants.
+
+The environment is a 15×15 obstacle grid with renewable food and real resource limits. An organism has a small fixed-topology 12-tanh recurrent neural controller with 15 **local sensor channels** and five possible actions: four movements and REPRODUCE. Its genome is its numerical neural weight vector. Inheritance/mutation occurs **at in-world birth**, not in an external generational algorithm. Each offspring has limited energy, a recorded parent and a lineage. The animal dies from energy exhaustion or maximum age. **No external fitness function ranks networks and no elite/validation champion is selected**; reproductive outcomes alone influence which weights persist.
+
+Three treatments share exact world seeds and **identical founder genomes**:
+- **heritable_mutation**: child gets parent weights + small mutation.
+- **random_offspring**: child has a fresh random genome; same birth cost and opportunity, but **no genotype heritability**.
+- **heritable_no_mutation**: child copies parent weights exactly; tests inherited founder selection without new genetic variation.
+
+The frozen main campaign runs **12 independent worlds ×400 ticks**; shifted experiment **8 worlds** with more walls, shorter food odor and scarcer renewal. Four worlds without any food/renewal test the energy bookkeeping and starvation. The scientific primary is whether inherited mutation increases **actual in-world birth counts** against random offspring; additional lineage, food, population, genome similarity and energy ledger metrics separate "births occurred" from "adaptive multi-generational selection".
+
+~~~bash
+python -m neuroevolution.m5_0 --out results/m5_0
+~~~
+
+Outputs include per-world CSV, 50-tick population checkpoints, detailed birth/lineage/food event JSON, SVG world snapshots and paired bootstrap comparisons. Read the [frozen M5.0 protocol](docs/M5_0_PROTOCOL.md) and [dedicated GitHub Actions workflow](.github/workflows/m5-0-continuous-ecology.yml).
+
+**Boundary:** This is a designed artificial ecosystem. Energy/reproductive thresholds, food dynamics, neuron topology, odor sensors and mutational rules are **still written by the researcher**. It does NOT yet exhibit within-life synaptic learning, network rewiring, predators, consciousness, independent goal invention, or executable self-replication. Null or extinct populations must be reported honestly.
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.

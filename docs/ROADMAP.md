@@ -207,6 +207,16 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Next issue:** [M4.4 integrate causal recall with motor planning](https://github.com/kkongiu/neuroevolution-lab/issues/26). Preregister new genetics/world seeds, fully separate arrival and recalled choice, and report both main and out-of-distribution tests. Do NOT overwrite M4.0/M4.1/M4.2 negative findings.
 - None of these runs demonstrate within-lifetime synaptic learning, ecological reproduction, map learning, predator avoidance or autonomous objectives.
 
+## M5.0 — Continuous ecological selection and organism reproduction (new track; implementation validated, sealed campaign pending)
+- [Frozen M5.0 protocol](M5_0_PROTOCOL.md), committed before code and any final-seed run. Leaves all M4.x scientific results unchanged.
+- **No external training fitness or generational selection**: a population of 20 recurrent neural organisms physically occupies one continuous 15×15 world; finite energy, movement, walls, competition for renewable food, death and **explicit in-world reproduce choice**.
+- Each birth creates an actual child with parent ID, inherited lineage/generation and a separate 12-energy endowment drawn from 20 energy units charged to the parent. Parent and child cannot generate net energy; track exact cumulative food input, basal expenditure and dissipation.
+- Main scientific comparisons use identical founding neural weights and world seeds: **heritable mutation** vs **fresh random offspring** (births but no trait heritability) vs **clone without mutation** (selection but no novelty).
+- Preregistered **12 main ×400 ticks** and **8 shifted** (scarcer food, denser obstacles, shorter odor) worlds; per-seed paired bootstrap with the world as independent unit. Primary advantage in cumulative births, necessary generation-depth check and persistence/lineage/food-genome diversity diagnostics. Four no-food worlds must go extinct without reproducing.
+- Records every food gain, birth parent/child, genome digest, unique founding lineage and population at scheduled checkpoints, with deterministic replays and SVG maps.
+- **This is not unlimited open-ended natural evolution**: genotype length/topology, laws of reproduction, birth energy and resources are still designed; no within-life weight learning, predators or independent objectives. A few births do not establish cognitive adaptation.
+- Next phase only if data justify it: repeatable multigenerational persistence, perturb environmental resources, separate selection of pre-existing genotypes from beneficial novel mutations, eventually embodied perception/learning with causal controls.
+
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
