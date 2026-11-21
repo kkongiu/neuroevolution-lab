@@ -227,6 +227,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Next issue [M5.1 ecological viability & behavioral diagnosis](https://github.com/kkongiu/neuroevolution-lab/issues/28):** check whether a simple scripted greedy food follower with the SAME physical birth law can maintain a population; separate locomotion, perception and reproduction bottlenecks. Do NOT modify old frozen M5.0 test seeds or reclassify null as success.
 - Still researcher-designed ecology, not proof of independent goal formation, within-life synaptic learning, adaptive structural evolution, predators or digital consciousness.
 
+## M5.1 — Ecological feasibility and direct motor/foraging diagnosis (implemented; preregistered)
+- [Frozen M5.1 protocol](M5_1_PROTOCOL.md) precedes code and sealed results. M5.0 published environment/negative outcomes remain unchanged.
+- Compare **four policies** under identical 15×15 M5.0 energy/resource/birth laws, matched founder genomes and candidate food-spawn schedules: original heritable RNN, scripted local greedy odor, scripted local odor+novelty visit memory, and legal random walker. All programmed policies have the same age/energy reproduction threshold (46 energy) and differ only in movement choice; RNN still chooses its own reproduce action.
+- Baseline scripts ARE NOT EVOLVED and scripted genotypes have no causal effect on actions. Script reads age and novelty visitation history unavailable to the neural controller: strong feasibility reference, not equal-information learned-skill comparison.
+- **16 new main ×400 ticks** worlds and **8 shifted ×400 ticks**. Primary: scripted novelty policy keeps population alive to tick 400 in ≥8/16 worlds AND reaches generation≥3 in ≥8/16. Necessary local-food-search benchmark: greedy odor must beat legal random on seed-paired food consumed with 95% descriptive bootstrap lower bound >0 and ≥12/16 worlds favorable.
+- Extra four **no-reproduction** and four **no-food-renewal** worlds isolate physical life-cycle and resource flux. Check exact energy ledger, age death, no arbitrary births or food additions, non-overlapping organisms and full reproducibility.
+- Publish per-world food/birth/survival, sensory diagnostic fractions, lineage events and population at fixed 50-tick intervals; no post-hoc parameter changes on final seeds.
+- Programmed survival would imply the ecology can support at least a *hand-engineered* population, NOT that artificial selection has found an effective organism. No scripted survival suggests a deeper ecology/motor/food-information bottleneck and should guide separately preregistered M5.2 experiments.
+
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
