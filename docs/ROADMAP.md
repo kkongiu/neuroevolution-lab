@@ -171,6 +171,16 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Harder shifted-world test also null versus walker: evolved **1.063**, random legal **1.083**. All **64 no-food negative controls** yield zero food.
 - Next proposed experiment: [M4.2 delayed-cue memory vs matched feedforward](https://github.com/kkongiu/neuroevolution-lab/issues/22). Preregister actual information requirements and test recurrence with a hidden-state reset ablation, rather than introducing predators or reproduction too early.
 
+## M4.2 — Spatial delayed-cue memory with causal recurrent-state intervention (preregistered)
+- [M4.2 frozen protocol](M4_2_PROTOCOL.md) committed BEFORE implementation/evaluation. A new T-fork task gives two symmetric goal targets on identical geometry, but only a 2-step initial cardinal-direction cue, disappearing before the fork.
+- Trial ends on entry to one of two one-way fork gates (correct branch yields one food); this is a deliberately narrow cognitive-memory diagnostic, NOT an open survival ecology.
+- **No scent, neighboring food, global map, exposed time or energy clock at the fork**, avoiding hidden task-label leakage. Real energy still decays physically.
+- Evolve 8 separate recurrent and near-parameter-matched feedforward populations (260 vs 268 numeric weights) over exactly equal budgets and paired worlds; one validation-selected champion of each type per genetic seed.
+- Main final **32 paired world seeds**, shifted longer-delay **16 paired seeds**; causal reset of the RNN hidden state immediately before fork decision, flipped initial cue, cue blanking, legal random and a programmed scripted-memory reference.
+- Primary: evolved RNN minus independent feedforward final binary food success, hierarchical paired bootstrap over 8 genetic starts and shared 32 world-pairs; necessary secondary reset-at-fork effect and flipped cue effect; report train/validation overfit diagnostics.
+- Exploratory transfer only: frozen champions face 12 new open M4.1 mazes with full odor alongside greedy odor/random, and with recurrent odor disabled. A learned cue-memory policy is not expected automatically to forage efficiently.
+- Not a demonstration of self-chosen goals or within-life weight learning. Null results stay null. Do not rewrite M4.0/M4.1 or reuse their final seeds.
+
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.

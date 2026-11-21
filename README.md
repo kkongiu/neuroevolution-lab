@@ -163,6 +163,22 @@ python -m neuroevolution.m4_1 --out results/m4_1
 
 Read the [M4.1 frozen protocol](docs/M4_1_PROTOCOL.md) and [campaign workflow](.github/workflows/m4-1-masked-navigation.yml). This is still **externally driven numeric evolution between lifetimes**, not in-lifetime learning, emergent reproduction, or autonomous choice of objectives.
 
+## M4.2 — Can a recurrent organism *remember* where to turn?
+
+M4.1 showed that an evolved RNN did not beat a wall-avoiding random walker at finding food, even after motor masking. **M4.2 isolates one narrower ability**: remembering a fleeting direction cue through several turns of motor control until the time comes to choose between **two symmetric irreversible fork branches**.
+
+Every heldout world seed provides **two paired worlds with identical walls, start and fork**, but opposite target branches. The environment shows a cardinal direction cue during only the first **two actions**; after this, cue and food odor are zero. The 19-channel neural input also has its energy channel held constant (the *actual* physical energy still decreases), preventing a feedforward network from storing cue information in elapsed time or energy. A one-way branch gate gives food for the correct choice and terminates either way. This is a deliberately simplified **causal memory benchmark**, not an open-world ecology.
+
+Two **separately evolved** populations per genetic start are tested: a recurrent **8-tanh** network (260 numeric weights) and a stateless **11-tanh** feedforward network (268 weights, 3.1% larger), with equal 6-generation × 12-candidate training budgets. The study uses **8 independent genetic starts**, **32 unseen paired main worlds**, **16 longer-delay shifted pairs**, and a diagnostic untrained transfer to **12 open reactive food mazes**.
+
+Controls on the **same trained recurrent genome** reset its recurrent state immediately before the fork, flip the early cue, or remove the early cue entirely. Also compare with a uniformly random legal mover and a simple **scripted finite-state memory policy**; report all controls even if the evolved network fails. Primary is paired RNN minus feedforward food success with hierarchical bootstrap over independent genetic runs and shared paired worlds, plus necessary causal reset and cue-flip effects.
+
+~~~bash
+python -m neuroevolution.m4_2 --out results/m4_2
+~~~
+
+Read [M4.2 preregistration](docs/M4_2_PROTOCOL.md) and the [sealed GitHub campaign workflow](.github/workflows/m4-2-delayed-cue.yml). **There is no within-lifetime synaptic learning, predator, biological reproduction, autonomous objective invention or source-code editing by simulated organisms.**
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
