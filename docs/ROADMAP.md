@@ -250,3 +250,11 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 ## M4.x — Persistent objectives (speculative, not implemented)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
+
+## M5.2A — Causal 2×2 movement/reproduction diagnosis (completed; motor bottleneck established)
+
+- [Protocol frozen before implementation](M5_2A_PROTOCOL.md), [full scientific report](../reports/M5_2A_causal_factorial_2026-11-21.md), [per-world archive](../reports/M5_2A_world_survival_births_2026-11-21.csv), [successful sealed 30-world Actions campaign](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44920201061).
+- Factorial arms: neural movement/neural reproduction (NN), neural/threshold (NT), scripted local odor/neural birth (GN), scripted/threshold (GT). Original M5.0 actor and M5.1 greedy baseline are preserved exactly; independent units are whole worlds.
+- **Main-world survival at tick 400:** NN **0/20**, NT **1/20**, GN **20/20**, GT **20/20**. Motor-only intervention GN−NN **+100 percentage points** (paired descriptive bootstrap [100,100]; 20/20 world wins). Birth-only NT−NN +5 pp (interval [0,15]); **NOT confirmed**. Under harder shifted environments NN 0/10, NT 0/10, GN 9/10, GT 10/10.
+- GN succeeded while birth decisions remained genome-controlled but its **motor search was hand-coded**. This is evidence for a motor/food-search bottleneck, **not inherited evolution of navigation**.
+- Decision: M5.2B must pre-register a compact genuinely genotype-controlled motor+birth policy and compare sparse mutations / whole-genome mutations / exact cloning / random offspring on NEW independent worlds; require survival AND heritable gain AND causal genotype controls, not just scripted ecological feasibility.

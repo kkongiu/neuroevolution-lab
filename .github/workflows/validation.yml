@@ -51,6 +51,8 @@ jobs:
         run: python -m neuroevolution.m5_0 --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 2 --hidden 4 --out results/m5-0-smoke
       - name: M5.1 ecological viability smoke
         run: python -m neuroevolution.m5_1 --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --negative-control-worlds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --hidden 4 --out results/m5-1-smoke
+      - name: M5.2A factorial smoke
+        run: python -m neuroevolution.m5_2a --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --negative-control-worlds 1 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --hidden 4 --out results/m5-2a-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -72,4 +74,5 @@ jobs:
             results/m4-3-smoke/
             results/m5-0-smoke/
             results/m5-1-smoke/
+            results/m5-2a-smoke/
           retention-days: 30

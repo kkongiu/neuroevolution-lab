@@ -257,3 +257,15 @@ Read the [preregistered protocol](docs/M5_1_PROTOCOL.md) and [read-only GitHub A
 [M3.5 fixed-information-budget campaign](.github/workflows/m3-5-active-information.yml): blinded support requests with identical query counts and independent shifted/noisy tests.
 
 **Experimental status:** a passing workflow proves that code executed, *not* that a scientific hypothesis succeeded. Preserve negative findings and uncertainty.
+
+## M5.2A — Finding the limiting ability by causal interventions
+
+The [M5.2A preregistered 2×2 experiment](docs/M5_2A_PROTOCOL.md) asks whether original neural populations die because they cannot forage or because they cannot time reproduction. The [completed 30-world report](reports/M5_2A_causal_factorial_2026-11-21.md) and [per-world CSV](reports/M5_2A_world_survival_births_2026-11-21.csv) show: neural movement + neural reproduction **0/20** main worlds survive to tick 400; neural movement + programmed birth **1/20**; programmed odor movement + neural birth **20/20**; both programmed **20/20**. Harder shifted worlds: 0/10, 0/10, 9/10, 10/10. **Causal diagnosis: movement/food-search is the bottleneck in this world; programming an adequate motor policy is NOT the same as evolving it.**
+
+Run deterministic engineering smoke:
+
+~~~bash
+python -m neuroevolution.m5_2a --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --negative-control-worlds 1 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --hidden 4 --out results/m5-2a-smoke
+~~~
+
+The full sealed study is archived in [GitHub Actions #44920201061](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44920201061); never retune it after reading the test results. M5.2B will test compact autonomous neural foraging and genuine heritable selection.
