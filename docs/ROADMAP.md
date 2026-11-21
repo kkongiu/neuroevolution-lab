@@ -36,7 +36,14 @@ New [frozen M2B protocol](M2B_PROTOCOL.md): every competitive controller must sp
 - Choosing low-activity units, independent of timing, again appears helpful versus random unit selection (+1.25 pp on average, exploratory).
 - Do not retune existing M2B after seeing the final test. Next experiment must specify a new environment and unseen seeds before execution.
 
-## M3 — Novelty and exploration (planned)
+## M3 — Unpredictable novel and returning tasks (implemented; awaiting first sealed campaign)
+- [Frozen M3 protocol](M3_PROTOCOL.md): stochastic task recurrence, new samples for exact recurring latent tasks, new task families on the shifted final test.
+- Controller does not observe task ID or novel/return status; uses only past/current training signals and elapsed index.
+- Meta-train/validation/regular-test/shifted-family-test seeds are separate.
+- Compare evolved state-aware timing against independent time-only policy, state-blind ablation, uniform/permuted dose and random-unit controls.
+- Fixed unit-renewal budget; track requested-vs-forced actions and AUC separately for novel and returning tasks.
+- **Gate:** positive paired AUC on shifted-world test, evidence of state-sensitive requested actions, and no unacceptable retention cost.
+- This is still an externally evolved, constrained policy, **not** open-ended autonomous discovery of interests.
 Richer worlds, curiosity-like incentives with noisy-TV negative controls, and behavior descriptors for quality-diversity analyses.
 
 ## M4 — Persistent objectives (speculative)
