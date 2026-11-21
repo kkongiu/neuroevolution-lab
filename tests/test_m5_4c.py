@@ -118,9 +118,18 @@ class FourArmForagingAndBirthCausalTests(unittest.TestCase):
                 self.assertEqual(diagnostic["scripted_movement"],1)
                 self.assertEqual(diagnostic["scripted_reproduction"],1)
                 self.assertEqual(diagnostic["within_world_genetic_mutations"],0)
+                # Legacy M5.1 stores MUTATING inert bookkeeping
+                # genomes, whereas M5.4C uses exact CLONES of the frozen
+                # recurrent neural vector in all four arms. Physical birth
+                # and food events must agree; genotype hashes must not.
+                def only_physics(events):
+                    return [
+                        {k:v for k,v in e.items() if k!="genome"}
+                        for e in events
+                    ]
                 self.assertEqual(
-                    trace["physical_birth_and_food_events"],
-                    oldtrace["events"],
+                    only_physics(trace["physical_birth_and_food_events"]),
+                    only_physics(oldtrace["events"]),
                 )
                 self.assertEqual(
                     [k["population"] for k in checks],
