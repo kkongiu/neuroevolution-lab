@@ -65,6 +65,8 @@ jobs:
         run: python -m neuroevolution.m5_4a --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --ticks 40 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --negative-control-worlds 1 --no-food-controls 0 --hidden 12 --bootstrap-main 120 --bootstrap-validation 100 --out results/m5-4a-smoke
       - name: M5.4B0 short odor native numerical genotype smoke
         run: python -m neuroevolution.m5_4b0 --development-start 200 --development-seeds 2 --validation-start 300 --validation-seeds 2 --seed-start 700 --seeds 2 --shifted-start 900 --shifted-seeds 2 --initial-pool 6 --generations 1 --offspring-per-generation 4 --keep-elites 2 --ticks 35 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --bootstrap-reps 140 --out results/m5-4b0-smoke
+      - name: M5.4B0-R bounded 18-gene recurrent architecture smoke
+        run: python -m neuroevolution.m5_4b0r --development-start 400 --development-seeds 2 --validation-start 500 --validation-seeds 2 --seed-start 600 --seeds 2 --shifted-start 700 --shifted-seeds 2 --external-pool 6 --external-generations 1 --external-offspring 4 --external-elites 2 --ticks 35 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --bootstrap-reps 110 --out results/m5-4b0r-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -93,4 +95,5 @@ jobs:
             results/m5-3c-smoke/
             results/m5-4a-smoke/
             results/m5-4b0-smoke/
+            results/m5-4b0r-smoke/
           retention-days: 30
