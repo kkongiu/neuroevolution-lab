@@ -69,5 +69,14 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - **Critical limitation:** accuracy before intervention practically reveals the deliberately inserted damage on the training family. The renewal operator is intentionally aligned with the damage mechanism. This is *only* a causal **positive-control benchmark**, not an emergent capability to discover how to repair arbitrary structural failures or invent goals.
 - Next: pre-register M3.2 for unlabelled, non-artificial learning interference with new seed splits, internal-state diagnostics and true memory preservation measurements.
 
+## M3.2 — Continuous training with natural task interference (implemented, awaiting full independent campaign)
+- [Frozen M3.2 protocol](M3_2_PROTOCOL.md), distinct from the engineered M3.1 positive control.
+- One evolving network faces 12 tasks with latent task returns and novelties; **no artificial damage**.
+- Fixed total of four renewal actions; three independently evolved policies: full neural diagnostics, accuracy-only, and time-only; fixed uniform/shuffled/random-unit controls.
+- Diagnostics derive exclusively from labelled TRAINING data; full final test and shifted-family final test use new seed ranges.
+- On final seeds, both interventions are cloned from each adaptive trajectory's pre-decision state, then trained identically to record one-step AUC/forgetting effects.
+- Primary gate: held-out seed-level AUC vs independent time-only; necessary secondary: improvement over independent accuracy-only without concealing memory loss.
+- Interpretive caution: some latent label rules conflict on the same unlabeled 2D inputs, so old-task retention can be fundamentally limited; this is **not** arbitrary self-programming.
+
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
