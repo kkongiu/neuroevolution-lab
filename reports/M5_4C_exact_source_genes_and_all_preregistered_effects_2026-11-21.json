@@ -1,0 +1,827 @@
+{
+  "protocol_preregistration_sha": "c351085a15ebb9a56af5f3d198c2f3939905ab80",
+  "original_complete_scientific_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44938198849",
+  "original_203_test_regression_pass": true,
+  "original_144_full_400_tick_physical_world_policy_trials_completed": true,
+  "original_artifact_name": "m5-4c-neural-vs-programmed-motor-birth-factorial",
+  "original_artifact_id": 14720288367,
+  "source_prior_main_sha": "387b7abe0bbe97526cfcb82a7d8050ed2c16f52f",
+  "source_prior_external_optimizer": "M5.4B0-R original 18-gene externally researcher-selected candidate83",
+  "fixed_prior_18_numeric_genes": [
+    0.5523295378582509,
+    0.20934231027063516,
+    -0.6886718689524911,
+    0.5144374371248042,
+    -1.180777372732278,
+    0.2826270979187913,
+    -0.43590019899354193,
+    0.49182316974818424,
+    -0.3391318045753121,
+    1.0713078694321516,
+    -1.0647794580610341,
+    -0.058626430105535504,
+    0.9876198845872525,
+    0.19695953067024138,
+    -1.1635114065663652,
+    -0.08977673847357014,
+    0.19746478736763307,
+    0.13822497092017016
+  ],
+  "fixed_original_401_weight_digest": "c5e5795332725de4",
+  "source_is_preselected": true,
+  "within_world_genetic_mutations": 0,
+  "intervention_policies": {
+    "neural_move_neural_birth": "unchanged original M5.0 recurrent18 NN logits for four legal movement and physically eligible native birth",
+    "neural_move_scripted_birth": "original recurrent18 NN movement; HUMAN-coded energy>=46 birth when original physically eligible",
+    "scripted_move_neural_birth": "HUMAN-coded M5.1 local greedy+novelty movement; original recurrent18 NN legal birth decision",
+    "scripted_move_scripted_birth": "HUMAN-coded M5.1 local greedy+novelty movement and energy>=46 physical birth"
+  },
+  "independent_world_seeds": {
+    "main": [
+      91000,
+      91001,
+      91002,
+      91003,
+      91004,
+      91005,
+      91006,
+      91007,
+      91008,
+      91009,
+      91010,
+      91011,
+      91012,
+      91013,
+      91014,
+      91015,
+      91016,
+      91017,
+      91018,
+      91019,
+      91020,
+      91021,
+      91022,
+      91023
+    ],
+    "shifted": [
+      91100,
+      91101,
+      91102,
+      91103,
+      91104,
+      91105,
+      91106,
+      91107,
+      91108,
+      91109,
+      91110,
+      91111
+    ]
+  },
+  "original_physical_ticks": 400,
+  "total_independent_world_seeds": 36,
+  "total_world_policy_trials": 144,
+  "scientific_conclusion": "movement-dominant-programmed-rescue",
+  "preregistered_gates": {
+    "both_script_arms_genuinely_programmed": true,
+    "causal_movement_bottleneck_dominant": true,
+    "causal_reproduction_bottleneck_dominant": false,
+    "dual_script_required_pattern": false,
+    "factorial_interaction_nonzero_ci": false,
+    "positive_scripted_physical_control_ge18of24": true,
+    "within_world_genetic_evolution": false
+  },
+  "main": {
+    "arm_stats": {
+      "neural_move_neural_birth": {
+        "mean_alive_at_tick400": 1.25,
+        "mean_birth_energy": 53.13740913925499,
+        "mean_food_eaten": 146.66666666666666,
+        "mean_odorless_action_fraction": 0.7865443305643116,
+        "mean_real_births": 28.5,
+        "mean_revisit_fraction": 0.8188504302291087,
+        "mean_surviving_founder_lineages": 0.16666666666666666,
+        "mean_unique_cells_per_agent_life": 9.56428615654834,
+        "survived_worlds": 4,
+        "worlds": 24
+      },
+      "neural_move_scripted_birth": {
+        "mean_alive_at_tick400": 1.8333333333333333,
+        "mean_birth_energy": 50.76559604929529,
+        "mean_food_eaten": 186.45833333333334,
+        "mean_odorless_action_fraction": 0.8003700341839837,
+        "mean_real_births": 61.708333333333336,
+        "mean_revisit_fraction": 0.8013890866892884,
+        "mean_surviving_founder_lineages": 0.20833333333333334,
+        "mean_unique_cells_per_agent_life": 8.594808452108008,
+        "survived_worlds": 5,
+        "worlds": 24
+      },
+      "scripted_move_neural_birth": {
+        "mean_alive_at_tick400": 10.416666666666666,
+        "mean_birth_energy": 52.52758929390716,
+        "mean_food_eaten": 387.5,
+        "mean_odorless_action_fraction": 0.8473743361682016,
+        "mean_real_births": 83,
+        "mean_revisit_fraction": 0.20944401748365393,
+        "mean_surviving_founder_lineages": 1.6666666666666667,
+        "mean_unique_cells_per_agent_life": 40.18497672560635,
+        "survived_worlds": 23,
+        "worlds": 24
+      },
+      "scripted_move_scripted_birth": {
+        "mean_alive_at_tick400": 12.958333333333334,
+        "mean_birth_energy": 50.719415102399694,
+        "mean_food_eaten": 398.75,
+        "mean_odorless_action_fraction": 0.8556856752741899,
+        "mean_real_births": 115.25,
+        "mean_revisit_fraction": 0.2016519216069787,
+        "mean_surviving_founder_lineages": 1.5833333333333333,
+        "mean_unique_cells_per_agent_life": 35.254973417396776,
+        "survived_worlds": 24,
+        "worlds": 24
+      }
+    },
+    "contrasts": {
+      "births_movement_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 54.020833333333336,
+        "per_world": {
+          "91000": 21,
+          "91001": 63,
+          "91002": 59,
+          "91003": 65.5,
+          "91004": 63,
+          "91005": 78,
+          "91006": 62.5,
+          "91007": 41.5,
+          "91008": 78.5,
+          "91009": 38,
+          "91010": 81,
+          "91011": 30.5,
+          "91012": 7,
+          "91013": 26,
+          "91014": 35,
+          "91015": 79.5,
+          "91016": 40.5,
+          "91017": 50.5,
+          "91018": 82,
+          "91019": 81.5,
+          "91020": 75.5,
+          "91021": 55,
+          "91022": 49.5,
+          "91023": 33
+        },
+        "world_paired_bootstrap_95": [
+          45.416666666666664,
+          62.520833333333336
+        ]
+      },
+      "births_reproduction_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 32.729166666666664,
+        "per_world": {
+          "91000": 36,
+          "91001": 20,
+          "91002": 44,
+          "91003": 36.5,
+          "91004": 29,
+          "91005": 21,
+          "91006": 23.5,
+          "91007": 1.5,
+          "91008": 22.5,
+          "91009": 59,
+          "91010": 13,
+          "91011": 58.5,
+          "91012": 39,
+          "91013": 57,
+          "91014": 58,
+          "91015": 14.5,
+          "91016": 51.5,
+          "91017": 54.5,
+          "91018": 21,
+          "91019": 21.5,
+          "91020": 13.5,
+          "91021": 38,
+          "91022": 41.5,
+          "91023": 11
+        },
+        "world_paired_bootstrap_95": [
+          25.916666666666668,
+          39.583333333333336
+        ]
+      },
+      "double_script_rescue": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 0.8333333333333334,
+        "per_world": {
+          "91000": 0,
+          "91001": 1,
+          "91002": 1,
+          "91003": 1,
+          "91004": 1,
+          "91005": 1,
+          "91006": 1,
+          "91007": 0,
+          "91008": 1,
+          "91009": 1,
+          "91010": 1,
+          "91011": 1,
+          "91012": 0,
+          "91013": 1,
+          "91014": 1,
+          "91015": 1,
+          "91016": 1,
+          "91017": 1,
+          "91018": 1,
+          "91019": 1,
+          "91020": 1,
+          "91021": 1,
+          "91022": 1,
+          "91023": 0
+        },
+        "world_paired_bootstrap_95": [
+          0.6666666666666666,
+          0.9583333333333334
+        ]
+      },
+      "factorial_interaction": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0,
+        "per_world": {
+          "91000": 1,
+          "91001": 0,
+          "91002": 0,
+          "91003": 0,
+          "91004": 0,
+          "91005": 0,
+          "91006": 0,
+          "91007": 1,
+          "91008": 0,
+          "91009": 0,
+          "91010": 0,
+          "91011": -1,
+          "91012": 0,
+          "91013": -1,
+          "91014": -1,
+          "91015": 0,
+          "91016": -1,
+          "91017": 1,
+          "91018": 0,
+          "91019": 0,
+          "91020": 0,
+          "91021": 0,
+          "91022": 0,
+          "91023": 1
+        },
+        "world_paired_bootstrap_95": [
+          -0.25,
+          0.20833333333333334
+        ]
+      },
+      "food_movement_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 226.5625,
+        "per_world": {
+          "91000": 72,
+          "91001": 263,
+          "91002": 244.5,
+          "91003": 260.5,
+          "91004": 262.5,
+          "91005": 315,
+          "91006": 255.5,
+          "91007": 168,
+          "91008": 312.5,
+          "91009": 202.5,
+          "91010": 322.5,
+          "91011": 169,
+          "91012": 53.5,
+          "91013": 159.5,
+          "91014": 176,
+          "91015": 318.5,
+          "91016": 174,
+          "91017": 166.5,
+          "91018": 328,
+          "91019": 302,
+          "91020": 280.5,
+          "91021": 254,
+          "91022": 251,
+          "91023": 126.5
+        },
+        "world_paired_bootstrap_95": [
+          194.14583333333334,
+          257
+        ]
+      },
+      "food_reproduction_marginal": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 25.520833333333332,
+        "per_world": {
+          "91000": -19,
+          "91001": -35,
+          "91002": 53.5,
+          "91003": 68.5,
+          "91004": -0.5,
+          "91005": -3,
+          "91006": -21.5,
+          "91007": -105,
+          "91008": -4.5,
+          "91009": 106.5,
+          "91010": -8.5,
+          "91011": 113,
+          "91012": 12.5,
+          "91013": 109.5,
+          "91014": 105,
+          "91015": -11.5,
+          "91016": 89,
+          "91017": 146.5,
+          "91018": -6,
+          "91019": -10,
+          "91020": -2.5,
+          "91021": 71,
+          "91022": 60,
+          "91023": -95.5
+        },
+        "world_paired_bootstrap_95": [
+          -0.041666666666666664,
+          51.416666666666664
+        ]
+      },
+      "movement_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 0.7916666666666666,
+        "per_world": {
+          "91000": 0.5,
+          "91001": 1,
+          "91002": 1,
+          "91003": 1,
+          "91004": 1,
+          "91005": 1,
+          "91006": 1,
+          "91007": 0.5,
+          "91008": 1,
+          "91009": 1,
+          "91010": 1,
+          "91011": 0.5,
+          "91012": 0,
+          "91013": 0.5,
+          "91014": 0.5,
+          "91015": 1,
+          "91016": 0.5,
+          "91017": 0.5,
+          "91018": 1,
+          "91019": 1,
+          "91020": 1,
+          "91021": 1,
+          "91022": 1,
+          "91023": 0.5
+        },
+        "world_paired_bootstrap_95": [
+          0.6666666666666666,
+          0.8958333333333334
+        ]
+      },
+      "movement_minus_reproduction": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 0.75,
+        "per_world": {
+          "91000": 1,
+          "91001": 1,
+          "91002": 1,
+          "91003": 1,
+          "91004": 1,
+          "91005": 1,
+          "91006": 1,
+          "91007": 1,
+          "91008": 1,
+          "91009": 1,
+          "91010": 1,
+          "91011": 0,
+          "91012": 0,
+          "91013": 0,
+          "91014": 0,
+          "91015": 1,
+          "91016": 0,
+          "91017": 0,
+          "91018": 1,
+          "91019": 1,
+          "91020": 1,
+          "91021": 1,
+          "91022": 1,
+          "91023": 1
+        },
+        "world_paired_bootstrap_95": [
+          0.5833333333333334,
+          0.9166666666666666
+        ]
+      },
+      "movement_only_rescue": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 0.7916666666666666,
+        "per_world": {
+          "91000": 0,
+          "91001": 1,
+          "91002": 1,
+          "91003": 1,
+          "91004": 1,
+          "91005": 1,
+          "91006": 1,
+          "91007": 0,
+          "91008": 1,
+          "91009": 1,
+          "91010": 1,
+          "91011": 1,
+          "91012": 0,
+          "91013": 1,
+          "91014": 1,
+          "91015": 1,
+          "91016": 1,
+          "91017": 0,
+          "91018": 1,
+          "91019": 1,
+          "91020": 1,
+          "91021": 1,
+          "91022": 1,
+          "91023": 0
+        },
+        "world_paired_bootstrap_95": [
+          0.625,
+          0.9583333333333334
+        ]
+      },
+      "reproduction_marginal": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0.041666666666666664,
+        "per_world": {
+          "91000": -0.5,
+          "91001": 0,
+          "91002": 0,
+          "91003": 0,
+          "91004": 0,
+          "91005": 0,
+          "91006": 0,
+          "91007": -0.5,
+          "91008": 0,
+          "91009": 0,
+          "91010": 0,
+          "91011": 0.5,
+          "91012": 0,
+          "91013": 0.5,
+          "91014": 0.5,
+          "91015": 0,
+          "91016": 0.5,
+          "91017": 0.5,
+          "91018": 0,
+          "91019": 0,
+          "91020": 0,
+          "91021": 0,
+          "91022": 0,
+          "91023": -0.5
+        },
+        "world_paired_bootstrap_95": [
+          -0.08333333333333333,
+          0.14583333333333334
+        ]
+      },
+      "reproduction_only_rescue": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0.041666666666666664,
+        "per_world": {
+          "91000": -1,
+          "91001": 0,
+          "91002": 0,
+          "91003": 0,
+          "91004": 0,
+          "91005": 0,
+          "91006": 0,
+          "91007": -1,
+          "91008": 0,
+          "91009": 0,
+          "91010": 0,
+          "91011": 1,
+          "91012": 0,
+          "91013": 1,
+          "91014": 1,
+          "91015": 0,
+          "91016": 1,
+          "91017": 0,
+          "91018": 0,
+          "91019": 0,
+          "91020": 0,
+          "91021": 0,
+          "91022": 0,
+          "91023": -1
+        },
+        "world_paired_bootstrap_95": [
+          -0.16666666666666666,
+          0.25
+        ]
+      }
+    },
+    "worlds": 24
+  },
+  "shifted": {
+    "arm_stats": {
+      "neural_move_neural_birth": {
+        "mean_alive_at_tick400": 0,
+        "mean_birth_energy": 52.5411684403106,
+        "mean_food_eaten": 64.91666666666667,
+        "mean_odorless_action_fraction": 0.8352475027264614,
+        "mean_real_births": 12.916666666666666,
+        "mean_revisit_fraction": 0.855391769572158,
+        "mean_surviving_founder_lineages": 0,
+        "mean_unique_cells_per_agent_life": 7.6772019607022814,
+        "survived_worlds": 0,
+        "worlds": 12
+      },
+      "neural_move_scripted_birth": {
+        "mean_alive_at_tick400": 0,
+        "mean_birth_energy": 50.383599505929226,
+        "mean_food_eaten": 64.5,
+        "mean_odorless_action_fraction": 0.8529358074102823,
+        "mean_real_births": 23.916666666666668,
+        "mean_revisit_fraction": 0.8230041119807855,
+        "mean_surviving_founder_lineages": 0,
+        "mean_unique_cells_per_agent_life": 7.10884944651859,
+        "survived_worlds": 0,
+        "worlds": 12
+      },
+      "scripted_move_neural_birth": {
+        "mean_alive_at_tick400": 7.5,
+        "mean_birth_energy": 52.3582946839851,
+        "mean_food_eaten": 296.5833333333333,
+        "mean_odorless_action_fraction": 0.847370430177439,
+        "mean_real_births": 64.33333333333333,
+        "mean_revisit_fraction": 0.25627969586006777,
+        "mean_surviving_founder_lineages": 1.25,
+        "mean_unique_cells_per_agent_life": 36.760442434692365,
+        "survived_worlds": 12,
+        "worlds": 12
+      },
+      "scripted_move_scripted_birth": {
+        "mean_alive_at_tick400": 9.166666666666666,
+        "mean_birth_energy": 50.920207327431946,
+        "mean_food_eaten": 297.0833333333333,
+        "mean_odorless_action_fraction": 0.8583637096377241,
+        "mean_real_births": 88.66666666666667,
+        "mean_revisit_fraction": 0.2401627786418158,
+        "mean_surviving_founder_lineages": 1.1666666666666667,
+        "mean_unique_cells_per_agent_life": 32.499295858987445,
+        "survived_worlds": 12,
+        "worlds": 12
+      }
+    },
+    "contrasts": {
+      "births_movement_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 58.083333333333336,
+        "per_world": {
+          "91100": 53,
+          "91101": 62.5,
+          "91102": 35,
+          "91103": 62,
+          "91104": 60,
+          "91105": 73.5,
+          "91106": 62.5,
+          "91107": 63,
+          "91108": 53.5,
+          "91109": 45,
+          "91110": 61.5,
+          "91111": 65.5
+        },
+        "world_paired_bootstrap_95": [
+          52.333333333333336,
+          63.208333333333336
+        ]
+      },
+      "births_reproduction_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 17.666666666666668,
+        "per_world": {
+          "91100": 21,
+          "91101": 13.5,
+          "91102": 35,
+          "91103": 14,
+          "91104": 24,
+          "91105": 16.5,
+          "91106": 19.5,
+          "91107": 12,
+          "91108": 13.5,
+          "91109": 13,
+          "91110": 15.5,
+          "91111": 14.5
+        },
+        "world_paired_bootstrap_95": [
+          14.625,
+          21.666666666666668
+        ]
+      },
+      "double_script_rescue": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 1,
+        "per_world": {
+          "91100": 1,
+          "91101": 1,
+          "91102": 1,
+          "91103": 1,
+          "91104": 1,
+          "91105": 1,
+          "91106": 1,
+          "91107": 1,
+          "91108": 1,
+          "91109": 1,
+          "91110": 1,
+          "91111": 1
+        },
+        "world_paired_bootstrap_95": [
+          1,
+          1
+        ]
+      },
+      "factorial_interaction": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0,
+        "per_world": {
+          "91100": 0,
+          "91101": 0,
+          "91102": 0,
+          "91103": 0,
+          "91104": 0,
+          "91105": 0,
+          "91106": 0,
+          "91107": 0,
+          "91108": 0,
+          "91109": 0,
+          "91110": 0,
+          "91111": 0
+        },
+        "world_paired_bootstrap_95": [
+          0,
+          0
+        ]
+      },
+      "food_movement_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 232.125,
+        "per_world": {
+          "91100": 233.5,
+          "91101": 228,
+          "91102": 186.5,
+          "91103": 257.5,
+          "91104": 223,
+          "91105": 259.5,
+          "91106": 234.5,
+          "91107": 249.5,
+          "91108": 219,
+          "91109": 195,
+          "91110": 247.5,
+          "91111": 252
+        },
+        "world_paired_bootstrap_95": [
+          218.75,
+          244.20833333333334
+        ]
+      },
+      "food_reproduction_marginal": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0.041666666666666664,
+        "per_world": {
+          "91100": 0.5,
+          "91101": -12,
+          "91102": 67.5,
+          "91103": -2.5,
+          "91104": 7,
+          "91105": -5.5,
+          "91106": 2.5,
+          "91107": -16.5,
+          "91108": 0,
+          "91109": -16,
+          "91110": -10.5,
+          "91111": -14
+        },
+        "world_paired_bootstrap_95": [
+          -9.458333333333334,
+          14.041666666666666
+        ]
+      },
+      "movement_marginal": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 1,
+        "per_world": {
+          "91100": 1,
+          "91101": 1,
+          "91102": 1,
+          "91103": 1,
+          "91104": 1,
+          "91105": 1,
+          "91106": 1,
+          "91107": 1,
+          "91108": 1,
+          "91109": 1,
+          "91110": 1,
+          "91111": 1
+        },
+        "world_paired_bootstrap_95": [
+          1,
+          1
+        ]
+      },
+      "movement_minus_reproduction": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 1,
+        "per_world": {
+          "91100": 1,
+          "91101": 1,
+          "91102": 1,
+          "91103": 1,
+          "91104": 1,
+          "91105": 1,
+          "91106": 1,
+          "91107": 1,
+          "91108": 1,
+          "91109": 1,
+          "91110": 1,
+          "91111": 1
+        },
+        "world_paired_bootstrap_95": [
+          1,
+          1
+        ]
+      },
+      "movement_only_rescue": {
+        "bootstrap_excludes_zero": true,
+        "mean_paired_effect": 1,
+        "per_world": {
+          "91100": 1,
+          "91101": 1,
+          "91102": 1,
+          "91103": 1,
+          "91104": 1,
+          "91105": 1,
+          "91106": 1,
+          "91107": 1,
+          "91108": 1,
+          "91109": 1,
+          "91110": 1,
+          "91111": 1
+        },
+        "world_paired_bootstrap_95": [
+          1,
+          1
+        ]
+      },
+      "reproduction_marginal": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0,
+        "per_world": {
+          "91100": 0,
+          "91101": 0,
+          "91102": 0,
+          "91103": 0,
+          "91104": 0,
+          "91105": 0,
+          "91106": 0,
+          "91107": 0,
+          "91108": 0,
+          "91109": 0,
+          "91110": 0,
+          "91111": 0
+        },
+        "world_paired_bootstrap_95": [
+          0,
+          0
+        ]
+      },
+      "reproduction_only_rescue": {
+        "bootstrap_excludes_zero": false,
+        "mean_paired_effect": 0,
+        "per_world": {
+          "91100": 0,
+          "91101": 0,
+          "91102": 0,
+          "91103": 0,
+          "91104": 0,
+          "91105": 0,
+          "91106": 0,
+          "91107": 0,
+          "91108": 0,
+          "91109": 0,
+          "91110": 0,
+          "91111": 0
+        },
+        "world_paired_bootstrap_95": [
+          0,
+          0
+        ]
+      }
+    },
+    "worlds": 12
+  },
+  "inference_limits": [
+    "Fixed previously externally trained 18-gene genotype, not de novo evolved or representative random sample",
+    "Human-programmed movement uses both local food/odor and personally stored visit counts, so the factorial isolates scripted movement choice, not visit memory alone",
+    "Human-programmed reproduction threshold differs from neural preferred birth, but all real natality uses the same unchanged original M5.0 physical laws",
+    "World-level paired bootstrap descriptive intervals do not cover independently sampled neural genotypes or training uncertainty",
+    "No within-world genetic mutations or natural evolutionary adaptation occurred in any of the 144 trials"
+  ]
+}
