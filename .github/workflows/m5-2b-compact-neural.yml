@@ -1,0 +1,52 @@
+name: M5.2B compact neural heredity campaign
+on:
+  push:
+    branches: ["experiment/m5-2b-compact-neural"]
+    paths:
+      - "campaigns/m5-2b-kickoff-*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  genetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: All regression tests and compact neural genotype physics audits
+        run: python -m unittest discover -s tests -v
+      - name: Sealed M5.2B 24 + 12 worlds; four genetic transmission arms
+        run: |
+          python -m neuroevolution.m5_2b \
+            --seed-start 77000 --seeds 24 \
+            --shifted-start 78000 --shifted-seeds 12 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 5 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --max-age 100 --hidden 2 \
+            --initial-weight-sd 0.45 --mutation-sd 0.12 \
+            --sparse-mutated-weights 3 \
+            --checkpoint-every 50 --no-food-controls 0 \
+            --out results/m5-2b
+      - name: Archive neural genotypes, world-level ecology and genetic comparisons
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-2b-neural-heredity
+          path: results/m5-2b/
+          if-no-files-found: warn
+          retention-days: 30
