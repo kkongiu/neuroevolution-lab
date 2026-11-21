@@ -1,0 +1,34 @@
+name: M5.5C source-only original birth lineage freeze
+on:
+  push:
+    branches: ["experiment/m5-5c-own-founder-lineage-transplant"]
+    paths:
+      - "campaigns/m5-5c-source-audit-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  source-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: All historical and new gene-reversion regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Replay only original source physical births; verify pinned original M5.5B archive
+        run: |
+          python -m neuroevolution.m5_5c --freeze-source \
+            --archive reports/M5_5B_all_180_original_predator_world_outcomes_2026-11-21.csv \
+            | tee m5-5c-original-source-genebank.log
+      - name: Preserve original source-only selection logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-5c-source-only-source-families
+          path: m5-5c-original-source-genebank.log
+          retention-days: 30
+          if-no-files-found: warn
