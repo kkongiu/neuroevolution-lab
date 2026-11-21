@@ -608,9 +608,9 @@ def run(settings: Settings, output: Path) -> dict:
             compatible={
                 "walls":trace["walls"],
                 "initial_food":trace["initial_food"],
-                "final_agents":[{
-                    "pos":a["position"] for a in trace["final_agents"]
-                }],
+                "final_agents":[
+                    {"pos":a["position"]} for a in trace["final_agents"]
+                ],
             }
             (output/f"ecosystem_{name}.svg").write_text(
                 base.render_ecosystem_svg(compatible,settings.size),
