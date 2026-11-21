@@ -1,0 +1,442 @@
+{
+  "original_preregistration_commit": "c351085a15ebb9a56af5f3d198c2f3939905ab80",
+  "original_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44938198849",
+  "sha_method": "SHA256 of exact original physical walls, initial food, 20 initial founder positions, reachable cell support and full prior-to-action 400-tick local RNG food schedule; recomputed and equal for all 4 intervention arms per world",
+  "worlds": [
+    {
+      "split": "main",
+      "seed": 91000,
+      "world_sha256": "6ee914fb233615f2ecd89b766713b62c127e4bf5fd1a3f96915eeb88397e94c2",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91001,
+      "world_sha256": "1a58e252ed959fe499565902a45cc9773470e6f30856a546fe133df2acf5409e",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91002,
+      "world_sha256": "67b4607aad5bb1dafc91156db52ee42297737448f8adc423a7b3fa7002b76486",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91003,
+      "world_sha256": "25b750697532619c20c88fa17825137f965499bb3b85270a11f76e816112719f",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91004,
+      "world_sha256": "ee7b142c00cd4e5d96b45289195097cad3d7ba5011edb4cbb9b51e57fc4e8d2f",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91005,
+      "world_sha256": "9cf2f01cc691cc824b92b554912f9e30c762f1938e6fd70643252521a54a023b",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91006,
+      "world_sha256": "3a27e64158976115d7b1d545f5fcf45badcc86596a0d68297fd06f2216baf659",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91007,
+      "world_sha256": "dd3a31d69c7d1741fb3439eb288b19ff234de4f7e7a5aa8d303eae55e49a6582",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91008,
+      "world_sha256": "3b524d1612b57374d0a57907e2c7fe2b636d1a021ab087ede8e39b24371e8996",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91009,
+      "world_sha256": "ff49250f3d2fd51782c0e498f9b6fcc8fb9a4e57006d3d01dcc909bb0214b5ff",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91010,
+      "world_sha256": "6fba65041df472172f05365d80c02fc1669c2d0a475289345bbdf30abe041ff7",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91011,
+      "world_sha256": "8f5b71b3d542613adff6e195265a71847f5c5a4193c789eea298a5ade21f287f",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91012,
+      "world_sha256": "9e4c67c6d6474dc601c4b8d26dd3e99a5a3985d2e0e441538bd47b852d4fa3e6",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91013,
+      "world_sha256": "b183430e59e01a74205f0edf8992910fb8b489456cf93c24aea9227a1cf2bebe",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91014,
+      "world_sha256": "6a7783ee9c9cf77414960482f89387274d6a0951a6c5361ec04c17022e270021",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91015,
+      "world_sha256": "60883dedd84e91787ef93ea2999a458f579ae9ebf65d7cadabf393d7ca439410",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91016,
+      "world_sha256": "8373b15db1cff96798ba3913f84a32c85f8bb1b80a6f14f40b6f283dd84dc580",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91017,
+      "world_sha256": "485c297167c4664ad1721397111d035fbf1bace525b3c22ce21436a2efc567d2",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91018,
+      "world_sha256": "58ad498fc4cd32a0ecf758d18da5d04d7969180ed783c581699ef2030aec4578",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91019,
+      "world_sha256": "10108ca92fccfba966127aa6db299b730f9a821e69ec73c57d41f6f55d97b1bf",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91020,
+      "world_sha256": "60b643843d3576c374a2a408e98bc57bf091a5322fadfde5479fba573604b04d",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91021,
+      "world_sha256": "6776e79379692e18def7f6859e03c8b98c57c90f975b6ee1f6fae49dab241d05",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91022,
+      "world_sha256": "6c48e4d1bf4591e5dd5e2a532eab06dc5e4fdf702124469e644a254ac49a36a8",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "main",
+      "seed": 91023,
+      "world_sha256": "f697a627c252065c80a1c64f21ffd2ea7ddcf3a9ed60e4e94705af449b686b37",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91100,
+      "world_sha256": "396cb9850e0f906e014b8b4c1b5a4eff83bfd48dda98fa29943ff057f802cc25",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91101,
+      "world_sha256": "10630241092c0e1c9c4c7643a1f6dc4414f75a9ce40771b94187ae7df678bc69",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91102,
+      "world_sha256": "43285bae7bdb0ab039695c701c3c26b8cacff817fe8ef028da18d78345008aa4",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91103,
+      "world_sha256": "cb08ee45ea1f9351a8e477003f885e604fd97e4c84fe162294ff3393fb60934f",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91104,
+      "world_sha256": "14823b3c1f7cc90f8640dc3193ff6e15b358eed3d3fb3a40837087b0ebf5e821",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91105,
+      "world_sha256": "cb3e98ed5435f9351ceb1747954bd7e807da4c7055dd77b147233842399a0c9a",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91106,
+      "world_sha256": "9253e759236abf7d9b82268b8a7c2e7fa3be38b5f1c8b99867c3df83d381bfb5",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91107,
+      "world_sha256": "df74e0dc965e5473e17ad3c388d449da344707e9b96f153fc4dd0773fd909ba6",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91108,
+      "world_sha256": "6be29a81996ea860223d8e8dd8fbc5e10f071ae306c4baf82a26bbc6a18746f2",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91109,
+      "world_sha256": "ea3e708e689cb9e7c38db8509ce50b6499e377d21044ad299ab2029feb70f89d",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91110,
+      "world_sha256": "f34cb1eeb38e3092efb45165acaa2554161f99c2891cce10119ce84405c35bf2",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    },
+    {
+      "split": "shifted",
+      "seed": 91111,
+      "world_sha256": "8c1c818a721d26c4a2b6593f92aacc7244f2ccebd74501ca41301f0174e06289",
+      "native_401_genome_digest": "c5e5795332725de4",
+      "intervention_arms": [
+        "neural_move_neural_birth",
+        "neural_move_scripted_birth",
+        "scripted_move_neural_birth",
+        "scripted_move_scripted_birth"
+      ]
+    }
+  ],
+  "no_new_training_seeds": true,
+  "previously_selected_frozen_genome_in_all_worlds": true,
+  "total_matched_worlds": 36
+}
