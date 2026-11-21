@@ -775,16 +775,16 @@ def run(settings:Settings,out:Path, *,
                     raise AssertionError("Mismatched world across policy arms")
                 if trace is not None:
                     traces.append(trace)
-                print("M5.4C SEALED "+json.dumps({
-                    "seed":seed,"split":split,"arm":arm,
-                    "survived":row["survived"],"alive_final":row["alive_final"],
-                    "food_eaten":row["food_eaten"],"births":row["births"],
-                    "revisit_fraction":row["revisit_fraction_of_moves"],
-                    "unique_cells":row["distinct_cells_visited_by_any_agent"],
-                    "mean_birth_energy":row["mean_energy_at_real_birth"],
-                    "world_sha256":row["world_sha256"],
-                    "energy_residual":row["final_energy_ledger_residual"],
-                },sort_keys=True),flush=True)
+                # Emit original FULL rows on the sealed run, not just a
+                # reduced summary. Permanent GitHub reports can therefore
+                # retain every single preregistered causal diagnostic even
+                # after GitHub Actions' 30-day binary artifact expires.
+                print("M5.4C SEALED "+json.dumps(
+                    row,sort_keys=True),flush=True)
+                if settings.ticks>=400:
+                    for checkpoint in ck:
+                        print("M5.4C CHECKPOINT "+json.dumps(
+                            checkpoint,sort_keys=True),flush=True)
     if settings.ticks>=400 and (len(rows)!=144 or len(worlds)!=36):
         raise AssertionError("Original frozen 144-world campaign incomplete")
     stats=analyze(rows,settings,bootstrap_reps=bootstrap_reps)
