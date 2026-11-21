@@ -201,6 +201,27 @@ class EcologicalViabilityTests(unittest.TestCase):
         self.assertEqual(d["positive_worlds"],1)
         self.assertEqual(d["negative_worlds"],1)
 
+    def test_empty_final_population_svg_is_valid(self):
+        # An extinct lineage has no living position to render. It is a valid
+        # scientific result, and graphics must not fail on empty bodies.
+        from neuroevolution import m5_0 as base
+        from neuroevolution.m5_1 import Settings, simulate
+        from neuroevolution.m5_0 import render_ecosystem_svg
+        s=Settings(**{**self.s.__dict__, "max_age": 15})
+        row, _, trace = simulate(700, s, "greedy_no_reproduction",
+                                 detailed=True)
+        self.assertEqual(row["alive_final"], 0)
+        compatible = {
+            "walls": trace["walls"],
+            "initial_food": trace["initial_food"],
+            "final_agents": [
+                {"pos": a["position"]} for a in trace["final_agents"]
+            ],
+        }
+        svg = render_ecosystem_svg(compatible, s.size)
+        self.assertIn("<svg", svg)
+        self.assertIn("</svg>", svg)
+
     def test_full_small_campaign_and_artifacts_reproducible(self):
         with tempfile.TemporaryDirectory() as tmp:
             a=Path(tmp)/"a"
