@@ -13,7 +13,7 @@ import json
 import math
 import random
 import statistics
-from dataclasses import asdict, dataclass, fields
+from dataclasses import asdict, dataclass, fields, replace
 from pathlib import Path
 
 from .m4_0 import (
@@ -277,7 +277,7 @@ def observation(world: TrialWorld, position: Point, steps: int,
         cue[action] = 1.
     values = (
         wall_bits + (0.,) * 8 +
-        (min(1., energy / settings.max_energy),
+        (1.0,  # Delayed memory benchmark: hide energy/time as external cue
          float(last_collision), float(last_food)) + tuple(cue)
     )
     if len(values) != INPUTS:
@@ -646,7 +646,10 @@ def run(settings: Settings, output: Path) -> dict:
         "shifted": [w for seed in shifted_seeds
                     for w in make_pair(seed, settings, shifted=True)],
     }
-    open_worlds = [make_diverse_world(seed, settings)
+    # Reactive transfer has M4.1's full 100-action horizon, separate from
+    # the 20-action irreversible memory-gate trial.
+    reactive_settings = replace(settings, horizon=100)
+    open_worlds = [make_diverse_world(seed, reactive_settings)
                    for seed in reactive_seeds]
     genotypes = {}
     history = []
@@ -683,7 +686,7 @@ def run(settings: Settings, output: Path) -> dict:
                     rnn if arm in ("rnn_reactive", "rnn_reactive_no_odor")
                     else None
                 )
-                trial = reactive_trial(world, settings, arm, genome)
+                trial = reactive_trial(world, reactive_settings, arm, genome)
                 reactive_records.append({
                     "genetic_seed": genetic_seed, **trial,
                 })
