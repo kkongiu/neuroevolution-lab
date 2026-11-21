@@ -1,0 +1,5 @@
+# M5.4B0-R source-only provenance audit rerun, exact snapshot semantics
+
+The supplementary provenance audit [#44933293068](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44933293068) initially failed a **bookkeeping-only** assertion: the original permanent source-genome logs contain full genes, parentage and original development scores at candidate CREATION, before the external ranking code later adds `development_rank` and `validation_score` fields to the six finalists. The deterministic replay in-memory candidate list has those additional metadata fields at the end. Comparing entire records without excluding **only these subsequently added annotations** produces a false hash/equality mismatch even though all numerical genes are identical.
+
+This rerun compares the original creation-time keys exactly and separately verifies all independently reproduced frozen SOURCE/VALIDATION selection summaries, unchanged genotype values, and refuses any access to final sealed 89200/89300 seeds. **Never modify physical actors, hypotheses, statistic gates or original 1152-world results.**

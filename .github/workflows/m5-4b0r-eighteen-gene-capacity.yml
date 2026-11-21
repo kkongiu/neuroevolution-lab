@@ -1,0 +1,56 @@
+name: M5.4B0-R true numerical recurrence capacity 1152 trials
+on:
+  push:
+    branches: ["experiment/m5-4b0r-eighteen-gene-recurrence"]
+    paths:
+      - "campaigns/m5-4b0r-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  sealed-recurrent-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Complete historical and bounded recurrence genetic/control regression
+        run: python -m unittest discover -s tests -v
+      - name: Execute preregistered 192 original+extended source candidates and 288 sealed worlds
+        run: |
+          python -m neuroevolution.m5_4b0r \
+            --development-start 89000 --development-seeds 4 \
+            --validation-start 89100 --validation-seeds 8 \
+            --seed-start 89200 --seeds 24 \
+            --shifted-start 89300 --shifted-seeds 12 \
+            --external-pool 48 --external-generations 3 \
+            --external-offspring 16 --external-elites 6 \
+            --external-mutation-sd 0.22 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 2 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --max-age 100 --hidden 12 --checkpoint-every 50 \
+            --initial-gene-sd 0.65 --gene-mutation-sd 0.16 \
+            --sparse-gene-count 2 --no-food-controls 0 \
+            --bootstrap-reps 20000 \
+            --out results/m5-4b0r
+      - name: Archive all original 1152 world ecological experiments and neural genotypes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-4b0r-eighteen-gene-bounded-recurrence
+          path: results/m5-4b0r/
+          retention-days: 30
+          if-no-files-found: warn
