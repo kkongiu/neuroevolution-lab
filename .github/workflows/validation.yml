@@ -33,6 +33,8 @@ jobs:
         run: python -m neuroevolution.m3_1 --train-start 20 --train-seeds 2 --validation-start 100 --validation-seeds 1 --test-start 200 --test-seeds 2 --shifted-start 300 --shifted-seeds 2 --trials 2 --width 6 --reset-units 2 --pretrain-steps 12 --adaptation-steps 12 --batch-size 2 --probe-size 16 --eval-size 20 --report-every 4 --out results/m3-1-smoke
       - name: M3.2 natural-interference smoke
         run: python -m neuroevolution.m3_2 --train-start 20 --train-seeds 2 --validation-start 100 --validation-seeds 1 --test-start 200 --test-seeds 2 --shifted-start 300 --shifted-seeds 2 --tasks 6 --steps 12 --batch-size 2 --width 6 --eval-size 16 --report-every 4 --renew-units 1 --quota 2 --generations 2 --population 4 --out results/m3-2-smoke
+      - name: M3.3 contextual-memory smoke
+        run: python -m neuroevolution.m3_3 --train-start 20 --train-seeds 2 --validation-start 100 --validation-seeds 1 --test-start 200 --test-seeds 2 --shifted-start 300 --shifted-seeds 2 --tasks 6 --steps 8 --batch-size 2 --width 6 --eval-size 12 --report-every 2 --buffer-size 4 --replay-every 2 --renew-units 1 --quota 2 --generations 2 --population 4 --out results/m3-3-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -45,4 +47,5 @@ jobs:
             results/m3-smoke/
             results/m3-1-smoke/
             results/m3-2-smoke/
+            results/m3-3-smoke/
           retention-days: 30
