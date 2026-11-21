@@ -101,7 +101,8 @@ class ShortOdorNumericRepresentabilityTests(unittest.TestCase):
         )
         self.assertEqual(row["all_actions_native_m50_neural"],0)
         self.assertEqual(row["programmed_policy"],1)
-        self.assertEqual(row["internal_birth_mutations"],0)
+        # M5.1's inert bookkeeping genomes may mutate but never act.
+        self.assertIsNone(row["internal_birth_mutations"])
         self.assertIsNone(row["genotype_digest"])
         self.assertEqual(row["energy_ledger_residual"],0.)
         self.assertTrue(all(
