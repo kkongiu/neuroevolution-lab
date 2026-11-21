@@ -195,7 +195,15 @@ class MatchedEcologicalFactorTests(unittest.TestCase):
         self.assertEqual(
             result["main"]["most_negative_factor"],"odor"
         )
-        self.assertTrue(result["gates"]["scripted_all_hard_physical_viability"])
+        # The sealed benchmark gate is >=4 of the EIGHT validation
+        # worlds. This synthetic smoke has only TWO validation worlds:
+        # even 2/2 successes must correctly remain below the gate.
+        self.assertEqual(
+            result["gates"]["scripted_all_hard_validation_survivors"],2
+        )
+        self.assertFalse(
+            result["gates"]["scripted_all_hard_physical_viability"]
+        )
         self.assertTrue(all(
             result["gates"]["validation_sign_concordance"][x]
             for x in ("odor",)
