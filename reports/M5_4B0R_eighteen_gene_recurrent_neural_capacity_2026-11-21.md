@@ -19,7 +19,7 @@ For each directional hidden neuron index i∈{0,1,2,3}, the previously all-zero 
 
 `h_i(t) = tanh(original_local_sensor_drive_i(t) + 0.65*tanh(g[10+i])*h_i(t−1) + 0.35*tanh(g[14+i])*h_((i+1) mod 4)(t−1))`.
 
-This is **genuine numerical hidden-state recurrence**, with four bounded self-feedback and four bounded cyclic lateral-feedback weights, sum absolute incoming recurrent weights never exceeding 1.0. It is **NOT** a hard-coded visited-cell table, position, map, target, human movement policy, or artificial program installed inside the genome. The remaining 397 full weights stay as before (except these exact 8 recurrent slots).
+This is **genuine numerical hidden-state recurrence**, with four bounded self-feedback and four bounded cyclic lateral-feedback weights, sum absolute incoming recurrent weights never exceeding 1.0. It is **NOT** a hard-coded visited-cell table, position, map, target, human movement policy, or artificial program installed inside the genome. The other **393 of 401 numerical weights remain unchanged**; only these 8 recurrent slots acquire feedback.
 
 Every organism's actual four movement logits and reproduction preference come solely from original unmodified `m5_0.network_logits` and `m5_0.act`. Every native costed birth inherits the exact same 18-gene-expanded 401-weight genome (hidden activations start at zero), with **NO within-world new mutations**. Reproduction, energy ledgers, food and physical movement are the same original M5.0 original-random-map ecology.
 
