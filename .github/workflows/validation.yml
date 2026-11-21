@@ -69,6 +69,8 @@ jobs:
         run: python -m neuroevolution.m5_4b0r --development-start 400 --development-seeds 2 --validation-start 500 --validation-seeds 2 --seed-start 600 --seeds 2 --shifted-start 700 --shifted-seeds 2 --external-pool 6 --external-generations 1 --external-offspring 4 --external-elites 2 --ticks 35 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --bootstrap-reps 110 --out results/m5-4b0r-smoke
       - name: M5.4C diagnostic neural/scripted 2-by-2 original-physics smoke
         run: python -m neuroevolution.m5_4c --seed-start 300 --seeds 2 --shifted-start 400 --shifted-seeds 2 --ticks 35 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --bootstrap-reps 120 --out results/m5-4c-smoke
+      - name: M5.5A naive-born innate-genetic organism heredity smoke
+        run: python -m neuroevolution.m5_5a --seed-start 300 --seeds 2 --shifted-start 400 --shifted-seeds 2 --ticks 30 --size 11 --initial-food 9 --food-cap 14 --initial-population 8 --max-population 18 --checkpoint-every 10 --no-food-controls 0 --bootstrap-reps 100 --out results/m5-5a-smoke
       - name: Upload metrics
         uses: actions/upload-artifact@v4
         with:
@@ -99,4 +101,5 @@ jobs:
             results/m5-4b0-smoke/
             results/m5-4b0r-smoke/
             results/m5-4c-smoke/
+            results/m5-5a-smoke/
           retention-days: 30

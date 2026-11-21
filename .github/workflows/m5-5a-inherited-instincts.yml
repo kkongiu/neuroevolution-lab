@@ -1,0 +1,53 @@
+name: M5.5A real birth-mutation experiments on programmed innate instincts
+on:
+  push:
+    branches: ["experiment/m5-5a-innate-homeostatic-genetic-instincts"]
+    paths:
+      - "campaigns/m5-5a-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  innate-trait-heredity-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Historical 203 test regressions and new inherited temperament legal-physics tests
+        run: python -m unittest discover -s tests -v
+      - name: One preregistered 180 world x 400 tick real inherited instinct mutation experiment
+        run: |
+          python -m neuroevolution.m5_5a \
+            --seed-start 93000 --seeds 24 \
+            --shifted-start 93100 --shifted-seeds 12 \
+            --ticks 400 --size 15 \
+            --obstacle-density 0.12 --shifted-obstacle-density 0.20 \
+            --regeneration-probability 0.55 \
+            --shifted-regeneration-probability 0.40 \
+            --odor-radius 2 --shifted-odor-radius 2 \
+            --initial-population 20 --max-population 64 \
+            --initial-food 20 --food-cap 32 \
+            --regeneration-attempts 2 \
+            --initial-energy 36 --max-energy 54 \
+            --food-energy 18 --movement-cost 1 \
+            --newborn-energy 12 --reproduction-energy-cost 20 \
+            --min-reproduction-energy 34 --min-reproduction-age 4 \
+            --max-age 100 --hidden 12 \
+            --checkpoint-every 50 --no-food-controls 0 \
+            --innate-initial-gene-sd 0.65 \
+            --innate-mutation-sd 0.22 \
+            --innate-gene-limit 2.5 \
+            --bootstrap-reps 20000 \
+            --out results/m5-5a
+      - name: Preserve ALL exact original physical birth genetic ancestry and 180 world ledgers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-5a-true-hereditary-instinct-mutation-original-world-trials
+          path: results/m5-5a/
+          retention-days: 30
+          if-no-files-found: warn

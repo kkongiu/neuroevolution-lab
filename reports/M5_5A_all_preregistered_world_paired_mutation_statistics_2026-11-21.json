@@ -1,0 +1,843 @@
+{
+  "prospective_protocol_commit": "a3aa39e4f68acc38d17a4292b4ebefbd4b72b10b",
+  "original_scientific_actions_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/44940687397",
+  "original_213_historical_new_tests_green": true,
+  "original_original_physical_ticks": 400,
+  "real_original_untrained_naive_genetic_founders_per_world": 20,
+  "innate_programmed_behavior_never_neural": true,
+  "true_birth_mutation_arms": [
+    "innate_sparse_mutation",
+    "innate_dense_mutation"
+  ],
+  "original_all_birth_full_genotype_genealogy_artifact_id": 14720899006,
+  "original_fixed_five_arms": [
+    "innate_clone",
+    "innate_sparse_mutation",
+    "innate_dense_mutation",
+    "innate_random_newborn",
+    "random_legal_movement"
+  ],
+  "original_worlds": 36,
+  "original_trials": 180,
+  "original_main_world_seed_start": 93000,
+  "original_shifted_world_seed_start": 93100,
+  "gates": {
+    "causal_beneficial_mutation_over_own_founder_transfer_proven": false,
+    "observational_mutation_advantage_gate": false,
+    "observed_sparse_mutation_worlds_ge12of24": true,
+    "programmed_innate_clone_positive_ecology_ge18of24": true,
+    "source_founders_naive_and_independent": true,
+    "sparse_vs_clones_both_survival_and_auc_lower95_positive": false,
+    "spontaneously_learned_neural_instincts": false,
+    "true_within_world_genetic_perturbations_implemented": true
+  },
+  "main": {
+    "arms": {
+      "innate_clone": {
+        "mean_alive_final": 11.958333333333334,
+        "mean_food_eaten": 397.25,
+        "mean_fraction_final_nonfounder_alleles": 0,
+        "mean_native_births": 109.20833333333333,
+        "mean_population_auc": 13.666666666666666,
+        "mean_revisited_move_fraction": 0.39805824687126984,
+        "mean_unique_cells_per_organism_life": 27.27364825516522,
+        "survivor_worlds": 24,
+        "worlds": 24,
+        "worlds_with_genuinely_mutated_offspring": 0
+      },
+      "innate_dense_mutation": {
+        "mean_alive_final": 12.333333333333334,
+        "mean_food_eaten": 398.875,
+        "mean_fraction_final_nonfounder_alleles": 1,
+        "mean_native_births": 110.875,
+        "mean_population_auc": 13.662037037037036,
+        "mean_revisited_move_fraction": 0.39309099448671553,
+        "mean_unique_cells_per_organism_life": 27.189348363039464,
+        "survivor_worlds": 24,
+        "worlds": 24,
+        "worlds_with_genuinely_mutated_offspring": 24
+      },
+      "innate_random_newborn": {
+        "mean_alive_final": 12.166666666666666,
+        "mean_food_eaten": 396.3333333333333,
+        "mean_fraction_final_nonfounder_alleles": 1,
+        "mean_native_births": 108.58333333333333,
+        "mean_population_auc": 13.796296296296296,
+        "mean_revisited_move_fraction": 0.41755143016774704,
+        "mean_unique_cells_per_organism_life": 26.43211984188092,
+        "survivor_worlds": 24,
+        "worlds": 24,
+        "worlds_with_genuinely_mutated_offspring": 0
+      },
+      "innate_sparse_mutation": {
+        "mean_alive_final": 12.041666666666666,
+        "mean_food_eaten": 397.5416666666667,
+        "mean_fraction_final_nonfounder_alleles": 1,
+        "mean_native_births": 109.79166666666667,
+        "mean_population_auc": 13.63888888888889,
+        "mean_revisited_move_fraction": 0.39488813056133515,
+        "mean_unique_cells_per_organism_life": 27.374676473542078,
+        "survivor_worlds": 24,
+        "worlds": 24,
+        "worlds_with_genuinely_mutated_offspring": 24
+      },
+      "random_legal_movement": {
+        "mean_alive_final": 4.625,
+        "mean_food_eaten": 214.625,
+        "mean_fraction_final_nonfounder_alleles": 0,
+        "mean_native_births": 58,
+        "mean_population_auc": 8.680555555555555,
+        "mean_revisited_move_fraction": 0.6039191826591904,
+        "mean_unique_cells_per_organism_life": 18.837629672505585,
+        "survivor_worlds": 14,
+        "worlds": 24,
+        "worlds_with_genuinely_mutated_offspring": 0
+      }
+    },
+    "comparisons": {
+      "clone_minus_random_motor_auc": {
+        "bootstrap_95": [
+          3.7268518518518516,
+          6.24537037037037
+        ],
+        "mean_paired_effect": 4.986111111111112,
+        "per_world": {
+          "93000": 7.444444444444444,
+          "93001": -0.6666666666666661,
+          "93002": 8.777777777777779,
+          "93003": 2.2222222222222214,
+          "93004": 9,
+          "93005": 3.333333333333334,
+          "93006": 2.2222222222222214,
+          "93007": 2.666666666666668,
+          "93008": 2.333333333333334,
+          "93009": 6.777777777777778,
+          "93010": 6.444444444444445,
+          "93011": 3.666666666666666,
+          "93012": 7.888888888888889,
+          "93013": 2,
+          "93014": 8.666666666666668,
+          "93015": 1.8888888888888893,
+          "93016": 3.333333333333334,
+          "93017": 9.333333333333334,
+          "93018": 2.1111111111111107,
+          "93019": 8.777777777777779,
+          "93020": 1.1111111111111107,
+          "93021": 9.333333333333332,
+          "93022": 3.333333333333334,
+          "93023": 7.666666666666666
+        },
+        "strictly_positive_lower95": true
+      },
+      "clone_minus_random_motor_survival": {
+        "bootstrap_95": [
+          0.20833333333333334,
+          0.625
+        ],
+        "mean_paired_effect": 0.4166666666666667,
+        "per_world": {
+          "93000": 1,
+          "93001": 0,
+          "93002": 1,
+          "93003": 0,
+          "93004": 1,
+          "93005": 0,
+          "93006": 0,
+          "93007": 0,
+          "93008": 0,
+          "93009": 1,
+          "93010": 0,
+          "93011": 0,
+          "93012": 1,
+          "93013": 0,
+          "93014": 1,
+          "93015": 0,
+          "93016": 0,
+          "93017": 1,
+          "93018": 0,
+          "93019": 1,
+          "93020": 0,
+          "93021": 1,
+          "93022": 0,
+          "93023": 1
+        },
+        "strictly_positive_lower95": true
+      },
+      "dense_minus_clone_auc": {
+        "bootstrap_95": [
+          -0.28703703703703726,
+          0.27314814814814786
+        ],
+        "mean_paired_effect": -0.0046296296296299095,
+        "per_world": {
+          "93000": 1,
+          "93001": 0.44444444444444464,
+          "93002": 0.22222222222222143,
+          "93003": 0.11111111111111072,
+          "93004": 0.11111111111111072,
+          "93005": -0.3333333333333339,
+          "93006": 0.11111111111111249,
+          "93007": -0.6666666666666679,
+          "93008": 1,
+          "93009": -0.8888888888888893,
+          "93010": 0.7777777777777768,
+          "93011": -0.44444444444444464,
+          "93012": 0.6666666666666661,
+          "93013": 0.11111111111111072,
+          "93014": 0.8888888888888893,
+          "93015": 0.2222222222222232,
+          "93016": -0.2222222222222232,
+          "93017": -0.6666666666666679,
+          "93018": -0.8888888888888893,
+          "93019": -1.6666666666666679,
+          "93020": 0.6666666666666661,
+          "93021": -0.8888888888888875,
+          "93022": 0.6666666666666661,
+          "93023": -0.44444444444444464
+        },
+        "strictly_positive_lower95": false
+      },
+      "dense_minus_clone_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93000": 0,
+          "93001": 0,
+          "93002": 0,
+          "93003": 0,
+          "93004": 0,
+          "93005": 0,
+          "93006": 0,
+          "93007": 0,
+          "93008": 0,
+          "93009": 0,
+          "93010": 0,
+          "93011": 0,
+          "93012": 0,
+          "93013": 0,
+          "93014": 0,
+          "93015": 0,
+          "93016": 0,
+          "93017": 0,
+          "93018": 0,
+          "93019": 0,
+          "93020": 0,
+          "93021": 0,
+          "93022": 0,
+          "93023": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "random_newborn_minus_clone_auc": {
+        "bootstrap_95": [
+          -0.14814814814814806,
+          0.37962962962962954
+        ],
+        "mean_paired_effect": 0.12962962962962962,
+        "per_world": {
+          "93000": 1,
+          "93001": 0,
+          "93002": -0.8888888888888893,
+          "93003": 0.6666666666666661,
+          "93004": 0,
+          "93005": 0.3333333333333339,
+          "93006": 0,
+          "93007": 0.8888888888888893,
+          "93008": 0.11111111111111072,
+          "93009": 0.11111111111111072,
+          "93010": 0.44444444444444464,
+          "93011": 0.3333333333333339,
+          "93012": 0.6666666666666661,
+          "93013": 0.8888888888888893,
+          "93014": -1.666666666666666,
+          "93015": 1,
+          "93016": 0.22222222222222143,
+          "93017": 0,
+          "93018": 0.22222222222222143,
+          "93019": -0.8888888888888893,
+          "93020": 0.11111111111111072,
+          "93021": 0.6666666666666679,
+          "93022": -0.11111111111111072,
+          "93023": -1
+        },
+        "strictly_positive_lower95": false
+      },
+      "random_newborn_minus_clone_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93000": 0,
+          "93001": 0,
+          "93002": 0,
+          "93003": 0,
+          "93004": 0,
+          "93005": 0,
+          "93006": 0,
+          "93007": 0,
+          "93008": 0,
+          "93009": 0,
+          "93010": 0,
+          "93011": 0,
+          "93012": 0,
+          "93013": 0,
+          "93014": 0,
+          "93015": 0,
+          "93016": 0,
+          "93017": 0,
+          "93018": 0,
+          "93019": 0,
+          "93020": 0,
+          "93021": 0,
+          "93022": 0,
+          "93023": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_clone_auc": {
+        "bootstrap_95": [
+          -0.3287037037037037,
+          0.31018518518518534
+        ],
+        "mean_paired_effect": -0.02777777777777768,
+        "per_world": {
+          "93000": 2.333333333333334,
+          "93001": -0.6666666666666661,
+          "93002": -0.8888888888888893,
+          "93003": -0.6666666666666661,
+          "93004": 0.8888888888888893,
+          "93005": -0.22222222222222143,
+          "93006": 1.1111111111111125,
+          "93007": 1.2222222222222214,
+          "93008": 0.3333333333333339,
+          "93009": -0.3333333333333339,
+          "93010": 0.22222222222222143,
+          "93011": -0.6666666666666661,
+          "93012": 0.44444444444444287,
+          "93013": 0.7777777777777786,
+          "93014": -1.2222222222222214,
+          "93015": -0.33333333333333215,
+          "93016": -0.44444444444444464,
+          "93017": 0,
+          "93018": -0.6666666666666679,
+          "93019": -0.6666666666666679,
+          "93020": -0.2222222222222232,
+          "93021": -0.33333333333333215,
+          "93022": -0.3333333333333339,
+          "93023": -0.33333333333333215
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_clone_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93000": 0,
+          "93001": 0,
+          "93002": 0,
+          "93003": 0,
+          "93004": 0,
+          "93005": 0,
+          "93006": 0,
+          "93007": 0,
+          "93008": 0,
+          "93009": 0,
+          "93010": 0,
+          "93011": 0,
+          "93012": 0,
+          "93013": 0,
+          "93014": 0,
+          "93015": 0,
+          "93016": 0,
+          "93017": 0,
+          "93018": 0,
+          "93019": 0,
+          "93020": 0,
+          "93021": 0,
+          "93022": 0,
+          "93023": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_dense_auc": {
+        "bootstrap_95": [
+          -0.3888888888888886,
+          0.3379629629629633
+        ],
+        "mean_paired_effect": -0.02314814814814777,
+        "per_world": {
+          "93000": 1.333333333333334,
+          "93001": -1.1111111111111107,
+          "93002": -1.1111111111111107,
+          "93003": -0.7777777777777768,
+          "93004": 0.7777777777777786,
+          "93005": 0.11111111111111249,
+          "93006": 1,
+          "93007": 1.8888888888888893,
+          "93008": -0.6666666666666661,
+          "93009": 0.5555555555555554,
+          "93010": -0.5555555555555554,
+          "93011": -0.22222222222222143,
+          "93012": -0.2222222222222232,
+          "93013": 0.6666666666666679,
+          "93014": -2.1111111111111107,
+          "93015": -0.5555555555555554,
+          "93016": -0.22222222222222143,
+          "93017": 0.6666666666666679,
+          "93018": 0.22222222222222143,
+          "93019": 1,
+          "93020": -0.8888888888888893,
+          "93021": 0.5555555555555554,
+          "93022": -1,
+          "93023": 0.11111111111111249
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_dense_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93000": 0,
+          "93001": 0,
+          "93002": 0,
+          "93003": 0,
+          "93004": 0,
+          "93005": 0,
+          "93006": 0,
+          "93007": 0,
+          "93008": 0,
+          "93009": 0,
+          "93010": 0,
+          "93011": 0,
+          "93012": 0,
+          "93013": 0,
+          "93014": 0,
+          "93015": 0,
+          "93016": 0,
+          "93017": 0,
+          "93018": 0,
+          "93019": 0,
+          "93020": 0,
+          "93021": 0,
+          "93022": 0,
+          "93023": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_random_newborn_auc": {
+        "bootstrap_95": [
+          -0.4351851851851852,
+          0.13425925925925922
+        ],
+        "mean_paired_effect": -0.1574074074074073,
+        "per_world": {
+          "93000": 1.333333333333334,
+          "93001": -0.6666666666666661,
+          "93002": 0,
+          "93003": -1.3333333333333321,
+          "93004": 0.8888888888888893,
+          "93005": -0.5555555555555554,
+          "93006": 1.1111111111111125,
+          "93007": 0.33333333333333215,
+          "93008": 0.2222222222222232,
+          "93009": -0.44444444444444464,
+          "93010": -0.2222222222222232,
+          "93011": -1,
+          "93012": -0.2222222222222232,
+          "93013": -0.11111111111111072,
+          "93014": 0.44444444444444464,
+          "93015": -1.3333333333333321,
+          "93016": -0.6666666666666661,
+          "93017": 0,
+          "93018": -0.8888888888888893,
+          "93019": 0.22222222222222143,
+          "93020": -0.3333333333333339,
+          "93021": -1,
+          "93022": -0.2222222222222232,
+          "93023": 0.6666666666666679
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_random_newborn_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93000": 0,
+          "93001": 0,
+          "93002": 0,
+          "93003": 0,
+          "93004": 0,
+          "93005": 0,
+          "93006": 0,
+          "93007": 0,
+          "93008": 0,
+          "93009": 0,
+          "93010": 0,
+          "93011": 0,
+          "93012": 0,
+          "93013": 0,
+          "93014": 0,
+          "93015": 0,
+          "93016": 0,
+          "93017": 0,
+          "93018": 0,
+          "93019": 0,
+          "93020": 0,
+          "93021": 0,
+          "93022": 0,
+          "93023": 0
+        },
+        "strictly_positive_lower95": false
+      }
+    },
+    "independent_matched_worlds": 24
+  },
+  "shifted": {
+    "arms": {
+      "innate_clone": {
+        "mean_alive_final": 10.083333333333334,
+        "mean_food_eaten": 286.5,
+        "mean_fraction_final_nonfounder_alleles": 0,
+        "mean_native_births": 85.75,
+        "mean_population_auc": 10.583333333333334,
+        "mean_revisited_move_fraction": 0.46852282053290895,
+        "mean_unique_cells_per_organism_life": 22.064497189874427,
+        "survivor_worlds": 12,
+        "worlds": 12,
+        "worlds_with_genuinely_mutated_offspring": 0
+      },
+      "innate_dense_mutation": {
+        "mean_alive_final": 8.166666666666666,
+        "mean_food_eaten": 270,
+        "mean_fraction_final_nonfounder_alleles": 0.9166666666666666,
+        "mean_native_births": 77,
+        "mean_population_auc": 10.018518518518519,
+        "mean_revisited_move_fraction": 0.4727127516262203,
+        "mean_unique_cells_per_organism_life": 22.754863438330524,
+        "survivor_worlds": 11,
+        "worlds": 12,
+        "worlds_with_genuinely_mutated_offspring": 12
+      },
+      "innate_random_newborn": {
+        "mean_alive_final": 9.25,
+        "mean_food_eaten": 289.1666666666667,
+        "mean_fraction_final_nonfounder_alleles": 1,
+        "mean_native_births": 82.41666666666667,
+        "mean_population_auc": 10.333333333333334,
+        "mean_revisited_move_fraction": 0.46939815735464174,
+        "mean_unique_cells_per_organism_life": 22.857022539058498,
+        "survivor_worlds": 12,
+        "worlds": 12,
+        "worlds_with_genuinely_mutated_offspring": 0
+      },
+      "innate_sparse_mutation": {
+        "mean_alive_final": 9,
+        "mean_food_eaten": 286.9166666666667,
+        "mean_fraction_final_nonfounder_alleles": 1,
+        "mean_native_births": 81.25,
+        "mean_population_auc": 10.592592592592593,
+        "mean_revisited_move_fraction": 0.47657460540950775,
+        "mean_unique_cells_per_organism_life": 23.255885309031676,
+        "survivor_worlds": 12,
+        "worlds": 12,
+        "worlds_with_genuinely_mutated_offspring": 12
+      },
+      "random_legal_movement": {
+        "mean_alive_final": 0.16666666666666666,
+        "mean_food_eaten": 88.83333333333333,
+        "mean_fraction_final_nonfounder_alleles": 0,
+        "mean_native_births": 25.166666666666668,
+        "mean_population_auc": 4.7592592592592595,
+        "mean_revisited_move_fraction": 0.6399096004836792,
+        "mean_unique_cells_per_organism_life": 15.893825832953844,
+        "survivor_worlds": 2,
+        "worlds": 12,
+        "worlds_with_genuinely_mutated_offspring": 0
+      }
+    },
+    "comparisons": {
+      "clone_minus_random_motor_auc": {
+        "bootstrap_95": [
+          4.962962962962963,
+          6.5740740740740735
+        ],
+        "mean_paired_effect": 5.824074074074074,
+        "per_world": {
+          "93100": 3.222222222222223,
+          "93101": 7.555555555555555,
+          "93102": 6.777777777777779,
+          "93103": 7.333333333333333,
+          "93104": 5.222222222222221,
+          "93105": 5.444444444444445,
+          "93106": 2.8888888888888893,
+          "93107": 6.888888888888889,
+          "93108": 6.555555555555556,
+          "93109": 5.333333333333333,
+          "93110": 6.444444444444444,
+          "93111": 6.222222222222223
+        },
+        "strictly_positive_lower95": true
+      },
+      "clone_minus_random_motor_survival": {
+        "bootstrap_95": [
+          0.5833333333333334,
+          1
+        ],
+        "mean_paired_effect": 0.8333333333333334,
+        "per_world": {
+          "93100": 0,
+          "93101": 1,
+          "93102": 1,
+          "93103": 1,
+          "93104": 1,
+          "93105": 1,
+          "93106": 0,
+          "93107": 1,
+          "93108": 1,
+          "93109": 1,
+          "93110": 1,
+          "93111": 1
+        },
+        "strictly_positive_lower95": true
+      },
+      "dense_minus_clone_auc": {
+        "bootstrap_95": [
+          -1.777777777777778,
+          0.3703703703703704
+        ],
+        "mean_paired_effect": -0.564814814814815,
+        "per_world": {
+          "93100": -0.11111111111111249,
+          "93101": -1.333333333333334,
+          "93102": 1.5555555555555554,
+          "93103": -0.7777777777777768,
+          "93104": 1.8888888888888893,
+          "93105": -0.5555555555555554,
+          "93106": -1.6666666666666679,
+          "93107": -0.11111111111111072,
+          "93108": -6.000000000000001,
+          "93109": 0.44444444444444464,
+          "93110": -0.11111111111111072,
+          "93111": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "dense_minus_clone_survival": {
+        "bootstrap_95": [
+          -0.25,
+          0
+        ],
+        "mean_paired_effect": -0.08333333333333333,
+        "per_world": {
+          "93100": 0,
+          "93101": 0,
+          "93102": 0,
+          "93103": 0,
+          "93104": 0,
+          "93105": 0,
+          "93106": 0,
+          "93107": 0,
+          "93108": -1,
+          "93109": 0,
+          "93110": 0,
+          "93111": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "random_newborn_minus_clone_auc": {
+        "bootstrap_95": [
+          -0.7037037037037036,
+          0.18518518518518542
+        ],
+        "mean_paired_effect": -0.24999999999999986,
+        "per_world": {
+          "93100": 0.33333333333333215,
+          "93101": -1.666666666666666,
+          "93102": -1.4444444444444446,
+          "93103": -0.6666666666666661,
+          "93104": 0.2222222222222232,
+          "93105": 0.44444444444444464,
+          "93106": -0.8888888888888893,
+          "93107": 1,
+          "93108": 0.11111111111111072,
+          "93109": 0.44444444444444464,
+          "93110": -0.33333333333333215,
+          "93111": -0.5555555555555554
+        },
+        "strictly_positive_lower95": false
+      },
+      "random_newborn_minus_clone_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93100": 0,
+          "93101": 0,
+          "93102": 0,
+          "93103": 0,
+          "93104": 0,
+          "93105": 0,
+          "93106": 0,
+          "93107": 0,
+          "93108": 0,
+          "93109": 0,
+          "93110": 0,
+          "93111": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_clone_auc": {
+        "bootstrap_95": [
+          -0.6018518518518522,
+          0.5185185185185187
+        ],
+        "mean_paired_effect": 0.009259259259259375,
+        "per_world": {
+          "93100": 0,
+          "93101": -0.7777777777777768,
+          "93102": 0.7777777777777768,
+          "93103": -2.4444444444444446,
+          "93104": 0.5555555555555554,
+          "93105": 1,
+          "93106": -1.2222222222222232,
+          "93107": -0.22222222222222143,
+          "93108": 0.44444444444444464,
+          "93109": 0.6666666666666679,
+          "93110": 1.1111111111111125,
+          "93111": 0.22222222222222143
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_clone_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93100": 0,
+          "93101": 0,
+          "93102": 0,
+          "93103": 0,
+          "93104": 0,
+          "93105": 0,
+          "93106": 0,
+          "93107": 0,
+          "93108": 0,
+          "93109": 0,
+          "93110": 0,
+          "93111": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_dense_auc": {
+        "bootstrap_95": [
+          -0.37037037037037024,
+          1.8240740740740744
+        ],
+        "mean_paired_effect": 0.5740740740740743,
+        "per_world": {
+          "93100": 0.11111111111111249,
+          "93101": 0.5555555555555571,
+          "93102": -0.7777777777777786,
+          "93103": -1.6666666666666679,
+          "93104": -1.333333333333334,
+          "93105": 1.5555555555555554,
+          "93106": 0.44444444444444464,
+          "93107": -0.11111111111111072,
+          "93108": 6.4444444444444455,
+          "93109": 0.2222222222222232,
+          "93110": 1.2222222222222232,
+          "93111": 0.22222222222222143
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_dense_survival": {
+        "bootstrap_95": [
+          0,
+          0.25
+        ],
+        "mean_paired_effect": 0.08333333333333333,
+        "per_world": {
+          "93100": 0,
+          "93101": 0,
+          "93102": 0,
+          "93103": 0,
+          "93104": 0,
+          "93105": 0,
+          "93106": 0,
+          "93107": 0,
+          "93108": 1,
+          "93109": 0,
+          "93110": 0,
+          "93111": 0
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_random_newborn_auc": {
+        "bootstrap_95": [
+          -0.3425925925925927,
+          0.842592592592593
+        ],
+        "mean_paired_effect": 0.25925925925925924,
+        "per_world": {
+          "93100": -0.33333333333333215,
+          "93101": 0.8888888888888893,
+          "93102": 2.2222222222222214,
+          "93103": -1.7777777777777786,
+          "93104": 0.33333333333333215,
+          "93105": 0.5555555555555554,
+          "93106": -0.3333333333333339,
+          "93107": -1.2222222222222214,
+          "93108": 0.3333333333333339,
+          "93109": 0.2222222222222232,
+          "93110": 1.4444444444444446,
+          "93111": 0.7777777777777768
+        },
+        "strictly_positive_lower95": false
+      },
+      "sparse_minus_random_newborn_survival": {
+        "bootstrap_95": [
+          0,
+          0
+        ],
+        "mean_paired_effect": 0,
+        "per_world": {
+          "93100": 0,
+          "93101": 0,
+          "93102": 0,
+          "93103": 0,
+          "93104": 0,
+          "93105": 0,
+          "93106": 0,
+          "93107": 0,
+          "93108": 0,
+          "93109": 0,
+          "93110": 0,
+          "93111": 0
+        },
+        "strictly_positive_lower95": false
+      }
+    },
+    "independent_matched_worlds": 12
+  },
+  "trials": 180,
+  "worlds": 36,
+  "scope": "True within-world real genetic mutation of eight numerical gains acting on built-in researcher-PROGRAMMED imperfect innate reflexes. No neural weights or native 401 RNN policy were used. Programmed clone survival is physical capability, not mutation benefit. Full source-born genotypes and exact birth mutation ancestry in original original Actions artifact. No lineage transplant; natural mutation beneficial effect vs original own founder not shown."
+}
