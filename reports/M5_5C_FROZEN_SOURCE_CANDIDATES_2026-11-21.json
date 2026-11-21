@@ -1,0 +1,437 @@
+{
+  "M5_5B_source_run_commit": "b9d0f4bf00b667dae68249214e6db4616db33d37",
+  "candidate_bank_sha256": "d4cb17b20ec35e7d05474dd04dff464eb0c197106b2a63c669b69c66e7284eab",
+  "candidates": [
+    {
+      "actual_mutant_descendant_genes": [
+        -0.8172327074573317,
+        0.6329454042845143,
+        -0.5184324871411736,
+        -0.5749712339548322,
+        0.1256319803325282,
+        -0.42525480851062347,
+        0.7860358841521717,
+        0.6878014092191426,
+        0.4820459737392497
+      ],
+      "founder_mutant_pair_sha256": "f93bb0d15d04defd1ac0f2c7d539734c83977f52cf3520aeaefeb9006563ba00",
+      "matched_random_control_genes": [
+        2.3247634045570917,
+        -0.6416462020477343,
+        0.5849478582882366,
+        0.055216095559017714,
+        0.6693581227308547,
+        -0.6462956649543296,
+        -0.3573503946866392,
+        -0.2173660914259044,
+        0.7852782130107989
+      ],
+      "newborn_birth_tick": 70,
+      "newborn_child_id": 44,
+      "newborn_generation": 1,
+      "own_founder_id": 11,
+      "own_original_founder_genes": [
+        -0.8172327074573317,
+        0.6329454042845143,
+        -0.5184324871411736,
+        -0.450441155847856,
+        0.1256319803325282,
+        -0.42525480851062347,
+        0.7860358841521717,
+        0.6878014092191426,
+        0.34837357629261184
+      ],
+      "source_changed_gene_indices": [
+        3,
+        8
+      ],
+      "source_direct_offspring_count": 1,
+      "source_initial_founder_bank_sha": "6a92c6e230a232649577866849c59ffe5968b27f83d16577e3aa117a05d97374",
+      "source_original_trial_births": 29,
+      "source_original_trial_population_auc": 3.6666666666666665,
+      "source_original_trial_predation_deaths": 20,
+      "source_original_world_sha": "7c758a1b411116eceb95ade9defdef069e0cadbd3f0515c819ebe20e1a4c1f83",
+      "source_seed": 94000,
+      "source_world_sha": "a7464eb6b94e2351240d160d091776ff3e9758683cadf3e34590d23e5e343a2d"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        0.33357339177352047,
+        -1.0413491763268956,
+        -1.4895669307395294,
+        -0.5981380081233076,
+        -1.4500367155041782,
+        0.22164494670716006,
+        -0.16915422483527073,
+        0.42273345125225115,
+        -0.2359354978041354
+      ],
+      "founder_mutant_pair_sha256": "ae54837995e0dc1ad1d7b8a6d435023593a9aad8f175c6879fb2415aac57a70d",
+      "matched_random_control_genes": [
+        0.1902814930699863,
+        -0.26149807165773653,
+        0.4870713299741396,
+        0.24426646086364684,
+        -1.1378440105613874,
+        -0.12754730620959473,
+        -0.7519904582000966,
+        -1.9516927109198454,
+        0.40038333833899087
+      ],
+      "newborn_birth_tick": 221,
+      "newborn_child_id": 84,
+      "newborn_generation": 5,
+      "own_founder_id": 13,
+      "own_original_founder_genes": [
+        0.3742490279392224,
+        -1.0413491763268956,
+        -1.4895669307395294,
+        -0.5346723789014696,
+        -1.2411531364518273,
+        0.22164494670716006,
+        -0.16915422483527073,
+        0.5272264157996959,
+        -0.5155972567624999
+      ],
+      "source_changed_gene_indices": [
+        4,
+        8
+      ],
+      "source_direct_offspring_count": 6,
+      "source_initial_founder_bank_sha": "cdfced281b37f107ae6449bef8036d69ff40855be31286fbe6b3a07e9d687faa",
+      "source_original_trial_births": 131,
+      "source_original_trial_population_auc": 10.666666666666666,
+      "source_original_trial_predation_deaths": 75,
+      "source_original_world_sha": "6c4b3771a6a6906a1a8dd9b4953bf5c67c5c63eac87d4256b76f6c919468d66a",
+      "source_seed": 94001,
+      "source_world_sha": "aa252ad398fe0c3f7e526f13e6de1e4620aeee47d92fd2d40395fdd355fe0388"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        0.13918030877267096,
+        -0.5796481547157094,
+        -0.45858767312739673,
+        0.35349410940472537,
+        0.0563092442596305,
+        0.4251193639137917,
+        -1.596857177143761,
+        -0.2513220963420274,
+        1.3771865085620898
+      ],
+      "founder_mutant_pair_sha256": "51e6afc020f803e4089c30fd9009f02d42b14a5477df977efb14424a4b0bde30",
+      "matched_random_control_genes": [
+        -0.7964193750084633,
+        -0.3901665987853781,
+        0.2245971708353269,
+        0.650783713206186,
+        0.041566746030047806,
+        0.02975256988324911,
+        -0.3083549970305201,
+        -0.5990084001577276,
+        -1.2999106448833555
+      ],
+      "newborn_birth_tick": 42,
+      "newborn_child_id": 33,
+      "newborn_generation": 1,
+      "own_founder_id": 15,
+      "own_original_founder_genes": [
+        0.13918030877267096,
+        -0.5796481547157094,
+        -0.45858767312739673,
+        0.04869946533257635,
+        0.0563092442596305,
+        0.4251193639137917,
+        -1.596857177143761,
+        -0.2513220963420274,
+        1.7231420108769326
+      ],
+      "source_changed_gene_indices": [
+        3,
+        8
+      ],
+      "source_direct_offspring_count": 3,
+      "source_initial_founder_bank_sha": "b7c96680d64ca977749d0bbfd98106fc655cfbbc9175230e3d09d7dbcbe2e2e6",
+      "source_original_trial_births": 119,
+      "source_original_trial_population_auc": 10.555555555555555,
+      "source_original_trial_predation_deaths": 68,
+      "source_original_world_sha": "b452f6424f6c95b83ccdc54c57e45f6fd9eb31e6faf982f6080c1b449178ea0b",
+      "source_seed": 94002,
+      "source_world_sha": "08ca0d95aecf7d2813499b1b7a3591a524a7640de4b2a20618f569321ce31324"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        0.023358188841366145,
+        0.2012487581342062,
+        -1.1005542423145762,
+        0.13131549378079713,
+        -0.07103571744799587,
+        0.6593585102809327,
+        -0.21335319369509229,
+        1.1344772776666838,
+        0.8000939471365555
+      ],
+      "founder_mutant_pair_sha256": "dbdba2ea1e4793cfb5b594ba43c96ba609559aa099b1de1d8d80c19e4910ff0e",
+      "matched_random_control_genes": [
+        0.8632777332313066,
+        -0.6231116849074244,
+        0.4728528739061391,
+        0.39001367893491085,
+        -0.37158256839071785,
+        -0.38076316945747696,
+        0.28349922835022323,
+        -0.956846115152021,
+        -0.9134538417439979
+      ],
+      "newborn_birth_tick": 51,
+      "newborn_child_id": 41,
+      "newborn_generation": 1,
+      "own_founder_id": 5,
+      "own_original_founder_genes": [
+        0.023358188841366145,
+        0.2202150748281324,
+        -1.1005542423145762,
+        0.13131549378079713,
+        -0.07103571744799587,
+        0.6593585102809327,
+        -0.21335319369509229,
+        1.1344772776666838,
+        0.5877778753649577
+      ],
+      "source_changed_gene_indices": [
+        1,
+        8
+      ],
+      "source_direct_offspring_count": 2,
+      "source_initial_founder_bank_sha": "db0c249568988c57ac4bd45bd7cf65cd20dac56c2e0d9fa44168daced31375a5",
+      "source_original_trial_births": 51,
+      "source_original_trial_population_auc": 4.777777777777778,
+      "source_original_trial_predation_deaths": 39,
+      "source_original_world_sha": "8db80dce8ddf03cb327fc467721106f6ae8778d4c4a93ee04d219df73897b488",
+      "source_seed": 94003,
+      "source_world_sha": "98d73b06a4fd26bd4433d641cac5a3718569738ea4aa64a2abb580e4d7a6db3b"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        1.1951176489477213,
+        -0.9493125600563782,
+        0.5921662435496389,
+        0.018146864916562144,
+        -0.5590355078123066,
+        -0.8735500546540347,
+        0.7536003274324966,
+        0.7422486060190698,
+        0.524801769080114
+      ],
+      "founder_mutant_pair_sha256": "f23e72e391ca6b2a18ac6a86301cab88325cc434e8233217823d4a756830c4ef",
+      "matched_random_control_genes": [
+        0.34638766907755464,
+        -0.5668248507011048,
+        -0.6385379832189797,
+        1.3507204102524288,
+        0.23611534077461127,
+        0.23561853827481033,
+        -1.1785011126103695,
+        -0.9587453990971494,
+        -0.9887706470029015
+      ],
+      "newborn_birth_tick": 298,
+      "newborn_child_id": 100,
+      "newborn_generation": 6,
+      "own_founder_id": 5,
+      "own_original_founder_genes": [
+        0.9222635869198705,
+        -0.9447783702014556,
+        0.7511982042755615,
+        -0.12339035885687143,
+        -0.8620012620846622,
+        -0.416263205017263,
+        0.7536003274324966,
+        0.9368689966358622,
+        0.5141042041337903
+      ],
+      "source_changed_gene_indices": [
+        0,
+        8
+      ],
+      "source_direct_offspring_count": 3,
+      "source_initial_founder_bank_sha": "a34d2332a2ded84ca0c9f797ad53067652daae96f01b9f01dcb7724327e8b76a",
+      "source_original_trial_births": 107,
+      "source_original_trial_population_auc": 8.666666666666666,
+      "source_original_trial_predation_deaths": 78,
+      "source_original_world_sha": "de4a7d4225ebbd918b2bd769bb1768651c5c49cb9b50db66d45c96f79e1b224d",
+      "source_seed": 94004,
+      "source_world_sha": "0e2d435cc09bf5a5a35313ab499b38b668c39b35e17eca6da40e2ae29a905668"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        0.2603344049105073,
+        0.23463974111404276,
+        -0.8658131821245071,
+        -0.46893764002705124,
+        0.8880923065837512,
+        0.4770898569757634,
+        0.33846520165473903,
+        0.7869546687172184,
+        1.0446073004197576
+      ],
+      "founder_mutant_pair_sha256": "680fdf1625daf527f7da425b491f0a52fb05304e4709d24c6146519a91f5a226",
+      "matched_random_control_genes": [
+        -0.8497440516790616,
+        -0.07977432550907708,
+        0.5808782456650093,
+        0.6160476835961555,
+        0.47988531147933583,
+        1.565653778665727,
+        -0.029124876333695267,
+        -1.2017312840710408,
+        -0.09658438642233366
+      ],
+      "newborn_birth_tick": 200,
+      "newborn_child_id": 72,
+      "newborn_generation": 5,
+      "own_founder_id": 7,
+      "own_original_founder_genes": [
+        0.2699584088900094,
+        0.24147264155731574,
+        -0.8658131821245071,
+        -0.4324832878800905,
+        0.4080356507620914,
+        0.4770898569757634,
+        0.5225179886971176,
+        0.7869546687172184,
+        0.327829241360988
+      ],
+      "source_changed_gene_indices": [
+        1,
+        8
+      ],
+      "source_direct_offspring_count": 5,
+      "source_initial_founder_bank_sha": "714e36380d1d89dd3d6680c421a29a75cbd580470fbeeff454f14bea98666d2b",
+      "source_original_trial_births": 68,
+      "source_original_trial_population_auc": 6.555555555555555,
+      "source_original_trial_predation_deaths": 54,
+      "source_original_world_sha": "8f7161cdf30f9a04075f0ba49d2bc5196c8db837fe70f594ce70934f6e98e607",
+      "source_seed": 94005,
+      "source_world_sha": "1e3f466f20e0dff3e6bf6b7af417c601aa723b91d06a0ee6d4c6d2e6fe864767"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        -0.6568483664223385,
+        0.32150182115276454,
+        -0.15272563572589853,
+        1.5863525515817885,
+        -0.9624768718776684,
+        0.3667035002394508,
+        -0.9397331086475418,
+        -0.4314575830646722,
+        -1.153508517774252
+      ],
+      "founder_mutant_pair_sha256": "4d87a65571817dbcd4c582816c51db7c363033a9813e0b5392c7ac303bfd08dc",
+      "matched_random_control_genes": [
+        0.766071770576027,
+        0.520263871359935,
+        0.26562804690877073,
+        0.5835832918405768,
+        0.12264007412869223,
+        1.620374405487585,
+        -0.008129096400903457,
+        -0.2192656372401128,
+        -0.07773670559187637
+      ],
+      "newborn_birth_tick": 123,
+      "newborn_child_id": 59,
+      "newborn_generation": 3,
+      "own_founder_id": 16,
+      "own_original_founder_genes": [
+        -0.6568483664223385,
+        0.37889831333078494,
+        -0.15272563572589853,
+        1.8258290071920948,
+        -0.9624768718776684,
+        0.3667035002394508,
+        -0.41576270371623286,
+        -0.5736549861354953,
+        -0.40116505810466707
+      ],
+      "source_changed_gene_indices": [
+        6,
+        8
+      ],
+      "source_direct_offspring_count": 9,
+      "source_initial_founder_bank_sha": "f9cbbb2df1f21a9773252be10ec9f4e891cc53539eac55eb396894e676b4fe53",
+      "source_original_trial_births": 97,
+      "source_original_trial_population_auc": 6.444444444444445,
+      "source_original_trial_predation_deaths": 77,
+      "source_original_world_sha": "714d0b8d6811235c0f719a1addaf53ca98a3e962c899d1dd4e23a49174b01fb8",
+      "source_seed": 94006,
+      "source_world_sha": "7a21b806038dc3ce4b6ceddc7a50ec933f796b400123dac71451ed10baf895f7"
+    },
+    {
+      "actual_mutant_descendant_genes": [
+        -0.3513742542939773,
+        0.06684946049461185,
+        0.19597065226986363,
+        0.7571422175916284,
+        -0.2187215994618649,
+        -0.8938258473899603,
+        -0.4979560758366485,
+        0.5674627058589924,
+        1.1313631790365672
+      ],
+      "founder_mutant_pair_sha256": "e3220aaf19cb4d7eccbcf92eb86a39583d2ad6b7481430658e50ecb71502ba52",
+      "matched_random_control_genes": [
+        0.12259335779352834,
+        -0.8904669156807569,
+        -0.24533047417036827,
+        -0.69687502724552,
+        -0.41748648973206165,
+        -0.25574683308281826,
+        -0.9285328080928246,
+        0.6902403676942503,
+        0.3653733830443374
+      ],
+      "newborn_birth_tick": 122,
+      "newborn_child_id": 54,
+      "newborn_generation": 2,
+      "own_founder_id": 15,
+      "own_original_founder_genes": [
+        -0.43330036910184694,
+        0.06684946049461185,
+        -0.00954745351168591,
+        0.7571422175916284,
+        -0.2187215994618649,
+        -0.8938258473899603,
+        -0.4979560758366485,
+        0.36626537274758547,
+        1.1737406951838607
+      ],
+      "source_changed_gene_indices": [
+        0,
+        8
+      ],
+      "source_direct_offspring_count": 4,
+      "source_initial_founder_bank_sha": "a4cdbb480ed95242ae7afe049ab829d874a8c43da98c41036ba21cf6e69359b9",
+      "source_original_trial_births": 124,
+      "source_original_trial_population_auc": 11.555555555555555,
+      "source_original_trial_predation_deaths": 71,
+      "source_original_world_sha": "db7c95b4177d5cc2d68a7564df82a523f1c6cd62b361b4ff512d26d458e0eaa8",
+      "source_seed": 94007,
+      "source_world_sha": "4b26fc5c54b73d0583aca3fdfb538b29edbd4d2e0fce9e56dbfd9e0eb0a80c60"
+    }
+  ],
+  "heldout_transfer_worlds_examined": 0,
+  "original_source_world_seeds": [
+    94000,
+    94001,
+    94002,
+    94003,
+    94004,
+    94005,
+    94006,
+    94007
+  ],
+  "protocol_commit": "5f8d2b803b3a30143027483c4e071265b5c7851e",
+  "source_arm": "innate_sparse_mutation",
+  "source_predators": 3,
+  "source_selection_rule": "One physically born g8-mutated child per source world; maximize number of later actual own offspring, then minimize newborn birth tick and child id. Source-only."
+}
