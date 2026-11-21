@@ -115,7 +115,7 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - The resolver is **externally written kNN with an offline meta-selected threshold**, not autonomous algorithm invention. Labelled support signals are required; no claim of general unsupervised context discovery.
 - [M3.5 issue](https://github.com/kkongiu/neuroevolution-lab/issues/16): test whether querying one more labelled example when uncertain outperforms random/periodic requests *at matched information cost*, with new seed splits.
 
-## M3.5 — Active feedback seeking under an equal global query budget (preregistered)
+## M3.5 — Active feedback seeking under an equal global query budget (completed)
 - [Frozen M3.5 protocol](M3_5_PROTOCOL.md), created before the full simulation code and any final-seed experiments.
 - Six initial labelled support observations per episode, with exactly one wrong label; four of twelve episodes may request two **new IID labelled examples** at a fixed total cost of eight labels per seed.
 - Primary: margin-uncertainty scheduler versus **random-request schedule**, identical information budget and persistent M3.4 neural/associative architecture. Necessary secondary versus periodic requests at the same cost; independent entropy heuristic as exploratory.
@@ -124,6 +124,15 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Audit meta-accuracy separately from final memory: return-context consistency, context-slot clustering, first-visit distinctness, four-context balanced memory, worst-context accuracy, forgetting, learning AUC, query counts, forced actions and kNN overhead.
 - Success requires a positive paired main advantage **beyond random at identical information cost**, and support versus periodic; do not relabel poor shifted-family generalization as a success.
 - Context resolver and querying policy are externally programmed; simulated neural networks cannot generate or run code or establish independent objectives.
+
+### M3.5 empirical result — direct random-control advantage not confirmed
+- [M3.5 scientific report](../reports/M3_5_active_information_2026-11-21.md), [sealed original GitHub run](https://github.com/kkongiu/neuroevolution-lab/actions/runs/44903487190), [48-seed final accuracy archive](../reports/M3_5_seed_accuracy_2026-11-21.csv).
+- Main **24 independent seeds**, exact 4 × 2 = 8 extra labels per policy: uncertainty margin **65.30%** final four-context accuracy vs independently random-episode queries **62.92%**; difference +2.38 pp, paired bootstrap descriptive 95% **−1.56/+7.27 pp**: **primary hypothesis NOT confirmed**.
+- Preregistered secondary margin vs periodic **+4.22 pp** (+0.68/+8.61 pp), but does not rescue primary null. Return-to-original-slot consistency **77.08%** margin vs **64.06%** random on main.
+- On shifted stripe/checker (12 seeds), margin **56.32%**, versus periodic/no query **57.16%**. With corrupted additional feedback, margin **63.74%**, no-query **63.87%**. More labelled queries can worsen retention.
+- Actual margin action requests in main: **96/96 executed queries self-triggered by the external uncertainty threshold**, zero quota-forced, while **72 additional post-quota desires were blocked**. Distinguish requests from blocked desires and budget enforcement.
+- Externally selected query thresholds on separated meta-seeds: margin **0.70**, entropy **0.75**. This is a bounded, **researcher-written information-request algorithm**, NOT self-generated curiosity or autonomous goals.
+- Next preregistration question: [M3.6 — reliability and cost-aware spatial querying](https://github.com/kkongiu/neuroevolution-lab/issues/18), with a non-mandatory query budget and comparably costly baselines; do not retune M3.5 or reuse its sealed test seeds.
 
 ## M4 — Persistent objectives (speculative)
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
