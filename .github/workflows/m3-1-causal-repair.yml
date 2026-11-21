@@ -1,0 +1,42 @@
+name: M3.1 causal repair
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "campaigns/m3-1-kickoff-*.md"
+
+permissions:
+  contents: read
+
+jobs:
+  paired-causal-study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run all tests
+        run: python -m unittest discover -s tests -v
+      - name: Run frozen train-validation-and-sealed-causal-study
+        run: |
+          python -m neuroevolution.m3_1 \
+            --train-start 12000 --train-seeds 8 \
+            --validation-start 13000 --validation-seeds 4 \
+            --test-start 14000 --test-seeds 24 \
+            --shifted-start 15000 --shifted-seeds 16 \
+            --trials 4 --width 12 --reset-units 3 \
+            --pretrain-steps 96 --adaptation-steps 48 \
+            --batch-size 4 --probe-size 48 --eval-size 96 \
+            --report-every 12 --learning-rate 0.05 \
+            --shock-multiplier 5.0 --out results/m3-1
+      - name: Save pre-registered counterfactual results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m3-1-causal-repair
+          path: results/m3-1/
+          if-no-files-found: warn
+          retention-days: 30
