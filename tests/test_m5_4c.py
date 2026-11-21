@@ -287,6 +287,9 @@ class FourArmForagingAndBirthCausalTests(unittest.TestCase):
             if aid!=0:
                 del eco.agents[aid]
         agent.genome=previous.to_weights(m5.source_genes())
+        # This is a controlled synthetic one-action starvation test:
+        # forbid fortuitous food rescue at the final destination.
+        eco.food.clear()
         agent.energy=1.
         visits={0:{agent.position:1}}
         glob={agent.position}
