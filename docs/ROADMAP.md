@@ -134,5 +134,14 @@ Richer worlds, curiosity-like incentives with noisy-TV negative controls, and be
 - Externally selected query thresholds on separated meta-seeds: margin **0.70**, entropy **0.75**. This is a bounded, **researcher-written information-request algorithm**, NOT self-generated curiosity or autonomous goals.
 - Next preregistration question: [M3.6 — reliability and cost-aware spatial querying](https://github.com/kkongiu/neuroevolution-lab/issues/18), with a non-mandatory query budget and comparably costly baselines; do not retune M3.5 or reuse its sealed test seeds.
 
-## M4 — Persistent objectives (speculative)
+## M4.0 — Spatial food-seeking and evolutionary survival (implemented for controlled validation)
+- [M4.0 preregistered protocol](M4_0_PROTOCOL.md), distinct from M3.5 information-seeking work.
+- Bounded 13×13 grid with randomly generated obstacles, BFS-reachable edible food, energy expenditure, mortality, 100-step episodes. Sensory inputs: adjacent barriers/food, limited odor, energy, feedback.
+- 12-unit Elman RNN controls 4 moves; numeric weights inherited and Gaussian-mutated **between generations**, not updated inside a lifetime.
+- Train on 8 deterministic independent mazes across 8 generations ×12 genomes, select generation winner only on 4 separate validation worlds, and evaluate one frozen policy on 32 **held-out** and 16 harder shifted worlds.
+- Matched world controls: fixed random RNN, wall-avoiding random movement, deliberately strong greedy odor rule, same champion with no odor. Primary paired food collected versus wall-avoiding random; necessary secondary versus random RNN. Survival, navigation and collisions are diagnostics.
+- No predators or organism reproduction inside the ecosystem yet. Future study should add spatiotemporal memory tests, food regeneration and reproduction one variable at a time, with selection and measurement preregistered. No autonomy/consciousness inference.
+
+## M4.x — Persistent objectives (speculative, not implemented)
+Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.
 Preregister observable persistence and revision tests. Keep evidence of goal-directed behavior strictly separate from subjective experience and autonomy claims.

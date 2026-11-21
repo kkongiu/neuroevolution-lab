@@ -133,6 +133,22 @@ python -m neuroevolution.m3_5 --out results/m3_5
 
 See the [preregistered M3.5 protocol](docs/M3_5_PROTOCOL.md). Successful request timing would indicate only the value of this **programmed information-budget policy**, not a spontaneously invented active-learning method or autonomous objective.
 
+## M4.0 — An embodied, evolving organism in a survival grid
+
+**A new research track.** Earlier M1–M3.5 experiments trained classifiers and controlled small neural-reset or memory actions. M4.0 introduces a genuine **2D spatial environment**: mazes with walls, finite food, energy expenditure, collisions and starvation. An organism starts with 24 energy units, consumes one unit per move and can recover energy by collecting food. Food is nonrenewable in this first experiment.
+
+The organism controls its four cardinal movements using a fixed-topology **12-hidden-unit recurrent neural network**. Its inputs are strictly local: immediate walls, nearby food, a limited directional odor gradient, current energy and recent consequences. The odor gradient is deliberately programmed by the experimenter and must not be mistaken for an emergent navigational sense.
+
+An external genetic algorithm evolves only numerical network weights **between separate lifetimes**, selecting a population over eight generations on training mazes; a champion is selected on validation worlds. **No synaptic learning occurs within an organism's lifetime**, and no simulated organism can edit code or generate goals.
+
+On **32 sealed unseen mazes**, compare one frozen evolved champion with a random unevolved network, wall-avoiding random movement, a programmed greedy odor follower, and the same evolved genome with odor disabled. Evaluate another **16 shifted mazes** (more walls, less food, shorter scent range). Report food collected, survival time, wall collisions, visited cells, paired uncertainty and genetic-search history without cherry-picking.
+
+~~~bash
+python -m neuroevolution.m4_0 --out results/m4_0
+~~~
+
+Results also include CSV, a reproducible saved champion, example world SVG maps and JSON movement traces. Read [the M4.0 frozen protocol](docs/M4_0_PROTOCOL.md) and the [M4.0 Actions campaign](.github/workflows/m4-0-survival-world.yml). **Predators, within-world reproduction and within-lifetime weight learning are NOT yet present.**
+
 ## Actions
 
 [Validation workflow](.github/workflows/validation.yml): tests and brief smoke runs on pull requests/pushes.
