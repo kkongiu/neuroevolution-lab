@@ -17,7 +17,7 @@ import json
 import random
 
 from .m5_8_worlds import (
-    DEV_SEEDS, EVENT_TYPES, INTERIOR, WIDTH, make_world, reachable, region,
+    ALLOWED_SEEDS, DEV_SEEDS, EVENT_TYPES, INTERIOR, WIDTH, make_world, reachable, region,
 )
 
 VARIANTS = ("progressive", "uniform", "reversed")
