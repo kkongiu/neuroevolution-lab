@@ -1,0 +1,36 @@
+name: M5.23 Specialized Memory Reader Director
+
+on:
+  push:
+    branches:
+      - experiment/m5-23-memory-reader-director
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_23_memory_director.py'
+      - 'tests/test_m5_23_memory_director.py'
+      - '.github/workflows/m5-23-memory-director.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  specialist-brain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify no-leak memory write/read, frozen exams, ablations and fair compute
+        run: python -m unittest discover -s tests -p 'test_m5_23_memory_director.py' -v
+      - name: M5.6 controller regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Evaluate 24 development organisms across 8 specialized brain architectures
+        run: python -m neuroevolution.m5_23_memory_director
+      - name: Preserve raw archive/direction, paired CIs and update budgets
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-23-specialized-memory-reader-director-development
+          path: results/m5-23/memory-reader-director-development.json
+          retention-days: 30
