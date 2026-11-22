@@ -1,0 +1,36 @@
+name: M5.9 heritable neural learning predisposition experiment
+
+on:
+  push:
+    branches:
+      - experiment/m5-9-heritable-learning-predisposition
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_9_*.py'
+      - 'tests/test_m5_9_*.py'
+      - '.github/workflows/m5-9-selection.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  evolve-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify strict genetic inheritance and episode rule blindness
+        run: python -m unittest discover -s tests -p 'test_m5_9_selection.py' -v
+      - name: Verify parent neural plasticity regression
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 12 independent evolutionary lineages with 3 parental controls
+        run: python -m neuroevolution.m5_9_selection
+      - name: Archive full generation and novel-task results
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-9-genetic-learning-predisposition-development
+          path: results/m5-9/initial-genotype-selection-development.json
+          retention-days: 30
