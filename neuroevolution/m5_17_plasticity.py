@@ -160,6 +160,8 @@ class Learner:
         self.context_memory={
             0:deque(maxlen=43),1:deque(maxlen=43),2:deque(maxlen=42)}
         self.anchors=[]      # prior-context (snapshot, relative importance)
+        self.total_importance=[0.]*PARAMS
+        self.weighted_anchor=[0.]*PARAMS
         self.phase_sensitivity=[0.]*PARAMS
         self.phase_samples=0
         self.opportunity=[0.]*PARAMS
@@ -216,11 +218,9 @@ class Learner:
         return best
 
     def _importance(self):
-        strength=[0.]*PARAMS
-        for _,importance in self.anchors:
-            for i,v in enumerate(importance):
-                strength[i]+=v
-        return strength
+        # Preaggregated at curriculum boundaries, not recomputed for every
+        # stochastic gradient or episodic replay update.
+        return self.total_importance
 
     def _update(self,record):
         x,y,context,action,reward=record
@@ -228,14 +228,12 @@ class Learner:
         delta=reward-prob
         # Protect significant previously-used weights against drift.
         old=self.weights[:]
-        protection=self._importance() if has_plasticity(self.arm) else None
+        protection=self.total_importance if has_plasticity(self.arm) else None
         for i in self.active:
             movement=LR*delta*g[i]
             if protection is not None and protection[i]:
                 movement/=1.+CONSOLIDATE_STABILITY*protection[i]
-                penalty=math.fsum(
-                    imp[i]*(old[i]-anchor[i])
-                    for anchor,imp in self.anchors)
+                penalty=(protection[i]*old[i]-self.weighted_anchor[i])
                 movement-=LR*CONSOLIDATE_ANCHOR*penalty
             self.weights[i]=max(-5.,min(5.,old[i]+movement))
         self._mask()
@@ -297,6 +295,9 @@ class Learner:
                     if i in self.active else 0.
                     for i,v in enumerate(average)]
         self.anchors.append((tuple(self.weights),normalized))
+        for i,value in enumerate(normalized):
+            self.total_importance[i]+=value
+            self.weighted_anchor[i]+=value*self.weights[i]
         self.phase_sensitivity=[0.]*PARAMS
         self.phase_samples=0
 
@@ -335,6 +336,8 @@ class Learner:
                 # Reinforcement of *old* phantom anchors on newly grown
                 # synapses would be incorrect: erase that old importance.
                 for _,imp in self.anchors:imp[i]=0.
+                self.total_importance[i]=0.
+                self.weighted_anchor[i]=0.
         elif kind=="prune":
             pool=sorted(self.active-set([PARAMS-1]))
             n=min(count,max(0,len(self.active)-MIN_ACTIVE))
