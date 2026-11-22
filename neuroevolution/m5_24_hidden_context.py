@@ -459,6 +459,7 @@ def run(seed:int,arm:str):
     phases=schedule(seed)
     scores={}
     cold={}
+    exam_selected_banks={}
     training={}
     occupancy=[]
     phase_transitions=[]
@@ -492,6 +493,7 @@ def run(seed:int,arm:str):
             exam_index=20+phase*3+target_index
             result,selected=frozen_exam(
                 brain,seed,test_world,exam_index,priming=PROBE)
+            exam_selected_banks[f"phase_{phase}_{test_world}"]=selected
             no_probe,_=frozen_exam(
                 brain,seed,test_world,exam_index,priming=0)
             scores[f"phase_{phase}_{test_world}"]=result
@@ -502,8 +504,23 @@ def run(seed:int,arm:str):
         raise AssertionError("Unmatched fast update calls")
     if sum(len(b.records) for b in brain.banks)>MEMORY_LIMIT:
         raise AssertionError("Personal memory grew without bounds")
+    # Purely post-hoc observer diagnosis. True world labels are used
+    # ONLY outside the learning/exam pathways, to quantify whether each
+    # internally inferred archive bank represents A, B or C.
+    bank_content_accuracy={}
+    for bank_id,archive in enumerate(brain.banks):
+        bank_content_accuracy[str(bank_id)]={
+            world:sum(
+                environmental_success(
+                    world,x,y,
+                    int(archive.response(x,y,1)[0]>
+                        archive.response(x,y,0)[0]))
+                for x in (0,1) for y in (0,1))/4.
+            for world in ("A","B","C")}
     return {
         "seed":seed,"arm":arm,
+        "posthoc_bank_content_accuracy":bank_content_accuracy,
+        "exam_selected_banks":exam_selected_banks,
         "actual_phase_lengths":[n for _,n in phases],
         "A_initial":scores["phase_0_A"],
         "A_after_B":scores["phase_1_A"],
