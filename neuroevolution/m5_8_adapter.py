@@ -18,14 +18,17 @@ import random
 from dataclasses import dataclass, field, replace
 
 from . import m5_0 as base, m5_5b
-from .m5_8_worlds import DEV_SEEDS, WIDTH, make_world, reachable, region
+from .m5_8_worlds import DEV_SEEDS, WIDTH, reachable, region
+from .m5_8_variants import VARIANTS, variant_world
 
 DIRS = base.DIRECTIONS
 
 
 def attach(eco: base.Ecology, world: dict) -> None:
     """Replace only geometry and starting population coordinates, not physics."""
-    if eco.seed not in DEV_SEEDS or world != make_world(eco.seed):
+    variant = world.get('variant', 'progressive')
+    if (eco.seed not in DEV_SEEDS or variant not in VARIANTS
+            or world != variant_world(eco.seed, variant)):
         raise ValueError("Only canonical development world is accepted")
     if eco.settings.size != WIDTH or eco.settings.initial_population != 8:
         raise ValueError("Expected calibrated physical world")
