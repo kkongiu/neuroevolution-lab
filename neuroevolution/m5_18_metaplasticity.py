@@ -421,8 +421,7 @@ def simulate(seed:int,arm:str,*,yoked_events=None):
                 scores["phase_"+str(phase)+"_"+("ABC"[old])]=frozen_exam(
                     brain,seed,old,20+phase*3+old)
     if tick!=TRAIN_STEPS:raise AssertionError("Unfair experience count")
-    expected_updates=TRAIN_STEPS*(1 if arm in (
-        "online","plasticity_only") else UPDATES)
+    expected_updates=TRAIN_STEPS*(UPDATES if has_replay(arm) else 1)
     if brain.updates!=expected_updates:
         raise AssertionError("Unmatched learning budget")
     size=sum(len(b) for b in brain.context_memory.values())
