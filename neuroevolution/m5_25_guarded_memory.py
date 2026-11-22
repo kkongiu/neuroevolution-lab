@@ -708,131 +708,119 @@ def paired_bootstrap(rows,treat,control,metric="joint_pre_refresher",
 
 def experiment(seeds=SEEDS):
     if tuple(seeds)!=SEEDS:
-        raise ValueError("Full preregistered development cohort required")
+        raise ValueError("Complete preregistered DEV seed cohort required")
     rows=[run(seed,arm) for seed in seeds for arm in ARMS]
-    ix={(r["seed"],r["arm"]):r for r in rows}
-    keys=(
-        "A_initial","A_after_B","B_first_learned","A_after_C",
-        "B_after_C","C_first_learned","A_final","B_final","C_final",
-        "A_after_C_zero_probe","B_after_C_zero_probe",
-        "C_after_C_zero_probe","joint_pre_refresher",
-        "mean_post_probe_after_C","minimum_after_C","mean_final",
-        "final_bank_count","inferred_switch_count",
-        "gradient_update_calls","training_memory_read_evaluations",
-        "average_director_memory_gate")
-    summary={
-        arm:{key:statistics.mean(ix[(seed,arm)][key]
-                                 for seed in seeds) for key in keys}
-        for arm in ARMS}
-    l=summary["latent_director"]
-    oracle=summary["oracle_context"]
+    index={(r["seed"],r["arm"]):r for r in rows}
+    metrics=("A_initial","A_after_B","B_first_learned","A_after_C",
+             "B_after_C","C_first_learned","A_final","B_final","C_final",
+             "joint_pre_refresher","mean_post_probe_after_C",
+             "minimum_after_C","final_bank_count","inferred_switch_count",
+             "A_after_C_zero_probe","B_after_C_zero_probe")
+    summary={arm:{key:statistics.mean(index[(seed,arm)][key]
+                    for seed in seeds) for key in metrics} for arm in ARMS}
+    candidate=summary["guarded_director"]
+    def gain(other):
+        return (candidate["joint_pre_refresher"]-
+                summary[other]["joint_pre_refresher"])
     checks={
-        "learned_hidden_A_after_C_90":
-            l["A_after_C"]>=GATES["A_after_C"],
-        "learned_hidden_B_after_C_90":
-            l["B_after_C"]>=GATES["B_after_C"],
-        "learned_hidden_B_first_85":
-            l["B_first_learned"]>=GATES["B_new_learning"],
-        "learned_hidden_C_first_85":
-            l["C_first_learned"]>=GATES["C_new_learning"],
-        "learned_hidden_post_probe_mean_90":
-            l["mean_post_probe_after_C"]>=GATES["all_after_probe"],
-        "hidden_vs_oracle_within7pp":
-            l["joint_pre_refresher"]>=
-            oracle["joint_pre_refresher"]-
-            GATES["same_context_as_oracle_within"],
-        "latent_detection_vs_single_bank_plus12pp":
-            l["joint_pre_refresher"]-
-            summary["no_regime_detection"]["joint_pre_refresher"]>=
-            GATES["latent_vs_mixed_delta"],
-        "latent_detection_vs_scrambled_evidence_plus12pp":
-            l["joint_pre_refresher"]-
-            summary["scrambled_detection"]["joint_pre_refresher"]>=
-            GATES["latent_vs_scrambled_delta"],
-        "learned_director_vs_memory_only_plus5pp":
-            l["joint_pre_refresher"]-
-            summary["latent_memory_only"]["joint_pre_refresher"]>=
-            GATES["learned_vs_memory_only_delta"],
-        "learned_director_vs_fixed_fusion_plus5pp":
-            l["joint_pre_refresher"]-
-            summary["latent_fixed_fusion"]["joint_pre_refresher"]>=
-            GATES["learned_vs_fixed_fusion_delta"],
+        "A_after_C_recalled_at_least90":
+            candidate["A_after_C"]>=GATES["A_after_C"],
+        "B_after_C_recalled_at_least90":
+            candidate["B_after_C"]>=GATES["B_after_C"],
+        "B_newly_learned_at_least90":
+            candidate["B_first_learned"]>=GATES["B_first"],
+        "C_newly_learned_at_least90":
+            candidate["C_first_learned"]>=GATES["C_first"],
+        "after_C_all_context_mean_at_least90":
+            candidate["mean_post_probe_after_C"]>=GATES["mean_after_C"],
+        "within7pp_of_oracle_on_compound":
+            candidate["joint_pre_refresher"]>=
+            summary["oracle_context"]["joint_pre_refresher"]-
+            GATES["oracle_tolerance"],
+        "improves_unsafe_M5_24_at_least12pp":
+            gain("latent_director")>=GATES["unsafe_gain"],
+        "improves_one_mixed_bank_at_least10pp":
+            gain("no_regime_detection")>=GATES["mixed_gain"],
+        "improves_corrupted_probe_at_least10pp":
+            gain("guarded_corrupt_probe")>=GATES["corrupt_gain"],
+        "protecting_writes_beats_mutable_at_least5pp":
+            gain("guarded_mutable")>=GATES["mutable_gain"],
+        "learned_director_beats_memory_only_at_least5pp":
+            gain("guarded_memory_only")>=GATES["director_gain"],
+        "learned_director_beats_fixed_fusion_at_least5pp":
+            gain("guarded_fixed_fusion")>=GATES["director_gain"],
     }
-    # No non-oracle branch ever receives the true task identity.
     for seed in seeds:
-        if any(ix[(seed,arm)]["no_world_id_passed_to_hidden_arm"] is not True
-               for arm in ARMS if arm!="oracle_context"):
-            raise AssertionError("Leaked task identity into learner")
-        if len({ix[(seed,arm)]["lived_experiences"]
+        if len({index[(seed,arm)]["lived_experiences"]
                 for arm in ARMS})!=1:
-            raise AssertionError("Unequal number of true action outcomes")
-        if any(ix[(seed,arm)]["gradient_update_calls"]!=
-               ix[(seed,arm)]["lived_experiences"] for arm in ARMS):
-            raise AssertionError("Unmatched fast weight update calls")
-        if any(ix[(seed,arm)]["memory_capacity"]!=MEMORY_LIMIT
-               for arm in ARMS):
-            raise AssertionError("Unequal memory budget")
-    posthoc_diagnostics={}
-    for arm in ARMS:
-        posthoc_diagnostics[arm]={
+            raise AssertionError("Unmatched real experience")
+        for arm in ARMS:
+            r=index[(seed,arm)]
+            if r["gradient_update_calls"]!=r["lived_experiences"]:
+                raise AssertionError("Unmatched fast-weight update calls")
+            if r["final_memory_size"]>MEMORY_LIMIT:
+                raise AssertionError("Archive capacity violated")
+            if arm!="oracle_context" and not r["no_world_id_passed_to_hidden_arm"]:
+                raise AssertionError("Hidden world ID leaked to agent")
+    observed={
+        arm:{
             "phase_2_selected_bank_counts":{
-                world:{
-                    str(bank):sum(
-                        ix[(seed,arm)]["exam_selected_banks"][
-                            f"phase_2_{world}"]==bank for seed in seeds)
+                world:{str(bank):sum(
+                    index[(seed,arm)]["exam_selected_banks"][
+                        f"phase_2_{world}"]==bank for seed in seeds)
                     for bank in range(MAX_BANKS)}
                 for world in ("A","B","C")},
-            "bank_rule_fit_at_end":{
+            "final_bank_rule_fit":{
                 str(bank):{
                     world:statistics.mean([
-                        ix[(seed,arm)]["posthoc_bank_content_accuracy"][
+                        index[(seed,arm)]["posthoc_bank_content_accuracy"][
                             str(bank)][world]
                         for seed in seeds
-                        if str(bank) in ix[(seed,arm)][
+                        if str(bank) in index[(seed,arm)][
                             "posthoc_bank_content_accuracy"]])
-                    if any(
-                        str(bank) in ix[(seed,arm)][
-                            "posthoc_bank_content_accuracy"]
-                        for seed in seeds) else None
-                    for world in ("A","B","C")}
+                    if any(str(bank) in index[(seed,arm)][
+                        "posthoc_bank_content_accuracy"] for seed in seeds)
+                    else None for world in ("A","B","C")}
                 for bank in range(MAX_BANKS)}
-        }
+        } for arm in ARMS}
     return {
-        "posthoc_diagnostics_for_reporting_only":posthoc_diagnostics,
-        "status":"M5.24_DEV_hidden_context_memory_executive",
+        "status":"M5.25_DEV_evidence_guarded_separate_memory_roles",
         "seeds":list(seeds),"arms":list(ARMS),
-        "task_names_not_available_to_nonoracle_agent":True,
-        "phase_durations_hidden_and_varied_by_seed":True,
-        "binary_action_complementarity_is_assumed":True,
-        "new_bank_allocated_by_handcoded_reward_conflict":True,
-        "context_selector_is_handcoded_not_learned_RL":True,
-        "learned_director_controls_trust_in_memory":True,
-        "archive_capped_at_128_records":True,
-        "exam_16_feedback_probes_no_memory_or_weight_updates":True,
-        "zero_probe_controls_included":True,
-        "same_four_cue_patterns_without_out_of_distribution_test":True,
-        "control_with_oracle_context_label_is_privileged":True,
-        "no_evolution_or_synapse_birth":True,
-        "no_original_sealed_M5_6_cohorts":True,
+        "hidden_context_world_schedule_unchanged":True,
+        "world_labels_not_passed_to_hidden_organisms":True,
+        "bank_write_requires_evidence_after_quarantine":True,
+        "each_bank_locked_after_real_record_count":LOCK_AFTER,
+        "pending_evidence_required":PENDING_EVIDENCE,
+        "memory_record_capacity":MEMORY_LIMIT,
+        "no_supervised_target_labels":True,
+        "binary_complementary_deterministic_actions_assumed":True,
+        "frozen_exams_use_16_actual_diagnostic_reward_probes":True,
+        "exam_probe_only_updates_ephemeral_context_guess":True,
+        "context_bank_selector_is_handcoded_not_learned_RL":True,
+        "familiar_four_cues_only_not_OOD_generalization":True,
+        "same_lived_experiences_and_weight_update_calls":True,
+        "memory_read_compute_not_matched_across_arms":True,
+        "no_sealed_original_M5_6_cohorts":True,
+        "no_growth_evolution_or_main_merge":True,
         "summary":summary,"screening_gate":checks,
-        "hidden_context_behavior_supported":all(
-            checks[k] for k in checks if k.startswith("learned_hidden_")),
-        "learned_executive_added_value_supported":all(
-            checks[k] for k in checks if k.startswith("learned_director_")),
+        "memory_specialization_screen_pass":all(
+            value for key,value in checks.items()
+            if not key.startswith("learned_director_")),
+        "learned_director_added_value_screen":all(
+            value for key,value in checks.items()
+            if key.startswith("learned_director_")),
         "development_screen_pass":all(checks.values()),
         "independent_task_replication_complete":False,
         "evolution_authorized":False,
         "advance_to_evolution":False,
+        "posthoc_diagnostics_for_reporting_only":observed,
         "paired_bootstrap":{
-            label:paired_bootstrap(rows,"latent_director",arm)
-            for label,arm in (
-                ("against_oracle","oracle_context"),
-                ("against_memory_only","latent_memory_only"),
-                ("against_fixed_fusion","latent_fixed_fusion"),
-                ("against_no_detection","no_regime_detection"),
-                ("against_scrambled","scrambled_detection"),
-                ("against_short_history","latent_short_history"))
-        },
+            arm:paired_bootstrap(rows,"guarded_director",arm)
+            for arm in (
+                "latent_director","guarded_memory_only",
+                "guarded_fixed_fusion","guarded_mutable",
+                "guarded_corrupt_probe","no_regime_detection",
+                "oracle_context")},
         "raw_rows":rows,
         "rows_sha256":hashlib.sha256(json.dumps(
             rows,sort_keys=True,separators=(",",":")).encode()).hexdigest(),
@@ -851,12 +839,12 @@ def main():
     print("M5_25_GUARDED_MEMORY "+json.dumps({
         k:report[k] for k in (
             "status","summary","screening_gate",
-            "posthoc_diagnostics_for_reporting_only",
-            "hidden_context_behavior_supported",
-            "learned_executive_added_value_supported",
+            "memory_specialization_screen_pass",
+            "learned_director_added_value_screen",
             "development_screen_pass",
-            "paired_bootstrap","advance_to_evolution",
-            "rows_sha256")},sort_keys=True),flush=True)
+            "posthoc_diagnostics_for_reporting_only",
+            "paired_bootstrap","rows_sha256")
+    },sort_keys=True),flush=True)
 
 
 if __name__=="__main__":
