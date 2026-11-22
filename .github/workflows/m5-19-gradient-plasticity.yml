@@ -1,0 +1,36 @@
+name: M5.19 Gradient-conflict plasticity
+
+on:
+  push:
+    branches:
+      - experiment/m5-19-gradient-conflict-plasticity
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_19_gradient_plasticity.py'
+      - 'tests/test_m5_19_gradient_plasticity.py'
+      - '.github/workflows/m5-19-gradient-plasticity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  plasticity-stop-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test projected-gradient nonconflict and equal-budget references
+        run: python -m unittest discover -s tests -p 'test_m5_19_gradient_plasticity.py' -v
+      - name: Original M5.6 controller regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 seeds times five STOP/GO treatments
+        run: python -m neuroevolution.m5_19_gradient_plasticity
+      - name: Archive raw frozen exams, reference work and local conflict diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-19-gradient-conflict-plasticity-development
+          path: results/m5-19/gradient-conflict-plasticity-development.json
+          retention-days: 30
