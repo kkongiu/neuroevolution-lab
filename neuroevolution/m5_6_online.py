@@ -118,7 +118,10 @@ class Learner:
 def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                          *, predator_count: int = 1,
                          curiosity_gain: float = 1.,
-                         energy_gate: bool = False) -> dict:
+                         energy_gate: bool = False,
+                         learning_cutoff_tick: int | None = None,
+                         reset_weights_at_cutoff: bool = False,
+                         reset_hidden_at_cutoff: bool = False) -> dict:
     """Small reproducible training run; must never consume final world seeds."""
     if arm not in ARMS or predator_count not in m5_5b.PREDATOR_LEVELS:
         raise ValueError("Unregistered development arm/predator count")
@@ -128,6 +131,11 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
         raise ValueError("Development curiosity gain must be finite in [0, 4]")
     if seed not in range(1000, 1100) or settings.ticks > 60:
         raise ValueError("Development-only worlds: seeds 1000–1099, <=60 ticks")
+    if learning_cutoff_tick is None:
+        if reset_weights_at_cutoff or reset_hidden_at_cutoff:
+            raise ValueError("A cutoff is required for retention interventions")
+    elif not (1 <= learning_cutoff_tick < settings.ticks):
+        raise ValueError("Cutoff must precede the final tick")
     eco = base.create_ecology(seed, settings, "heritable_no_mutation")
     # Predator capture audits victim genetic identity using the original
     # nine-gene M5.5B contract. Keep neural weights in the separate personal
@@ -159,7 +167,24 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     energy_before_actions = 0.
     action_count = 0
     unique_arrivals = 0
+    survived_at_cutoff = None
+    births_at_cutoff = None
+    food_at_cutoff = None
+    predation_at_cutoff = None
+    synaptic_updates_at_cutoff = None
     for tick in range(1, settings.ticks + 1):
+        # Paired counterfactual branches have identical pre-cutoff ecology,
+        # agency, updates, food and predator states. Both can erase transient
+        # recurrent hidden activations; only one erases learned synapses.
+        if learning_cutoff_tick is not None and tick == learning_cutoff_tick + 1:
+            if reset_hidden_at_cutoff:
+                for learner in learners.values():
+                    learner.hidden = [0.] * len(learner.hidden)
+            if reset_weights_at_cutoff:
+                for aid, learner in learners.items():
+                    learner.weights = list(initial[aid])
+        training_phase = (learning_cutoff_tick is None
+                          or tick <= learning_cutoff_tick)
         ids = list(eco.agents)
         base._local_rng(seed, tick, 0, 0).shuffle(ids)
         for aid in ids:
@@ -215,9 +240,11 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             if energy_gate:
                 novelty *= max(0., min(1., agent.energy / settings.max_energy))
             novelty *= curiosity_gain
-            reward = external + novelty
+            if not training_phase:
+                novelty = 0.
+            reward = external + novelty if training_phase else 0.
             drift = learner.learn(cache, reward,
-                                  enabled=arm != "frozen")
+                                  enabled=arm != "frozen" and training_phase)
             positive_curiosity += novelty
             positive_food_reward += external
             update_count += int(drift > 0)
@@ -235,8 +262,26 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
         eco.ticks_elapsed = tick
         if not eco.agents and eco.extinct_at is None:
             eco.extinct_at = tick
+        if learning_cutoff_tick is not None and tick == learning_cutoff_tick:
+            survived_at_cutoff = int(bool(eco.agents))
+            births_at_cutoff = eco.births
+            food_at_cutoff = eco.food_eaten
+            predation_at_cutoff = predation_kills
+            synaptic_updates_at_cutoff = update_count
     return {
         "seed": seed, "arm": arm, "predators": predator_count,
+        "learning_cutoff_tick": learning_cutoff_tick,
+        "reset_weights_at_cutoff": reset_weights_at_cutoff,
+        "reset_hidden_at_cutoff": reset_hidden_at_cutoff,
+        "survived_at_cutoff": survived_at_cutoff,
+        "post_cutoff_food_eaten": (eco.food_eaten - food_at_cutoff
+                                 if food_at_cutoff is not None else None),
+        "post_cutoff_births": (eco.births - births_at_cutoff
+                              if births_at_cutoff is not None else None),
+        "post_cutoff_predation_kills": (predation_kills - predation_at_cutoff
+                                      if predation_at_cutoff is not None else None),
+        "post_cutoff_weight_updates": (update_count - synaptic_updates_at_cutoff
+                                      if synaptic_updates_at_cutoff is not None else None),
         "curiosity_gain": curiosity_gain, "energy_gate": energy_gate,
         "physical_moves": actual_movements,
         "unique_individual_arrivals": unique_arrivals,
