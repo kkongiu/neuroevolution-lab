@@ -1,0 +1,36 @@
+name: M5.12 probabilistic synaptic pruning
+
+on:
+  push:
+    branches:
+      - experiment/m5-12-usage-probabilistic-pruning
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_12_usage_pruning.py'
+      - 'tests/test_m5_12_usage_pruning.py'
+      - '.github/workflows/m5-12-pruning.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  probabilistic-pruning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify local usage pruning, dose-matched control and seed fences
+        run: python -m unittest discover -s tests -p 'test_m5_12_usage_pruning.py' -v
+      - name: Verify native controller regression
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 x 6 synaptic pruning comparison
+        run: python -m neuroevolution.m5_12_usage_pruning
+      - name: Save complete per-edge histories
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-12-probabilistic-pruning-development
+          path: results/m5-12/usage-pruning-development.json
+          retention-days: 30
