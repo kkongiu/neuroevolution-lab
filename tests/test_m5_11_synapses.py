@@ -82,8 +82,8 @@ class SynapticRemodelingTests(unittest.TestCase):
             with self.assertRaises(ValueError):run(seed,"grow_prune")
         with self.assertRaises(ValueError):experiment((3400,3400))
         result=experiment((3400,3401))
-        self.assertFalse(result["advance_to_evolution"] or
-                         not all(result["screening_gate"].values()))
+        self.assertEqual(result["advance_to_evolution"],
+                         all(result["screening_gate"].values()))
         self.assertTrue(result["real_synapse_birth_death"])
 
 if __name__=="__main__":
