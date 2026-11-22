@@ -19,7 +19,7 @@ from .m5_6_bridge import ecological_observation, legal_cardinal_moves
 from .m5_6_curiosity import IntrinsicReward
 from .m5_6_prediction import LocalPredictor
 from .m5_7_decision import choose_from_model
-from .m5_8_worlds import DEV_SEEDS
+from .m5_8_worlds import ALLOWED_SEEDS
 from .m5_8_variants import VARIANTS, variant_world
 from .m5_8_adapter import attach, ActiveShocks
 
@@ -144,7 +144,7 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             curiosity_gain > 4):
         raise ValueError("Development curiosity gain must be finite in [0, 4]")
     if settings.ticks > 60 or (
-            seed not in (DEV_SEEDS if progressive_world else range(1000, 1100))):
+            seed not in (ALLOWED_SEEDS if progressive_world else range(1000, 1100))):
         raise ValueError("Development-only worlds with strict cohort isolation")
     if stochastic_challenges and not progressive_world:
         raise ValueError("Dynamic challenges require progressive world")
