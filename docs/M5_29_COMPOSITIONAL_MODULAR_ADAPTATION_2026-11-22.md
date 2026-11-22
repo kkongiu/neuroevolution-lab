@@ -8,6 +8,8 @@ M5.28 finally used a genuinely trainable neural support-to-query encoder, rather
 
 **Main intervention:** a five-module differentiable network has one floating scalar per input feature and one task bias. Given a binary sensory vector, the outputs of active feature modules and bias module are multiplied. These five scalars are **genuinely optimized by gradient descent on each task's eight actually experienced chosen-action rewards**. There are **eight random candidate starts**, each trained by **180 full-batch SGD update steps**; only the candidate with the smallest **support-only loss** is retained. None of the eight exam cue outcomes contributes to training or candidate selection.
 
+During fitting, multiple candidate weights and all optimization gradients use float64; the final winning five task parameters are **explicitly cast to float32 before ANY query scoring**. A regression test asserts the stored weights consume exactly **20 bytes per context**. This ensures the 480-bit three-context code figure is not based on an unstated 64-bit runtime representation.
+
 The model's multiplication operation is a **hand-programmed compositional inductive bias** that exactly fits an XOR/parity-style task family. This is therefore **not an autonomously learned combination operator, learned library of latent neural primitives, proof of open-ended plasticity, or discovery of the parity hypothesis class from data**. The generalization result is meaningful mainly as an **architectural causal experiment**: a representational prior matched to the underlying task structure prevents the failures of the generic averaged-embedding network.
 
 The particular per-task module **values** are learned by gradient descent; the common module structure and multiplication are **fixed by the researcher**, not learned across tasks. The module weights are not transferred from earlier tasks: each new task gets its own eight random initializations. The learned task-specific solution is stored as five floats, and A/B/C codes are placed in three **externally labeled** context slots. This experiment does **not** retest hidden-context recognition or synaptic interference across subsequent training of a shared brain.
@@ -36,9 +38,9 @@ Every evaluation arm receives the **identical eight actually chosen action/outco
 
 ## Quantitative results: truly novel whole functions
 
-[**GitHub Actions #45066526386 — SUCCESS**](https://github.com/kkongiu/neuroevolution-lab/actions/runs/45066526386): all five new M5.29 scientific tests and five original M5.6 regressions passed. Full three-run pooled baseline meta-training, 1,260 arm/seed evaluations, frozen checks and artifact upload completed.
+[**GitHub Actions #45066965905 — SUCCESS, final post-quantization validation**](https://github.com/kkongiu/neuroevolution-lab/actions/runs/45066965905): all five new M5.29 scientific tests and five original M5.6 regressions passed. Full three-run pooled baseline meta-training, 1,260 arm/seed evaluations, frozen checks and artifact upload completed.
 
-Canonical SHA-256 of raw evaluation rows **4ff148b73c17ff20164d68dfe0a07c35ce6049298a41c040dfdd283c0677a35e**. Raw per-task A/B/C accuracy, selected module values, support-only losses, selected restart indices, adaptation update counts, resource measurements and exploratory hierarchical bootstrap results are archived in the 30-day Actions artifact **m5-29-compositional-modules-development**.
+Canonical SHA-256 of raw evaluation rows **9285fac0a12c198aef09879ce04a675533407c74d58d68674a1b96b61b3ece59**. Raw per-task A/B/C accuracy, selected module values, support-only losses, selected restart indices, adaptation update counts, resource measurements and exploratory hierarchical bootstrap results are archived in the 30-day Actions artifact **m5-29-compositional-modules-development**.
 
 ### Frozen accuracy on cues NOT encountered in each task's eight support experiences
 
@@ -46,7 +48,7 @@ Canonical SHA-256 of raw evaluation rows **4ff148b73c17ff20164d68dfe0a07c35ce604
 | --- | ---: | ---: | ---: |
 | **Differentiable multiplicative module + task SGD** | **99.19%** | **97.22%** | **59.49%** |
 | Re-meta-trained generic pooled neural encoder | 70.66% | 38.48% | 47.92% |
-| Additive differentiable modules, same optimizer | 63.14% | 35.59% | 63.08% |
+| Additive differentiable modules, same optimizer | 63.43% | 35.94% | 62.50% |
 | Multiplicative modules, random reward | 50.46% | 52.03% | 48.38% |
 | Multiplicative modules, no adaptation | 48.26% | 49.31% | 50.69% |
 | Literal eight-example memory, unknown cue defaults to zero | 48.26% | 49.31% | 50.69% |
@@ -54,7 +56,7 @@ Canonical SHA-256 of raw evaluation rows **4ff148b73c17ff20164d68dfe0a07c35ce604
 
 All figures are means over three independent random model initializations and 24 task seeds per affine cohort (12 for nonaffine stress), scored on the eight held-out sensory patterns for each of three externally labeled A/B/C task slots. The design deliberately uses a known deterministic Boolean rule family; the positive result is **within-family composition**, not novel-world cognition.
 
-Against the new-split pooled neural control, the modular product model's benefit on held-out complete functions is **+58.74 percentage points**. The same modules combined additively score **35.59%**, showing that mere extra task-specific parameter updates are insufficient; the **researcher-chosen multiplication** is decisive. Randomizing support feedback reduces performance to **52.03%**, confirming that true experienced consequences contain necessary learning information. A product module with no adaptation is only **49.31%**, confirming that adjusting module weights per new task matters.
+Against the new-split pooled neural control, the modular product model's benefit on held-out complete functions is **+58.74 percentage points**. The same modules combined additively score **35.94%**, showing that mere extra task-specific parameter updates are insufficient; the **researcher-chosen multiplication** is decisive. Randomizing support feedback reduces performance to **52.03%**, confirming that true experienced consequences contain necessary learning information. A product module with no adaptation is only **49.31%**, confirming that adjusting module weights per new task matters.
 
 The human-coded GF(2) reference remains 100% as expected when the hypothesis family is exactly correct. The task-adapted product misses that ceiling by **2.78 points**, due to optimization variability, not inability of its hypothesis class to represent correct affine rules.
 
@@ -62,7 +64,7 @@ The human-coded GF(2) reference remains 100% as expected when the hypothesis fam
 
 When the simulator adds a nonaffine AND interaction to each rule, the same modular product model declines to **59.49% unseen** (while support examples average substantially higher). This is direct evidence that the engineered product prior cannot universally express novel interactions. It is not evidence that all modular networks would fail on these functions.
 
-The generic pooled neural baseline is **47.92%** under this shift; the additive modular control **63.08%**. This confirms that a representation matched to parity does **not** uniformly dominate under a changed rule generator.
+The generic pooled neural baseline is **47.92%** under this shift; the additive modular control **62.50%**. This confirms that a representation matched to parity does **not** uniformly dominate under a changed rule generator.
 
 ## Memory and compute accounting
 
@@ -76,7 +78,7 @@ The modular network does not learn a library of cross-task synaptic operators: *
 
 1. Completely withheld full rules score ≥90%: **PASS, 97.22%**.
 2. Improvement over new-split pooled meta neural ≥15pp: **PASS, +58.74pp**.
-3. Improvement over additive SGD modules ≥15pp: **PASS, +61.63pp**.
+3. Improvement over additive SGD modules ≥15pp: **PASS, +61.28pp**.
 4. Improvement over literal eight-record memory ≥25pp: **PASS, +47.92pp**.
 5. Improvement over reward-scrambled product SGD ≥25pp: **PASS, +45.20pp**.
 6. Improvement over no-adaptation product ≥25pp: **PASS, +47.92pp**.
