@@ -1,0 +1,33 @@
+name: M5.6 integration integrity (development only)
+
+on:
+  push:
+    branches:
+      - experiment/m5-6-memory-predator-curiosity-protocol
+  pull_request:
+    paths:
+      - 'neuroevolution/m4_4a.py'
+      - 'neuroevolution/m5_5b.py'
+      - 'neuroevolution/m5_6_*.py'
+      - 'tests/test_m4_4a.py'
+      - 'tests/test_m5_5b.py'
+      - 'tests/test_m5_6_*.py'
+      - '.github/workflows/m5-6-integration-integrity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Historical neural and predator integrity + curiosity bridge tests
+        run: |
+          python -m unittest discover -s tests -p 'test_m4_4a.py' -v
+          python -m unittest discover -s tests -p 'test_m5_5b.py' -v
+          python -m unittest discover -s tests -p 'test_m5_6_*.py' -v
