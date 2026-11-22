@@ -33,7 +33,7 @@ class WorldGeneratorTests(unittest.TestCase):
                     self.assertNotIn(tuple(e["location"]), backbone)
 
     def test_seed_and_horizon_guard_sealed_worlds(self):
-        for seed in (1001, 1080, 161000, 162000, 163000, 2064):
+        for seed in (1001, 1080, 161000, 162000, 163000, 2096):
             with self.assertRaises(ValueError):
                 make_world(seed)
         with self.assertRaises(ValueError):
