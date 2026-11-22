@@ -1,0 +1,38 @@
+name: M5.28 Neural Meta Learned Concept Transfer
+
+on:
+  push:
+    branches:
+      - experiment/m5-28-neural-meta-concept-encoder
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_28_neural_meta_concepts.py'
+      - 'tests/test_m5_28_neural_meta_concepts.py'
+      - '.github/workflows/m5-28-neural-meta-concepts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  neural-meta-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical backend for actual neural backprop
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Audit disjoint functions, actual-feedback gradients, code memory and frozen unseen exams
+        run: python -m unittest discover -s tests -p 'test_m5_28_neural_meta_concepts.py' -v
+      - name: Original M5.6 neural regression suite
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Train three true-reward and three corrupted-reward neural encoders; freeze and test new functions
+        run: python -m neuroevolution.m5_28_neural_meta_concepts
+      - name: Archive 360000 neural meta-training episodes and evaluation results
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-28-neural-meta-concept-transfer-development
+          path: results/m5-28/neural-concept-transfer-development.json
+          retention-days: 30
