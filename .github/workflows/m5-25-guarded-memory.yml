@@ -1,0 +1,36 @@
+name: M5.25 Guarded Memory Specialization
+
+on:
+  push:
+    branches:
+      - experiment/m5-25-guarded-memory-roles
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_25_guarded_memory.py'
+      - 'tests/test_m5_25_guarded_memory.py'
+      - '.github/workflows/m5-25-guarded-memory.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  guarded-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Guarded archive write protection, pending evidence, recall and causal controls
+        run: python -m unittest discover -s tests -p 'test_m5_25_guarded_memory.py' -v
+      - name: Original M5.6 neural learning regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Evaluate 24 new development organisms across 9 memory-role designs
+        run: python -m neuroevolution.m5_25_guarded_memory
+      - name: Preserve frozen exam results, bank-purity diagnostics and seed-paired effects
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-25-guarded-memory-development
+          path: results/m5-25/guarded-memory-development.json
+          retention-days: 30

@@ -1,0 +1,851 @@
+"""M5.25 — Separate memory access from persistent writes.
+
+A researcher-engineered guarded archive delays ambiguous writes until a
+latent regime has enough actual action-feedback evidence. Validated banks
+become immutable after 40 observations, while the fast neural learner and
+learned fast/archive fusion continue adapting. This is NOT a learned
+executive bank-selection model or an open-ended biological brain.
+New DEV seeds 4900–4923, same hidden-context A/B/C grammar and same
+128-record cap, one brain gradient update per actual experienced action.
+16 real reward-feedback probes in frozen exams adjust only an ephemeral
+context guess. Original M5.6 sealed worlds, main and evolution untouched.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import math
+import random
+import statistics
+from collections import deque
+from pathlib import Path
+
+SEEDS=tuple(range(4900,4924))
+ARMS=(
+    "latent_director",       # exact M5.24 unsafe writer comparator
+    "guarded_director",      # candidate immutable committed banks
+    "guarded_memory_only",   # readout ablation
+    "guarded_fixed_fusion",  # learned director ablation
+    "guarded_fast_only",     # archive-readout ablation
+    "guarded_mutable",       # allow contamination during switches
+    "guarded_corrupt_probe", # alter temporary examiner feedback
+    "no_regime_detection",   # single mixed bank
+    "oracle_context",        # privileged known world label ceiling
+)
+CONTEXT={"A":0,"B":1,"C":2}
+PHASE_NAMES=("A","B","C","A","B")
+BLOCK=40
+PROBE=16
+EXAM=80
+FAST_HIDDEN=12
+DIM=5        # bipolar x/y, one-hot action 0/1, bias
+FAST_PARAMS=FAST_HIDDEN*DIM+FAST_HIDDEN+1
+DIRECTOR_PARAMS=5   # intercept, confidence, disagreement, fast, memory
+LR_FAST=.065
+LR_GATE=.10
+MEMORY_SLOTS=(43,43,42)
+MEMORY_LIMIT=sum(MEMORY_SLOTS)
+MAX_BANKS=3
+HISTORY=14
+MIN_EVIDENCE=9
+MIN_CONFLICTS=3
+SWITCH_MATCHES=6
+READ_PRIOR=.12
+CHANGE_CONFIDENCE=.78
+LOCK_AFTER=40
+PENDING_EVIDENCE=12
+MAX_PENDING=24
+MIN_ROUTE_MATCH=.78
+MAX_NOVELTY_MATCH=.70
+GATES={
+    "A_after_C":.90,"B_after_C":.90,
+    "B_first":.90,"C_first":.90,
+    "mean_after_C":.90,"oracle_tolerance":.07,
+    "unsafe_gain":.12,"mixed_gain":.10,
+    "corrupt_gain":.10,"mutable_gain":.05,
+    "director_gain":.05,
+}
+
+
+def check_seed(seed:int):
+    if type(seed) is not int or seed not in SEEDS:
+        raise ValueError("Only new DEV seeds 4900..4923")
+
+
+def schedule(seed:int):
+    check_seed(seed)
+    rng=random.Random(seed*337+179)
+    # No duration is exposed to any non-oracle controller.
+    return tuple((name,rng.choice((320,360,400,440))
+                  if phase<3 else rng.choice((160,200,240)))
+                 for phase,name in enumerate(PHASE_NAMES))
+
+
+def observations(seed:int,phase:int,n:int):
+    check_seed(seed)
+    if n%BLOCK:raise ValueError("Must request complete balanced blocks")
+    rng=random.Random(seed*211_001+phase*271+71)
+    out=[]
+    for _ in range(n//BLOCK):
+        block=[(x,y) for x in (0,1) for y in (0,1) for _ in range(10)]
+        rng.shuffle(block)
+        out.extend(block)
+    return tuple(out)
+
+
+def environmental_success(world:str,x:int,y:int,action:int):
+    """Never pass world name into the ordinary learner."""
+    if world=="A":correct=x^y
+    elif world=="B":correct=1^(x^y)
+    elif world=="C":correct=x
+    else:raise ValueError("Invalid world")
+    return int(action==correct)
+
+
+def sigmoid(x):
+    return 1./(1.+math.exp(-max(-35.,min(35.,x))))
+
+
+def sensory(x,y,action):
+    if x not in (0,1) or y not in (0,1) or action not in (0,1):
+        raise ValueError("Binary sensory data and chosen action only")
+    return (2.*x-1.,2.*y-1.,float(action==0),float(action==1),1.)
+
+
+class LatentBank:
+    """Inference-created bank; no true world labels, only witnessed episodes."""
+
+    def __init__(self,capacity):
+        self.records=deque(maxlen=capacity)
+
+    def append(self,record):
+        if (len(record)!=4 or any(v not in (0,1) for v in record)):
+            raise ValueError("Only binary lived (x,y,chosen_action,reward)")
+        self.records.append(record)
+
+    def response(self,x,y,action):
+        # Deterministically complementary binary reward is a laboratory
+        # structural assumption. All inference comes from observed outcomes.
+        count=0
+        reward_zero_total=0
+        for oldx,oldy,oldaction,reward in self.records:
+            if oldx!=x or oldy!=y:continue
+            reward_zero_total+=reward if oldaction==0 else (1-reward)
+            count+=1
+        p0=(READ_PRIOR+reward_zero_total)/(2*READ_PRIOR+count)
+        return (p0 if action==0 else 1.-p0),count
+
+    def evidence(self,history):
+        """Supported classification: how many past episodes are predicted.
+
+        Unknown (x,y) pairs contribute no support and cannot establish
+        which world is active. Evaluation uses only old witnessed records.
+        """
+        matches=0
+        conflicts=0
+        supported=0
+        for x,y,chosen,reward in history:
+            predicted,n=self.response(x,y,chosen)
+            if n<2:continue
+            supported+=1
+            if (predicted if reward==1 else 1.-predicted)>=CHANGE_CONFIDENCE:
+                matches+=1
+            else:
+                conflicts+=1
+        return matches,conflicts,supported
+
+
+class Organism:
+    def __init__(self,seed:int,arm:str):
+        check_seed(seed)
+        if arm not in ARMS:raise ValueError("Unknown hidden-context arm")
+        self.seed=seed
+        self.arm=arm
+        init=random.Random(seed*103_973+7)
+        self.fast=([init.gauss(0.,.45)
+                    for _ in range(FAST_HIDDEN*DIM)]
+                   +[init.gauss(0.,.13) for _ in range(FAST_HIDDEN)]
+                   +[0.])
+        self.director=[.0,2.,-.4,0.,0.]
+        self.founder=(tuple(self.fast),tuple(self.director))
+        self.rng=random.Random(seed*93_773+83)
+        self.noise_rng=random.Random(seed*67_231+193)
+        self.banks=[LatentBank(MEMORY_SLOTS[0])]
+        if arm=="oracle_context" or arm=="scrambled_detection" or arm=="no_regime_detection":
+            # Oracle banks are allocated as needed by explicit privileged
+            # phase labels; others can only create new banks from evidence.
+            pass
+        self.active=0
+        self.history=deque(maxlen=3 if arm=="latent_short_history" else HISTORY)
+        self.lived=0
+        self.update_calls=0
+        self.fast_updates=0
+        self.gate_updates=0
+        self.read_record_evaluations=0
+        self.inferred_switches=[]
+        self.unassigned_surprises=0
+        self.gate_sum=0.
+
+    def snapshot(self):
+        return (tuple(self.fast),tuple(self.director),
+                tuple(tuple(b.records) for b in self.banks),
+                self.active,tuple(self.history),self.lived,
+                self.update_calls,self.fast_updates,self.gate_updates,
+                self.rng.getstate(),self.noise_rng.getstate(),
+                tuple(self.inferred_switches),self.unassigned_surprises,
+                self.gate_sum)
+
+    def _fast_score(self,x,y,a):
+        z=sensory(x,y,a)
+        h=[math.tanh(math.fsum(
+            self.fast[j*DIM+k]*feat for k,feat in enumerate(z)))
+            for j in range(FAST_HIDDEN)]
+        raw=self.fast[-1]+math.fsum(
+            self.fast[FAST_HIDDEN*DIM+j]*v for j,v in enumerate(h))
+        return sigmoid(raw),z,h
+
+    def _bank_score(self,bank:int,x,y,a,*,count_work:bool):
+        if bank<0 or bank>=len(self.banks):
+            return .5,0
+        if count_work:
+            self.read_record_evaluations+=len(self.banks[bank].records)
+        return self.banks[bank].response(x,y,a)
+
+    def _components(self,x,y,a,bank:int,*,count_work:bool):
+        fast,z,h=self._fast_score(x,y,a)
+        # All arms perform the same one-bank read work when memory is
+        # available; tracked by the ledger, not used for training control.
+        p,n=self._bank_score(bank,x,y,a,count_work=count_work)
+        confidence=min(1.,n/3.)
+        features=(1.,confidence,abs(p-fast),fast,p)
+        gate=sigmoid(math.fsum(
+            w*v for w,v in zip(self.director,features)))
+        if self.arm in ("fast_only","guarded_fast_only"):gate=0.
+        elif self.arm in ("latent_memory_only","guarded_memory_only"):gate=1.
+        elif self.arm in ("latent_fixed_fusion","guarded_fixed_fusion"):gate=.5
+        result=(1.-gate)*fast+gate*p
+        return result,fast,p,gate,z,h,features
+
+    def _bank_from_history(self,history,*,novelty_allowed:bool):
+        """Score latent bank identity using only lived outcomes.
+
+        This is an engineered evidence selector (NOT neural RL). With no
+        usable evidence, the agent retains its previous active estimate.
+        """
+        if not history:return self.active
+        records=tuple(history)
+        best=None
+        for i,bank in enumerate(self.banks):
+            matches,conflicts,support=bank.evidence(records)
+            if support==0:continue
+            candidate=(matches-2*conflicts,matches,-conflicts,-i)
+            if best is None or candidate>best[0]:
+                best=(candidate,i,matches,conflicts,support)
+        if best is None:return self.active
+        _,index,matches,conflicts,support=best
+        if (support>=MIN_EVIDENCE and
+                matches>=SWITCH_MATCHES and conflicts<=1):
+            return index
+        if novelty_allowed and len(self.banks)<MAX_BANKS:
+            current=self.banks[self.active]
+            current_matches,current_conflicts,current_support=(
+                current.evidence(records))
+            if (len(records)>=MIN_EVIDENCE and
+                    current_conflicts>=MIN_CONFLICTS and
+                    (best[3]>=MIN_CONFLICTS or best[2]<SWITCH_MATCHES)):
+                return len(self.banks)
+        return self.active
+
+    def current_bank(self,ctx_for_oracle=None):
+        if self.arm=="oracle_context":
+            if ctx_for_oracle not in (0,1,2):
+                raise ValueError("Oracle requires privileged world index")
+            return ctx_for_oracle
+        if ctx_for_oracle is not None:
+            raise AssertionError("Hidden-world learner cannot receive label")
+        if self.arm=="no_regime_detection":return 0
+        return self.active
+
+    def choose(self,x,y,tick:int,*,training=True,
+               context_for_oracle=None,forced_bank=None):
+        selected=(forced_bank if forced_bank is not None else
+                  self.current_bank(ctx_for_oracle=context_for_oracle))
+        p0=self._components(x,y,0,selected,count_work=False)[0]
+        p1=self._components(x,y,1,selected,count_work=False)[0]
+        a=int(p1>p0)
+        if training:
+            frac=min(1.,tick/1520.)
+            eps=.25*(1.-frac)+.07*frac
+            if self.rng.random()<eps:a=self.rng.randrange(2)
+        return a
+
+    def _update_fast_and_gate(self,x,y,a,outcome,bank):
+        p,pfast,pmem,gate,z,h,features=(
+            self._components(x,y,a,bank,count_work=True))
+        p=max(1e-7,min(1.-1e-7,p))
+        common=(outcome-p)/(p*(1.-p))
+        old=self.fast[:]
+        scale=common*(1.-gate)*pfast*(1.-pfast)
+        # Fast learner always receives one real gradient per observed
+        # action across all arms, including memory-only (ablation for use).
+        for j,hj in enumerate(h):
+            idx=FAST_HIDDEN*DIM+j
+            self.fast[idx]=max(-5.,min(5.,old[idx]+LR_FAST*scale*hj))
+            coefficient=scale*old[idx]*(1.-hj*hj)
+            for k,feat in enumerate(z):
+                pos=j*DIM+k
+                self.fast[pos]=max(-5.,min(5.,
+                    old[pos]+LR_FAST*coefficient*feat))
+        self.fast[-1]=max(-5.,min(5.,old[-1]+LR_FAST*scale))
+        self.fast_updates+=1
+        if self.arm in (
+            "latent_director","guarded_director","guarded_mutable",
+            "guarded_corrupt_probe",
+            "no_regime_detection","scrambled_detection",
+            "oracle_context"):
+            factor=common*(pmem-pfast)*gate*(1.-gate)
+            for k,feat in enumerate(features):
+                self.director[k]=max(-6.,min(6.,
+                    self.director[k]+LR_GATE*factor*feat))
+            self.gate_updates+=1
+        self.gate_sum+=gate
+        self.update_calls+=1
+
+    def experience(self,x:int,y:int,a:int,real_reward:int,
+                   *,context_for_oracle=None):
+        if real_reward not in (0,1):
+            raise ValueError("Only actual chosen-action binary reward")
+        bank_index=self.current_bank(ctx_for_oracle=context_for_oracle)
+        if self.arm=="oracle_context":
+            while len(self.banks)<=bank_index:
+                self.banks.append(LatentBank(
+                    MEMORY_SLOTS[len(self.banks)]))
+        # Learn the actual outcome BEFORE writing it to personal history.
+        self._update_fast_and_gate(x,y,a,real_reward,bank_index)
+        self.lived+=1
+        if self.arm=="oracle_context":
+            self.banks[bank_index].append((x,y,a,real_reward))
+            self.active=bank_index
+            return
+        if self.arm=="no_regime_detection":
+            self.banks[0].append((x,y,a,real_reward))
+            return
+        # The adverse control disrupts only the director's evidence about
+        # when worlds changed. The archived actual experience stays honest.
+        fed=(self.noise_rng.randrange(2)
+             if self.arm=="scrambled_detection" else real_reward)
+        episode=(x,y,a,fed)
+        current=self.banks[self.active]
+        expected,n=current.response(x,y,a)
+        conflicting=(n>=2 and (
+            (fed==1 and expected<1.-CHANGE_CONFIDENCE) or
+            (fed==0 and expected>CHANGE_CONFIDENCE)))
+        self.history.append(episode)
+        if not conflicting:
+            current.append((x,y,a,real_reward))
+        else:
+            self.unassigned_surprises+=1
+        if len(self.history)<MIN_EVIDENCE:return
+        candidate=self._bank_from_history(
+            self.history,novelty_allowed=True)
+        if candidate!=self.active:
+            old=self.active
+            if candidate==len(self.banks):
+                self.banks.append(LatentBank(MEMORY_SLOTS[candidate]))
+            target=self.banks[candidate]
+            # Admit only recent experience that is consistent with
+            # target evidence; prevent updating the old archive with
+            # contradictory post-change observations.
+            for oldx,oldy,olda,oldr in self.history:
+                estimated,confidence_n=target.response(
+                    oldx,oldy,olda)
+                if (confidence_n==0 or
+                    (oldr and estimated>=.5) or
+                    (not oldr and estimated<=.5)):
+                    target.append((oldx,oldy,olda,oldr))
+            self.active=candidate
+            self.inferred_switches.append({
+                "at":self.lived,"from":old,"to":candidate})
+            self.history.clear()
+        if sum(len(bank.records) for bank in self.banks)>MEMORY_LIMIT:
+            raise AssertionError("Overflowed bounded autobiographical memory")
+
+    def select_from_probe(self,probe,*,oracle_index=None):
+        if self.arm=="oracle_context":
+            if oracle_index not in range(len(self.banks)):
+                return 0
+            return oracle_index
+        if self.arm=="no_regime_detection":return 0
+        if self.arm=="fast_only":
+            return 0
+        if self.arm=="scrambled_detection":
+            # Scrambled evidence affected what banks were created
+            # during training; exam evidence remains genuine, for
+            # a conservative negative control.
+            pass
+        if not probe:return 0   # no feedback gives no context information
+        best=None
+        for i,bank in enumerate(self.banks):
+            matches,conflicts,supported=bank.evidence(probe)
+            # log-support rationale: conflicts matter more than unknowns;
+            # bank selection is based exclusively on probe feedback.
+            score=(matches-2*conflicts,matches,-conflicts,-i)
+            if best is None or score>best[0]:
+                best=(score,i)
+        return best[1] if best is not None else 0
+
+
+class GuardedOrganism(Organism):
+    """Writer waits for evidence; reader may speculate without writing.
+
+    After 40 real episodes, each validated bank becomes immutable. At the
+    first contradiction, the writer moves outcomes to a quarantine buffer.
+    It cannot alter a committed bank until 12 recent lived outcomes
+    distinguish a known latent regime or justify a NEW latent bank.
+    No A/B/C label, phase schedule, or privileged correct action is read.
+    """
+
+    def __init__(self,seed:int,arm:str):
+        super().__init__(seed,arm)
+        self.pending=[]
+        self.guard_switches=[]
+        self.bank_write_counts=[0]
+        self.denied_stable_writes=0
+        self.detected_ambiguity=0
+        self.tentative_bad_writes=0
+        self.verified_archive_freezes=0
+
+    def snapshot(self):
+        return (super().snapshot(),tuple(self.pending),
+                tuple((t,old,new) for t,old,new in self.guard_switches),
+                tuple(self.bank_write_counts),
+                self.denied_stable_writes,self.detected_ambiguity,
+                self.tentative_bad_writes,self.verified_archive_freezes)
+
+    def _write_to_bank(self,index,episode):
+        bank=self.banks[index]
+        if (self.arm!="guarded_mutable"
+                and len(bank.records)>=LOCK_AFTER):
+            self.denied_stable_writes+=1
+            return
+        bank.append(episode)
+        self.bank_write_counts[index]+=1
+        if (self.arm!="guarded_mutable"
+                and len(bank.records)==LOCK_AFTER):
+            self.verified_archive_freezes+=1
+
+    def _pick_evidence_target(self,records):
+        """Select an archive only from compatible observed action outcomes."""
+        candidates=[]
+        for index,bank in enumerate(self.banks):
+            matches,conflicts,supported=bank.evidence(records)
+            if supported>=PENDING_EVIDENCE:
+                candidates.append((matches/supported,index))
+        if not candidates:return None
+        candidates.sort(key=lambda item:(item[0],-item[1]),reverse=True)
+        fraction,index=candidates[0]
+        if fraction>=MIN_ROUTE_MATCH:return index
+        if fraction<=MAX_NOVELTY_MATCH and len(self.banks)<MAX_BANKS:
+            return len(self.banks)
+        return None
+
+    def experience(self,x:int,y:int,a:int,real_reward:int,
+                   *,context_for_oracle=None):
+        if context_for_oracle is not None:
+            raise AssertionError("Guarded hidden agent cannot receive world ID")
+        if real_reward not in (0,1):
+            raise ValueError("Only actual chosen-action binary success/failure")
+        record=(x,y,a,real_reward)
+        self._update_fast_and_gate(x,y,a,real_reward,self.active)
+        self.lived+=1
+        bank=self.banks[self.active]
+        if len(bank.records)<LOCK_AFTER:
+            self._write_to_bank(self.active,record)
+            return
+        p,n=bank.response(x,y,a)
+        contradiction=(n>=2 and (
+            (real_reward==1 and p<1.-CHANGE_CONFIDENCE) or
+            (real_reward==0 and p>CHANGE_CONFIDENCE)))
+        if not self.pending and not contradiction:
+            if self.arm=="guarded_mutable":
+                self._write_to_bank(self.active,record)
+            else:
+                self.denied_stable_writes+=1
+            return
+
+        # From the first discrepancy, no irreversible writes while the
+        # role of the current world is still ambiguous.
+        self.pending.append(record)
+        if self.arm=="guarded_mutable":
+            # Negative control: same detector but allow incorrect writes.
+            self._write_to_bank(self.active,record)
+            self.tentative_bad_writes+=1
+        if len(self.pending)<PENDING_EVIDENCE:return
+        target=self._pick_evidence_target(self.pending)
+        if target is None:
+            self.detected_ambiguity+=1
+            if len(self.pending)>MAX_PENDING:
+                self.pending=self.pending[-PENDING_EVIDENCE:]
+            return
+        previous=self.active
+        if target==len(self.banks):
+            self.banks.append(LatentBank(MEMORY_SLOTS[target]))
+            self.bank_write_counts.append(0)
+        self.active=target
+        if target!=previous:
+            self.guard_switches.append((self.lived,previous,target))
+        # Commit previously buffered actual observations only into a new,
+        # still-learning bank; NEVER overwrite already validated memories.
+        for event in self.pending:
+            if len(self.banks[target].records)<LOCK_AFTER:
+                self._write_to_bank(target,event)
+        self.pending.clear()
+        if sum(len(b.records) for b in self.banks)>MEMORY_LIMIT:
+            raise AssertionError("Autobiographical capacity exceeded")
+
+    def select_from_probe(self,probe,*,oracle_index=None):
+        if oracle_index is not None:
+            raise AssertionError("No oracle world ID allowed in hidden probes")
+        if not probe:return 0
+        if self.arm=="guarded_corrupt_probe":
+            # Randomize only ephemeral diagnostic feedback, never stored
+            # outcomes, weights or the original agent's RNG.
+            seed=self.seed*13_337+sum(
+                (x*19+y*13+a*7+r+1)* (j+1)
+                for j,(x,y,a,r) in enumerate(probe))
+            rng=random.Random(seed)
+            probe=tuple((x,y,a,rng.randrange(2))
+                        for x,y,a,r in probe)
+        return super().select_from_probe(probe,oracle_index=None)
+
+
+def make_organism(seed,arm):
+    if arm.startswith("guarded_"):
+        return GuardedOrganism(seed,arm)
+    return Organism(seed,arm)
+
+
+def probe_cues(seed,exam_index):
+    # Exactly four occurrences of each x/y cue, independently shuffled.
+    check_seed(seed)
+    rng=random.Random(seed*999_983+exam_index*73+10_001)
+    data=[(x,y) for x in (0,1) for y in (0,1) for _ in range(4)]
+    rng.shuffle(data)
+    return tuple(data)
+
+
+def frozen_exam(brain:Organism,seed:int,world:str,exam_index:int,
+                *,priming:int):
+    """Read-only weights/archive; 0 or 16 evaluation outcomes are given.
+
+    Probe actions are chosen by a fixed, stimulus-independent exploration
+    coin, not the privileged hidden answer. They are genuine action
+    outcomes but update ONLY ephemeral inference, never parameters,
+    archive or the original organism's session state.
+    """
+    if priming not in (0,PROBE):raise ValueError("Only 0 or 16 probe exams")
+    original=brain.snapshot()
+    rng=random.Random(seed*481_501+exam_index*971+29)
+    scratch=[]
+    for x,y in probe_cues(seed,exam_index)[:priming]:
+        action=rng.randrange(2)
+        feedback=environmental_success(world,x,y,action)
+        scratch.append((x,y,action,feedback))
+    oracle=(CONTEXT[world] if brain.arm=="oracle_context" else None)
+    selected=brain.select_from_probe(scratch,oracle_index=oracle)
+    passed=0
+    for x,y in observations(seed,exam_index,EXAM):
+        action=brain.choose(
+            x,y,0,training=False,
+            context_for_oracle=oracle if brain.arm=="oracle_context" else None,
+            forced_bank=selected)
+        passed+=environmental_success(world,x,y,action)
+    if brain.snapshot()!=original:
+        raise AssertionError("Exam mutated any learned state")
+    return passed/EXAM,selected
+
+
+def run(seed:int,arm:str):
+    check_seed(seed)
+    brain=make_organism(seed,arm)
+    phases=schedule(seed)
+    scores={}
+    cold={}
+    exam_selected_banks={}
+    training={}
+    occupancy=[]
+    phase_transitions=[]
+    tick=0
+    for phase,(world,n) in enumerate(phases):
+        stream=observations(seed,phase,n)
+        rewards=[]
+        for x,y in stream:
+            chosen=brain.choose(
+                x,y,tick,training=True,
+                context_for_oracle=CONTEXT[world]
+                if arm=="oracle_context" else None)
+            reward=environmental_success(world,x,y,chosen)
+            brain.experience(
+                x,y,chosen,reward,
+                context_for_oracle=CONTEXT[world]
+                if arm=="oracle_context" else None)
+            rewards.append(reward)
+            tick+=1
+        training[f"phase_{phase}_{world}_first16"]=(
+            sum(rewards[:16])/16)
+        training[f"phase_{phase}_{world}_last80"]=(
+            sum(rewards[-80:])/80)
+        occupancy.append([len(b.records) for b in brain.banks])
+        phase_transitions.append({
+            "phase_index":phase,"actual_world_for_reporting":world,
+            "end_timestep":tick,"inferred_active_bank":brain.active,
+            "bank_count":len(brain.banks)})
+        for target_index in range(max(CONTEXT[w] for w,_ in phases[:phase+1])+1):
+            test_world="ABC"[target_index]
+            exam_index=20+phase*3+target_index
+            result,selected=frozen_exam(
+                brain,seed,test_world,exam_index,priming=PROBE)
+            exam_selected_banks[f"phase_{phase}_{test_world}"]=selected
+            no_probe,_=frozen_exam(
+                brain,seed,test_world,exam_index,priming=0)
+            scores[f"phase_{phase}_{test_world}"]=result
+            cold[f"phase_{phase}_{test_world}"]=no_probe
+    if brain.lived!=sum(n for _,n in phases):
+        raise AssertionError("Wrong lived experience budget")
+    if brain.update_calls!=brain.lived or brain.fast_updates!=brain.lived:
+        raise AssertionError("Unmatched fast update calls")
+    if sum(len(b.records) for b in brain.banks)>MEMORY_LIMIT:
+        raise AssertionError("Personal memory grew without bounds")
+    # Purely post-hoc observer diagnosis. True world labels are used
+    # ONLY outside the learning/exam pathways, to quantify whether each
+    # internally inferred archive bank represents A, B or C.
+    bank_content_accuracy={}
+    for bank_id,archive in enumerate(brain.banks):
+        bank_content_accuracy[str(bank_id)]={
+            world:sum(
+                environmental_success(
+                    world,x,y,
+                    int(archive.response(x,y,1)[0]>
+                        archive.response(x,y,0)[0]))
+                for x in (0,1) for y in (0,1))/4.
+            for world in ("A","B","C")}
+    return {
+        "seed":seed,"arm":arm,
+        "posthoc_bank_content_accuracy":bank_content_accuracy,
+        "exam_selected_banks":exam_selected_banks,
+        "actual_phase_lengths":[n for _,n in phases],
+        "A_initial":scores["phase_0_A"],
+        "A_after_B":scores["phase_1_A"],
+        "B_first_learned":scores["phase_1_B"],
+        "A_after_C":scores["phase_2_A"],
+        "B_after_C":scores["phase_2_B"],
+        "C_first_learned":scores["phase_2_C"],
+        "A_final":scores["phase_4_A"],
+        "B_final":scores["phase_4_B"],
+        "C_final":scores["phase_4_C"],
+        "A_after_C_zero_probe":cold["phase_2_A"],
+        "B_after_C_zero_probe":cold["phase_2_B"],
+        "C_after_C_zero_probe":cold["phase_2_C"],
+        "joint_pre_refresher":statistics.mean((
+            scores["phase_2_A"],scores["phase_1_B"],
+            scores["phase_2_B"],scores["phase_2_C"])),
+        "mean_post_probe_after_C":statistics.mean((
+            scores["phase_2_A"],scores["phase_2_B"],
+            scores["phase_2_C"])),
+        "minimum_after_C":min(scores["phase_2_A"],
+                              scores["phase_2_B"],
+                              scores["phase_2_C"]),
+        "mean_final":statistics.mean((
+            scores["phase_4_A"],scores["phase_4_B"],
+            scores["phase_4_C"])),
+        "training":training,
+        "lived_experiences":brain.lived,
+        "gradient_update_calls":brain.update_calls,
+        "fast_gradient_updates":brain.fast_updates,
+        "director_gradient_updates":brain.gate_updates,
+        "memory_capacity":MEMORY_LIMIT,
+        "final_memory_size":sum(len(b.records) for b in brain.banks),
+        "final_bank_count":len(brain.banks),
+        "memory_occupancy_per_phase":occupancy,
+        "inferred_switch_events":(
+            brain.guard_switches if isinstance(brain,GuardedOrganism)
+            else brain.inferred_switches),
+        "guarded_pending_size":(len(brain.pending)
+            if isinstance(brain,GuardedOrganism) else None),
+        "denied_stable_writes":(brain.denied_stable_writes
+            if isinstance(brain,GuardedOrganism) else None),
+        "verified_archive_freezes":(brain.verified_archive_freezes
+            if isinstance(brain,GuardedOrganism) else None),
+        "bank_write_counts":(brain.bank_write_counts
+            if isinstance(brain,GuardedOrganism) else None),
+        "inferred_switch_count":len(
+            brain.guard_switches if isinstance(brain,GuardedOrganism)
+            else brain.inferred_switches),
+        "timeline_diagnostics":phase_transitions,
+        "training_memory_read_evaluations":brain.read_record_evaluations,
+        "average_director_memory_gate":brain.gate_sum/brain.update_calls,
+        "no_world_id_passed_to_hidden_arm":arm!="oracle_context",
+        "exam_priming_real_feedback_count":PROBE,
+        "exam_only_ephemeral_working_state":True,
+        "no_teacher_oracle_action_labels":True,
+    }
+
+
+def paired_bootstrap(rows,treat,control,metric="joint_pre_refresher",
+                     replicates=1400):
+    lookup={(r["seed"],r["arm"]):r for r in rows}
+    deltas=[lookup[(seed,treat)][metric]-
+            lookup[(seed,control)][metric] for seed in SEEDS]
+    rand=random.Random(310483)
+    dist=sorted(statistics.mean(rand.choice(deltas) for _ in deltas)
+                for _ in range(replicates))
+    return {"delta":statistics.mean(deltas),
+            "boot95":[dist[int(.025*replicates)],
+                      dist[int(.975*replicates)-1]],
+            "paired_seed_count":len(SEEDS)}
+
+
+def experiment(seeds=SEEDS):
+    if tuple(seeds)!=SEEDS:
+        raise ValueError("Complete preregistered DEV seed cohort required")
+    rows=[run(seed,arm) for seed in seeds for arm in ARMS]
+    index={(r["seed"],r["arm"]):r for r in rows}
+    metrics=("A_initial","A_after_B","B_first_learned","A_after_C",
+             "B_after_C","C_first_learned","A_final","B_final","C_final",
+             "joint_pre_refresher","mean_post_probe_after_C",
+             "minimum_after_C","final_bank_count","inferred_switch_count",
+             "A_after_C_zero_probe","B_after_C_zero_probe")
+    summary={arm:{key:statistics.mean(index[(seed,arm)][key]
+                    for seed in seeds) for key in metrics} for arm in ARMS}
+    candidate=summary["guarded_director"]
+    def gain(other):
+        return (candidate["joint_pre_refresher"]-
+                summary[other]["joint_pre_refresher"])
+    checks={
+        "A_after_C_recalled_at_least90":
+            candidate["A_after_C"]>=GATES["A_after_C"],
+        "B_after_C_recalled_at_least90":
+            candidate["B_after_C"]>=GATES["B_after_C"],
+        "B_newly_learned_at_least90":
+            candidate["B_first_learned"]>=GATES["B_first"],
+        "C_newly_learned_at_least90":
+            candidate["C_first_learned"]>=GATES["C_first"],
+        "after_C_all_context_mean_at_least90":
+            candidate["mean_post_probe_after_C"]>=GATES["mean_after_C"],
+        "within7pp_of_oracle_on_compound":
+            candidate["joint_pre_refresher"]>=
+            summary["oracle_context"]["joint_pre_refresher"]-
+            GATES["oracle_tolerance"],
+        "improves_unsafe_M5_24_at_least12pp":
+            gain("latent_director")>=GATES["unsafe_gain"],
+        "improves_one_mixed_bank_at_least10pp":
+            gain("no_regime_detection")>=GATES["mixed_gain"],
+        "improves_corrupted_probe_at_least10pp":
+            gain("guarded_corrupt_probe")>=GATES["corrupt_gain"],
+        "protecting_writes_beats_mutable_at_least5pp":
+            gain("guarded_mutable")>=GATES["mutable_gain"],
+        "learned_director_beats_memory_only_at_least5pp":
+            gain("guarded_memory_only")>=GATES["director_gain"],
+        "learned_director_beats_fixed_fusion_at_least5pp":
+            gain("guarded_fixed_fusion")>=GATES["director_gain"],
+    }
+    for seed in seeds:
+        if len({index[(seed,arm)]["lived_experiences"]
+                for arm in ARMS})!=1:
+            raise AssertionError("Unmatched real experience")
+        for arm in ARMS:
+            r=index[(seed,arm)]
+            if r["gradient_update_calls"]!=r["lived_experiences"]:
+                raise AssertionError("Unmatched fast-weight update calls")
+            if r["final_memory_size"]>MEMORY_LIMIT:
+                raise AssertionError("Archive capacity violated")
+            if arm!="oracle_context" and not r["no_world_id_passed_to_hidden_arm"]:
+                raise AssertionError("Hidden world ID leaked to agent")
+    observed={
+        arm:{
+            "phase_2_selected_bank_counts":{
+                world:{str(bank):sum(
+                    index[(seed,arm)]["exam_selected_banks"][
+                        f"phase_2_{world}"]==bank for seed in seeds)
+                    for bank in range(MAX_BANKS)}
+                for world in ("A","B","C")},
+            "final_bank_rule_fit":{
+                str(bank):{
+                    world:statistics.mean([
+                        index[(seed,arm)]["posthoc_bank_content_accuracy"][
+                            str(bank)][world]
+                        for seed in seeds
+                        if str(bank) in index[(seed,arm)][
+                            "posthoc_bank_content_accuracy"]])
+                    if any(str(bank) in index[(seed,arm)][
+                        "posthoc_bank_content_accuracy"] for seed in seeds)
+                    else None for world in ("A","B","C")}
+                for bank in range(MAX_BANKS)}
+        } for arm in ARMS}
+    return {
+        "status":"M5.25_DEV_evidence_guarded_separate_memory_roles",
+        "seeds":list(seeds),"arms":list(ARMS),
+        "hidden_context_world_schedule_unchanged":True,
+        "world_labels_not_passed_to_hidden_organisms":True,
+        "bank_write_requires_evidence_after_quarantine":True,
+        "each_bank_locked_after_real_record_count":LOCK_AFTER,
+        "pending_evidence_required":PENDING_EVIDENCE,
+        "memory_record_capacity":MEMORY_LIMIT,
+        "no_supervised_target_labels":True,
+        "binary_complementary_deterministic_actions_assumed":True,
+        "frozen_exams_use_16_actual_diagnostic_reward_probes":True,
+        "exam_probe_only_updates_ephemeral_context_guess":True,
+        "context_bank_selector_is_handcoded_not_learned_RL":True,
+        "familiar_four_cues_only_not_OOD_generalization":True,
+        "same_lived_experiences_and_weight_update_calls":True,
+        "memory_read_compute_not_matched_across_arms":True,
+        "no_sealed_original_M5_6_cohorts":True,
+        "no_growth_evolution_or_main_merge":True,
+        "summary":summary,"screening_gate":checks,
+        "memory_specialization_screen_pass":all(
+            value for key,value in checks.items()
+            if not key.startswith("learned_director_")),
+        "learned_director_added_value_screen":all(
+            value for key,value in checks.items()
+            if key.startswith("learned_director_")),
+        "development_screen_pass":all(checks.values()),
+        "independent_task_replication_complete":False,
+        "evolution_authorized":False,
+        "advance_to_evolution":False,
+        "posthoc_diagnostics_for_reporting_only":observed,
+        "paired_bootstrap":{
+            arm:paired_bootstrap(rows,"guarded_director",arm)
+            for arm in (
+                "latent_director","guarded_memory_only",
+                "guarded_fixed_fusion","guarded_mutable",
+                "guarded_corrupt_probe","no_regime_detection",
+                "oracle_context")},
+        "raw_rows":rows,
+        "rows_sha256":hashlib.sha256(json.dumps(
+            rows,sort_keys=True,separators=(",",":")).encode()).hexdigest(),
+    }
+
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument("--out",type=Path,default=Path(
+        "results/m5-25/guarded-memory-development.json"))
+    args=p.parse_args()
+    report=experiment()
+    args.out.parent.mkdir(parents=True,exist_ok=True)
+    args.out.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n",
+                        encoding="utf-8")
+    print("M5_25_GUARDED_MEMORY "+json.dumps({
+        k:report[k] for k in (
+            "status","summary","screening_gate",
+            "memory_specialization_screen_pass",
+            "learned_director_added_value_screen",
+            "development_screen_pass",
+            "posthoc_diagnostics_for_reporting_only",
+            "paired_bootstrap","rows_sha256")
+    },sort_keys=True),flush=True)
+
+
+if __name__=="__main__":
+    main()
