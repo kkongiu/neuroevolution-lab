@@ -151,11 +151,11 @@ def support_encoding(records):
 
 
 def query_labels_from_real_actions(mask,bias,cues,rng,nonaffine=False,
-                                   corrupted=False):
+                                   corrupted=False,corruption_rng=None):
     targets=np.empty(len(cues),dtype=np.float32)
     for i,cue in enumerate(cues):
         chosen=int(rng.integers(2))
-        reward=(int(rng.integers(2)) if corrupted else
+        reward=(int(corruption_rng.integers(2)) if corrupted else
                 observed_reward(mask,bias,cue,chosen,nonaffine))
         targets[i]=chosen^(1-reward)
     return targets
@@ -245,17 +245,19 @@ def meta_train(seed:int,corrupt:bool=False,episodes:int=META_TRAIN_EPISODES):
         raise ValueError("Training episode budget outside protocol")
     model=NeuralConceptEncoder(seed)
     rng=np.random.default_rng(seed*19_493+51)
+    noise_rng=np.random.default_rng(seed*79_793+207)
     for _ in range(episodes):
         mask,bias=TRAIN_RULES[int(rng.integers(len(TRAIN_RULES)))]
         support,query=support_split(rng)
         real=actual_support(mask,bias,support,rng,False)
         if corrupt:
-            records=tuple((x,a,int(rng.integers(2)))
+            records=tuple((x,a,int(noise_rng.integers(2)))
                           for x,a,_ in real)
         else:
             records=real
         target=query_labels_from_real_actions(
-            mask,bias,query,rng,False,corrupted=corrupt)
+            mask,bias,query,rng,False,corrupted=corrupt,
+            corruption_rng=noise_rng)
         model.train_episode(records,query,target)
     if model.steps!=episodes:raise AssertionError("Meta budget mismatch")
     return model
