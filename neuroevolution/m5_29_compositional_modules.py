@@ -197,7 +197,10 @@ class ModularProductLearner:
             w=np.clip(w-ADAPT_LR*gradients,-1.,1.)
         errors=np.mean((self._pred(w,cues)-y[None,:])**2,axis=1)
         chosen=int(np.argmin(errors))
-        self.weights=w[chosen].copy()
+        # Optimizer uses float64 workspace, but PERSISTENT task-specific
+        # neural code is explicitly quantized to five float32 values.
+        # Evaluate ONLY after this cast, so storage claims are real.
+        self.weights=w[chosen].astype(np.float32)
         self.support_mse=float(errors[chosen])
         self.selected_restart=chosen
         self.gradient_steps=TASK_RESTARTS*ADAPT_STEPS
