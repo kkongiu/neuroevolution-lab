@@ -1,0 +1,38 @@
+name: M5.29 Compositional Modular Adaptation
+
+on:
+  push:
+    branches:
+      - experiment/m5-29-compositional-modular-adaptation
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_29_compositional_modules.py'
+      - 'tests/test_m5_29_compositional_modules.py'
+      - '.github/workflows/m5-29-compositional-modules.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compositional-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible numerical backend
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Verify full-rule holdout and reward-only differentiable modules
+        run: python -m unittest discover -s tests -p 'test_m5_29_compositional_modules.py' -v
+      - name: Original M5.6 learner regression tests
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Three pooled meta-training runs and seven-arm compositional transfer experiment
+        run: python -m neuroevolution.m5_29_compositional_modules
+      - name: Archive complete rule holdout, module weights, costs and control comparisons
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-29-compositional-modules-development
+          path: results/m5-29/compositional-module-development.json
+          retention-days: 30
