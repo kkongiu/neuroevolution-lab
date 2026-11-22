@@ -145,6 +145,11 @@ class M532Tests(unittest.TestCase):
             )
             self.assertEqual(len(c["frozen_neuron_ablation_accuracies"]), 2)
             self.assertEqual(len(c["frozen_neuron_ablation_accuracy_drops"]), 2)
+            self.assertIn(c["random_unit_ablation_control_index"], (0, 1))
+            self.assertEqual(
+                c["random_unit_ablation_control_accuracy"],
+                c["frozen_neuron_ablation_accuracies"][c["random_unit_ablation_control_index"]],
+            )
             self.assertEqual(
                 len(c["primary_frozen_15_float32_weights"]), 15
             )
