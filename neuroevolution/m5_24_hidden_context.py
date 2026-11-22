@@ -647,7 +647,33 @@ def experiment(seeds=SEEDS):
         if any(ix[(seed,arm)]["memory_capacity"]!=MEMORY_LIMIT
                for arm in ARMS):
             raise AssertionError("Unequal memory budget")
+    posthoc_diagnostics={}
+    for arm in ARMS:
+        posthoc_diagnostics[arm]={
+            "phase_2_selected_bank_counts":{
+                world:{
+                    str(bank):sum(
+                        ix[(seed,arm)]["exam_selected_banks"][
+                            f"phase_2_{world}"]==bank for seed in seeds)
+                    for bank in range(MAX_BANKS)}
+                for world in ("A","B","C")},
+            "bank_rule_fit_at_end":{
+                str(bank):{
+                    world:statistics.mean([
+                        ix[(seed,arm)]["posthoc_bank_content_accuracy"][
+                            str(bank)][world]
+                        for seed in seeds
+                        if str(bank) in ix[(seed,arm)][
+                            "posthoc_bank_content_accuracy"]])
+                    if any(
+                        str(bank) in ix[(seed,arm)][
+                            "posthoc_bank_content_accuracy"]
+                        for seed in seeds) else None
+                    for world in ("A","B","C")}
+                for bank in range(MAX_BANKS)}
+        }
     return {
+        "posthoc_diagnostics_for_reporting_only":posthoc_diagnostics,
         "status":"M5.24_DEV_hidden_context_memory_executive",
         "seeds":list(seeds),"arms":list(ARMS),
         "task_names_not_available_to_nonoracle_agent":True,
@@ -700,6 +726,7 @@ def main():
     print("M5_24_HIDDEN_CONTEXT "+json.dumps({
         k:report[k] for k in (
             "status","summary","screening_gate",
+            "posthoc_diagnostics_for_reporting_only",
             "hidden_context_behavior_supported",
             "learned_executive_added_value_supported",
             "development_screen_pass",
