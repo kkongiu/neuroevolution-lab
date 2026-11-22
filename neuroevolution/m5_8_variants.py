@@ -53,6 +53,8 @@ def variant_world(seed: int, variant: str) -> dict:
         counts = [target_count//3+int(z < target_count%3) for z in range(3)]
         walls = set()
         for z, n in enumerate(counts):
+            if n == 0:
+                continue
             candidates = sorted(p for p in INTERIOR_CELLS-SPINE
                                 if region(p) == z)
             rng.shuffle(candidates)
