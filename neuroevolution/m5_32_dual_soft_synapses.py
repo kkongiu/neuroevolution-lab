@@ -295,6 +295,8 @@ def one_trial(optimizer_seed: int, seed: int, cohort: str):
             for j in (0, 1)
         ]
         drops = [unablated - x for x in ablation]
+        # This control is sampled from the seed BEFORE looking at grades.
+        random_ablated_unit = random.Random(fitting_seed * 41 + 17).randrange(2)
         ctx_data = {
             "context_index": ctx,
             "support_cue_ids": [r[0] for r in records],
@@ -315,6 +317,8 @@ def one_trial(optimizer_seed: int, seed: int, cohort: str):
             },
             "frozen_neuron_ablation_accuracies": ablation,
             "frozen_neuron_ablation_accuracy_drops": drops,
+            "random_unit_ablation_control_index": random_ablated_unit,
+            "random_unit_ablation_control_accuracy": ablation[random_ablated_unit],
             "both_neurons_causally_needed": all(
                 d >= 1./8. - 1e-12 for d in drops
             ),
@@ -441,6 +445,9 @@ def run():
                 for r in raw),
         "negative_controls_and_both_ablations_reported":
             all(len(c["frozen_neuron_ablation_accuracy_drops"]) == 2
+                and c["random_unit_ablation_control_index"] in (0, 1)
+                and c["random_unit_ablation_control_accuracy"] ==
+                  c["frozen_neuron_ablation_accuracies"][c["random_unit_ablation_control_index"]]
                 and set(c["unseen_accuracy"]) == set(ARMS)
                 for r in raw for c in r["contexts"]),
     }
