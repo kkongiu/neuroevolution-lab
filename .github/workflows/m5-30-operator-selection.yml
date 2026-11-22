@@ -28,7 +28,7 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_m5_30_operator_selection.py' -v
       - name: Original M5.6 online plasticity regressions
         run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
-      - name: Experience-selected operators: full preregistered development campaign
+      - name: 'Experience-selected operators: full preregistered development campaign'
         run: python -m neuroevolution.m5_30_operator_selection
       - name: Preserve individual lives, selections, scores, seeds and all negative outcomes
         if: always()
