@@ -42,8 +42,19 @@ class AdaptivePlasticityTests(unittest.TestCase):
             self.assertEqual(len(cues),PHASES*PHASE_LENGTH)
             for i in range(0,len(cues),WINDOW):
                 self.assertEqual(sum(cues[i:i+WINDOW]),WINDOW//2)
-            records={arm:run(seed,arm) for arm in ARMS}
-            self.assertEqual(records,{arm:run(seed,arm) for arm in ARMS})
+            adaptive=run(seed,"adaptive")
+            rates=adaptive["rate_history"][:]
+            __import__("random").Random(seed*770_147+1241).shuffle(rates)
+            records={arm:(adaptive if arm=="adaptive" else
+                          run(seed,arm,yoked_rates=tuple(rates)
+                              if arm=="yoked_shuffled_rate" else None))
+                     for arm in ARMS}
+            self.assertEqual(sorted(records["adaptive"]["rate_history"]),
+                             sorted(records["yoked_shuffled_rate"]["rate_history"]))
+            self.assertAlmostEqual(records["adaptive"]["mean_learning_rate"],
+                                   records["yoked_shuffled_rate"]["mean_learning_rate"])
+            with self.assertRaises(ValueError):
+                run(seed,"yoked_shuffled_rate")
             for row in records.values():
                 self.assertEqual(len(row["phase_windows"]),PHASES)
                 self.assertEqual(row["policy_updates"],PHASES*PHASE_LENGTH)
@@ -59,7 +70,7 @@ class AdaptivePlasticityTests(unittest.TestCase):
             with self.assertRaises(ValueError): run(seed,"adaptive")
         with self.assertRaises(ValueError): experiment((3224,3224))
         result=experiment((3224,3225))
-        self.assertEqual(len(result["raw_rows"]),8)
+        self.assertEqual(len(result["raw_rows"]),10)
         self.assertEqual(result["advance_to_evolution"],
                          all(result["screening_gate"].values()))
         self.assertFalse(result["decision_oracle"])
