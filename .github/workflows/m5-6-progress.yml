@@ -1,0 +1,48 @@
+name: M5.6 prediction-progress curiosity development screen
+
+on:
+  push:
+    branches:
+      - experiment/m5-6-memory-predator-curiosity-protocol
+    paths:
+      - 'neuroevolution/m5_6_prediction.py'
+      - 'neuroevolution/m5_6_online.py'
+      - 'neuroevolution/m5_6_progress_screen.py'
+      - 'tests/test_m5_6_prediction.py'
+      - 'tests/test_m5_6_progress_screen.py'
+      - '.github/workflows/m5-6-progress.yml'
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_6_prediction.py'
+      - 'neuroevolution/m5_6_online.py'
+      - 'neuroevolution/m5_6_progress_screen.py'
+      - 'tests/test_m5_6_prediction.py'
+      - 'tests/test_m5_6_progress_screen.py'
+      - '.github/workflows/m5-6-progress.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  progress-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check disjoint probe and physics
+        run: python -m unittest discover -s tests -p 'test_m5_6_prediction.py' -v
+      - name: Check training history and sealed cohorts
+        run: python -m unittest discover -s tests -p 'test_m5_6_progress_screen.py' -v
+      - name: Original RNN ecology regression
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 100 development-only progress comparisons
+        run: python -m neuroevolution.m5_6_progress_screen
+      - name: Archive all paired trials
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-6-development-prediction-progress
+          path: results/m5-6/development-prediction-progress.json
+          retention-days: 30
