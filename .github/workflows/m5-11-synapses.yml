@@ -1,0 +1,36 @@
+name: M5.11 structural synapse formation and pruning
+
+on:
+  push:
+    branches:
+      - experiment/m5-11-synaptic-pruning-growth
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_11_synapses.py'
+      - 'tests/test_m5_11_synapses.py'
+      - '.github/workflows/m5-11-synapses.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  synaptic-remodeling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test synapse birth/death, mask invariants, seed fences
+        run: python -m unittest discover -s tests -p 'test_m5_11_synapses.py' -v
+      - name: Native M5.6 controller regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Execute 24 x 6 matched neural structures and preservation tests
+        run: python -m neuroevolution.m5_11_synapses
+      - name: Archive full synaptic remodeling histories
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-11-structural-synapses-and-pruning-development
+          path: results/m5-11/synaptic-remodeling-development.json
+          retention-days: 30
