@@ -1,0 +1,42 @@
+name: M5.33 Active Sensory Cue Identifiability
+
+on:
+  push:
+    branches:
+      - experiment/m5-33-active-cue-identifiability
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_33_active_cue.py'
+      - 'tests/test_m5_33_active_cue.py'
+      - '.github/workflows/m5-33-active-cue.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  active-cue-science:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical backend
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Check active sampling own-action reward firewall and matched training
+        run: python -m unittest discover -s tests -p 'test_m5_33_active_cue.py' -v
+      - name: Regression test dual-neuron analytic gradients and causal ablation
+        run: python -m unittest discover -s tests -p 'test_m5_32_dual_soft_synapses.py' -v
+      - name: Regression test original sealed M5.6 online learning
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run preregistered M5.33 active cue full new-seed development protocol
+        run: python -m neuroevolution.m5_33_active_cue
+      - name: Archive full selection traces and raw scientific results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-33-active-cue-development
+          path: results/m5-33/active-cue-development.json
+          if-no-files-found: warn
+          retention-days: 30
