@@ -178,9 +178,9 @@ class SchoolBrain:
                   if self.arm=="uncoupled_context_replay" else success)
         record=(x,y,context,action,feedback)
         self._update(record)
-        if self.arm in ("fifo_replay","context_replay",
-                        "uncoupled_context_replay"):
+        if self.arm=="fifo_replay":
             self.fifo.append(record)
+        elif self.arm in ("context_replay","uncoupled_context_replay"):
             self.context_buffers[context].append(record)
         if self.arm=="online":return
         if self.arm=="recent_repeat":
@@ -255,7 +255,8 @@ def run(seed:int,arm:str)->dict:
         "old_A_rehearsal_samples_during_B":old_rehearsals,
         "lived_training_steps":brain.lived_experiences,
         "parameter_updates":brain.parameter_updates,
-        "buffer_size_at_end":len(brain.fifo),
+        "buffer_size_at_end":len(brain.fifo)+sum(
+            len(v) for v in brain.context_buffers.values()),
         "exam_parameters_frozen":True,
         "actions_graded_only_by_environment":True,
         "individual_memory_not_inherited":True,
