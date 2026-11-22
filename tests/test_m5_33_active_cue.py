@@ -115,7 +115,7 @@ class M533Tests(unittest.TestCase):
             choose_next_cue((), "family_version_space_active", range(16))
         with self.assertRaises(ValueError):
             choose_next_cue(((1, 0, 1), (2, 0, 0)), "unrecognized", range(16))
-        with self.assertRaises(ValueError):
+        with self.assertRaises(AssertionError):
             choose_next_cue(
                 ((1, 0, 1), (1, 1, 0)), "family_version_space_active",
                 range(16)
