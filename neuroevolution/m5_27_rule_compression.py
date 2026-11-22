@@ -104,7 +104,7 @@ def environment_success(rule:int,cue:int,action:int,stress:bool):
 
 
 def rank_gf2(masks):
-    pivots=set()
+    pivots={}
     for item in masks:
         mask=item
         for p in sorted(pivots,reverse=True):
