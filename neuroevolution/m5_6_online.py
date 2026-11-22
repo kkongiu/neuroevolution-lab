@@ -19,7 +19,8 @@ from .m5_6_bridge import ecological_observation, legal_cardinal_moves
 from .m5_6_curiosity import IntrinsicReward
 from .m5_6_prediction import LocalPredictor
 from .m5_7_decision import choose_from_model
-from .m5_8_worlds import DEV_SEEDS, make_world
+from .m5_8_worlds import DEV_SEEDS
+from .m5_8_variants import VARIANTS, variant_world
 from .m5_8_adapter import attach, ActiveShocks
 
 ARMS = ("novelty", "no_novelty", "frozen", "shuffled_novelty", "learning_progress")
@@ -129,7 +130,8 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                          reset_hidden_at_cutoff: bool = False,
                          model_decision_mode: str = "disabled",
                          progressive_world: bool = False,
-                         stochastic_challenges: bool = False) -> dict:
+                         stochastic_challenges: bool = False,
+                         world_variant: str = "progressive") -> dict:
     """Small reproducible training run; must never consume final world seeds."""
     if model_decision_mode not in ("disabled", "model", "permuted"):
         raise ValueError("Unregistered M5.7 decision intervention")
@@ -146,13 +148,16 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
         raise ValueError("Development-only worlds with strict cohort isolation")
     if stochastic_challenges and not progressive_world:
         raise ValueError("Dynamic challenges require progressive world")
+    if world_variant not in VARIANTS or (
+            world_variant != "progressive" and not progressive_world):
+        raise ValueError("Unknown or irrelevant world variant")
     if learning_cutoff_tick is None:
         if reset_weights_at_cutoff or reset_hidden_at_cutoff:
             raise ValueError("A cutoff is required for retention interventions")
     elif not (1 <= learning_cutoff_tick < settings.ticks):
         raise ValueError("Cutoff must precede the final tick")
     eco = base.create_ecology(seed, settings, "heritable_no_mutation")
-    world_spec = make_world(seed) if progressive_world else None
+    world_spec = variant_world(seed, world_variant) if progressive_world else None
     if world_spec is not None:
         attach(eco, world_spec)
     # Predator capture audits victim genetic identity using the original
@@ -331,6 +336,7 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     return {
         "seed": seed, "arm": arm, "predators": predator_count,
         "progressive_world": progressive_world,
+        "world_variant": world_variant,
         "stochastic_challenges": stochastic_challenges,
         "world_sha256": world_spec["world_sha256"] if world_spec else None,
         "actual_shocks_proposed": shocks.applied if shocks else 0,
