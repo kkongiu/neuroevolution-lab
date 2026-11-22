@@ -1,0 +1,45 @@
+name: M5.8 pressure calibration and independent development worlds
+
+on:
+  push:
+    branches:
+      - experiment/m5-8-progressive-stochastic-worlds
+    paths:
+      - 'neuroevolution/m5_8_robustness.py'
+      - 'neuroevolution/m5_8_worlds.py'
+      - 'neuroevolution/m5_8_adapter.py'
+      - 'neuroevolution/m5_8_variants.py'
+      - 'neuroevolution/m5_6_online.py'
+      - 'tests/test_m5_8_robustness.py'
+      - 'tests/test_m5_8_worlds.py'
+      - '.github/workflows/m5-8-robustness.yml'
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_8_robustness.py'
+      - 'tests/test_m5_8_robustness.py'
+      - '.github/workflows/m5-8-robustness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pressure-and-new-worlds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Protocol isolation and counterfactual regression tests
+        run: python -m unittest discover -s tests -p 'test_m5_8_robustness.py' -v
+      - name: Generator historical audit tests
+        run: python -m unittest discover -s tests -p 'test_m5_8_worlds.py' -v
+      - name: Freeze pressure from baseline and evaluate new worlds
+        run: python -m neuroevolution.m5_8_robustness
+      - name: Archive all calibration and new-world traces
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-8-baseline-pressure-and-novel-development-worlds
+          path: results/m5-8/pressure-and-novel-world-check.json
+          retention-days: 30
