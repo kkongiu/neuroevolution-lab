@@ -125,6 +125,7 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
         raise ValueError("Development-only worlds: seeds 1000–1099, <=60 ticks")
     eco = base.create_ecology(seed, settings, "heritable_no_mutation")
     predators = m5_5b.initial_predators(eco, predator_count)
+    food_schedule = base._food_schedule(seed, settings, eco, False)
     # Source weights are the only hereditary neural component; each child
     # starts with untrained weights, never the parent's in-life updates.
     initial = {
@@ -180,7 +181,7 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                 arrived = (old_position[0]+dx, old_position[1]+dy)
                 novelty = learner.curiosity.observe_arrival(arrived)
             external = float(eco.food_eaten - old_food)
-            if arm == "shuffled_novelty":
+            if arm == "shuffled_novelty" and action is not None and action in range(4):
                 novelty = learner.curiosity.maximum * base._local_rng(
                     seed, tick, aid, 119).random()
             elif arm != "novelty":
@@ -201,9 +202,7 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             raise AssertionError("Predator capture violated energy balance")
         # Real scheduled food regrowth, native rules.
         # Use the original keyed schedule rather than arbitrary food gifts.
-        if tick == 1:
-            schedule = base._food_schedule(seed, settings, eco, False)
-        base._food_regeneration(eco, schedule[tick-1])
+        base._food_regeneration(eco, food_schedule[tick-1])
         eco.ticks_elapsed = tick
         if not eco.agents and eco.extinct_at is None:
             eco.extinct_at = tick
