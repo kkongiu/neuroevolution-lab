@@ -1,0 +1,42 @@
+name: M5.32 Dual Plastic Synapses and Causal Ablations
+
+on:
+  push:
+    branches:
+      - experiment/m5-32-dual-soft-synaptic-specialization
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_32_dual_soft_synapses.py'
+      - 'tests/test_m5_32_dual_soft_synapses.py'
+      - '.github/workflows/m5-32-dual-synapses.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  dual-synapse-science:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical backend
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Test analytic gradients, train-exam firewall, matched arms and ablations
+        run: python -m unittest discover -s tests -p 'test_m5_32_dual_soft_synapses.py' -v
+      - name: M5.31 single-neuron structural plasticity regression
+        run: python -m unittest discover -s tests -p 'test_m5_31_synaptic_growth.py' -v
+      - name: Original sealed M5.6 online learning regression
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run preregistered M5.32 DEV cohort and all controls
+        run: python -m neuroevolution.m5_32_dual_soft_synapses
+      - name: Archive full raw M5.32 DEV rows, ablations and failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-32-dual-soft-synapses-dev
+          path: results/m5-32/dual-soft-synapses-dev.json
+          if-no-files-found: warn
+          retention-days: 30
