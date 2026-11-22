@@ -1,0 +1,328 @@
+{
+  "autonomous_diagnostic": {
+    "initial_rnn": {
+      "food_success_rate": 0.171875,
+      "reach_fork_rate": 0.4765625
+    },
+    "online_rnn": {
+      "food_success_rate": 0.421875,
+      "reach_fork_rate": 0.4921875
+    }
+  },
+  "autonomous_original_physical_world_trials": 256,
+  "bootstrap_replicates": 20000,
+  "final_original_guided_physical_world_trials": 6144,
+  "frozen_original_training_bank_sha256": "691da96fa9173ad76e3f0402b25e3211a00f4a50091cef1b1b4e2ba167014c7f",
+  "gates": {
+    "genetic_inheritance_of_acquired_weight_changes": false,
+    "main_recurrent_online_lifetime_learning_gate": true,
+    "ood_long_delay_transfer_gate": true,
+    "physical_scaffold_required": true,
+    "unassisted_autonomous_lifelong_learning_proven": false
+  },
+  "inference_warning": "Eight independent network initializations, NOT hundreds of independent lifetimes. Matched target pairs and memory reset controls are not statistically independent confirmations. All motor approaches are physically executed but GUIDE-scripted; terminal gate action alone is neural and reward-trained.",
+  "main": {
+    "arms": {
+      "initial_rnn": {
+        "actual_food_collected": 249,
+        "collected_food_rate": 0.486328125,
+        "mean_physical_energy_after": 26.71875,
+        "nested_family_goal_world_trials": 512
+      },
+      "online_ff": {
+        "actual_food_collected": 256,
+        "collected_food_rate": 0.5,
+        "mean_physical_energy_after": 26.9375,
+        "nested_family_goal_world_trials": 512
+      },
+      "online_rnn": {
+        "actual_food_collected": 463,
+        "collected_food_rate": 0.904296875,
+        "mean_physical_energy_after": 33.40625,
+        "nested_family_goal_world_trials": 512
+      },
+      "online_rnn_flipcue": {
+        "actual_food_collected": 49,
+        "collected_food_rate": 0.095703125,
+        "mean_physical_energy_after": 20.46875,
+        "nested_family_goal_world_trials": 512
+      },
+      "online_rnn_reset": {
+        "actual_food_collected": 256,
+        "collected_food_rate": 0.5,
+        "mean_physical_energy_after": 26.9375,
+        "nested_family_goal_world_trials": 512
+      },
+      "random_binary": {
+        "actual_food_collected": 256,
+        "collected_food_rate": 0.5,
+        "mean_physical_energy_after": 26.9375,
+        "nested_family_goal_world_trials": 512
+      },
+      "scripted_one_bit": {
+        "actual_food_collected": 512,
+        "collected_food_rate": 1,
+        "mean_physical_energy_after": 34.9375,
+        "nested_family_goal_world_trials": 512
+      },
+      "shuffled_reward_rnn": {
+        "actual_food_collected": 260,
+        "collected_food_rate": 0.5078125,
+        "mean_physical_energy_after": 27.0625,
+        "nested_family_goal_world_trials": 512
+      }
+    },
+    "comparisons": {
+      "online_minus_cue_flip": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.80859375,
+        "per_independent_neural_initialization": {
+          "124000": 1,
+          "124001": 1,
+          "124002": 1,
+          "124003": 1,
+          "124004": 0.1875,
+          "124005": 0.28125,
+          "124006": 1,
+          "124007": 1
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.5390625,
+          1
+        ]
+      },
+      "online_minus_feedforward": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.404296875,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.5,
+          "124002": 0.5,
+          "124003": 0.5,
+          "124004": 0.09375,
+          "124005": 0.140625,
+          "124006": 0.5,
+          "124007": 0.5
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.26953125,
+          0.5
+        ]
+      },
+      "online_minus_initial": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.41796875,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.546875,
+          "124002": 0.609375,
+          "124003": 0.5625,
+          "124004": 0.09375,
+          "124005": 0.140625,
+          "124006": 0.4375,
+          "124007": 0.453125
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.28515625,
+          0.533203125
+        ]
+      },
+      "online_minus_memory_reset": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.404296875,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.5,
+          "124002": 0.5,
+          "124003": 0.5,
+          "124004": 0.09375,
+          "124005": 0.140625,
+          "124006": 0.5,
+          "124007": 0.5
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.26953125,
+          0.5
+        ]
+      },
+      "online_minus_shuffled_feedback": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.396484375,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.5,
+          "124002": 0.4375,
+          "124003": 0.5,
+          "124004": 0.09375,
+          "124005": 0.140625,
+          "124006": 0.5,
+          "124007": 0.5
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.26953125,
+          0.4921875
+        ]
+      }
+    },
+    "independent_network_initializations": 8,
+    "world_geometries": 32
+  },
+  "ood": {
+    "arms": {
+      "initial_rnn": {
+        "actual_food_collected": 127,
+        "collected_food_rate": 0.49609375,
+        "mean_physical_energy_after": 25.5,
+        "nested_family_goal_world_trials": 256
+      },
+      "online_ff": {
+        "actual_food_collected": 128,
+        "collected_food_rate": 0.5,
+        "mean_physical_energy_after": 25.5625,
+        "nested_family_goal_world_trials": 256
+      },
+      "online_rnn": {
+        "actual_food_collected": 223,
+        "collected_food_rate": 0.87109375,
+        "mean_physical_energy_after": 31.5,
+        "nested_family_goal_world_trials": 256
+      },
+      "online_rnn_flipcue": {
+        "actual_food_collected": 33,
+        "collected_food_rate": 0.12890625,
+        "mean_physical_energy_after": 19.625,
+        "nested_family_goal_world_trials": 256
+      },
+      "online_rnn_reset": {
+        "actual_food_collected": 128,
+        "collected_food_rate": 0.5,
+        "mean_physical_energy_after": 25.5625,
+        "nested_family_goal_world_trials": 256
+      },
+      "random_binary": {
+        "actual_food_collected": 128,
+        "collected_food_rate": 0.5,
+        "mean_physical_energy_after": 25.5625,
+        "nested_family_goal_world_trials": 256
+      },
+      "scripted_one_bit": {
+        "actual_food_collected": 256,
+        "collected_food_rate": 1,
+        "mean_physical_energy_after": 33.5625,
+        "nested_family_goal_world_trials": 256
+      },
+      "shuffled_reward_rnn": {
+        "actual_food_collected": 134,
+        "collected_food_rate": 0.5234375,
+        "mean_physical_energy_after": 25.9375,
+        "nested_family_goal_world_trials": 256
+      }
+    },
+    "comparisons": {
+      "online_minus_cue_flip": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.7421875,
+        "per_independent_neural_initialization": {
+          "124000": 1,
+          "124001": 1,
+          "124002": 1,
+          "124003": 0.75,
+          "124004": 0.0625,
+          "124005": 0.125,
+          "124006": 1,
+          "124007": 1
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.4375,
+          0.96875
+        ]
+      },
+      "online_minus_feedforward": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.37109375,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.5,
+          "124002": 0.5,
+          "124003": 0.375,
+          "124004": 0.03125,
+          "124005": 0.0625,
+          "124006": 0.5,
+          "124007": 0.5
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.21875,
+          0.484375
+        ]
+      },
+      "online_minus_initial": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.375,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.5625,
+          "124002": 0.5625,
+          "124003": 0.375,
+          "124004": 0.03125,
+          "124005": 0.03125,
+          "124006": 0.5,
+          "124007": 0.4375
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.21875,
+          0.5078125
+        ]
+      },
+      "online_minus_memory_reset": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.37109375,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.5,
+          "124002": 0.5,
+          "124003": 0.375,
+          "124004": 0.03125,
+          "124005": 0.0625,
+          "124006": 0.5,
+          "124007": 0.5
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.22265625,
+          0.484375
+        ]
+      },
+      "online_minus_shuffled_feedback": {
+        "lower95_greater_than_zero": true,
+        "mean_paired_effect": 0.34765625,
+        "per_independent_neural_initialization": {
+          "124000": 0.5,
+          "124001": 0.46875,
+          "124002": 0.34375,
+          "124003": 0.375,
+          "124004": 0.03125,
+          "124005": 0.0625,
+          "124006": 0.5,
+          "124007": 0.5
+        },
+        "positive_independent_initializations": 8,
+        "source_init_cluster_bootstrap95": [
+          0.21484375,
+          0.4609375
+        ]
+      }
+    },
+    "independent_network_initializations": 8,
+    "world_geometries": 16
+  },
+  "protocol_commit": "af9e64e9e2ec3a5f47d27f963c27467661ee1681",
+  "training_original_physical_episodes": 6912
+}
