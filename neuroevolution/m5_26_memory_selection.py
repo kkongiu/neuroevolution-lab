@@ -2,7 +2,7 @@
 
 The same hidden A→B→C→A→B tiny deterministic world as M5.25, with
 new development seeds 5000..5023 and 16 actual diagnostic outcomes
-per frozen exam. The autobiographical memory cap is now only 12
+per frozen exam. The LONG-TERM autobiographical archive cap is now only 12
 (4+4+4 independent experiences) or 8 (3+3+2). The primary candidate
 stores one experienced action/outcome per DISTINCT SENSORY CUE in each
 evidence-inferred latent bank, rejecting redundant episodes. Matched
@@ -74,7 +74,7 @@ READ_PRIOR=.12
 CHANGE_CONFIDENCE=.78
 LOCK_AFTER=40
 PENDING_EVIDENCE=12
-MAX_PENDING=24
+MAX_PENDING=12
 MIN_ROUTE_MATCH=.78
 MAX_NOVELTY_MATCH=.70
 GATES={
@@ -706,6 +706,8 @@ def run(seed:int,arm:str):
         "fast_gradient_updates":brain.fast_updates,
         "director_gradient_updates":brain.gate_updates,
         "memory_capacity":sum(brain.slots),
+        "quarantine_working_memory_capacity":MAX_PENDING,
+        "unused_agent_history_buffer":len(brain.history),
         "memory_slots_per_latent_bank":list(brain.slots),
         "record_admissions":sum(brain.bank_write_counts),
         "unique_cue_admissions":brain.new_cue_admissions,
@@ -817,6 +819,9 @@ def experiment(seeds=SEEDS):
         "unique_cue_key_value_capacity_target":12,
         "below_target_stress_budget":8,
         "12_slot_bank_allocation":[4,4,4],
+        "long_term_memory_capacity_not_total_working_memory":True,
+        "temporary_quarantine_max_records":MAX_PENDING,
+        "frozen_exam_ephemeral_probe_records":PROBE,
         "8_slot_bank_allocation":[3,3,2],
         "reference_memory_size":128,
         "same_lived_action_count_and_weight_update_calls":True,
