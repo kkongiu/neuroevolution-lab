@@ -327,7 +327,12 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
         "equal_update_budgets_between_replay_and_repeat":True,
         "no_synapse_birth_death_or_reproduction":True,
         "summary":summary,"screening_gate":gate,
-        "advance_to_evolution":all(gate.values()),
+        # A development win warrants a separate preregistered replication,
+        # NOT auto-selection or unlocking the sealed M5.6 evaluation worlds.
+        "development_screen_pass":all(gate.values()),
+        "independent_replication_complete":False,
+        "evolution_authorized":False,
+        "advance_to_evolution":False,
         "raw_rows":rows,
         "rows_sha256":hashlib.sha256(json.dumps(
             rows,sort_keys=True,separators=(",",":")).encode()).hexdigest(),
@@ -345,7 +350,7 @@ def main():
                         encoding="utf-8")
     print("M5_16_CONTINUAL_SCHOOL "+json.dumps({
         k:result[k] for k in ("status","summary","screening_gate",
-              "advance_to_evolution","rows_sha256")},sort_keys=True),flush=True)
+              "development_screen_pass","advance_to_evolution","rows_sha256")},sort_keys=True),flush=True)
 
 
 if __name__=="__main__":
