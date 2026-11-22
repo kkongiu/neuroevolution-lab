@@ -1,0 +1,36 @@
+name: M5.13 delayed recall and synaptic pruning
+
+on:
+  push:
+    branches:
+      - experiment/m5-13-delayed-memory-pruning
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_13_delayed_memory.py'
+      - 'tests/test_m5_13_delayed_memory.py'
+      - '.github/workflows/m5-13-delayed-recall.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  delayed-pruning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test frozen recall, dose matching and source seed guards
+        run: python -m unittest discover -s tests -p 'test_m5_13_delayed_memory.py' -v
+      - name: Original M5.6 learning regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 20 seeds times 4 delays times 4 controls
+        run: python -m neuroevolution.m5_13_delayed_memory
+      - name: Archive all delayed competence and pruning rows
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-13-delayed-memory-pruning-development
+          path: results/m5-13/delayed-retention-development.json
+          retention-days: 30
