@@ -17,8 +17,9 @@ from dataclasses import dataclass, field
 from . import m4_2, m4_4a, m5_0 as base, m5_1 as actuator, m5_5b
 from .m5_6_bridge import ecological_observation, legal_cardinal_moves
 from .m5_6_curiosity import IntrinsicReward
+from .m5_6_prediction import LocalPredictor
 
-ARMS = ("novelty", "no_novelty", "frozen", "shuffled_novelty")
+ARMS = ("novelty", "no_novelty", "frozen", "shuffled_novelty", "learning_progress")
 RATE = 0.02
 GRADIENT_CLIP = 2.0
 
@@ -29,6 +30,7 @@ class Learner:
     weights: list[float]
     hidden: list[float] = field(default_factory=lambda: [0.] * 8)
     curiosity: IntrinsicReward = field(default_factory=IntrinsicReward)
+    predictor: LocalPredictor = field(default_factory=LocalPredictor)
     update_count: int = 0
 
     @classmethod
@@ -167,6 +169,9 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     energy_before_actions = 0.
     action_count = 0
     unique_arrivals = 0
+    predictor_train_transitions = 0
+    predictor_reward_events = 0
+    predictor_raw_progress_total = 0.
     survived_at_cutoff = None
     births_at_cutoff = None
     food_at_cutoff = None
@@ -229,10 +234,25 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                 novelty = learner.curiosity.observe_arrival(arrived)
                 unique_arrivals += int(first_visit)
                 actual_movements += 1
+            # Predict only the physically observed next sensory state. The
+            # predictor does not receive the map, hidden food or future state.
+            progress = 0.
+            if (arm == "learning_progress" and training_phase
+                    and cache is not None and aid in eco.agents
+                    and action is not None and action in range(4)):
+                current = ecological_observation(eco, eco.agents[aid],
+                                                 tuple(predators))
+                progress = learner.predictor.transition(cache[0], action, current)
+                predictor_train_transitions += int(
+                    learner.predictor.learned_transitions > 0)
+                predictor_reward_events += int(progress > 0)
+                predictor_raw_progress_total += progress
             external = float(eco.food_eaten - old_food)
             if arm == "shuffled_novelty" and action is not None and action in range(4):
                 novelty = learner.curiosity.maximum * base._local_rng(
                     seed, tick, aid, 119).random()
+            elif arm == "learning_progress":
+                novelty = progress
             elif arm != "novelty":
                 novelty = 0.
             # This optional *engineered* energy gate is a diagnostic control,
@@ -283,6 +303,9 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
         "post_cutoff_weight_updates": (update_count - synaptic_updates_at_cutoff
                                       if synaptic_updates_at_cutoff is not None else None),
         "curiosity_gain": curiosity_gain, "energy_gate": energy_gate,
+        "predictor_reward_events": predictor_reward_events,
+        "predictor_reward_total": predictor_raw_progress_total,
+        "predictor_training_transitions": predictor_train_transitions,
         "physical_moves": actual_movements,
         "unique_individual_arrivals": unique_arrivals,
         "predation_kills": predation_kills,
