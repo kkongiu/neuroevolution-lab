@@ -23,6 +23,8 @@ WIDTH = 11
 INTERIOR = range(1, WIDTH - 1)
 TICKS = 60
 DEV_SEEDS = tuple(range(2000, 2064))
+TRANSFER_SEEDS = tuple(range(2064, 2096))  # only a future, separate development cohort
+ALLOWED_SEEDS = DEV_SEEDS + TRANSFER_SEEDS
 ZONES = ("shelter", "frontier", "wild")
 EVENT_TYPES = ("drought", "detour", "predator_shift", "compound")
 ZONE_FOOD = (4, 3, 2)
@@ -70,8 +72,8 @@ def reachable(cells: set[tuple[int, int]],
 
 def make_world(seed: int, *, ticks: int = TICKS) -> dict:
     """Generate all random events *upfront*, independent of future actions."""
-    if type(seed) is not int or seed not in DEV_SEEDS:
-        raise ValueError("Only development world seeds 2000-2063")
+    if type(seed) is not int or seed not in ALLOWED_SEEDS:
+        raise ValueError("Only M5.8 development or reserved novel-world check seeds")
     if type(ticks) is not int or not 1 <= ticks <= TICKS:
         raise ValueError("Invalid development horizon")
     rng = random.Random(1_300_031*seed + 580_017)
