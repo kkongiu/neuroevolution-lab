@@ -171,9 +171,7 @@ class Synapses:
         # Grow only when rolling errors justify more resources, except
         # turnover placebo (growth is exogenous and blind to outcomes).
         if can_grow and (stressed or self.arm=="turnover_random"
-                         or self.arm=="yoked_random_turnover"):
-            if self.arm=="yoked_random_turnover" and not yoked_add:
-                return
+                         or (self.arm=="yoked_random_turnover" and yoked_add>0)):
             candidates=sorted(set(range(CAPACITY))-self.active)
             amount=min(yoked_add if self.arm=="yoked_random_turnover"
                        else GROW_BATCH,len(candidates))
