@@ -1,0 +1,56 @@
+name: M4.4A source-only 6912 online rewarded lifetime episodes and frozen neural genomes
+on:
+  push:
+    branches: ["experiment/m4-4a-online-plasticity-recurrent-embodied-memory"]
+    paths:
+      - "campaigns/m4-4a-source-kickoff-*.md"
+
+permissions:
+  contents: write
+
+jobs:
+  freeze-source-bank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Entire original and novel original-physics/BPTT tests (no heldout test worlds)
+        run: python -m unittest discover -s tests -v
+      - name: Frozen 8 initial random networks times 3 learning methods times 288 physically rewarded training episodes
+        run: |
+          python -m neuroevolution.m4_4a --phase source \
+            --bank reports/M4_4A_FROZEN_ONLINE_SOURCE_BANK_2026-11-22.json \
+            --curves reports/M4_4A_all_6912_original_rewarded_source_episodes_2026-11-22.csv
+      - name: Verify original source-only genetic bank physically updated AND heldout access count zero
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from neuroevolution import m4_4a as m
+          z=m.load_bank(Path("reports/M4_4A_FROZEN_ONLINE_SOURCE_BANK_2026-11-22.json"))
+          assert z["heldout_worlds_examined"]==0
+          assert len(z["networks"])==8
+          assert z["episodes_per_training_arm"]==288
+          assert all(zx["online_rnn_l2_drift_per_module"]["recurrent"]>0 for zx in z["networks"])
+          print("M4.4A SOURCE FROZEN:", z["bank_sha256"])
+          PY
+      - name: Permanently commit all FULL PRECISION trained weights and source reinforcement episodes BEFORE any independent test world
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/M4_4A_FROZEN_ONLINE_SOURCE_BANK_2026-11-22.json \
+            reports/M4_4A_all_6912_original_rewarded_source_episodes_2026-11-22.csv
+          git commit -m "research(m4.4a): freeze 8 original online-plastic RNN and FF source lineages and all 6912 rewarded trials BEFORE heldout worlds"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - name: Preserve original source-training artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m4-4a-original-6912-rewarded-source-training
+          path: |
+            reports/M4_4A_FROZEN_ONLINE_SOURCE_BANK_2026-11-22.json
+            reports/M4_4A_all_6912_original_rewarded_source_episodes_2026-11-22.csv
+          retention-days: 30
+          if-no-files-found: warn

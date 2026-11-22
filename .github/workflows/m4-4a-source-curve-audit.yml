@@ -1,0 +1,75 @@
+name: M4.4A source-only historical learning curve audit
+on:
+  push:
+    branches: ["experiment/m4-4a-online-plasticity-recurrent-embodied-memory"]
+    paths:
+      - "campaigns/m4-4a-source-curves-audit-*.md"
+
+permissions:
+  contents: write
+
+jobs:
+  original-source-epoch-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read ONLY permanently archived original 6912 source episodes, no new tests or training
+        run: |
+          python - <<'PY'
+          import csv, json, statistics
+          from collections import defaultdict
+          from pathlib import Path
+          from neuroevolution import m4_4a as m
+          bank=m.load_bank(Path("reports/M4_4A_FROZEN_ONLINE_SOURCE_BANK_2026-11-22.json"))
+          path=Path("reports/M4_4A_all_6912_original_rewarded_source_episodes_2026-11-22.csv")
+          rows=list(csv.DictReader(path.open(encoding="utf-8",newline="")))
+          assert len(rows)==6912, len(rows)
+          episodes=defaultdict(list)
+          for row in rows:
+              assert row["physical_reward"] in ("-1","1")
+              assert int(row["physical_food_eaten"]) in (0,1)
+              assert 0<=int(row["epoch"])<6
+              key=(int(row["init_seed"]),row["arm"],int(row["epoch"]))
+              episodes[key].append(int(row["physical_food_eaten"]))
+          assert len(episodes)==8*3*6,len(episodes)
+          for key,vals in episodes.items():
+              assert len(vals)==48,(key,len(vals))
+          result={"source_genome_bank_sha256":bank["bank_sha256"],
+                  "original_physical_training_rows":len(rows),
+                  "sample_unit":"eight neural initializations; 48 sequential physical rewarded episodes per epoch and arm",
+                  "epochs":[],
+                  "per_independent_network":[]}
+          for arm in ("online_rnn","shuffled_reward_rnn","online_ff"):
+              for epoch in range(6):
+                  per={str(seed):statistics.mean(episodes[(seed,arm,epoch)])
+                       for seed in m.INITIALS}
+                  result["epochs"].append({
+                      "arm":arm,"epoch":epoch,"physical_episodes_per_seed":48,
+                      "physical_food_rate_across_all_seeds":statistics.mean(per.values()),
+                      "per_independent_seed_physical_food_rate":per})
+              for seed in m.INITIALS:
+                  early=statistics.mean(episodes[(seed,arm,0)])
+                  late=statistics.mean(episodes[(seed,arm,5)])
+                  result["per_independent_network"].append({
+                      "arm":arm,"init_seed":seed,
+                      "epoch_0_food_rate":early,
+                      "epoch_5_food_rate":late,
+                      "late_minus_early":late-early})
+          out=Path("reports/M4_4A_original_source_training_epoch_audit_2026-11-22.json")
+          out.write_text(json.dumps(result,indent=2,sort_keys=True)+"\n",encoding="utf-8")
+          print("M4.4A VERIFIED ORIGINAL SOURCE TRAINING CURVE "+
+                json.dumps({x["arm"]:[round(y["physical_food_rate_across_all_seeds"],4)
+                         for y in result["epochs"] if y["arm"]==x["arm"]]
+                         for x in result["epochs"][::6]},sort_keys=True))
+          PY
+      - name: Publish original-only descriptive training curve summary permanently
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/M4_4A_original_source_training_epoch_audit_2026-11-22.json
+          git commit -m "audit(m4.4a): publish unmodified original per-epoch physical learning curves without new test worlds"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
