@@ -72,6 +72,8 @@ class M529Tests(unittest.TestCase):
         trained.fit(records)
         self.assertEqual(trained.gradient_steps,TASK_RESTARTS*ADAPT_STEPS)
         self.assertEqual(trained.weights.shape,(5,))
+        self.assertEqual(trained.weights.dtype,np.float32)
+        self.assertEqual(trained.weights.nbytes,20)
         self.assertTrue(np.isfinite(trained.weights).all())
         self.assertLess(trained.support_mse,.05)
         self.assertNotEqual(trained.digest(),initial.digest())
