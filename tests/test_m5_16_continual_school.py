@@ -79,8 +79,11 @@ class ContinualSchoolTests(unittest.TestCase):
                              (1 if arm=="online" else UPDATES))
             self.assertEqual(record,run(3900,arm))
         small=experiment((3900,3901))
-        self.assertFalse(small["advance_to_evolution"] !=
+        self.assertEqual(small["development_screen_pass"],
                          all(small["screening_gate"].values()))
+        self.assertFalse(small["independent_replication_complete"])
+        self.assertFalse(small["evolution_authorized"])
+        self.assertFalse(small["advance_to_evolution"])
         self.assertEqual(small["summary"]["fifo_replay"][
                              "A_record_count_after_B"],0)
         self.assertEqual(small["summary"]["context_replay"][
