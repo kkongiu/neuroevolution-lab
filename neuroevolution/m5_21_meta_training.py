@@ -76,7 +76,7 @@ GATES={
 
 def valid(seed:int):
     if type(seed) is not int or seed not in SEEDS:
-        raise ValueError("M5.20 new development cohort 4300..4323 only")
+        raise ValueError("M5.21 development 4400..4463 or unseen evaluation 4500..4523 only")
 
 
 def trials(seed:int,phase:int,n:int):
@@ -304,9 +304,14 @@ class Controller:
                                key=lambda a:(vals[a],-a))
             self.effective_blocks+=1
         strengths=[BASE_PROTECTION]*GROUPS
-        if active:strengths[g]=STRENGTHS[chosen]
+        if active:
+            if self.arm=="fixed_strong":
+                strengths=[1.]*GROUPS
+            else:
+                strengths[g]=STRENGTHS[chosen]
         self.action_trace.append((g,chosen,active))
-        self.group_totals[g]+=strengths[g]
+        for index,value in enumerate(strengths):
+            self.group_totals[index]+=value
         self.steps+=1
         return tuple(strengths),(g,chosen)
 
