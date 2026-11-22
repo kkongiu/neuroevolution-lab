@@ -1,0 +1,36 @@
+name: M5.17 Selective neural plasticity
+
+on:
+  push:
+    branches:
+      - experiment/m5-17-selective-plasticity
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_17_plasticity.py'
+      - 'tests/test_m5_17_plasticity.py'
+      - '.github/workflows/m5-17-plasticity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  plasticity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate frozen exams, oracle firewall and structural-yoked controls
+        run: python -m unittest discover -s tests -p 'test_m5_17_plasticity.py' -v
+      - name: Original M5.6 regression tests
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 development seeds across all nine plasticity mechanisms
+        run: python -m neuroevolution.m5_17_plasticity
+      - name: Archive every learner's retention, event and capacity traces
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-17-selective-plasticity-development
+          path: results/m5-17/selective-plasticity-development.json
+          retention-days: 30
