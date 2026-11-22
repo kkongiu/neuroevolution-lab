@@ -1,0 +1,465 @@
+{
+  "epochs": [
+    {
+      "arm": "online_rnn",
+      "epoch": 0,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5833333333333334,
+        "124001": 0.5833333333333334,
+        "124002": 0.6458333333333334,
+        "124003": 0.4166666666666667,
+        "124004": 0.5833333333333334,
+        "124005": 0.5625,
+        "124006": 0.4791666666666667,
+        "124007": 0.4791666666666667
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5416666666666667
+    },
+    {
+      "arm": "online_rnn",
+      "epoch": 1,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5,
+        "124001": 0.4583333333333333,
+        "124002": 0.75,
+        "124003": 0.4166666666666667,
+        "124004": 0.3958333333333333,
+        "124005": 0.6041666666666666,
+        "124006": 0.5,
+        "124007": 0.5833333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5260416666666666
+    },
+    {
+      "arm": "online_rnn",
+      "epoch": 2,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.625,
+        "124001": 0.7083333333333334,
+        "124002": 0.8541666666666666,
+        "124003": 0.4166666666666667,
+        "124004": 0.3541666666666667,
+        "124005": 0.5208333333333334,
+        "124006": 0.4166666666666667,
+        "124007": 0.6458333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5677083333333334
+    },
+    {
+      "arm": "online_rnn",
+      "epoch": 3,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.7708333333333334,
+        "124001": 0.9375,
+        "124002": 0.875,
+        "124003": 0.4583333333333333,
+        "124004": 0.4583333333333333,
+        "124005": 0.4791666666666667,
+        "124006": 0.4166666666666667,
+        "124007": 0.7291666666666666
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.640625
+    },
+    {
+      "arm": "online_rnn",
+      "epoch": 4,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.875,
+        "124001": 0.9791666666666666,
+        "124002": 0.9791666666666666,
+        "124003": 0.625,
+        "124004": 0.5625,
+        "124005": 0.6666666666666666,
+        "124006": 0.7708333333333334,
+        "124007": 0.9583333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.8020833333333334
+    },
+    {
+      "arm": "online_rnn",
+      "epoch": 5,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.9583333333333334,
+        "124001": 0.875,
+        "124002": 0.9791666666666666,
+        "124003": 0.8333333333333334,
+        "124004": 0.5,
+        "124005": 0.6041666666666666,
+        "124006": 0.875,
+        "124007": 0.9791666666666666
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.8255208333333334
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch": 0,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.625,
+        "124001": 0.5,
+        "124002": 0.5416666666666666,
+        "124003": 0.4583333333333333,
+        "124004": 0.5416666666666666,
+        "124005": 0.5208333333333334,
+        "124006": 0.5625,
+        "124007": 0.5208333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5338541666666666
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch": 1,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5833333333333334,
+        "124001": 0.4583333333333333,
+        "124002": 0.5208333333333334,
+        "124003": 0.5208333333333334,
+        "124004": 0.4791666666666667,
+        "124005": 0.5416666666666666,
+        "124006": 0.5208333333333334,
+        "124007": 0.6041666666666666
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5286458333333334
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch": 2,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5208333333333334,
+        "124001": 0.4375,
+        "124002": 0.5416666666666666,
+        "124003": 0.4583333333333333,
+        "124004": 0.4791666666666667,
+        "124005": 0.4791666666666667,
+        "124006": 0.4583333333333333,
+        "124007": 0.5416666666666666
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.4895833333333333
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch": 3,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.4166666666666667,
+        "124001": 0.4791666666666667,
+        "124002": 0.4583333333333333,
+        "124003": 0.3958333333333333,
+        "124004": 0.375,
+        "124005": 0.4583333333333333,
+        "124006": 0.4375,
+        "124007": 0.4583333333333333
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.4348958333333333
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch": 4,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.4791666666666667,
+        "124001": 0.4583333333333333,
+        "124002": 0.5,
+        "124003": 0.4583333333333333,
+        "124004": 0.5833333333333334,
+        "124005": 0.4166666666666667,
+        "124006": 0.5,
+        "124007": 0.5416666666666666
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.4921875
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch": 5,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.4166666666666667,
+        "124001": 0.4166666666666667,
+        "124002": 0.5208333333333334,
+        "124003": 0.5208333333333334,
+        "124004": 0.5,
+        "124005": 0.5208333333333334,
+        "124006": 0.5208333333333334,
+        "124007": 0.5833333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5
+    },
+    {
+      "arm": "online_ff",
+      "epoch": 0,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5208333333333334,
+        "124001": 0.4583333333333333,
+        "124002": 0.5208333333333334,
+        "124003": 0.3958333333333333,
+        "124004": 0.4791666666666667,
+        "124005": 0.5625,
+        "124006": 0.5208333333333334,
+        "124007": 0.5625
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5026041666666666
+    },
+    {
+      "arm": "online_ff",
+      "epoch": 1,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.4791666666666667,
+        "124001": 0.4791666666666667,
+        "124002": 0.5,
+        "124003": 0.4375,
+        "124004": 0.5416666666666666,
+        "124005": 0.5208333333333334,
+        "124006": 0.5625,
+        "124007": 0.5833333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5130208333333334
+    },
+    {
+      "arm": "online_ff",
+      "epoch": 2,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5,
+        "124001": 0.5208333333333334,
+        "124002": 0.5833333333333334,
+        "124003": 0.3958333333333333,
+        "124004": 0.4791666666666667,
+        "124005": 0.4583333333333333,
+        "124006": 0.4166666666666667,
+        "124007": 0.5833333333333334
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.4921875
+    },
+    {
+      "arm": "online_ff",
+      "epoch": 3,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5,
+        "124001": 0.5,
+        "124002": 0.3958333333333333,
+        "124003": 0.4375,
+        "124004": 0.3958333333333333,
+        "124005": 0.4583333333333333,
+        "124006": 0.4166666666666667,
+        "124007": 0.5625
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.4583333333333333
+    },
+    {
+      "arm": "online_ff",
+      "epoch": 4,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.5,
+        "124001": 0.6041666666666666,
+        "124002": 0.5416666666666666,
+        "124003": 0.4583333333333333,
+        "124004": 0.5833333333333334,
+        "124005": 0.4791666666666667,
+        "124006": 0.4791666666666667,
+        "124007": 0.625
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.5338541666666666
+    },
+    {
+      "arm": "online_ff",
+      "epoch": 5,
+      "per_independent_seed_physical_food_rate": {
+        "124000": 0.375,
+        "124001": 0.4166666666666667,
+        "124002": 0.4166666666666667,
+        "124003": 0.4791666666666667,
+        "124004": 0.4791666666666667,
+        "124005": 0.4583333333333333,
+        "124006": 0.4375,
+        "124007": 0.4583333333333333
+      },
+      "physical_episodes_per_seed": 48,
+      "physical_food_rate_across_all_seeds": 0.4401041666666667
+    }
+  ],
+  "original_physical_training_rows": 6912,
+  "per_independent_network": [
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.5833333333333334,
+      "epoch_5_food_rate": 0.9583333333333334,
+      "init_seed": 124000,
+      "late_minus_early": 0.375
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.5833333333333334,
+      "epoch_5_food_rate": 0.875,
+      "init_seed": 124001,
+      "late_minus_early": 0.29166666666666663
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.6458333333333334,
+      "epoch_5_food_rate": 0.9791666666666666,
+      "init_seed": 124002,
+      "late_minus_early": 0.33333333333333326
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.4166666666666667,
+      "epoch_5_food_rate": 0.8333333333333334,
+      "init_seed": 124003,
+      "late_minus_early": 0.4166666666666667
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.5833333333333334,
+      "epoch_5_food_rate": 0.5,
+      "init_seed": 124004,
+      "late_minus_early": -0.08333333333333337
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.5625,
+      "epoch_5_food_rate": 0.6041666666666666,
+      "init_seed": 124005,
+      "late_minus_early": 0.04166666666666663
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.4791666666666667,
+      "epoch_5_food_rate": 0.875,
+      "init_seed": 124006,
+      "late_minus_early": 0.3958333333333333
+    },
+    {
+      "arm": "online_rnn",
+      "epoch_0_food_rate": 0.4791666666666667,
+      "epoch_5_food_rate": 0.9791666666666666,
+      "init_seed": 124007,
+      "late_minus_early": 0.49999999999999994
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.625,
+      "epoch_5_food_rate": 0.4166666666666667,
+      "init_seed": 124000,
+      "late_minus_early": -0.20833333333333331
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.5,
+      "epoch_5_food_rate": 0.4166666666666667,
+      "init_seed": 124001,
+      "late_minus_early": -0.08333333333333331
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.5416666666666666,
+      "epoch_5_food_rate": 0.5208333333333334,
+      "init_seed": 124002,
+      "late_minus_early": -0.02083333333333326
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.4583333333333333,
+      "epoch_5_food_rate": 0.5208333333333334,
+      "init_seed": 124003,
+      "late_minus_early": 0.06250000000000006
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.5416666666666666,
+      "epoch_5_food_rate": 0.5,
+      "init_seed": 124004,
+      "late_minus_early": -0.04166666666666663
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.5208333333333334,
+      "epoch_5_food_rate": 0.5208333333333334,
+      "init_seed": 124005,
+      "late_minus_early": 0.0
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.5625,
+      "epoch_5_food_rate": 0.5208333333333334,
+      "init_seed": 124006,
+      "late_minus_early": -0.04166666666666663
+    },
+    {
+      "arm": "shuffled_reward_rnn",
+      "epoch_0_food_rate": 0.5208333333333334,
+      "epoch_5_food_rate": 0.5833333333333334,
+      "init_seed": 124007,
+      "late_minus_early": 0.0625
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.5208333333333334,
+      "epoch_5_food_rate": 0.375,
+      "init_seed": 124000,
+      "late_minus_early": -0.14583333333333337
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.4583333333333333,
+      "epoch_5_food_rate": 0.4166666666666667,
+      "init_seed": 124001,
+      "late_minus_early": -0.04166666666666663
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.5208333333333334,
+      "epoch_5_food_rate": 0.4166666666666667,
+      "init_seed": 124002,
+      "late_minus_early": -0.10416666666666669
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.3958333333333333,
+      "epoch_5_food_rate": 0.4791666666666667,
+      "init_seed": 124003,
+      "late_minus_early": 0.08333333333333337
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.4791666666666667,
+      "epoch_5_food_rate": 0.4791666666666667,
+      "init_seed": 124004,
+      "late_minus_early": 0.0
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.5625,
+      "epoch_5_food_rate": 0.4583333333333333,
+      "init_seed": 124005,
+      "late_minus_early": -0.10416666666666669
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.5208333333333334,
+      "epoch_5_food_rate": 0.4375,
+      "init_seed": 124006,
+      "late_minus_early": -0.08333333333333337
+    },
+    {
+      "arm": "online_ff",
+      "epoch_0_food_rate": 0.5625,
+      "epoch_5_food_rate": 0.4583333333333333,
+      "init_seed": 124007,
+      "late_minus_early": -0.10416666666666669
+    }
+  ],
+  "sample_unit": "eight neural initializations; 48 sequential physical rewarded episodes per epoch and arm",
+  "source_genome_bank_sha256": "691da96fa9173ad76e3f0402b25e3211a00f4a50091cef1b1b4e2ba167014c7f"
+}
