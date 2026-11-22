@@ -1,0 +1,36 @@
+name: M5.20 RL metaplasticity experiment
+
+on:
+  push:
+    branches:
+      - experiment/m5-20-rl-metaplastic-controller
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_20_rl_metaplastic.py'
+      - 'tests/test_m5_20_rl_metaplastic.py'
+      - '.github/workflows/m5-20-meta-rl.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  meta-controller:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify no exam leak, genuine Q updates and matched memory
+        run: python -m unittest discover -s tests -p 'test_m5_20_rl_metaplastic.py' -v
+      - name: Native M5.6 neural controller regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Evaluate 24 new DEV seeds across seven plasticity controllers
+        run: python -m neuroevolution.m5_20_rl_metaplastic
+      - name: Archive raw learning and per-arm controller metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-20-rl-metaplasticity-development
+          path: results/m5-20/rl-metaplastic-controller-development.json
+          retention-days: 30
