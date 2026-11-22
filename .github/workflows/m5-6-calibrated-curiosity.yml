@@ -1,0 +1,38 @@
+name: M5.6 calibrated curiosity development comparison
+
+on:
+  push:
+    branches:
+      - experiment/m5-6-memory-predator-curiosity-protocol
+    paths:
+      - 'neuroevolution/m5_6_calibrated_curiosity.py'
+      - 'tests/test_m5_6_calibrated_curiosity.py'
+      - '.github/workflows/m5-6-calibrated-curiosity.yml'
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_6_calibrated_curiosity.py'
+      - 'tests/test_m5_6_calibrated_curiosity.py'
+      - '.github/workflows/m5-6-calibrated-curiosity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  calibrated-development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify independence, matching and reproducibility
+        run: python -m unittest discover -s tests -p 'test_m5_6_calibrated_curiosity.py' -v
+      - name: Execute 168 DEVELOPMENT-only physical comparisons
+        run: python -m neuroevolution.m5_6_calibrated_curiosity
+      - name: Archive every paired world and descriptive effect
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-6-calibrated-curiosity-development
+          path: results/m5-6/calibrated-curiosity-development.json
+          retention-days: 30
