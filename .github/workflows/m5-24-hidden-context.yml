@@ -1,0 +1,36 @@
+name: M5.24 Hidden Context Executive
+
+on:
+  push:
+    branches:
+      - experiment/m5-24-hidden-context-executive
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_24_hidden_context.py'
+      - 'tests/test_m5_24_hidden_context.py'
+      - '.github/workflows/m5-24-hidden-context.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  infer-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate task-hidden agent, probe-only memory and context-recognition controls
+        run: python -m unittest discover -s tests -p 'test_m5_24_hidden_context.py' -v
+      - name: Original M5.6 neural learner regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 development seeds by eight hidden-context memory arms
+        run: python -m neuroevolution.m5_24_hidden_context
+      - name: Archive every latent bank transition and probed frozen exam
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-24-hidden-context-executive-development
+          path: results/m5-24/hidden-context-director-development.json
+          retention-days: 30
