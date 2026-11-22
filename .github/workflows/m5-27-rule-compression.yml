@@ -1,0 +1,36 @@
+name: M5.27 Rule Compression and Unseen-Cue Generalization
+
+on:
+  push:
+    branches:
+      - experiment/m5-27-compact-rule-generalization
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_27_rule_compression.py'
+      - 'tests/test_m5_27_rule_compression.py'
+      - '.github/workflows/m5-27-rule-compression.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  rule-induction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check rank, true unseen split, no privileged labels and frozen exams
+        run: python -m unittest discover -s tests -p 'test_m5_27_rule_compression.py' -v
+      - name: Original M5.6 neural learner regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Evaluate 24 affine DEV seeds by seven arms and 12 off-family stress seeds by four arms
+        run: python -m neuroevolution.m5_27_rule_compression
+      - name: Archive held-out accuracies, rule bits and off-family failure analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-27-rule-compression-development
+          path: results/m5-27/compact-rule-generalization-development.json
+          retention-days: 30
