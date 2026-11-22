@@ -80,13 +80,16 @@ class Learner:
         return selected, (obs, prev, new, probabilities, selected)
 
     def learn(self, cache: tuple | None, reward: float,
-              *, enabled: bool = True) -> float:
+              *, enabled: bool = True,
+              learning_rate: float = RATE) -> float:
         """One-step REINFORCE: true local gradient through recurrence weights.
 
         Does not backpropagate through earlier hidden states (truncated BPTT).
         No reinforcement update for a deterministic single legal action.
         """
-        if cache is None or not enabled or reward == 0:
+        if not math.isfinite(learning_rate) or not 0. <= learning_rate <= .08:
+            raise ValueError("Learning rate outside safe bounded range [0,.08]")
+        if cache is None or not enabled or reward == 0 or learning_rate == 0:
             return 0.
         if not math.isfinite(reward) or abs(reward) > 2:
             raise ValueError("Reward outside predeclared safe range")
@@ -114,7 +117,7 @@ class Learner:
         scale = min(1., GRADIENT_CLIP / max(norm, 1e-12))
         drift = 0.
         for i, old in enumerate(self.weights):
-            updated = max(-4., min(4., old + RATE*scale*gradients[i]))
+            updated = max(-4., min(4., old + learning_rate*scale*gradients[i]))
             drift += (updated - old)**2
             self.weights[i] = updated
         self.update_count += 1
