@@ -1,0 +1,40 @@
+name: M5.31 Reward-Gated Synaptic Growth
+
+on:
+  push:
+    branches:
+      - experiment/m5-31-plastic-synaptic-growth
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_31_synaptic_growth.py'
+      - 'tests/test_m5_31_synaptic_growth.py'
+      - '.github/workflows/m5-31-synaptic-growth.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  plastic-synapse-science:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical backend
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Verify synaptic gradients, reward firewall and pruning invariants
+        run: python -m unittest discover -s tests -p 'test_m5_31_synaptic_growth.py' -v
+      - name: Original M5.6 online learning regression tests
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run frozen M5.31 structural plasticity development protocol
+        run: python -m neuroevolution.m5_31_synaptic_growth
+      - name: Archive full individual trials and negative results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-31-synaptic-growth-development
+          path: results/m5-31/synaptic-growth-development.json
+          if-no-files-found: warn
+          retention-days: 30
