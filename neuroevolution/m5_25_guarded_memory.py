@@ -396,6 +396,136 @@ class Organism:
         return best[1] if best is not None else 0
 
 
+class GuardedOrganism(Organism):
+    """Writer waits for evidence; reader may speculate without writing.
+
+    After 40 real episodes, each validated bank becomes immutable. At the
+    first contradiction, the writer moves outcomes to a quarantine buffer.
+    It cannot alter a committed bank until 12 recent lived outcomes
+    distinguish a known latent regime or justify a NEW latent bank.
+    No A/B/C label, phase schedule, or privileged correct action is read.
+    """
+
+    def __init__(self,seed:int,arm:str):
+        super().__init__(seed,arm)
+        self.pending=[]
+        self.guard_switches=[]
+        self.bank_write_counts=[0]
+        self.denied_stable_writes=0
+        self.detected_ambiguity=0
+        self.tentative_bad_writes=0
+        self.verified_archive_freezes=0
+
+    def snapshot(self):
+        return (super().snapshot(),tuple(self.pending),
+                tuple((t,old,new) for t,old,new in self.guard_switches),
+                tuple(self.bank_write_counts),
+                self.denied_stable_writes,self.detected_ambiguity,
+                self.tentative_bad_writes,self.verified_archive_freezes)
+
+    def _write_to_bank(self,index,episode):
+        bank=self.banks[index]
+        if (self.arm!="guarded_mutable"
+                and len(bank.records)>=LOCK_AFTER):
+            self.denied_stable_writes+=1
+            return
+        bank.append(episode)
+        self.bank_write_counts[index]+=1
+        if (self.arm!="guarded_mutable"
+                and len(bank.records)==LOCK_AFTER):
+            self.verified_archive_freezes+=1
+
+    def _pick_evidence_target(self,records):
+        """Select an archive only from compatible observed action outcomes."""
+        candidates=[]
+        for index,bank in enumerate(self.banks):
+            matches,conflicts,supported=bank.evidence(records)
+            if supported>=PENDING_EVIDENCE:
+                candidates.append((matches/supported,index))
+        if not candidates:return None
+        candidates.sort(key=lambda item:(item[0],-item[1]),reverse=True)
+        fraction,index=candidates[0]
+        if fraction>=MIN_ROUTE_MATCH:return index
+        if fraction<=MAX_NOVELTY_MATCH and len(self.banks)<MAX_BANKS:
+            return len(self.banks)
+        return None
+
+    def experience(self,x:int,y:int,a:int,real_reward:int,
+                   *,context_for_oracle=None):
+        if context_for_oracle is not None:
+            raise AssertionError("Guarded hidden agent cannot receive world ID")
+        if real_reward not in (0,1):
+            raise ValueError("Only actual chosen-action binary success/failure")
+        record=(x,y,a,real_reward)
+        self._update_fast_and_gate(x,y,a,real_reward,self.active)
+        self.lived+=1
+        bank=self.banks[self.active]
+        if len(bank.records)<LOCK_AFTER:
+            self._write_to_bank(self.active,record)
+            return
+        p,n=bank.response(x,y,a)
+        contradiction=(n>=2 and (
+            (real_reward==1 and p<1.-CHANGE_CONFIDENCE) or
+            (real_reward==0 and p>CHANGE_CONFIDENCE)))
+        if not self.pending and not contradiction:
+            if self.arm=="guarded_mutable":
+                self._write_to_bank(self.active,record)
+            else:
+                self.denied_stable_writes+=1
+            return
+
+        # From the first discrepancy, no irreversible writes while the
+        # role of the current world is still ambiguous.
+        self.pending.append(record)
+        if self.arm=="guarded_mutable":
+            # Negative control: same detector but allow incorrect writes.
+            self._write_to_bank(self.active,record)
+            self.tentative_bad_writes+=1
+        if len(self.pending)<PENDING_EVIDENCE:return
+        target=self._pick_evidence_target(self.pending)
+        if target is None:
+            self.detected_ambiguity+=1
+            if len(self.pending)>MAX_PENDING:
+                self.pending=self.pending[-PENDING_EVIDENCE:]
+            return
+        previous=self.active
+        if target==len(self.banks):
+            self.banks.append(LatentBank(MEMORY_SLOTS[target]))
+            self.bank_write_counts.append(0)
+        self.active=target
+        if target!=previous:
+            self.guard_switches.append((self.lived,previous,target))
+        # Commit previously buffered actual observations only into a new,
+        # still-learning bank; NEVER overwrite already validated memories.
+        for event in self.pending:
+            if len(self.banks[target].records)<LOCK_AFTER:
+                self._write_to_bank(target,event)
+        self.pending.clear()
+        if sum(len(b.records) for b in self.banks)>MEMORY_LIMIT:
+            raise AssertionError("Autobiographical capacity exceeded")
+
+    def select_from_probe(self,probe,*,oracle_index=None):
+        if oracle_index is not None:
+            raise AssertionError("No oracle world ID allowed in hidden probes")
+        if not probe:return 0
+        if self.arm=="guarded_corrupt_probe":
+            # Randomize only ephemeral diagnostic feedback, never stored
+            # outcomes, weights or the original agent's RNG.
+            seed=self.seed*13_337+sum(
+                (x*19+y*13+a*7+r+1)* (j+1)
+                for j,(x,y,a,r) in enumerate(probe))
+            rng=random.Random(seed)
+            probe=tuple((x,y,a,rng.randrange(2))
+                        for x,y,a,r in probe)
+        return super().select_from_probe(probe,oracle_index=None)
+
+
+def make_organism(seed,arm):
+    if arm.startswith("guarded_"):
+        return GuardedOrganism(seed,arm)
+    return Organism(seed,arm)
+
+
 def probe_cues(seed,exam_index):
     # Exactly four occurrences of each x/y cue, independently shuffled.
     check_seed(seed)
@@ -538,8 +668,20 @@ def run(seed:int,arm:str):
         "final_memory_size":sum(len(b.records) for b in brain.banks),
         "final_bank_count":len(brain.banks),
         "memory_occupancy_per_phase":occupancy,
-        "inferred_switch_events":brain.inferred_switches,
-        "inferred_switch_count":len(brain.inferred_switches),
+        "inferred_switch_events":(
+            brain.guard_switches if isinstance(brain,GuardedOrganism)
+            else brain.inferred_switches),
+        "guarded_pending_size":(len(brain.pending)
+            if isinstance(brain,GuardedOrganism) else None),
+        "denied_stable_writes":(brain.denied_stable_writes
+            if isinstance(brain,GuardedOrganism) else None),
+        "verified_archive_freezes":(brain.verified_archive_freezes
+            if isinstance(brain,GuardedOrganism) else None),
+        "bank_write_counts":(brain.bank_write_counts
+            if isinstance(brain,GuardedOrganism) else None),
+        "inferred_switch_count":len(
+            brain.guard_switches if isinstance(brain,GuardedOrganism)
+            else brain.inferred_switches),
         "timeline_diagnostics":phase_transitions,
         "training_memory_read_evaluations":brain.read_record_evaluations,
         "average_director_memory_gate":brain.gate_sum/brain.update_calls,
