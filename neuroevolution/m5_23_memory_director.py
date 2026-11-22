@@ -40,7 +40,7 @@ import json
 import math
 import random
 import statistics
-from collections import deque
+from collections import Counter, deque
 from pathlib import Path
 
 SEEDS=tuple(range(4700,4724))
@@ -183,21 +183,26 @@ class SpecializedBrain:
         mass=PSEUDO_OBSERVATIONS
         candidates=[]
         blind=self.arm=="context_blind_director"
-        for bucket in self.memory:
-            for oldx,oldy,oldctx,oldaction,observed in bucket:
-                mismatch=(
-                    0. if blind else float(ctx!=oldctx),
-                    float(x!=oldx),float(y!=oldy),
-                    float(action!=oldaction))
-                score=-math.fsum(w*m for w,m in zip(self.address,mismatch))
-                influence=math.exp(max(-35.,min(0.,score)))
-                mass+=influence
-                weighted+=influence*observed
-                candidates.append((influence,observed,mismatch))
+        # Lossless count aggregation: episodes with identical cue,
+        # context, chosen action and observed outcome have the SAME
+        # similarity and reward. Multiplicity preserves their influence,
+        # while expensive similarity/gradient arithmetic is computed once.
+        counts=Counter(record for bucket in self.memory for record in bucket)
+        for (oldx,oldy,oldctx,oldaction,observed),multiplicity in counts.items():
+            mismatch=(
+                0. if blind else float(ctx!=oldctx),
+                float(x!=oldx),float(y!=oldy),
+                float(action!=oldaction))
+            score=-math.fsum(w*m for w,m in zip(self.address,mismatch))
+            influence=math.exp(max(-35.,min(0.,score)))*multiplicity
+            mass+=influence
+            weighted+=influence*observed
+            candidates.append((influence,observed,mismatch))
+        episodes=sum(counts.values())
         if exam:
-            self.read_record_evaluations_exam+=len(candidates)
+            self.read_record_evaluations_exam+=episodes
         else:
-            self.read_record_evaluations_training+=len(candidates)
+            self.read_record_evaluations_training+=episodes
         prediction=weighted/mass
         derivatives=[0.]*ADDRESS_PARAMETERS
         for influence,observed,mismatch in candidates:
