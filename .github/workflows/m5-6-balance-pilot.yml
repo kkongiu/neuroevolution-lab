@@ -1,0 +1,34 @@
+name: M5.6 curiosity versus survival development pilot
+
+on:
+  push:
+    branches:
+      - experiment/m5-6-memory-predator-curiosity-protocol
+    paths:
+      - 'neuroevolution/m5_6_online.py'
+      - 'neuroevolution/m5_6_balance_pilot.py'
+      - 'tests/test_m5_6_balance_pilot.py'
+      - '.github/workflows/m5-6-balance-pilot.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  developmental-balance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify balance pilot invariants
+        run: python -m unittest discover -s tests -p 'test_m5_6_balance_pilot.py' -v
+      - name: Run paired DEVELOPMENT-only pilot, never held-out worlds
+        run: python -m neuroevolution.m5_6_balance_pilot
+      - name: Upload raw paired rows and summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-6-development-balance-pilot
+          path: results/m5-6/development-curiosity-survival-pilot.json
+          retention-days: 30
