@@ -9,6 +9,12 @@ on:
       - 'neuroevolution/m5_6_balance_pilot.py'
       - 'tests/test_m5_6_balance_pilot.py'
       - '.github/workflows/m5-6-balance-pilot.yml'
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_6_online.py'
+      - 'neuroevolution/m5_6_balance_pilot.py'
+      - 'tests/test_m5_6_balance_pilot.py'
+      - '.github/workflows/m5-6-balance-pilot.yml'
 
 permissions:
   contents: read
