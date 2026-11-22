@@ -27,7 +27,7 @@ from .m5_6_online import Learner
 from .m5_9_individual_gate import sensory
 
 SEEDS = tuple(range(3224,3248))
-ARMS = ("constant","decay","adaptive","random_rate")
+ARMS = ("constant","decay","adaptive","random_rate","yoked_shuffled_rate")
 PHASES = 4
 PHASE_LENGTH = 160
 WINDOW = 40
@@ -86,9 +86,15 @@ def cues_for(seed:int)->tuple[int,...]:
     return tuple(out)
 
 
-def run(seed:int,arm:str)->dict:
+def run(seed:int,arm:str, *, yoked_rates:tuple[float,...]|None=None)->dict:
     if seed not in SEEDS or arm not in ARMS:
         raise ValueError("Unknown M5.9d development seed/arm")
+    if arm == "yoked_shuffled_rate":
+        if yoked_rates is None or len(yoked_rates) != PHASES*PHASE_LENGTH or any(
+                not RATE_MIN <= v <= RATE_MAX for v in yoked_rates):
+            raise ValueError("Must provide complete bounded frozen-rate schedule")
+    elif yoked_rates is not None:
+        raise ValueError("Yoked rates only valid in matched placebo")
     learner=Learner.fresh(genotype(seed),(5,5))
     cues=cues_for(seed)
     first_rule=random.Random(seed*1009+91).randrange(2)
@@ -123,6 +129,11 @@ def run(seed:int,arm:str)->dict:
         elif arm=="adaptive":
             # The detector uses only this realized feedback, not hidden rule.
             rate=monitor.update(success)
+        elif arm=="yoked_shuffled_rate":
+            # Independent of this placebo agent's observations; a rate
+            # multiset from the paired adaptive counterfactual is shuffled
+            # up front, preserving EXACT dose but removing temporal alignment.
+            rate=yoked_rates[tick]
         if arm!="adaptive":
             # Audit-only observation; never used to select an action/rate.
             monitor.update(success)
@@ -146,6 +157,7 @@ def run(seed:int,arm:str)->dict:
         "weight_drift_l2":sum((a-b)**2 for a,b in
                              zip(learner.weights,genotype(seed)))**.5,
         "policy_updates":updates,
+        "rate_history":lr,
         "error_monitor_peak":monitor.max_surprise,
         "transferred_memory":0,
     }
@@ -155,7 +167,22 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
     if not seeds or len(set(seeds))!=len(seeds) or any(
             type(s) is not int or s not in SEEDS for s in seeds):
         raise ValueError("Development-only distinct seeds required")
-    rows=[run(s,a) for s in seeds for a in ARMS]
+    rows=[]
+    for seed in seeds:
+        adaptive=run(seed,"adaptive")
+        rates=adaptive["rate_history"][:]
+        random.Random(seed*770_147+1241).shuffle(rates)
+        for arm in ARMS:
+            rows.append(
+                adaptive if arm=="adaptive" else
+                run(seed,arm,yoked_rates=tuple(rates)
+                    if arm=="yoked_shuffled_rate" else None))
+    idx={(r["seed"],r["arm"]):r for r in rows}
+    for seed in seeds:
+        a=idx[(seed,"adaptive")]["rate_history"]
+        b=idx[(seed,"yoked_shuffled_rate")]["rate_history"]
+        if sorted(a)!=sorted(b):
+            raise AssertionError("Matched plasticity dose not conserved")
     index={(r["seed"],r["arm"]):r for r in rows}
     summary={}
     for arm in ARMS:
@@ -182,11 +209,12 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
     random_arm=summary["random_rate"]
     delta_const=mean_reversal_recovery("adaptive")-mean_reversal_recovery("constant")
     delta_rand=mean_reversal_recovery("adaptive")-mean_reversal_recovery("random_rate")
+    delta_yoked=mean_reversal_recovery("adaptive")-mean_reversal_recovery("yoked_shuffled_rate")
     gate={
         "better_reversal_recovery_than_constant":
             delta_const>=CRITERIA["min_recovery_delta_over_constant"],
-        "better_reversal_recovery_than_random":
-            delta_rand>=CRITERIA["min_recovery_delta_over_random"],
+        "better_reversal_recovery_than_yoked_shuffled_rate":
+            delta_yoked>=CRITERIA["min_recovery_delta_over_random"],
         "final_reversal_accuracy_at_least_65pct":
             adaptive["phase_windows"][-1]["last"]>=
             CRITERIA["min_final_adaptive_accuracy"],
@@ -204,6 +232,8 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
         "summary":summary,
         "adaptive_minus_constant_mean_reversal_recovery":delta_const,
         "adaptive_minus_random_mean_reversal_recovery":delta_rand,
+        "adaptive_minus_dose_matched_yoked_recovery":delta_yoked,
+        "rate_dose_matched":True,
         "screening_gate":gate,"advance_to_evolution":all(gate.values()),
         "rows_sha256":hashlib.sha256(json.dumps(
             rows,sort_keys=True,separators=(",",":")).encode()).hexdigest(),
@@ -225,6 +255,7 @@ def main()->None:
             "status","summary",
             "adaptive_minus_constant_mean_reversal_recovery",
             "adaptive_minus_random_mean_reversal_recovery",
+            "adaptive_minus_dose_matched_yoked_recovery",
             "screening_gate","advance_to_evolution","rows_sha256")},
         sort_keys=True),flush=True)
 
