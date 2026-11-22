@@ -8,7 +8,7 @@ from neuroevolution.m5_8_worlds import region, reachable
 
 class MatchedWorldTests(unittest.TestCase):
     def test_static_and_event_budgets_are_matched(self):
-        for seed in (2000,2001,2020,2063):
+        for seed in range(2000,2064):
             original=variant_world(seed,"progressive")
             for variant in VARIANTS:
                 w=variant_world(seed,variant)
