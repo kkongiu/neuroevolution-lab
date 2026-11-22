@@ -62,8 +62,8 @@ MEMORY_SLOTS=(43,43,42)
 MEMORY_LIMIT=128
 SLOTS12=(4,4,4)
 SLOTS8=(3,3,2)
-CAPACITY_BY_ARM={a:(SLOTS8 if a.endswith("8")
-                   else MEMORY_SLOTS if a=="reference128"
+CAPACITY_BY_ARM={a:(MEMORY_SLOTS if a=="reference128"
+                   else SLOTS8 if a in ("novelty8","fifo8","reservoir8")
                    else SLOTS12) for a in ARMS}
 MAX_BANKS=3
 HISTORY=14
