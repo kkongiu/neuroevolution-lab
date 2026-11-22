@@ -19,6 +19,9 @@ from .m5_6_bridge import ecological_observation, legal_cardinal_moves
 from .m5_6_curiosity import IntrinsicReward
 from .m5_6_prediction import LocalPredictor
 from .m5_7_decision import choose_from_model
+from .m5_8_worlds import ALLOWED_SEEDS
+from .m5_8_variants import VARIANTS, variant_world
+from .m5_8_adapter import attach, ActiveShocks
 
 ARMS = ("novelty", "no_novelty", "frozen", "shuffled_novelty", "learning_progress")
 RATE = 0.02
@@ -125,7 +128,11 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                          learning_cutoff_tick: int | None = None,
                          reset_weights_at_cutoff: bool = False,
                          reset_hidden_at_cutoff: bool = False,
-                         model_decision_mode: str = "disabled") -> dict:
+                         model_decision_mode: str = "disabled",
+                         progressive_world: bool = False,
+                         stochastic_challenges: bool = False,
+                         world_variant: str = "progressive",
+                         shock_pressure: str = "full") -> dict:
     """Small reproducible training run; must never consume final world seeds."""
     if model_decision_mode not in ("disabled", "model", "permuted"):
         raise ValueError("Unregistered M5.7 decision intervention")
@@ -137,14 +144,25 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     if (not math.isfinite(curiosity_gain) or curiosity_gain < 0 or
             curiosity_gain > 4):
         raise ValueError("Development curiosity gain must be finite in [0, 4]")
-    if seed not in range(1000, 1100) or settings.ticks > 60:
-        raise ValueError("Development-only worlds: seeds 1000–1099, <=60 ticks")
+    if settings.ticks > 60 or (
+            seed not in (ALLOWED_SEEDS if progressive_world else range(1000, 1100))):
+        raise ValueError("Development-only worlds with strict cohort isolation")
+    if shock_pressure not in ("full", "moderate", "none"):
+        raise ValueError("Unregistered environmental pressure protocol")
+    if stochastic_challenges and not progressive_world:
+        raise ValueError("Dynamic challenges require progressive world")
+    if world_variant not in VARIANTS or (
+            world_variant != "progressive" and not progressive_world):
+        raise ValueError("Unknown or irrelevant world variant")
     if learning_cutoff_tick is None:
         if reset_weights_at_cutoff or reset_hidden_at_cutoff:
             raise ValueError("A cutoff is required for retention interventions")
     elif not (1 <= learning_cutoff_tick < settings.ticks):
         raise ValueError("Cutoff must precede the final tick")
     eco = base.create_ecology(seed, settings, "heritable_no_mutation")
+    world_spec = variant_world(seed, world_variant) if progressive_world else None
+    if world_spec is not None:
+        attach(eco, world_spec)
     # Predator capture audits victim genetic identity using the original
     # nine-gene M5.5B contract. Keep neural weights in the separate personal
     # Learner: they are never mistaken for inherited predator/fear genes.
@@ -156,6 +174,9 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     )
     predators = m5_5b.initial_predators(eco, predator_count)
     food_schedule = base._food_schedule(seed, settings, eco, False)
+    shocks = (ActiveShocks.create(eco, world_spec)
+              if stochastic_challenges and world_spec is not None
+              and shock_pressure != "none" else None)
     # Source weights are the only hereditary neural component; each child
     # starts with untrained weights, never the parent's in-life updates.
     initial = {
@@ -198,6 +219,10 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                     learner.weights = list(initial[aid])
         training_phase = (learning_cutoff_tick is None
                           or tick <= learning_cutoff_tick)
+        drought_zones = set()
+        aggressive = False
+        if shocks is not None:
+            drought_zones, aggressive = shocks.at_tick(eco, predators, tick)
         ids = list(eco.agents)
         base._local_rng(seed, tick, 0, 0).shuffle(ids)
         for aid in ids:
@@ -292,11 +317,18 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                     action is None or action == base.REPRODUCE):
                 raise AssertionError("Unexpected movement")
         predation_kills += m5_5b.step_predators(eco, predators, tick)
+        if shocks is not None:
+            predation_kills += shocks.run_extra_predator_step(
+                eco, predators, tick,
+                aggressive and (shock_pressure == "full" or tick % 2 == 0))
         if abs(base.energy_balance(eco)) > 1e-6:
             raise AssertionError("Predator capture violated energy balance")
         # Real scheduled food regrowth, native rules.
         # Use the original keyed schedule rather than arbitrary food gifts.
-        base._food_regeneration(eco, food_schedule[tick-1])
+        regeneration = food_schedule[tick-1]
+        if shocks is not None:
+            regeneration = shocks.modify_regrowth(regeneration, drought_zones)
+        base._food_regeneration(eco, regeneration)
         eco.ticks_elapsed = tick
         if not eco.agents and eco.extinct_at is None:
             eco.extinct_at = tick
@@ -308,6 +340,16 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             synaptic_updates_at_cutoff = update_count
     return {
         "seed": seed, "arm": arm, "predators": predator_count,
+        "progressive_world": progressive_world,
+        "world_variant": world_variant,
+        "stochastic_challenges": stochastic_challenges,
+        "shock_pressure": shock_pressure,
+        "world_sha256": world_spec["world_sha256"] if world_spec else None,
+        "actual_shocks_proposed": shocks.applied if shocks else 0,
+        "detour_skips": shocks.skipped_detours if shocks else 0,
+        "regrowth_attempts_suppressed": (
+            shocks.drought_suppressed_attempts if shocks else 0),
+        "predator_extra_steps": shocks.predator_extra_steps if shocks else 0,
         "learning_cutoff_tick": learning_cutoff_tick,
         "model_decision_mode": model_decision_mode,
         "post_cutoff_model_decisions": model_decisions,

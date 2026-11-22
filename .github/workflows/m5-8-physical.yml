@@ -1,0 +1,47 @@
+name: M5.8 enacted physical progression experiment
+
+on:
+  push:
+    branches:
+      - experiment/m5-8-progressive-stochastic-worlds
+    paths:
+      - 'neuroevolution/m5_8_adapter.py'
+      - 'neuroevolution/m5_8_variants.py'
+      - 'neuroevolution/m5_8_physical_experiment.py'
+      - 'neuroevolution/m5_6_online.py'
+      - 'tests/test_m5_8_physical.py'
+      - 'tests/test_m5_8_variants.py'
+      - '.github/workflows/m5-8-physical.yml'
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_8_*.py'
+      - 'neuroevolution/m5_6_online.py'
+      - 'tests/test_m5_8_*.py'
+      - '.github/workflows/m5-8-physical.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  physical-progression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Physical shock engine and conservation
+        run: python -m unittest discover -s tests -p 'test_m5_8_physical.py' -v
+      - name: Matched six-arm world experiment tests
+        run: python -m unittest discover -s tests -p 'test_m5_8_variants.py' -v
+      - name: M5.7 predictive decision regression
+        run: python -m unittest discover -s tests -p 'test_m5_7_decision.py' -v
+      - name: Execute physical ecology on 64 worlds x 3 curricula x 2 control arms
+        run: python -m neuroevolution.m5_8_physical_experiment
+      - name: Archive all physical trials
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-8-enacted-physical-experiment
+          path: results/m5-8/physical-progressive-comparison.json
+          retention-days: 30
