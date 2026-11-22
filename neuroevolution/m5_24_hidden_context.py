@@ -415,7 +415,7 @@ class Organism:
 
 def probe_cues(seed,exam_index):
     # Exactly four occurrences of each x/y cue, independently shuffled.
-    validate_seed(seed)
+    check_seed(seed)
     rng=random.Random(seed*999_983+exam_index*73+10_001)
     data=[(x,y) for x in (0,1) for y in (0,1) for _ in range(4)]
     rng.shuffle(data)
