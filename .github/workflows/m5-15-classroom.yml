@@ -1,0 +1,36 @@
+name: M5.15 predictive classroom
+
+on:
+  push:
+    branches:
+      - experiment/m5-15-predictive-classroom
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_15_school.py'
+      - 'tests/test_m5_15_school.py'
+      - '.github/workflows/m5-15-classroom.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  elementary-school:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check experience-only feedback, bounded replay and frozen examination
+        run: python -m unittest discover -s tests -p 'test_m5_15_school.py' -v
+      - name: Check original M5.6 controller regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 development organisms times 2 school tasks times 5 learning rules
+        run: python -m neuroevolution.m5_15_school
+      - name: Archive full per-organism development learning curves
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-15-predictive-classroom-development
+          path: results/m5-15/predictive-classroom-development.json
+          retention-days: 30
