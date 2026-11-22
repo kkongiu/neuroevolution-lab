@@ -124,6 +124,15 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     if seed not in range(1000, 1100) or settings.ticks > 60:
         raise ValueError("Development-only worlds: seeds 1000–1099, <=60 ticks")
     eco = base.create_ecology(seed, settings, "heritable_no_mutation")
+    # Predator capture audits victim genetic identity using the original
+    # nine-gene M5.5B contract. Keep neural weights in the separate personal
+    # Learner: they are never mistaken for inherited predator/fear genes.
+    source_genes = m5_5b.founder_genes(seed, settings)
+    for agent, genes in zip(eco.agents.values(), source_genes):
+        agent.genome = genes
+    eco.initial_genome_digests = tuple(
+        base.genome_digest(genes) for genes in source_genes
+    )
     predators = m5_5b.initial_predators(eco, predator_count)
     food_schedule = base._food_schedule(seed, settings, eco, False)
     # Source weights are the only hereditary neural component; each child
