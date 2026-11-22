@@ -38,8 +38,9 @@ class ModelDecisionTests(unittest.TestCase):
         b=a[:]
         b[14]=.8
         self.assertGreater(predicted_value(tuple(b)),predicted_value(tuple(a)))
+        old_value=predicted_value(tuple(b))
         b[15]=1
-        self.assertLess(predicted_value(tuple(b)),predicted_value(tuple(a)))
+        self.assertLess(predicted_value(tuple(b)),old_value)
         with self.assertRaises(ValueError):
             predicted_value((0.,)*18)
 
