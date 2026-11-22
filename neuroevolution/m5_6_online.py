@@ -18,6 +18,7 @@ from . import m4_2, m4_4a, m5_0 as base, m5_1 as actuator, m5_5b
 from .m5_6_bridge import ecological_observation, legal_cardinal_moves
 from .m5_6_curiosity import IntrinsicReward
 from .m5_6_prediction import LocalPredictor
+from .m5_7_decision import choose_from_model
 
 ARMS = ("novelty", "no_novelty", "frozen", "shuffled_novelty", "learning_progress")
 RATE = 0.02
@@ -123,8 +124,13 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                          energy_gate: bool = False,
                          learning_cutoff_tick: int | None = None,
                          reset_weights_at_cutoff: bool = False,
-                         reset_hidden_at_cutoff: bool = False) -> dict:
+                         reset_hidden_at_cutoff: bool = False,
+                         model_decision_mode: str = "disabled") -> dict:
     """Small reproducible training run; must never consume final world seeds."""
+    if model_decision_mode not in ("disabled", "model", "permuted"):
+        raise ValueError("Unregistered M5.7 decision intervention")
+    if model_decision_mode != "disabled" and (arm != "learning_progress" or learning_cutoff_tick is None):
+        raise ValueError("M5.7 model-based decision requires prediction training cutoff")
     if arm not in ARMS or predator_count not in m5_5b.PREDATOR_LEVELS:
         raise ValueError("Unregistered development arm/predator count")
     settings.validate()
@@ -172,6 +178,8 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     predictor_train_transitions = 0
     predictor_reward_events = 0
     predictor_raw_progress_total = 0.
+    model_decisions = 0
+    rnn_fallbacks = 0
     survived_at_cutoff = None
     births_at_cutoff = None
     food_at_cutoff = None
@@ -215,6 +223,16 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
                 obs = ecological_observation(eco, agent, tuple(predators))
                 action, cache = learner.action(
                     obs, legal, base._local_rng(seed, tick, aid, 118))
+                if not training_phase and model_decision_mode != "disabled":
+                    selected = choose_from_model(
+                        learner.predictor, obs, legal,
+                        mode=model_decision_mode,
+                        rng=base._local_rng(seed, tick, aid, 217))
+                    if selected is not None:
+                        action = selected
+                        model_decisions += 1
+                    else:
+                        rnn_fallbacks += 1
             else:
                 action = None
             previous_id = eco.next_id
@@ -291,6 +309,9 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     return {
         "seed": seed, "arm": arm, "predators": predator_count,
         "learning_cutoff_tick": learning_cutoff_tick,
+        "model_decision_mode": model_decision_mode,
+        "post_cutoff_model_decisions": model_decisions,
+        "post_cutoff_rnn_fallbacks": rnn_fallbacks,
         "reset_weights_at_cutoff": reset_weights_at_cutoff,
         "reset_hidden_at_cutoff": reset_hidden_at_cutoff,
         "survived_at_cutoff": survived_at_cutoff,
