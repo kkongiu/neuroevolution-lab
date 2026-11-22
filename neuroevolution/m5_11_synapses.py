@@ -36,7 +36,7 @@ from .m5_10_growth import CONTEXT_ORDER, CONTEXT_COUNT, TRIALS_PER_PHASE, WINDOW
 
 SEEDS = tuple(range(3400,3424))
 ARMS = ("fixed_sparse","prune_only","grow_only","grow_prune",
-        "turnover_random","full_dense")
+        "turnover_random","yoked_random_turnover","full_dense")
 CAPACITY=260
 INITIAL_ACTIVE=156
 STRUCTURAL_INTERVAL=40
@@ -92,7 +92,7 @@ def observed(context:int,cue:int,prev_success:float)->tuple[float,...]:
 
 
 class Synapses:
-    def __init__(self,seed:int,arm:str):
+    def __init__(self,seed:int,arm:str, *, yoked_events:tuple[tuple[int,int,int],...]|None=None):
         self.seed=seed
         self.arm=arm
         self.active=(set(range(CAPACITY)) if arm=="full_dense"
@@ -105,6 +105,9 @@ class Synapses:
         self.total_new=0
         self.total_removed=0
         self.rng=random.Random(seed*97_337+783)
+        self.yoked_events={tick:(removed,added) for tick,removed,added in yoked_events} if yoked_events is not None else {}
+        if arm=="yoked_random_turnover" and yoked_events is None:
+            raise ValueError("Yoked control needs precomputed event count schedule")
         self.original=genotype(seed)
         self.agent=Learner.fresh(self.original,(5,5))
         for i in range(CAPACITY):
@@ -141,15 +144,19 @@ class Synapses:
         stressed=self.recent_error>1-TARGET_SUCCESS
         removed=[]
         added=[]
-        can_prune=self.arm in ("prune_only","grow_prune","turnover_random")
-        can_grow=self.arm in ("grow_only","grow_prune","turnover_random")
+        can_prune=self.arm in ("prune_only","grow_prune","turnover_random",
+                              "yoked_random_turnover")
+        can_grow=self.arm in ("grow_only","grow_prune","turnover_random",
+                             "yoked_random_turnover")
+        yoked_remove,yoked_add=self.yoked_events.get(tick+1,(0,0))
         if can_prune and len(self.active)>MIN_ACTIVE:
             # Structural consolidation proxy: preserve high accumulated
             # credit, low utility edges eligible. This is intentionally
             # simple and not guaranteed to preserve old tasks.
-            amount=min(PRUNE_BATCH if self.arm!="turnover_random"
-                       else GROW_BATCH, len(self.active)-MIN_ACTIVE)
-            if self.arm=="turnover_random":
+            amount=min((yoked_remove if self.arm=="yoked_random_turnover" else
+                        GROW_BATCH if self.arm=="turnover_random" else
+                        PRUNE_BATCH),len(self.active)-MIN_ACTIVE)
+            if self.arm in ("turnover_random","yoked_random_turnover"):
                 removed=self.rng.sample(sorted(self.active),amount)
             else:
                 ranked=sorted(self.active,key=lambda i:(
@@ -163,9 +170,13 @@ class Synapses:
             self.total_removed+=len(removed)
         # Grow only when rolling errors justify more resources, except
         # turnover placebo (growth is exogenous and blind to outcomes).
-        if can_grow and (stressed or self.arm=="turnover_random"):
+        if can_grow and (stressed or self.arm=="turnover_random"
+                         or self.arm=="yoked_random_turnover"):
+            if self.arm=="yoked_random_turnover" and not yoked_add:
+                return
             candidates=sorted(set(range(CAPACITY))-self.active)
-            amount=min(GROW_BATCH,len(candidates))
+            amount=min(yoked_add if self.arm=="yoked_random_turnover"
+                       else GROW_BATCH,len(candidates))
             added=self.rng.sample(candidates,amount)
             for i in added:
                 self.active.add(i)
@@ -183,10 +194,10 @@ class Synapses:
             })
 
 
-def run(seed:int,arm:str)->dict:
+def run(seed:int,arm:str, *, yoked_events:tuple[tuple[int,int,int],...]|None=None)->dict:
     if seed not in SEEDS or arm not in ARMS:
         raise ValueError("Unregistered M5.11 development seed/arm")
-    syn=Synapses(seed,arm)
+    syn=Synapses(seed,arm,yoked_events=yoked_events)
     oracle_rules=rules(seed) # environment only, never passed to syn
     series=schedule(seed)
     wins=[]
@@ -242,7 +253,21 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
     if not seeds or len(set(seeds))!=len(seeds) or any(
             type(s) is not int or s not in SEEDS for s in seeds):
         raise ValueError("Guarded independent M5.11 development seeds")
-    rows=[run(s,a) for s in seeds for a in ARMS]
+    rows=[]
+    for seed in seeds:
+        natural=run(seed,"grow_prune")
+        yoke=tuple((e["tick"],e["removed"],e["new"])
+                   for e in natural["remodeling_events"])
+        for arm in ARMS:
+            rows.append(natural if arm=="grow_prune" else
+                        run(seed,arm,yoked_events=yoke
+                            if arm=="yoked_random_turnover" else None))
+        matched=rows[-len(ARMS):]
+        placebo=next(v for v in matched if v["arm"]=="yoked_random_turnover")
+        if (natural["new_synapses"]!=placebo["new_synapses"] or
+                natural["pruned_synapses"]!=placebo["pruned_synapses"] or
+                natural["mean_synapses"]!=placebo["mean_synapses"]):
+            raise AssertionError("Yoked placebo failed equal structural dose")
     index={(r["seed"],r["arm"]):r for r in rows}
     keys=("overall_accuracy","return_A_first","return_B_first",
           "A_retention","B_retention","new_synapses","pruned_synapses",
@@ -257,9 +282,9 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
            summary["fixed_sparse"]["return_B_first"]>=.10,
         "growth_prune_B_return_over_65pct":
            summary["grow_prune"]["return_B_first"]>=.65,
-        "growth_prune_outperforms_random_turnover_5pp":
+        "growth_prune_outperforms_matched_random_turnover_5pp":
            summary["grow_prune"]["return_B_first"]-
-           summary["turnover_random"]["return_B_first"]>=.05,
+           summary["yoked_random_turnover"]["return_B_first"]>=.05,
         "growth_prune_fewer_synapse_ticks_than_full":
            summary["grow_prune"]["synapse_ticks"]<
            summary["full_dense"]["synapse_ticks"],
@@ -273,6 +298,7 @@ def experiment(seeds:tuple[int,...]=SEEDS)->dict:
         "context_router_is_explicit":False,
         "pruning_trigger_is_engineered":True,
         "real_synapse_birth_death":True,
+        "matched_structural_event_dose":True,
         "metric_not_actual_energy":"synapse-ticks",
         "summary":summary,"screening_gate":gate,
         "advance_to_evolution":all(gate.values()),
