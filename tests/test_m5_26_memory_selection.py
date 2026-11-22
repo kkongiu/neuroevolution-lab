@@ -15,6 +15,10 @@ class MemorySelectionTests(unittest.TestCase):
         self.assertEqual(len(ARMS),10)
         self.assertEqual(SLOTS12,(4,4,4))
         self.assertEqual(SLOTS8,(3,3,2))
+        self.assertEqual(CAPACITY_BY_ARM["reference128"],(43,43,42))
+        self.assertEqual(sum(CAPACITY_BY_ARM["reference128"]),128)
+        self.assertEqual(CAPACITY_BY_ARM["novelty8"],(3,3,2))
+        self.assertEqual(CAPACITY_BY_ARM["novelty12"],(4,4,4))
         self.assertEqual(MAX_PENDING,12)
         for invalid in (4900,5024,4800,161000,163000,5000.0):
             with self.assertRaises(ValueError):check_seed(invalid)
