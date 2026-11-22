@@ -1,0 +1,36 @@
+name: M5.9b delayed multistep problem evolution
+
+on:
+  push:
+    branches:
+      - experiment/m5-9-delayed-puzzle-credit-assignment
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_9_delayed.py'
+      - 'tests/test_m5_9_delayed.py'
+      - '.github/workflows/m5-9-delayed.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  delayed-credit-evolution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Delayed-feedback, selection and inheritance invariants
+        run: python -m unittest discover -s tests -p 'test_m5_9_delayed.py' -v
+      - name: Original inheritance experiment regressions
+        run: python -m unittest discover -s tests -p 'test_m5_9_selection.py' -v
+      - name: Evaluate 36 lineages with gated puzzles and delayed reward
+        run: python -m neuroevolution.m5_9_delayed
+      - name: Archive all lineage data
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-9-delayed-three-gate-evolution
+          path: results/m5-9/delayed-three-gate-development.json
+          retention-days: 30
