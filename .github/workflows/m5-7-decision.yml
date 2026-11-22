@@ -1,0 +1,39 @@
+name: M5.7 world-model action consequence diagnostic
+
+on:
+  push:
+    branches:
+      - experiment/m5-7-model-based-action-value
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_7_*.py'
+      - 'neuroevolution/m5_6_online.py'
+      - 'tests/test_m5_7_*.py'
+      - '.github/workflows/m5-7-decision.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  learned-model-decision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Decision causality, energy and seed fences
+        run: python -m unittest discover -s tests -p 'test_m5_7_decision.py' -v
+      - name: Historical M5.6 predictor and online regression
+        run: |
+          python -m unittest discover -s tests -p 'test_m5_6_prediction.py' -v
+          python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Compare learned forecasts vs disabled or permuted access
+        run: python -m neuroevolution.m5_7_screen
+      - name: Archive diagnostic world-level results
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-7-model-decision-development
+          path: results/m5-7/development-one-step-model-decision.json
+          retention-days: 30
