@@ -312,14 +312,13 @@ def run(seed:int,arm:str):
     scores={}
     training_curves={}
     tick=0
-    old_start_refs=0
     for phase,(name,n) in enumerate(PHASES):
         context=CONTEXT[name]
         pair_sequence=trials(seed,phase,n)
         for block_index in range(n//BLOCK):
             pairs=pair_sequence[block_index*BLOCK:(block_index+1)*BLOCK]
-            current_success=(controller.last_rewards[-1]
-                             if controller.last_rewards else .5)
+            current_success=(controller.meta_scores[-1]
+                             if controller.meta_scores else .5)
             start_old=brain.old_brier(context)
             state=controller.state(current_success,start_old)
             protections,choices=controller.choose(state,start_old)
