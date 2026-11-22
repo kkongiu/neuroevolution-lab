@@ -1,0 +1,36 @@
+name: M5.18 Error-gated Metaplasticity School
+
+on:
+  push:
+    branches:
+      - experiment/m5-18-metaplasticity-error-gating
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_18_metaplasticity.py'
+      - 'tests/test_m5_18_metaplasticity.py'
+      - '.github/workflows/m5-18-metaplasticity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  metaplasticity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test feedback-only dynamic plasticity and frozen exams
+        run: python -m unittest discover -s tests -p 'test_m5_18_metaplasticity.py' -v
+      - name: Confirm original M5.6 neurolearning regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 development seeds across seven metaplasticity treatments
+        run: python -m neuroevolution.m5_18_metaplasticity
+      - name: Archive full frozen recall and gate traces
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-18-metaplasticity-development
+          path: results/m5-18/metaplasticity-development.json
+          retention-days: 30
