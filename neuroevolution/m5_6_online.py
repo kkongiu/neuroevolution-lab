@@ -116,11 +116,16 @@ class Learner:
 
 
 def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
-                         *, predator_count: int = 1) -> dict:
+                         *, predator_count: int = 1,
+                         curiosity_gain: float = 1.,
+                         energy_gate: bool = False) -> dict:
     """Small reproducible training run; must never consume final world seeds."""
     if arm not in ARMS or predator_count not in m5_5b.PREDATOR_LEVELS:
         raise ValueError("Unregistered development arm/predator count")
     settings.validate()
+    if (not math.isfinite(curiosity_gain) or curiosity_gain < 0 or
+            curiosity_gain > 4):
+        raise ValueError("Development curiosity gain must be finite in [0, 4]")
     if seed not in range(1000, 1100) or settings.ticks > 60:
         raise ValueError("Development-only worlds: seeds 1000–1099, <=60 ticks")
     eco = base.create_ecology(seed, settings, "heritable_no_mutation")
@@ -149,6 +154,11 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
     update_count = 0
     positive_curiosity = 0.
     positive_food_reward = 0.
+    actual_movements = 0
+    predation_kills = 0
+    energy_before_actions = 0.
+    action_count = 0
+    unique_arrivals = 0
     for tick in range(1, settings.ticks + 1):
         ids = list(eco.agents)
         base._local_rng(seed, tick, 0, 0).shuffle(ids)
@@ -160,6 +170,8 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             legal = legal_cardinal_moves(eco, agent)
             old_position = agent.position
             old_food = eco.food_eaten
+            energy_before_actions += agent.energy
+            action_count += 1
             # Programmed reproduction is explicitly a shared baseline,
             # not learned. Native birth costs and inherited original genotype.
             _, free = base.blocked_and_free(eco, agent)
@@ -188,13 +200,21 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             if action is not None and action in range(4):
                 dx, dy = base.DIRECTIONS[action]
                 arrived = (old_position[0]+dx, old_position[1]+dy)
+                first_visit = arrived not in learner.curiosity.visits
                 novelty = learner.curiosity.observe_arrival(arrived)
+                unique_arrivals += int(first_visit)
+                actual_movements += 1
             external = float(eco.food_eaten - old_food)
             if arm == "shuffled_novelty" and action is not None and action in range(4):
                 novelty = learner.curiosity.maximum * base._local_rng(
                     seed, tick, aid, 119).random()
             elif arm != "novelty":
                 novelty = 0.
+            # This optional *engineered* energy gate is a diagnostic control,
+            # NOT evidence that survival-vs-curiosity tradeoffs emerged.
+            if energy_gate:
+                novelty *= max(0., min(1., agent.energy / settings.max_energy))
+            novelty *= curiosity_gain
             reward = external + novelty
             drift = learner.learn(cache, reward,
                                   enabled=arm != "frozen")
@@ -206,7 +226,7 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             if new_agent is not None and new_agent.position != old_position and (
                     action is None or action == base.REPRODUCE):
                 raise AssertionError("Unexpected movement")
-        m5_5b.step_predators(eco, predators, tick)
+        predation_kills += m5_5b.step_predators(eco, predators, tick)
         if abs(base.energy_balance(eco)) > 1e-6:
             raise AssertionError("Predator capture violated energy balance")
         # Real scheduled food regrowth, native rules.
@@ -217,6 +237,12 @@ def simulate_development(seed: int, settings: m5_5b.Settings, arm: str,
             eco.extinct_at = tick
     return {
         "seed": seed, "arm": arm, "predators": predator_count,
+        "curiosity_gain": curiosity_gain, "energy_gate": energy_gate,
+        "physical_moves": actual_movements,
+        "unique_individual_arrivals": unique_arrivals,
+        "predation_kills": predation_kills,
+        "mean_action_start_energy": (energy_before_actions / action_count
+                                     if action_count else 0.),
         "survived": int(bool(eco.agents)), "population": len(eco.agents),
         "births": eco.births, "food_eaten": eco.food_eaten,
         "novelty_reward_total": positive_curiosity,
