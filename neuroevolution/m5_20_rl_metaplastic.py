@@ -275,10 +275,14 @@ class Controller:
                 0. if choice==-1 else STRENGTHS[choice])
         return tuple(0. if i==-1 else STRENGTHS[i] for i in out),tuple(out)
 
-    def feedback(self,state,choices,next_state,reward):
+    def feedback(self,state,choices,next_state,reward,*,effective:bool=True):
         self.last_rewards.append(reward)
         self.meta_reward_sum+=reward
-        if self.arm not in ("q_learning_controller","scrambled_reward_q"):
+        # Do not train the regulator before any protection anchor exists:
+        # in the first A block/phase its action has no physical effect,
+        # so reinforcement here would teach a spurious causal association.
+        if (not effective or self.arm not in (
+                "q_learning_controller","scrambled_reward_q")):
             return
         learned=(self.noise.uniform(-1.,1.)
                  if self.arm=="scrambled_reward_q" else reward)
@@ -342,7 +346,9 @@ def run(seed:int,arm:str):
                          +NEW_PROGRESS_COEFF*progress
                          -OLD_LOSS_COEFF*increase)
             next_state=controller.state(accuracy,end_old)
-            controller.feedback(state,choices,next_state,meta_reward)
+            controller.feedback(
+                state,choices,next_state,meta_reward,
+                effective=any(brain.importance))
             controller.meta_scores.append(accuracy)
         brain.consolidate()
         training_curves[f"phase_{phase}_{name}"]=(
