@@ -11,7 +11,7 @@ class SynapticRemodelingTests(unittest.TestCase):
     def test_equal_initial_sparsity_no_correct_action_leak(self):
         for seed in (3400,3401):
             for arm in ARMS:
-                syn=Synapses(seed,arm)
+                syn=Synapses(seed,arm,yoked_events=() if arm=="yoked_random_turnover" else None)
                 expected=CAPACITY if arm=="full_dense" else INITIAL_ACTIVE
                 self.assertEqual(len(syn.active),expected)
                 self.assertEqual(syn.initial_count,expected)
@@ -67,7 +67,12 @@ class SynapticRemodelingTests(unittest.TestCase):
 
     def test_three_controls_and_guard(self):
         for seed in (3400,3401):
-            rows={arm:run(seed,arm) for arm in ARMS}
+            growth=run(seed,"grow_prune")
+            yoke=tuple((e["tick"],e["removed"],e["new"]) for e in growth["remodeling_events"])
+            rows={arm:(growth if arm=="grow_prune" else run(seed,arm,yoked_events=yoke if arm=="yoked_random_turnover" else None)) for arm in ARMS}
+            self.assertEqual(rows["grow_prune"]["new_synapses"],rows["yoked_random_turnover"]["new_synapses"])
+            self.assertEqual(rows["grow_prune"]["pruned_synapses"],rows["yoked_random_turnover"]["pruned_synapses"])
+            self.assertEqual(rows["grow_prune"]["mean_synapses"],rows["yoked_random_turnover"]["mean_synapses"])
             self.assertEqual(rows["fixed_sparse"]["new_synapses"],0)
             self.assertEqual(rows["fixed_sparse"]["pruned_synapses"],0)
             self.assertEqual(rows["full_dense"]["mean_synapses"],CAPACITY)
