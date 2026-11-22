@@ -1,0 +1,36 @@
+name: M5.21 Cross-lifetime Meta-RL Training
+
+on:
+  push:
+    branches:
+      - experiment/m5-21-meta-training-across-lifetimes
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_21_meta_training.py'
+      - 'tests/test_m5_21_meta_training.py'
+      - '.github/workflows/m5-21-meta-training.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  train-then-frozen-new-lives:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate no information leakage, fresh lives, matched budgets and frozen exams
+        run: python -m unittest discover -s tests -p 'test_m5_21_meta_training.py' -v
+      - name: Original M5.6 neural learner regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Meta-train 64+64 fresh brains; freeze and evaluate on 24 unseen seeds
+        run: python -m neuroevolution.m5_21_meta_training
+      - name: Archive Q policies, training trajectories, paired CIs and frozen exam results
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-21-meta-training-frozen-transfer
+          path: results/m5-21/meta-training-frozen-transfer-development.json
+          retention-days: 30
