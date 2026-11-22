@@ -1,0 +1,36 @@
+name: M5.14 new-task composition and synaptic development
+
+on:
+  push:
+    branches:
+      - experiment/m5-14-novel-composition-synaptogenesis
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_14_composition.py'
+      - 'tests/test_m5_14_composition.py'
+      - '.github/workflows/m5-14-composition.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Composition, frozen-probe and structural counterfactual tests
+        run: python -m unittest discover -s tests -p 'test_m5_14_composition.py' -v
+      - name: Native M5.6 learner regression
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run 24 seeds by 6 neural architecture arms
+        run: python -m neuroevolution.m5_14_composition
+      - name: Archive all transfer and synapse birth/death traces
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-14-compositional-task-synaptogenesis
+          path: results/m5-14/compositional-synaptogenesis-development.json
+          retention-days: 30
