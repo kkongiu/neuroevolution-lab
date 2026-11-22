@@ -1,0 +1,36 @@
+name: M5.16 Continual Learning School
+
+on:
+  push:
+    branches:
+      - experiment/m5-16-continual-learning-school
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_16_continual_school.py'
+      - 'tests/test_m5_16_continual_school.py'
+      - '.github/workflows/m5-16-continual-school.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  continual-school:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Assert conflicting curricula, frozen exams, memory budget and equal-update controls
+        run: python -m unittest discover -s tests -p 'test_m5_16_continual_school.py' -v
+      - name: Original M5.6 neural controller regressions
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Execute 24 independent organism seeds times five continual-learning arms
+        run: python -m neuroevolution.m5_16_continual_school
+      - name: Archive full M5.16 retention and rehearsal metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-16-continual-school-development
+          path: results/m5-16/continual-learning-school-development.json
+          retention-days: 30
