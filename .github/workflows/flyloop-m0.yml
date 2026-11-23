@@ -1,0 +1,45 @@
+name: FlyLoop M0 Continuous Ecology
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-m0-sensorimotor-ecology
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_m0.py'
+      - 'tests/test_flyloop_m0.py'
+      - '.github/workflows/flyloop-m0.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  flyloop-continuous-ecology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute deterministic ecology and no-leak tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m0.py' -v
+      - name: Run prospectively frozen 32-world three-arm FlyLoop M0 science
+        run: python -m neuroevolution.flyloop_m0
+      - name: Repeat full science for deterministic SHA and byte comparison
+        run: |
+          python -m neuroevolution.flyloop_m0 --out results/flyloop/m0_repeat.json
+          cmp results/flyloop/m0_persistent_ecology.json results/flyloop/m0_repeat.json
+      - name: Archive all real sensor-action-energy-health trajectories and weights
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-m0-ecology-results
+          path: |
+            results/flyloop/m0_persistent_ecology.json
+            results/flyloop/m0_repeat.json
+          if-no-files-found: warn
+          retention-days: 30
