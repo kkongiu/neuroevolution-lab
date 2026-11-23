@@ -1,0 +1,46 @@
+name: M5.34 Shared Meta Representation Transfer
+
+on:
+  push:
+    branches:
+      - experiment/m5-34-learned-cross-task-representation
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_34_learned_representation.py'
+      - 'tests/test_m5_34_learned_representation.py'
+      - '.github/workflows/m5-34-learned-representation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  meta-representation-science:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical backend
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Test disjoint function split, honest supports, frozen inference and controls
+        run: python -m unittest discover -s tests -p 'test_m5_34_learned_representation.py' -v
+      - name: Regression test prior active cue acquisition no-leak
+        run: python -m unittest discover -s tests -p 'test_m5_33_active_cue.py' -v
+      - name: Regression test sealed M5.6 online plasticity
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run frozen M5.34 85-train vs 27-heldout-function meta transfer protocol
+        run: python -m neuroevolution.m5_34_learned_representation
+      - name: Archive full raw heldout exam, checkpoints and null-pretraining results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-34-shared-representation-dev
+          path: results/m5-34/shared-representation-dev.json
+          if-no-files-found: warn
+          retention-days: 30
