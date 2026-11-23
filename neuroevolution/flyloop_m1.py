@@ -155,7 +155,7 @@ class FlyWorld(m0.World):
     def _move_food(self):
         gen=random.Random(self.seed * 17117 + 202603)
         used = set(self.original_food_sites) | set(self.hazards)
-        used.add((self.body.x,self.body.y))
+        # World relocation must be EXOGENOUS and independent of agent position.
         free=[
             (x,y) for x in range(1,m0.SIZE-1)
             for y in range(1,m0.SIZE-1)
