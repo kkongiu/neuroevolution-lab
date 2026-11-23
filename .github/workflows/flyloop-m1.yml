@@ -1,0 +1,48 @@
+name: FlyLoop M1 Sensory and Memory Stress
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-m1-sensory-and-memory-stress
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_m1.py'
+      - 'tests/test_flyloop_m1.py'
+      - '.github/workflows/flyloop-m1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  m1-sensory-memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: FlyLoop M1 sensor, world, physics, parameter preservation tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m1.py' -v
+      - name: Regression original FlyLoop M0 tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m0.py' -v
+      - name: Run prospectively frozen M1 32x4x4 continuous lifetimes
+        run: python -m neuroevolution.flyloop_m1
+      - name: Repeat complete M1 science and compare all JSON bytes
+        run: |
+          python -m neuroevolution.flyloop_m1 --out results/flyloop/m1_repeat.json
+          cmp results/flyloop/m1_sensory_memory.json results/flyloop/m1_repeat.json
+          sha256sum results/flyloop/m1_sensory_memory.json results/flyloop/m1_repeat.json
+      - name: Archive all complete organism trajectories, world schedules and weights
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-m1-sensory-memory
+          path: |
+            results/flyloop/m1_sensory_memory.json
+            results/flyloop/m1_repeat.json
+          if-no-files-found: warn
+          retention-days: 30
