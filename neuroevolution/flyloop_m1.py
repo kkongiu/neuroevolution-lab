@@ -511,7 +511,7 @@ def run():
     ) and all(
         all(reset["after_reset_equal_initial"]
             for reset in r["resets"])
-        and len(r["resets"])==len(r["events"])
+        and len(r["resets"])==sum(e["health"]>0 and e["energy"]>0 for e in r["events"])
         for r in rows if r["arm"]=="plastic_reset"
     )
     n=summary["no_scent_gate"]
