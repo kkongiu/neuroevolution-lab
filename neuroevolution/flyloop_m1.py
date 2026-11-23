@@ -500,6 +500,12 @@ def run():
         ))
         for r in rows if r["scenario"]=="food_relocation"
     )
+    exogenous_relocation_pairing=all(
+        len({canonical_digest(r["relocated_food_sites"])
+             for r in rows if r["scenario"]=="food_relocation"
+             and r["world_seed"]==seed and r["relocated_food_sites"]})<=1
+        for seed in SEEDS
+    )
     reset_correct=all(
         r["initial_weights"]==r["final_weights"]
         and r["online_parameter_updates"]==0
@@ -541,7 +547,7 @@ def run():
                     len(m0.World._walls(NOVEL_OLD_GATES))
                 for r in rows if r["scenario"]=="novel_layout"),
         "relocation_at_240_restore_at_360_and_no_input_schedule":
-            scheduled and moved_and_restored,
+            scheduled and moved_and_restored and exogenous_relocation_pairing,
         "frozen_weights_unchanged_online_updates_and_exact_resets":
             reset_correct,
         "raw_complete_and_evolution_disabled":
