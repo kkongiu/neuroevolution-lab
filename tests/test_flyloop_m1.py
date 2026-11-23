@@ -87,6 +87,17 @@ class FlyLoopM1Tests(unittest.TestCase):
         self.assertEqual(set(w.food_cooldown),before)
         self.assertEqual([e["step"] for e in w.events],[240,360])
 
+    def test_relocation_is_exogenous_same_if_agent_moves_elsewhere(self):
+        a=m1.FlyWorld(7303,"food_relocation")
+        b=m1.FlyWorld(7303,"food_relocation")
+        a.body.x,a.body.y=2,5
+        b.body.x,b.body.y=10,9
+        a.tick=b.tick=240
+        a.switch_if_due()
+        b.switch_if_due()
+        self.assertEqual(a.relocated_sites,b.relocated_sites)
+        self.assertEqual(a.food_cooldown,b.food_cooldown)
+
     def test_paired_scent_worlds_and_identical_initial_parameters(self):
         for scenario in m1.SCENARIOS:
             rows=[m1.simulate(7300,scenario,arm) for arm in m1.ARMS]
