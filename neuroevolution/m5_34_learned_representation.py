@@ -227,7 +227,7 @@ class SharedRepresentation:
             hidden, output = self._predict_batch(inputs, self.params)
             derivative = (
                 2. / (BATCH * 8)
-                * (output-target)
+                * (output-targets)
                 * (1.-visible)
                 * (1.-output*output)
             )
