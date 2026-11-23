@@ -1,0 +1,47 @@
+name: M5.35 Novel Family Transfer and Sequential Retention
+
+on:
+  push:
+    branches:
+      - experiment/m5-35-new-family-and-continual-retention
+  pull_request:
+    paths:
+      - 'neuroevolution/m5_35_new_family_retention.py'
+      - 'tests/test_m5_35_new_family_retention.py'
+      - '.github/workflows/m5-35-novel-family-retention.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  novel-family-retention-science:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical backend
+        run: python -m pip install 'numpy==2.3.5'
+      - name: Audit new family disjointness, support firewall, replay episode parity and tests
+        run: python -m unittest discover -s tests -p 'test_m5_35_new_family_retention.py' -v
+      - name: Regression test M5.34 representation split and frozen inference
+        run: python -m unittest discover -s tests -p 'test_m5_34_learned_representation.py' -v
+      - name: Regression test sealed original M5.6 online learning
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run PRE-FROZEN M5.35 new family zero-shot and continual retention science
+        run: python -m neuroevolution.m5_35_new_family_retention
+      - name: Archive ALL raw old and new test rows and full float32 model checkpoints
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m5-35-new-family-retention-dev
+          path: results/m5-35/new-family-retention-dev.json
+          if-no-files-found: warn
+          retention-days: 30
