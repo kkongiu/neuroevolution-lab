@@ -1,0 +1,41 @@
+name: FlyLoop M0 Embodied Development Screen
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-m0-embodied-control
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_m0.py'
+      - 'tests/test_flyloop_m0.py'
+      - '.github/workflows/flyloop-m0.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  flyloop-embodied-science:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test embodied environment, causal reward, ablation and legacy class
+        run: python -m unittest discover -s tests -p 'test_flyloop_m0.py' -v
+      - name: Regression tests — original M5.6 online plasticity
+        run: python -m unittest discover -s tests -p 'test_m5_6_online.py' -v
+      - name: Run strictly preregistered 16-seed science evaluation
+        run: python -m neuroevolution.flyloop_m0
+      - name: Archive every real sensor/action/feedback transition and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-m0-embodied-dev-results
+          path: results/flyloop-m0/embodied-dev.json
+          if-no-files-found: warn
+          retention-days: 30
