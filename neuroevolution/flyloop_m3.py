@@ -224,7 +224,16 @@ def simulate(seed,scenario,arm,reference_check=False):
         # encode MUST NOT consume the sham RNG before next action, else
         # the sham comparator would see a different shuffled history.
         if arm=="temporal_sham":
-            next_critic=next_raw_critic
+            # Evaluate exactly the same NEXT-STEP shuffled critic input
+            # without consuming the dedicated sham RNG prematurely.
+            saved_rng=memory.sham_rng.getstate()
+            next_feedback,_=memory.remembered("temporal_sham")
+            memory.sham_rng.setstate(saved_rng)
+            nr=list(next_raw_critic)
+            if next_feedback:
+                nr[3]=next_feedback["positive"]
+                nr[4]=next_feedback["damage"]
+            next_critic=tuple(nr)
         elif arm in ("temporal_feedback","feedback_frozen"):
             nr=list(next_raw_critic)
             nr[3]=observation["positive"]
