@@ -1,0 +1,50 @@
+name: FlyLoop R2 Continuous Motor Plasticity
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r2-motor-plasticity
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r2.py'
+      - 'tests/test_flyloop_r2.py'
+      - '.github/workflows/flyloop-r2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r2-motor-plasticity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test original R1 recurrence / physics unmodified
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: Test R2 true physical feedback, sham, matched motors, physics
+        run: python -m unittest discover -s tests -p 'test_flyloop_r2.py' -v
+      - name: Run locked 288-life R2 scientific comparison
+        run: python -m neuroevolution.flyloop_r2
+      - name: Full R2 repeat and byte-exact reproducibility
+        run: |
+          python -m neuroevolution.flyloop_r2 --out results/flyloop_r2/r2_repeat.json
+          cmp results/flyloop_r2/r2_motor_plasticity.json results/flyloop_r2/r2_repeat.json
+          sha256sum results/flyloop_r2/r2_motor_plasticity.json results/flyloop_r2/r2_repeat.json
+      - name: Archive complete raw neuron, action, motor eligibility and physical trajectories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r2-physical-motor-plasticity
+          path: |
+            results/flyloop_r2/r2_motor_plasticity.json
+            results/flyloop_r2/r2_repeat.json
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
