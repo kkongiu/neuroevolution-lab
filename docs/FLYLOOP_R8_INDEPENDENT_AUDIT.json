@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-24",
+  "source_action_url": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/45481374195",
+  "source_artifact_id": 14962390603,
+  "source_artifact_name": "flyloop-r8-online-physical-consequence-results",
+  "archive_name": "flyloop-r8-verified-results.zip",
+  "independent_method": "Standalone Python standard-library raw archive audit. Does NOT import neuroevolution/flyloop_r1 through flyloop_r8. Audit script distributed separately with raw archive.",
+  "complete_files": {
+    "r8_online_physical_outcomes.json": {
+      "bytes": 315201053,
+      "sha256": "63b64681bc0220ffa0155c348bf8e10a6d24b05407114a15b3de6c20e83cef19"
+    },
+    "r8_repeat.json": {
+      "bytes": 315201053,
+      "sha256": "63b64681bc0220ffa0155c348bf8e10a6d24b05407114a15b3de6c20e83cef19"
+    }
+  },
+  "full_replays_byte_identical": true,
+  "canonical_raw_rows_sha256_independently_verified": "4890628aefc234291e42900089e566fc0750e89a60cba44c3cd3fdb082666901",
+  "verified_counts": {
+    "lives": 384,
+    "actual_physical_movement_frames": 122880,
+    "independently_sourced_real_historical_sham_training_targets": 120576,
+    "physical_consequence_predictor_heads_reconstructed_per_life": 2,
+    "independently_reconstructed_predictor_coefficients_per_head": 84,
+    "world_seeds": 16,
+    "world_families": 2,
+    "environment_regimes": 2,
+    "controller_arms": 6
+  },
+  "verified_independently": [
+    "Complete raw JSON files byte-identical and source canonical raw_rows SHA256 independently reproduced",
+    "All initial physical bodies, pre/post physical position continuity and no movement after bodily death",
+    "True original R1 continuous throttle-speed/steer-turn motor inertia and heading after each actual executed command",
+    "Actual blocked motion against inflated obstacle rectangles and outer walls",
+    "Actual independent integrity injury of 0.25 per collision and energy cost 0.02 per real frame",
+    "Actual next 3 short-range proximity wall rays computed from independent ray/rectangle intersection functions",
+    "Actual collision, normalized displacement and body injury targets derived only from physically observed after-action effects",
+    "All two 84-coefficient physical consequence model weights reconstructed independently chronologically from recorded pre-action true/sham predictions and real targets",
+    "All older sham training labels sourced to a genuinely previously observed outcome of same organism at least six executed frames older",
+    "True-physical-guided motor scores and chosen candidate index reconstructed from frozen current model predictions before real action",
+    "Independent recomputation of postchange repeated collisions with followup denominators, actual distance, unique visited cells, zero displacement and action override frequency",
+    "Exact whole-experiment prospective integrity/science gate count 14/19 as reported"
+  ],
+  "independent_audit_anomalies": [],
+  "external_audit_pass": true,
+  "note": "Motor and bodily physical models and ray casting are independently reconstructed. The separate original R4 sensory-predictor head weight update history is not independently reconstructed by this standalone audit; those tests remain in the original regression suites.",
+  "interpretation": {
+    "preregistered_gates_passed": 14,
+    "preregistered_gates_total": 19,
+    "integrity_passed": 10,
+    "integrity_total": 10,
+    "scientific_efficacy_passed": 4,
+    "scientific_efficacy_total": 9,
+    "overall_science_success": false,
+    "physical_consequence_prediction_learning_demonstrated": true,
+    "closed_loop_uses_physical_prediction": true,
+    "useful_general_obstacle_avoidance_demonstrated": false,
+    "autonomous_goal_invention_demonstrated": false,
+    "food_search_demonstrated": false,
+    "evolution_authorized": false
+  },
+  "limitations": "Audits numerical consistency within a researcher-coded synthetic world, not empirical biological validity, actual fly physics, independently invented survival goals or open-ended intelligence."
+}

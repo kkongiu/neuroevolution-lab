@@ -1,0 +1,62 @@
+name: FlyLoop R8 Lifelong Physical Harm and Movement Learning
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r8-physical-consequence-learning
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r8.py'
+      - 'tests/test_flyloop_r8.py'
+      - '.github/workflows/flyloop-r8.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r8-physical-outcome-learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R1 unchanged original physical recurrent neuron regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: R2 unchanged original motor readout plasticity regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r2.py' -v
+      - name: R3 unchanged sensory prediction regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r3.py' -v
+      - name: R4 unchanged action-conditioned sensory head regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r4.py' -v
+      - name: R5 unchanged actual physical intervention regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r5.py' -v
+      - name: R6 unchanged heldout physical intervention transfer regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r6.py' -v
+      - name: R7 unchanged real online predictive action selection regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r7.py' -v
+      - name: R8 real collision/damage/displacement head and historical sham tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_r8.py' -v
+      - name: First locked 384-life R8 scientific experiment
+        run: python -m neuroevolution.flyloop_r8
+      - name: Reproduce exact full R8 lifelong head/action/physical results
+        run: |
+          python -m neuroevolution.flyloop_r8 --out results/flyloop_r8/r8_repeat.json
+          cmp results/flyloop_r8/r8_online_physical_outcomes.json results/flyloop_r8/r8_repeat.json
+          sha256sum results/flyloop_r8/r8_online_physical_outcomes.json results/flyloop_r8/r8_repeat.json
+      - name: Save all original physical lifelong and replicated raw trajectories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r8-online-physical-consequence-results
+          path: |
+            results/flyloop_r8/r8_online_physical_outcomes.json
+            results/flyloop_r8/r8_repeat.json
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 6
