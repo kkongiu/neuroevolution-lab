@@ -1,0 +1,65 @@
+# FlyLoop R9 — prospective test of a fast defensive sensorimotor bypass
+**2026-11-24. Commit before implementing or running R9.** Draft stacked on R8; prior R1–R8 and main untouched.
+
+## Question and boundaries
+R8's 16-neuron recurrent organism **learned** local bodily collision/injury consequences but did not reduce persistent wall contact; its one-step slow action selector lacked a hard fast motor pathway. Does a small independent, genuinely faster **microstep defensive pathway** improve real physical **breaking of repeated contacts**, without abandoning exploration? Does *online feedback learning* contribute beyond an initially fixed or random fast path?
+
+The protective trigger (last actual microstep wall contact, or any of three genuinely local wall rays >.82), the 4-neuron fast network, its priority, its weight update and its reward (distance − contact cost) are **researcher-designed**. This is NOT spontaneously invented escape, reflex neurobiology of Drosophila, learned attacks, self-defined survival motivation or evolution. No threat/attack stimulus exists; do NOT claim an attack circuit has been implemented.
+
+## Crucial timescale and physics definition (not identical R1 macro integrator)
+R1 uses macro dt=.20 s, motor inertia alpha=.18, collision damage=.25 per macro collision, metabolic energy=.02 per macro frame. R9 changes **all arm physics identically**, using exactly **4 physical micro-integrations per .20 s macrostep**:
+- MICRO_DT = .05 s, MICRO_ALPHA = 1-(1-.18)^(1/4), so constant desired motor approaches target with same total .18 across four substeps; heading/position integrate at .05 s each. Therefore trajectories are NOT expected to be bytewise R1/R8 trajectories. The equal treatment of all R9 arms makes WITHIN-R9 controls valid; do NOT compare raw collision counts/meter with R8 due changed collision sampling.
+- At each real micro-integration: original R1 desired speed \`V_MAX * sigmoid(1.6*throttle)\`, desired turn \`W_MAX*tanh(1.6*steer)\`, corresponding smooth inertia, physical R1 inflated rectangle/border collision resolution, real position/heading update, metabolic decrement **.02/4** and damage **.25/4 per occupied collision microframe**, independently measured. The collision flag is immediately visible to the fast circuit at the NEXT micro-integration, not just the next .20 s neural update. Death is terminal and no movement beyond death.
+- The original 16-neuron slow circuit sees 8 local sensors and generates a two-channel analog base command **ONLY ONCE at macro step start**; original R2 seeded Gaussian perturbation σ=.12 applied only to that slow base. Its 434 initialized recurrent coefficients stay FROZEN. The exact same slow brain and exogenous noise stream is used in all five arms on common live prefixes.
+- The fast circuit sees current genuine LOCAL physical readings every .05 s, never a map, position, target or future motor outcome. It can take over the two shared analog actuators for the CURRENT microframe without changing slow circuit weights. The slow brain is still updated normally at the next macro boundary regardless of fast interventions.
+
+## Locked prospective cohort
+- Twelve NEW world seeds **11500–11511**, never used in earlier FlyLoop M/R studies. Two exact exogenous ten-obstacle geometry families: R1 \`obstacles\` and R2 \`nearfield\`. Static worlds never change; matched removal worlds remove only original rectangle indices [1,3,5,7,9] immediately before perception at **macro t=140**; NO environment-change signal sent to the brain.
+- Five paired arms ×12 seeds×2 geometry types×2 regimes = **240 independent natural physical lives**, maximum 280 macro frames, four real physical microsteps each, **268,800 potential actual physical micro-integrations**. All initial world rectangles/body and 434 slow-neural coefficients paired exactly; no resampling or dropping early deaths, no cross-life model weight transfer.
+- First **20 macroframes warmup** (80 actual microsteps): the fast circuit may receive and update its hidden neural state, but CANNOT override or learn; every arm uses the same real slow-base motor, enabling identical pre-warmup comparison.
+- A fast pathway may activate from t≥20 when last actually measured micro-collision is 1 or any actual local ray proximity > **0.82**. The SAME trigger for all fast arms. Fast response can start in the microstep IMMEDIATELY after an actual contact, i.e. physical latency .05 seconds instead of up to .20 seconds slow macro refresh. This is a simulation-design latency, not biological response time.
+- Four FAST leaky recurrent tanh units with current 7-D local input [three actual wall rays, previous actual contact flag, normalized actual speed, normalized turn, depleted energy]. Recurrent/input/hidden fast coefficients initialized from fixed seed and FROZEN. Fast output is two analog motor adjustments \`clamp(slow_base[k] + 0.65*tanh(dot(fast_output_w[k], [four fast states, bias])), -1, 1)\`; only 10 fast OUTPUT coefficients (two×[4 neurons +bias]) may learn. Zero map/path, no hard-coded left/right after collision, no escape macro. Fast hidden state updates each .05 s whether or not triggered.
+- When fast activated, its output is perturbed using fast independent Gaussian σ=.12 seeded per organism. All fast arms except independent random arm use same seeded fast-neural input and noise streams on paired common prefixes. A fast output can still remain poorly aligned with safety.
+
+**Five paired arms:**
+1. \`slow_only\`: original seeded 16-neuron slow motor commands held for all four .05 s physical substeps, never overridden. Fast network state may evolve passively but no output applied or learned.
+2. \`fast_fixed\`: an INITIALIZED but permanently fixed four-neuron recurrent fast pathway can override whenever trigger is present, with same σ=.12 fast motor exploration, no learning. Tests presence of a bypass alone.
+3. \`fast_real\`: same initial fast network and noise, online physical reward on ACTUALLY executed active fast microsteps \`0.7*actual_normalized_movement −1.2*actual_collision\`, update after the real micro-integrated outcome. Eligibility features are [fast hidden 4, constant1], motor perturbation-based traces, LR=.002, trace decay .80, reward baseline decay .97, weights clipped [-2,2]. This researcher-coded update is the only learned component.
+4. \`fast_old_sham\`: identical fast network, learning algorithm, motor noise and score, but uses a sampled REAL physical reward of the same organism at least **12 actual microframes earlier** instead of its current action's feedback; separate seeded RNG does not touch actuator perturbations. Historical rewards exist for ALL microframes, including non-triggered frames. Prior to 12 microframes use no fast synaptic update. Never fabricate a physical label.
+5. \`fast_random\`: same real event trigger, but replace fast output with a pair of independent uniform random continuous motor values [-1,1] per activated microstep using its own seeded RNG, no fast learning. Tests whether simply forcing more unpredictable motion releases jams.
+
+## Critical measurements (main nearfield + removal, macroframes140–279)
+- Actual **micro-collision repeat fraction** = number of physical microframes with collision where the immediately previous microframe also collided / number of preceding collision microframes with an actual next physical integration. Count numerator AND denominator, no division-zero victory. Also report same statistic over entire life and post-switch; disclose that temporal discretization makes R9 numbers not directly comparable to R8.
+- **Collisions PER REAL traveled meter** = pooled observed collision microframe count divided by actual physical distance. If the body stops, very high density; if zero distance, automatic FAIL.
+- Actual **distinct 1×1 visited cells**, physical distance, trajectory RMS radius and total alive microframes: avoid celebrating paralysis/confined circling.
+- **Contact recovery within 4 physical microframes (.20 s)** = among each physical contact at microtime j with at least four subsequent live steps, whether any subsequent movement exceeds **0.003 world units** before j+4. First collision in consecutive bursts and all collisions both reported, no cherry-picking. Note that even continued partial movement could pass; paired repeated-contact criteria remain primary.
+- **True bypass responsiveness** = number of actual contact microsteps followed by a fast motor override at the NEXT microstep, divided by number with available next microstep (same macro only if the slow model otherwise cannot issue a new command); intervention delay measured in physical simulated seconds. Also report fraction of post-change physical microsteps with fast override.
+- Active fast learner's true reward vs genuinely old-sham reward source; all pre-action 7 fast sensors, 4 hidden states, 2-motor base/fast candidates and executed command, pre/post full physical body state, wall distances/collision/energy/integrity, learning coefficients/traces and the after-step reward histories. Count exact true/old updates. No output weight inherited across lives.
+- Treat **12 world seeds** (each with two geometries and two regimes nested) as independent for exploratory world bootstrap95 intervals, NOT individual .05 s frames.
+- Entire experiment simulated TWICE, full raw JSON results byte-identical.
+
+## Sixteen prospective gates (9 integrity +7 efficacy), ALL mandatory
+
+**Integrity:**
+1. Exactly 240 balanced lives and two identical full serialized raw result files.
+2. Four genuine .05-s physical substeps per macro until real death; correct matched **micro** motor inertia, wall collisions, bounded body, .25/4 injury and .02/4 energy; no after-death movement.
+3. Same R1 original 16 neuron/8 local sensor slow network and 434 initialized coefficients, fixed across all lives, 2 original continuous motor outputs; same seeded original slow motor-noise stream for paired lives on common active prefixes.
+4. Fast network EXACTLY four leaky recurrent neurons and seven actual LOCAL inputs, same initial fast coefficients, only 10 output coefficients modifiable in two learning arms; no global target, map position, food or future label in either brain.
+5. ALL fast arms share EXACT same trigger from actually sensed prior physical contact or current real proximity >.82; fast bypass overrides the slow motor during the SAME physical macroframe when eligible, without an if-collision-then-turn rule.
+6. For true learning every reward uses ONLY real after-action displacement and collision; update after physics. For old-sham rewards source from same organism's actual executed microframe ≤t−12, independent PRNG, no invented outcome.
+7. First 20 macroframes ALL controller trajectories identical; static/removal same-arm worlds identical through t=139; remove EXACT five predefined walls at t=140 before local perception, no direct flag input.
+8. Complete actual raw microstates, neuron states and cause-provenance, no missing or fabricated dead episodes, paired worlds and noise; two full exact replays archived.
+9. No changes to old R1–R8 source or main, and all autonomous attack/escape/food/intelligence/evolution claims explicitly FALSE.
+
+**Science:**
+10. TRUE fast motor physical contact followup fraction in nearfield/removal ≤**0.80 × slow_only** (at least 50 actual slow_only contact followups).
+11. TRUE nearfield/removal physical micro-collision density per REAL distance ≤**0.80 × slow_only** and slow_only moved >0.
+12. TRUE nearfield/removal repeat contact fraction ≤**0.85 × fast_fixed** (denominator positive).
+13. TRUE nearfield/removal repeat contact fraction ≤**0.85 × fast_old_sham** (denominator positive).
+14. TRUE nearfield/removal distinct explored 1×1 cells ≥**0.90 × slow_only** AND ≥**0.90 × fast_random**.
+15. TRUE nearfield/removal trajectory RMS radius ≥**0.85 × slow_only** and actual traveled distance ≥**0.90 × slow_only**.
+16. TRUE fast pathway physically overrides base motors at ≥**10%** of actual after-switch microframes AND shows actual after-contact response in same macrostep on ≥**50%** of eligible immediate next physical microframes.
+
+**All sixteen criteria required.** The common-substep physics and original macro-R1 can be contrasted only qualitatively, not with naive raw ratio of per-meter collision counts. Meeting only latency criteria does not prove adaptive navigation. Green GitHub CI is software integrity, NOT efficacy.
+
+**STOP flags FALSE:** \`autonomous_escape_demonstrated=false\`, \`autonomous_attack_demonstrated=false\`, \`autonomous_goal_invention_demonstrated=false\`, \`food_search_demonstrated=false\`, \`general_intelligence_demonstrated=false\`, \`biological_fly_replication_demonstrated=false\`, \`evolution_authorized=false\`, \`advance_to_evolution=false\`. Narrow \`fast_motor_pathway_implemented=true\` only if implementation demonstrably responds within microframes; \`useful_fast_defense_demonstrated=true\` ONLY if all 7 science gates pass.
