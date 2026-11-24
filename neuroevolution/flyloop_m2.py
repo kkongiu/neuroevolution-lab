@@ -330,8 +330,10 @@ def _verify_physics(rows):
                 len(a)!=8 for a in item["actor_inputs"]
             ) or len(item["critic_inputs"])!=6:
                 return False
-            if t==SWITCH and "event" not in r["trajectory"][moves.index(item)-1]:
-                # Event must occur exactly before action at the change tick.
+            if t==SWITCH and not any(
+                e["step"]==SWITCH for e in events
+            ):
+                # A continuing organism must have undergone the switch.
                 return False
         if sum(item["food"] for item in moves)!=r["food_consumed"]:
             return False
