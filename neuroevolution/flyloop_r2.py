@@ -467,13 +467,19 @@ def run():
         ) for x1,y1,x2,y2 in r["rectangles"])
         for r in rows
     )
+    # Each arm may DIE at a different time. Compare the shared LIVE
+    # prefix of the exogenous noise stream, not unequal full lifetimes.
     noise_equal=all(
-        len({
-            sha([x["injected_motor_noise"] for x in r["trace"]])
-            for r in rows if r["seed"]==s and r["scene"]==sc
-            and r["arm"]!="inertial_random"
-        })==1
-        for s in SEEDS for sc in SCENES
+        all(
+            [x["injected_motor_noise"] for x in r["trace"][:minimum]]
+            ==[x["injected_motor_noise"] for x in group[0]["trace"][:minimum]]
+            for r in group
+        )
+        for sc in SCENES for s in SEEDS
+        for group in [[r for r in rows
+                       if r["seed"]==s and r["scene"]==sc
+                       and r["arm"]!="inertial_random"]]
+        for minimum in [min(len(r["trace"]) for r in group)]
     )
     near=summary["nearfield"]
     gates={
