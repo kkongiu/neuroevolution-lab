@@ -1,0 +1,53 @@
+name: FlyLoop M2 Blind Sensory and Procedural World Stress
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-m2-blind-sensors-procedural-worlds
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_m2.py'
+      - 'tests/test_flyloop_m2.py'
+      - '.github/workflows/flyloop-m2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  flyloop-m2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prospective M2 sensory masks, physics and independent maps tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m2.py' -v
+      - name: M1 unchanged regression tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m1.py' -v
+      - name: M0 unchanged regression tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m0.py' -v
+      - name: Full preregistered 768-lifetime 17-gate evaluation
+        run: python -m neuroevolution.flyloop_m2
+      - name: Full deterministic rerun and byte-by-byte result equality
+        run: |
+          python -m neuroevolution.flyloop_m2 --out results/flyloop/m2_repeat.json
+          cmp results/flyloop/m2_blind_procedural.json results/flyloop/m2_repeat.json
+          sha256sum results/flyloop/m2_blind_procedural.json results/flyloop/m2_repeat.json
+      - name: Archive every body transition, neural input, weight, world seed and negative result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-m2-blind-sensors-procedural-results
+          path: |
+            results/flyloop/m2_blind_procedural.json
+            results/flyloop/m2_repeat.json
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
