@@ -476,7 +476,7 @@ def run():
     passive_paired=all(
         # Two passive predictors have EXACTLY equal actions, states and
         # observations. They differ ONLY in head training labels/weights.
-        all(
+        (
             [(t["position"],t["executed_motor_command"],t["observed_next_wall_rays"])
              for t in a["trace"]]==
             [(t["position"],t["executed_motor_command"],t["observed_next_wall_rays"])
