@@ -106,6 +106,21 @@ class R2Tests(unittest.TestCase):
         self.assertEqual(p["training_feedback"],-1.2)
         self.assertEqual(p["actual_feedback"],-1.2)
 
+    def test_zero_gradient_is_valid_applied_update_without_weight_change(self):
+        # No collisions => collision-only training reward always zero.
+        # Eligibility is still accumulated and applied, but gradient = 0.
+        brain=r2.MotorLearner(9404,"collision_only")
+        original=copy.deepcopy(brain.circuit.weights)
+        positions=[(2.2,2.2)]
+        for tick in range(12):
+            positions.append((2.2+.05*(tick+1),2.2))
+            result=brain.adapt(
+                tick,.05,0,positions,[.3]*16,(.1,-.1)
+            )
+            self.assertEqual(result["training_feedback"],0.)
+        self.assertEqual(brain.updates,12)
+        self.assertEqual(brain.circuit.weights,original)
+
     def test_exactly_recurrent_or_leaky_structure_without_extra_input(self):
         for arm in r2.ARMS:
             c=r2.MotorLearner(9402,arm)
