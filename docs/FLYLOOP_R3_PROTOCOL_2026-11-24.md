@@ -47,18 +47,18 @@ On whole life and on frames 300–599 (predeclared late phase):
 **Integrity (10):**
 1. Exactly 384 balanced world×seed×arm rows, and **entire second run byte-identical** (GitHub Actions).
 2. Legal original R1 physics, continuous body positions/motor, no wall penetration or resurrection, physical energy/integrity.
-3. Identical exogenous 10-rectangle map, initial body pose and 434 initial neural coefficients per world×seed across all eight controls; motor noise identical on the shared live prefix across seven neural arms.
+3. Identical exogenous 10-rectangle map, initial body pose and 434 initial neural coefficients per world×seed across all eight controls; motor noise identical on the shared live prefix across seven neural arms. `predict_passive` and `predict_sham_passive` must follow EXACTLY identical physical trajectories (their heads never affect the motor).
 4. 16 original recurrent-neuron states and original 8 local sensor channels (wall ray, speed, turn, previous collision, energy), no hidden map, food, reward lookup or future senses.
 5. Predictor has exactly 66 learnable coefficients, all initially ZERO, and only these + up to 34 original motor coefficients can change in allowed arms. Frozen and random arms retain their coefficients; original 400 nonmotor neural coefficients never update.
 6. Predictions are computed from real t sensory values and executed motor signal BEFORE physical World.integrate; labels use actual t+1 readings AFTER physical movement; MSE calculated against unaltered actual next readings on the same real trajectory.
-7. Sham training labels come only from same organism's recorded t−6 or OLDER actual previous wall-ray samples, sampled with an **independent RNG**. No fabricated sham labels in initial steps.
+7. Sham training labels come only from same organism's recorded t−6 or OLDER actual previous wall-ray samples, sampled with an **independent RNG**. No fabricated sham labels in initial steps. The two passive predictor controls must have identical actual motor, sensor and physical outcome trajectories.
 8. Persistence reference is exactly current three real wall values and evaluated on the same true future observations, regardless of policy; frozen-head predictions equal this reference.
 9. Two exogenous map generators have 10 valid nonoverlapping rectangles and at least 20 different maps over 24 world seeds each.
 10. All per-step logs, coefficient hashes, reproducibility and explicit false evolution/intelligence stop flags archived; R1/R2 original source unmodified.
 
 **Scientific efficacy (6):**
 11. In \`nearfield\`, TRUE passive online predictor's **late-phase** mean MSE ≤ **0.85 × SAME-TRAJECTORY persistence MSE**. If persistence loss is exactly zero, automatic FAIL.
-12. In \`nearfield\`, TRUE passive predictor's late-phase mean MSE ≤ **0.85 × sham predictor's** late-phase mean real-target MSE. Same cohort worlds but policies initially matched; never treat these as independent frames.
+12. In \`nearfield\`, TRUE passive predictor's late-phase mean MSE ≤ **0.85 × `predict_sham_passive` predictor's** late-phase mean real-target MSE on EXACTLY THE SAME TRAJECTORIES. Never treat time frames as independent replicates.
 13. In \`nearfield\`, \`predict_motor\` mean unique 1×1 cells ≥ **1.10 × recurrent_frozen**.
 14. In \`nearfield\`, \`predict_motor\` pooled collisions/meter ≤ **0.90 × recurrent_frozen**.
 15. In \`nearfield\`, \`predict_motor\` mean unique cells ≥ **1.10 × predict_sham**.
