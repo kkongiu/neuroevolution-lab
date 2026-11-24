@@ -112,10 +112,14 @@ def physical_branches(world,hidden,rays,natural,heads,yoked,source,tick):
         after_sensor=tuple(clone.perceive()[1:4])
         # Five MORE REAL integrations using the same experimentally forced
         # motor command, no motor brain, no predictor and no neural learning.
+        completed=1
         for _ in range(LONG_STEPS-1):
+            # Death is an absorbing physical state, NEVER resurrect to
+            # complete a predeclared number of movement integrations.
             if clone.body.energy<=0. or clone.body.integrity<=0.:
-                raise AssertionError("Physical intervention clone died")
+                break
             clone.integrate(cmd)
+            completed+=1
         last_position=[clone.body.x,clone.body.y]
         trial={
             "label":label,
@@ -124,6 +128,10 @@ def physical_branches(world,hidden,rays,natural,heads,yoked,source,tick):
             "step1_physics":step1,
             "real_step1_next_wall_rays":list(after_sensor),
             "six_step_terminal_xy":last_position,
+            "real_integrations_before_death":completed,
+            "died_before_six":completed<LONG_STEPS,
+            "terminal_energy_after_forcing":clone.body.energy,
+            "terminal_integrity_after_forcing":clone.body.integrity,
             "model_predictions":predicted,
             "actual_one_step_mse":{
                 name:squared(v,after_sensor)
@@ -294,6 +302,9 @@ def simulate(seed,scene):
         "six_step_left_right_divergence_sum":sum(
             p["six_step_left_right_xy_distance"] for p in probes
         ),
+        "died_before_six_branch_count":sum(
+            t["died_before_six"] for t in all_trials
+        ),
         "sum_heldout_real_next_sensor_mse":sum_loss,
         "sum_action_contrast_mse":contrast_sum,
         "probe_snapshots_and_real_branches":probes,
@@ -306,9 +317,14 @@ def _audit(rows):
     frozen=True
     provenance=True
     for row in rows:
-        if row["original_life_steps"]!=HORIZON or len(
-            row["real_original_life"]
-        )!=HORIZON or row["probe_count"]!=len(PROBE_STEPS):
+        # A genuine original death is valid physical behavior. It
+        # FAILS the prospective count gate but is NOT a physics bug.
+        if (row["original_life_steps"]!=len(row["real_original_life"])
+            or not 1<=row["original_life_steps"]<=HORIZON
+            or row["probe_count"]!=len([
+                tick for tick in PROBE_STEPS
+                if tick<row["original_life_steps"]
+            ])):
             physics=False
         if row["original_neural_coefficient_changed"] or row[
             "initial_original_neural_coefficients_sha256"
@@ -332,7 +348,9 @@ def _audit(rows):
                 histories=False
             if original["head_was_trained"]!=(tick<TRAIN_STEPS):
                 frozen=False
-        if [x["tick"] for x in row["probe_snapshots_and_real_branches"]]!=list(PROBE_STEPS):
+        if [x["tick"] for x in row["probe_snapshots_and_real_branches"]]!=[
+            tick for tick in PROBE_STEPS if tick<row["original_life_steps"]
+        ]:
             physics=False
         trained_head=r4.ActionSensorHeads(row["seed"])
         trained_head.weights=copy.deepcopy(row["frozen_three_heads_after_300_real_steps"])
@@ -371,6 +389,17 @@ def _audit(rows):
                 if trial["forced_executed_motor"]!=list(forced):
                     physics=False
                 if trial["physical_pre_body"]!=pre:
+                    physics=False
+                if not 1<=trial["real_integrations_before_death"]<=LONG_STEPS:
+                    physics=False
+                if trial["died_before_six"]!=(
+                    trial["real_integrations_before_death"]<LONG_STEPS
+                ):
+                    physics=False
+                if trial["died_before_six"] and not (
+                    trial["terminal_energy_after_forcing"]<=0. or
+                    trial["terminal_integrity_after_forcing"]<=0.
+                ):
                     physics=False
                 after=trial["step1_physics"]
                 x,y=after["position"]
@@ -486,6 +515,12 @@ def _summarize(rows):
             sum(r["six_step_left_right_divergence_sum"] for r in rows)
             /max(snaps,1),6
         ),
+        "original_lives_shorter_than_600":sum(
+            r["original_life_steps"]<HORIZON for r in rows
+        ),
+        "physically_terminated_branch_trials_before_six":sum(
+            r["died_before_six_branch_count"] for r in rows
+        ),
         "one_step_mse":{
             k:round(v/max(total_trials,1),12)
             for k,v in losses.items()
@@ -511,9 +546,21 @@ def _bootstrap(rows,metric1,metric2,n=1000):
     # 2 scenes nested inside each independent seeded world.
     def value(group,key):
         n=sum(r["real_intervention_one_step_trials"] for r in group)
+        if n==0:
+            return None
         return sum(
             r["sum_heldout_real_next_sensor_mse"][key] for r in group
         )/n
+    if any(
+        value(by_seed[s],metric1) is None or
+        value(by_seed[s],metric2) is None
+        for s in SEEDS
+    ):
+        return {
+            "unavailable_due_to_predeclared_early_death":True,
+            "independent_world_seeds":len(SEEDS),
+            "no_worlds_removed_or_reseeded":True,
+        }
     diffs=[
         value(by_seed[s],metric1)-value(by_seed[s],metric2)
         for s in SEEDS
