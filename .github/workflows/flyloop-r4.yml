@@ -1,0 +1,54 @@
+name: FlyLoop R4 Action-Conditioned Controllability
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r4-action-conditioned-controllability
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r4.py'
+      - 'tests/test_flyloop_r4.py'
+      - '.github/workflows/flyloop-r4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r4-controllability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R1 unmodified recurrent physics regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: R2 original motor update / physics regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r2.py' -v
+      - name: R3 original future-sensor prediction regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r3.py' -v
+      - name: R4 local motor-conditioned / old-command yoke tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_r4.py' -v
+      - name: First preregistered 336-body continuous R4 science
+        run: python -m neuroevolution.flyloop_r4
+      - name: Repeat complete R4 study and compare full results byte for byte
+        run: |
+          python -m neuroevolution.flyloop_r4 --out results/flyloop_r4/r4_repeat.json
+          cmp results/flyloop_r4/r4_motor_controllability.json results/flyloop_r4/r4_repeat.json
+          sha256sum results/flyloop_r4/r4_motor_controllability.json results/flyloop_r4/r4_repeat.json
+      - name: Archive all original and repeated action-conditioned neuron/body traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r4-action-controllability-results
+          path: |
+            results/flyloop_r4/r4_motor_controllability.json
+            results/flyloop_r4/r4_repeat.json
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 6

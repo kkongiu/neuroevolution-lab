@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-24",
+  "source_workflow_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/45440238377",
+  "source_artifact_id": 14942559176,
+  "source_artifact_name": "flyloop-r4-action-controllability-results",
+  "full_output_files": [
+    "r4_motor_controllability.json",
+    "r4_repeat.json"
+  ],
+  "each_output_file_bytes": 267997344,
+  "full_file_sha256": "124c56c9034628441a0f50ce6d5f8f6007c48fbb6a3e660f68b4660d02395583",
+  "complete_replay_byte_identical": true,
+  "raw_rows_sha256_independently_computed": "9075f5d850d1e3364c874a615674f428ce3719dcfde5b96dd5aa2ffc4aa1df22",
+  "raw_rows_checksum_matches_source": true,
+  "audit_implementation": "Separate independent Python standard library script without importing flyloop_r1/r2/r3/r4, executed on downloaded Github Actions zip",
+  "checked": {
+    "lives": 336,
+    "independent_world_pairs": 48,
+    "physical_motion_frames": 201600,
+    "collisions": 18645,
+    "predictor_weight_update_events": 345600,
+    "historic_yoked_motor_commands": 199584,
+    "exactly_three_predictor_heads_each_with_84_coefficients": true,
+    "chronological_head_reconstruction": true,
+    "preaction_prediction_and_postaction_supervised_actual_rays": true,
+    "same_true_head_command_substitution_reconstructed": true,
+    "actual_sourced_past_motor_at_least_six_ticks_old": true,
+    "independent_physical_clearance_and_energy_integrity": true,
+    "identical_paired_worlds_pose_initial_network": true,
+    "frozen_upstream_recurrent_network": true,
+    "science_summary_recomputed": true
+  },
+  "observed_audit_issues": {},
+  "independent_audit_pass": true,
+  "integrity_gates_passed": 11,
+  "prediction_efficacy_gates_passed": 0,
+  "motor_efficacy_gates_passed": 0,
+  "overall_passed": 11,
+  "overall_total": 18,
+  "prospective_science_screen_pass": false,
+  "late_nearfield_passive_mse": {
+    "true_actual_command": 0.018284652,
+    "motor_blind": 0.019526824,
+    "past_motor_yoked": 0.01846122,
+    "same_true_head_past_motor_evaluation": 0.018552053
+  },
+  "additional_exploratory_seed_bootstrap": {
+    "motor_blind_minus_true_mse": {
+      "mean": 0.001242172,
+      "bootstrap95": [
+        0.000737475,
+        0.001804673
+      ],
+      "positive_worlds": 23,
+      "total_worlds": 24
+    },
+    "yoked_minus_true_mse": {
+      "mean": 0.000176568,
+      "bootstrap95": [
+        0.000100834,
+        0.00026443
+      ],
+      "positive_worlds": 21,
+      "total_worlds": 24
+    },
+    "same_true_head_swapped_minus_actual_mse": {
+      "mean": 0.000267401,
+      "bootstrap95": [
+        0.000122809,
+        0.000477952
+      ],
+      "positive_worlds": 22,
+      "total_worlds": 24
+    }
+  },
+  "interpretation": "True executed commands add small measurable local next-sensor predictive information but do not clear 15% prospective efficacy or demonstrate more effective exploration/avoidance. This is a synthetic action-conditioned predictive association, NOT independently randomized physical counterfactual causation.",
+  "stop_flags": {
+    "food_search_demonstrated": false,
+    "escape_reflex_learned": false,
+    "autonomous_goal_invention_demonstrated": false,
+    "general_intelligence_demonstrated": false,
+    "biological_fly_replication_demonstrated": false,
+    "evolution_authorized": false,
+    "advance_to_evolution": false
+  }
+}
