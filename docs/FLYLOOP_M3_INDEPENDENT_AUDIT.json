@@ -1,0 +1,22 @@
+{
+  "source_workflow_run": 45355392710,
+  "source_actions_artifact": 14902471288,
+  "code_run_commit": "5ecbfeb522300528f126cff0a2d2506e083c9f2a",
+  "source_file_size_bytes_each": 223415999,
+  "source_full_file_sha256": "6a72d767c52325ee7f53c04f412dfd363b19bb3553fe55ae20aa47d5a5581dcb",
+  "raw_rows_sha256": "62345a93f1d5b80b0f176457561dace48b217bcc709f44788aa387a72ea8703b",
+  "byte_identical_full_replay": true,
+  "independently_checked_lifetimes": 672,
+  "independently_checked_paired_worlds": 96,
+  "independently_checked_physical_actions": 235906,
+  "independently_checked_environment_events": 698,
+  "independently_checked_food_events": 13679,
+  "independently_checked_strictly_past_memory_sources": 100874,
+  "independently_reconstructed_actor_features": 3398800,
+  "scientific_gates_passed": 11,
+  "scientific_gates_total": 18,
+  "scientific_screen_pass": false,
+  "independent_audit_error_counts": {},
+  "independent_audit_pass": true,
+  "interpretation": "11/11 integrity PASS, 0/7 scientific efficacy PASS; physical feedback temporal memory did NOT demonstrate robust blind foraging beyond motor-only or random controls; no intelligence or evolution claim."
+}
