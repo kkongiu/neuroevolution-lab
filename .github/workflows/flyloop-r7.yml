@@ -1,0 +1,60 @@
+name: FlyLoop R7 Within-Life Online Predictive Action Loop
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r7-online-predictive-action-loop
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r7.py'
+      - 'tests/test_flyloop_r7.py'
+      - '.github/workflows/flyloop-r7.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r7-predictive-online-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unchanged R1 continuous physical/recurrent regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: Unchanged R2 motor plasticity regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r2.py' -v
+      - name: Unchanged R3 sensory prediction regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r3.py' -v
+      - name: Unchanged R4 action-conditioned head regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r4.py' -v
+      - name: Unchanged R5 forced physical intervention regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r5.py' -v
+      - name: Unchanged R6 heldout physical transfer regression
+        run: python -m unittest discover -s tests -p 'test_flyloop_r6.py' -v
+      - name: Test R7 causal online head-to-action closure, passive equivalence, change and sham controls
+        run: python -m unittest discover -s tests -p 'test_flyloop_r7.py' -v
+      - name: First preregistered 384-life R7 physical online loop comparison
+        run: python -m neuroevolution.flyloop_r7
+      - name: Full R7 repeat and byte-identical original raw neuron/action/model trajectories
+        run: |
+          python -m neuroevolution.flyloop_r7 --out results/flyloop_r7/r7_repeat.json
+          cmp results/flyloop_r7/r7_online_predictive_action.json results/flyloop_r7/r7_repeat.json
+          sha256sum results/flyloop_r7/r7_online_predictive_action.json results/flyloop_r7/r7_repeat.json
+      - name: Archive complete original and repeated raw lifelong action/brain/world results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r7-within-life-online-action-results
+          path: |
+            results/flyloop_r7/r7_online_predictive_action.json
+            results/flyloop_r7/r7_repeat.json
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 6
