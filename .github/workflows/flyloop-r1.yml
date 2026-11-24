@@ -1,0 +1,48 @@
+name: FlyLoop R1 Continuous Recurrent Locomotion
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r1-continuous-recurrent-motor
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r1.py'
+      - 'tests/test_flyloop_r1.py'
+      - '.github/workflows/flyloop-r1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r1-continuous-motor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R1 numerical recurrence, physics, blind control and deterministic unit tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: First preregistered complete 240-lifetime movement experiment
+        run: python -m neuroevolution.flyloop_r1
+      - name: Independently repeat complete science and enforce byte-identical JSON
+        run: |
+          python -m neuroevolution.flyloop_r1 --out results/flyloop_r1/r1_repeat.json
+          cmp results/flyloop_r1/r1_continuous_motor.json results/flyloop_r1/r1_repeat.json
+          sha256sum results/flyloop_r1/r1_continuous_motor.json results/flyloop_r1/r1_repeat.json
+      - name: Archive all continuous motor and 16-neuron-state trajectories, both runs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r1-continuous-motor-results
+          path: |
+            results/flyloop_r1/r1_continuous_motor.json
+            results/flyloop_r1/r1_repeat.json
+          retention-days: 30
+          if-no-files-found: warn
