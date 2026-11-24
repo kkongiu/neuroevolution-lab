@@ -1,0 +1,51 @@
+{
+  "audit_date": "2026-11-24",
+  "source_workflow_url": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/45486534766",
+  "source_artifact_id": 14963649952,
+  "source_artifact_name": "flyloop-r9-fast-defensive-microphysics-results",
+  "independent_auditor": "Standalone Python 3; standard library, orjson for decoding, zero imports from neuroevolution / FlyLoop R1–R9. Executed against actual downloaded entire original GitHub Actions ZIP.",
+  "input_archive": "flyloop-r9-verified-results.zip",
+  "full_files_sha256": {
+    "r9_fast_defensive_microphysics.json": "771bec3535f1abc4319fffffb122d4b32c820f629789ee435972e38559b52a7f",
+    "r9_repeat.json": "771bec3535f1abc4319fffffb122d4b32c820f629789ee435972e38559b52a7f"
+  },
+  "complete_science_files_byte_identical": true,
+  "canonical_raw_240_lives_sha256": "226ae26d75ac12694686e486b78084ea7467b3918531c50550771cbe3000d061",
+  "full_raw_population_and_sha_independently_matched": true,
+  "independent_verified": {
+    "original_lives": 240,
+    "actual_physically_executed_microsteps": 268800,
+    "fast_motor_readout_learning_events": 35065,
+    "real_historical_sham_feedback_targets": 17327,
+    "maximum_terminal_fast_weight_numerical_deviation": 1.8938739465568233e-12,
+    "intermediate_exact_weight_hash_mismatches_due_to_last_bit_rounding": 2674
+  },
+  "audit_tolerance": {
+    "physical_positions_angles_and_other_physics_values": 2e-8,
+    "final_head_coefficients": 2e-12,
+    "note": "Bitwise-equal full source reruns verified; separate independent floating-point implementation is not asserted bitwise-equal, as 2674 intermediate exact textual weight hashes differ at last-bit numerical precision. Differences were compared and remained under these tolerances."
+  },
+  "checks": [
+    "All original 12 seeded maps for both R1 and R2 exogenous procedural 10-obstacle generator families",
+    "Original seeded 434 neural coefficient generator and per-life exact initial/final frozen slow-network source coefficients",
+    "Original 16 recurrent tanh neuron evolution, eight actual local slow sensors and seeded exogenous R2 Gaussian slow motor noise every 0.20s",
+    "All 4 real fast leaky recurrent neuron states and seven actual pre-action local sensors every 0.05s",
+    "Exact pre-existing real contact or ray >0.82 fast activation and causal current continuous motor commands",
+    "Physical continuous body inertia and actual time, bounds, rectangle collisions, energy and integrity decrements for all 268800 frames",
+    "All original and rapid Gaussian motor noise streams and fixed vs learned output readout",
+    "Every true physically derived after-action progress minus contact training reward",
+    "All 17327 historical old-sham reward source indices at most t-12 from the same previously physically executed organism",
+    "All 35065 independent fast-motor-output eligibility based readout updates within numerical tolerance",
+    "Micro contact followup frequencies, motor overrides and actual traveled physical distances",
+    "240 unique locked seed×scene×regime×arm population with full exact byte-identical external source replay"
+  ],
+  "independent_numerical_audit_pass": true,
+  "exact_intermediate_bit_hash_audit_pass": false,
+  "differences_above_numerical_tolerance": 0,
+  "original_preregistered_integrity_passed": 9,
+  "original_preregistered_science_passed": 1,
+  "original_preregistered_total_passed": 10,
+  "original_preregistered_total_gates": 16,
+  "original_preregistered_science_screen_pass": false,
+  "limitation": "Computational verification of artificial physical equations, not empirical evidence on biological escape systems, and physical micro-integrator differs from R8's original 0.20s single-step physics."
+}
