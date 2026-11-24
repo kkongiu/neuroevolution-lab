@@ -1,0 +1,52 @@
+name: FlyLoop R3 Predictive Sensorimotor Causality
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r3-predictive-sensorimotor
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r3.py'
+      - 'tests/test_flyloop_r3.py'
+      - '.github/workflows/flyloop-r3.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r3-predictive-motor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test unchanged original R1 physical recurrence
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: Test unchanged original R2 motor plasticity
+        run: python -m unittest discover -s tests -p 'test_flyloop_r2.py' -v
+      - name: Test causal R3 predictor and matched true-vs-sham trajectories
+        run: python -m unittest discover -s tests -p 'test_flyloop_r3.py' -v
+      - name: Run all 384 prospectively fixed R3 lives
+        run: python -m neuroevolution.flyloop_r3
+      - name: Repeat all R3 lives and assert byte-identical outputs
+        run: |
+          python -m neuroevolution.flyloop_r3 --out results/flyloop_r3/r3_repeat.json
+          cmp results/flyloop_r3/r3_predictive_motor.json results/flyloop_r3/r3_repeat.json
+          sha256sum results/flyloop_r3/r3_predictive_motor.json results/flyloop_r3/r3_repeat.json
+      - name: Archive all real sensory transitions and predictor/motor states
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r3-predictive-sensorimotor-results
+          path: |
+            results/flyloop_r3/r3_predictive_motor.json
+            results/flyloop_r3/r3_repeat.json
+          compression-level: 6
+          retention-days: 30
+          if-no-files-found: warn
