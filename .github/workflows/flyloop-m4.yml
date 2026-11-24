@@ -1,0 +1,55 @@
+name: FlyLoop M4 Local Chemical Sensing and Causality
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-m4-local-chemical-sensing
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_m4.py'
+      - 'tests/test_flyloop_m4.py'
+      - '.github/workflows/flyloop-m4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  m4-local-odor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prospectively frozen M4 local-only scent, sham timing, world pairing tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m4.py' -v
+      - name: Regression all original M3/M2/M1/M0 FlyLoop tests
+        run: |
+          python -m unittest discover -s tests -p 'test_flyloop_m3.py' -v
+          python -m unittest discover -s tests -p 'test_flyloop_m2.py' -v
+          python -m unittest discover -s tests -p 'test_flyloop_m1.py' -v
+          python -m unittest discover -s tests -p 'test_flyloop_m0.py' -v
+      - name: Run complete preregistered 672-life M4 science
+        run: python -m neuroevolution.flyloop_m4
+      - name: Repeat complete 672-life M4 science and enforce byte-identical results
+        run: |
+          python -m neuroevolution.flyloop_m4 --out results/flyloop/m4_repeat.json
+          cmp results/flyloop/m4_local_odor.json results/flyloop/m4_repeat.json
+          sha256sum results/flyloop/m4_local_odor.json results/flyloop/m4_repeat.json
+      - name: Archive both full real sensor and action trajectory datasets
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-m4-local-odor-causal-results
+          path: |
+            results/flyloop/m4_local_odor.json
+            results/flyloop/m4_repeat.json
+          retention-days: 30
+          compression-level: 6
+          if-no-files-found: warn
