@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-24",
+  "source": "Downloaded GitHub Actions artifact #14959092929, successful workflow #45476065724",
+  "source_run_url": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/45476065724",
+  "method": "Independent Python 3 standard library script, no imports of the experiment's neuroevolution R1–R6 modules; full replay of original recurrent motor/physics and action-conditioned LMS training",
+  "full_output_files": [
+    "r6_intervention_trained_transfer.json",
+    "r6_repeat.json"
+  ],
+  "each_full_output_size_bytes": 36270098,
+  "identical_full_sha256": "cea9832270268fcac38920e3ce6e08f6a08e76bc891c52d2dcffd94b6b980b28",
+  "full_replay_byte_identical": true,
+  "canonical_96_raw_rows_sha256": "4afb66e57600786a664e43aeca7ea68955c19774b3de930c6d49f6b7a0772e7e",
+  "matches_model_raw_rows_sha256": true,
+  "audited_counts": {
+    "training_lives": 48,
+    "heldout_lives": 48,
+    "training_natural_frames": 11520,
+    "heldout_natural_frames": 11520,
+    "training_actual_physical_interventions": 2400,
+    "heldout_actual_physical_interventions": 2400,
+    "total_real_forced_physical_integrations": 14400,
+    "training_head_lms_update_events": 7200,
+    "heldout_head_lms_update_events": 0,
+    "training_cloned_initial_states": 480,
+    "heldout_cloned_initial_states": 480,
+    "heldout_informative_real_action_contrasts": 900,
+    "heldout_independent_seed_count": 24
+  },
+  "independently_reconstructed": [
+    "Both distinct ten-rectangle world generators from preselected seed and geometry equations",
+    "Original deterministic 434 neural coefficients per seed and all 16 recurrent tanh neuron states",
+    "All 8 local sensors and real seeded Gaussian motor perturbations of original physical bodies",
+    "Continuous actuator inertia and actual real physical movement, wall contact, body radius, energy and integrity for natural and cloned branches",
+    "Five distinct experimentally forced three-step actions from exact same physical source per snapshot",
+    "Same original natural first physical step matches one of the forced clones",
+    "Chronological R4 LMS of all three 84-weight sensor heads with true, blind and within-snapshot rotated actually executed motor command",
+    "Matching real terminal three-step wall-ray observations in all physically executed training target events",
+    "Same original trained frozen head coefficients independently reconstructed and same SHA256 before/after heldout worlds",
+    "Actual next-sensor head predictions and MSE on each heldout physically executed world/action",
+    "Measured real forced-minus-natural three-ray physical effect contrasts and prediction deltas",
+    "Information threshold for 900 physically informative heldout contrasts",
+    "Both 36,270,098-byte complete JSON files and canonical 96-life raw data exact SHA256"
+  ],
+  "independently_recomputed_heldout_absolute_MSE": {
+    "actual_action": 0.04891532729081074,
+    "no_motor": 0.0567314856708319,
+    "rotated_training_action": 0.05944137484869144,
+    "persistence": 0.06143965361677151
+  },
+  "independently_recomputed_informative_action_delta_MSE": {
+    "actual_action_model": 0.03322761489275497,
+    "zero_effect_null": 0.03857213612391453
+  },
+  "integrity_discrepancies": {},
+  "independent_integrity_audit_pass": true,
+  "original_preregistered_gates_passed": 15,
+  "original_preregistered_gates_total": 17,
+  "original_integrity_passed": 10,
+  "original_science_gates_passed": 5,
+  "original_science_gates_total": 7,
+  "overall_science_screen_pass": false,
+  "limitations": "Computer audit of a synthetic simulator, not empirical validation of biological animals; model trained outside the organism across worlds and physically forced action samples, no autonomous action selection, navigation or evolution."
+}

@@ -1,0 +1,58 @@
+name: FlyLoop R6 Physical Intervention-Trained Unseen World Transfer
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r6-intervention-trained-transfer
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r6.py'
+      - 'tests/test_flyloop_r6.py'
+      - '.github/workflows/flyloop-r6.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r6-causal-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Regress unchanged R1 continuous recurrent physics
+        run: python -m unittest discover -s tests -p 'test_flyloop_r1.py' -v
+      - name: Regress unchanged R2 motor readout plasticity
+        run: python -m unittest discover -s tests -p 'test_flyloop_r2.py' -v
+      - name: Regress unchanged R3 local next-sensor prediction
+        run: python -m unittest discover -s tests -p 'test_flyloop_r3.py' -v
+      - name: Regress unchanged R4 action-conditioned heads
+        run: python -m unittest discover -s tests -p 'test_flyloop_r4.py' -v
+      - name: Regress unchanged R5 actual physical action interventions
+        run: python -m unittest discover -s tests -p 'test_flyloop_r5.py' -v
+      - name: Verify R6 real physics, distinct training/test worlds/actions, no heldout-label learning
+        run: python -m unittest discover -s tests -p 'test_flyloop_r6.py' -v
+      - name: First preregistered R6 intervention training and fully heldout transfer
+        run: python -m neuroevolution.flyloop_r6
+      - name: Repeat full R6 training and heldout evaluation to byte equality
+        run: |
+          python -m neuroevolution.flyloop_r6 --out results/flyloop_r6/r6_repeat.json
+          cmp results/flyloop_r6/r6_intervention_trained_transfer.json results/flyloop_r6/r6_repeat.json
+          sha256sum results/flyloop_r6/r6_intervention_trained_transfer.json results/flyloop_r6/r6_repeat.json
+      - name: Archive full real physical original/forced train/test traces and both exact replicates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r6-intervention-trained-heldout-transfer
+          path: |
+            results/flyloop_r6/r6_intervention_trained_transfer.json
+            results/flyloop_r6/r6_repeat.json
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
