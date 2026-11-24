@@ -78,6 +78,36 @@ class R5Tests(unittest.TestCase):
             ))
         self.assertGreaterEqual(branch["six_step_left_right_xy_distance"],0.)
 
+    def test_forced_clone_death_is_absorbing_not_resurrected(self):
+        # A physically real near-boundary organism with 0.25 integrity
+        # dies from just ONE collision; NEVER force five more actions.
+        w=r5.World(10305,"obstacles")
+        w.body.x=.301
+        w.body.y=10.
+        w.body.heading=math.pi
+        w.body.speed=1.
+        w.body.integrity=.25
+        raw=w.perceive()
+        brain=r2.MotorLearner(10305,"recurrent_frozen")
+        _,h,_,_,natural=brain.command(raw)
+        heads=r4.ActionSensorHeads(10305)
+        p=r5.physical_branches(
+            w,h,raw[1:4],natural,heads,(0.,0.),None,300
+        )
+        self.assertTrue(any(
+            t["died_before_six"] for t in p["trials"]
+        ))
+        for trial in p["trials"]:
+            self.assertTrue(1<=trial["real_integrations_before_death"]<=6)
+            if trial["died_before_six"]:
+                self.assertTrue(
+                    trial["terminal_energy_after_forcing"]<=0 or
+                    trial["terminal_integrity_after_forcing"]<=0
+                )
+        # The original world was never advanced by any experimental clone.
+        self.assertEqual(w.frame,0)
+        self.assertEqual(w.body.integrity,.25)
+
     def test_frozen_original_nervous_system_and_heads_only_train_real_300(self):
         life=r5.simulate(10301,"nearfield")
         self.assertEqual(life["original_life_steps"],600)
