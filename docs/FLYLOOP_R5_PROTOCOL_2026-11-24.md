@@ -1,6 +1,12 @@
 # FlyLoop R5 — frozen prospective protocol for physical action interventions
 **24 November 2026. Written and committed BEFORE first complete R5 evaluation.**
 
+## Transparent physical-death handling erratum, before any completed scientific result
+
+The FIRST full GitHub Actions run reached an organism that died before its SIXTH forced experimental frame and raised an unhandled assertion. Therefore that run produced NO complete R5 data or science screening result. This erratum is committed BEFORE any successful complete campaign; the originally committed protocol remains in Git history. No thresholds, world seeds, scenarios, actions, learning coefficients or observation intervals change.
+
+A dead physical clone becomes an ABSORBING state: stop executing actual motor integrations immediately upon physical death, record real_integrations_before_death (1–6) and died_before_six, and retain the last physically attained body position as its pose at the sixth-frame horizon. Never resurrect, secretly integrate dead bodies, substitute another world, or discard a failed probe. An original organism dying before its 600th step likewise stops; unperformed fixed probe snapshots are absent and the prospective exact-count integrity gate #1 FAILS instead of being relaxed. A six-step terminal comparison of a dead clone is a censored physical endpoint, NOT a claim that six physical actions were executed. Report counts of early-death branches and truncated original lives alongside all metrics. All science thresholds and planned sample-count gates remain unchanged.
+
 ## Purpose
 FlyLoop R4 found a small action-conditional prediction advantage on **observational** trajectories, but not a preregistered improvement in navigation. Merely replacing the action features in a predictor with older values did NOT actually make the organism physically execute the old actions, and therefore cannot on its own prove an intervention.
 
