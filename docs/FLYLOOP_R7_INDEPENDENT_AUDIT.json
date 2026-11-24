@@ -1,0 +1,80 @@
+{
+  "audit_date": "2026-11-24",
+  "experiment": "FlyLoop R7 online sensory learning to physical action selection",
+  "source_git_run": "https://github.com/kkongiu/neuroevolution-lab/actions/runs/45479176516",
+  "github_action_artifact_id": 14961447843,
+  "github_action_artifact_name": "flyloop-r7-within-life-online-action-results",
+  "artifact_retention_until": "2026-12-24",
+  "source_file_names": [
+    "r7_online_predictive_action.json",
+    "r7_repeat.json"
+  ],
+  "each_full_json_bytes": 369408944,
+  "both_full_json_sha256": "b9db6c8e3926cee54c5d4dac1d04409700f5f5f8b8c2f64341026a74aa5e02e7",
+  "whole_complete_replay_sha256_equal": true,
+  "all_384_raw_life_rows_sha256": "163009042737b31fbb08c909e6093d74548a2fb516aa4474e551bb6b432d5294",
+  "downloaded_zip_sha256": "3e7fda2a224169cfee1d9ff7cf9791a349550c29fc36cd48ee09ef4c403bf87f",
+  "methodology": "Independent Python 3 reconstruction. Independent audit program does NOT import R1-R7 neuroevolution packages. Uses orjson only as efficient JSON parser. Original GitHub CI independently full-replays ALL 384 bodies twice, byte-exact.",
+  "whole_data_audit": {
+    "lives": 384,
+    "world_seed_geometry_regime_paired_cohorts": 64,
+    "actual_physical_motor_frame_records": 184320,
+    "physically_real_wall_collisions": 10216,
+    "lifetime_prediction_head_updates_checked": 460800,
+    "whole_archive_verified": [
+      "source seed and geometry independent map regeneration",
+      "every frame ordering, real motor output selected from logged five candidates",
+      "real bodily positions legal and without interior inflated-solid-wall penetration",
+      "absence of movement on real wall collisions and legitimate energy/integrity",
+      "all sham training actions derived from same organism >=6 physically previous steps",
+      "all logged real-future next sensor MSE recomputed from preaction predictions and actual observations",
+      "complete original seeded network/no hidden recurrent changes except allowed R2 motor readout",
+      "no head training in frozen controls and correct online head training-event counts",
+      "all original/postchange real physical visited cells, novel cells, collision counts and traveled distance",
+      "same-world frozen/passive motor and physics sequences exactly equal",
+      "matched static/removal neural/physical trajectories identical before tick240"
+    ]
+  },
+  "deep_independent_sample": {
+    "preselected_world_seeds": [
+      10900,
+      10905,
+      10910,
+      10915
+    ],
+    "seed_choice": "deterministic seed positions, not selected from performance results",
+    "deep_lives": 96,
+    "sample_fraction": 0.25,
+    "complete_real_physical_steps_replayed": 46080,
+    "independent_head_learning_updates_recomputed": 115200,
+    "independent_preaction_candidate_predictions_recomputed": 460800,
+    "physical_collisions_replayed": 731,
+    "postchange_action_overrides_replayed": 10615,
+    "independently_recomputed": [
+      "original R1 physical inertia/heading and actual movement",
+      "real motor/health/energy/boundary and ray perception",
+      "all 16 R1 recurrent tanh neurons from preceding actual state",
+      "original R2 seeded Gaussian motor disturbances",
+      "three original 84-parameter online R4 LMS sensory heads",
+      "pre-action candidate predicted sensory differences and actual choice",
+      "original physical motor actions and resulting true next sensations",
+      "R2 positive control causal physical-feedback eligibility motor updates",
+      "independent model weights checked within cross-Python floating tolerances"
+    ],
+    "near_tied_action_ranking_due_to_floating_point": 2345,
+    "numeric_note": "GitHub Python 3.11, external script Python 3.13; small numeric tolerances used. Some nearly identical candidate scores can exchange the rank on cross-version re-computation. Every original model choice remains verifiable as within tolerance of best logged preaction score; every actual physical command is preserved and checked. This is a model-selection numerical-sensitivity limitation, not independent exact bitwise reconstruction of 96 candidate index streams."
+  },
+  "independent_detected_discrepancies_beyond_declared_tolerances": 0,
+  "all_384_whole_archive_checks_passed": true,
+  "all_96_deep_replay_sample_checks_passed": true,
+  "original_protocol_gates_passed": 15,
+  "original_protocol_gates_total": 17,
+  "original_integrity_gates_passed": 10,
+  "original_scientific_gates_passed": 5,
+  "scientific_criteria_failed": [
+    "correct motor-action head late prediction error advantage >=5 percent over old-motor yoked on passive matched trajectory",
+    "true online model-guided collision density must reduce >=10 percent compared to matched frozen baseline in changed nearfield geometry"
+  ],
+  "overall_precommitted_science_screen_pass": false,
+  "caveats": "This is a SYNTHETIC physical world, not living-insect physiology. Candidate actions and sensory-variation preference are researcher-designed. No autonomous goal invention, food search, learned safe obstacle avoidance or evolution demonstrated."
+}
