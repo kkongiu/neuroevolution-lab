@@ -406,7 +406,12 @@ def _audit(rows):
         if (life["arm"] in ("recurrent_frozen","inertial_random")):
             if orig!=final or life["update_events"]!=0:
                 learning=False
-        elif life["update_events"]!=life["steps_alive"] or orig==final:
+        elif life["update_events"]!=life["steps_alive"]:
+            # A mathematically valid applied gradient can be exactly ZERO
+            # (e.g. collision-only arm on a never-colliding life).
+            # The preregistered gate asks whether ONLY the 34 readout
+            # coefficients are allowed to update, not whether every
+            # possible episode necessarily changes them.
             learning=False
     return {
         "legal_continuous_physics":physics,
@@ -446,6 +451,19 @@ def run():
                 ),
             }
     integrity=_audit(rows)
+    plastic_arms=("recurrent_plastic","recurrent_sham",
+                  "collision_only","leaky_plastic")
+    # Across each arm's cohort, require real nonzero changes somewhere.
+    # This is a software sanity check, not a new scientific threshold.
+    motor_changes_somewhere=all(
+        any(
+            life["initial_coefficients"]["w_motor"]
+                !=life["final_coefficients"]["w_motor"]
+            or life["initial_coefficients"]["motor_bias"]
+                !=life["final_coefficients"]["motor_bias"]
+            for life in rows if life["arm"]==arm
+        ) for arm in plastic_arms
+    )
     initial_equal=all(
         len({sha(r["initial_coefficients"]) for r in rows
              if r["seed"]==s and r["scene"]==sc})==1
@@ -496,7 +514,8 @@ def run():
         "04_recurrent_leaky_8_local_sensors_without_map_hint":
             integrity["local_inputs_only"],
         "05_only_34_output_motor_coefficients_can_adapt":
-            integrity["only_motor_coefficients_adapt"],
+            integrity["only_motor_coefficients_adapt"]
+            and motor_changes_somewhere,
         "06_feedback_from_actual_past_12_steps_and_collision":
             integrity["reward_from_actual_physical_progress"],
         "07_identical_motor_noise_older_only_sham":
