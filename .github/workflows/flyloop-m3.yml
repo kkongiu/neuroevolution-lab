@@ -1,0 +1,54 @@
+name: FlyLoop M3 Causal Temporal Memory
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-m3-temporal-consequence-memory
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_m3.py'
+      - 'tests/test_flyloop_m3.py'
+      - '.github/workflows/flyloop-m3.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  m3-causal-temporal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check prospectively frozen M3 history and physics tests
+        run: python -m unittest discover -s tests -p 'test_flyloop_m3.py' -v
+      - name: Recheck original unchanged M2/M1/M0
+        run: |
+          python -m unittest discover -s tests -p 'test_flyloop_m2.py' -v
+          python -m unittest discover -s tests -p 'test_flyloop_m1.py' -v
+          python -m unittest discover -s tests -p 'test_flyloop_m0.py' -v
+      - name: First complete prospectively fixed 672-life M3 science
+        run: python -m neuroevolution.flyloop_m3
+      - name: Replay ALL 672 lives with bytewise full JSON comparison
+        run: |
+          python -m neuroevolution.flyloop_m3 --out results/flyloop/m3_repeat.json
+          cmp results/flyloop/m3_temporal_memory.json results/flyloop/m3_repeat.json
+          sha256sum results/flyloop/m3_temporal_memory.json results/flyloop/m3_repeat.json
+      - name: Archive full raw histories, outcomes, neural weights and two science copies
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-m3-causal-temporal-memory
+          path: |
+            results/flyloop/m3_temporal_memory.json
+            results/flyloop/m3_repeat.json
+          if-no-files-found: warn
+          compression-level: 6
+          retention-days: 30
