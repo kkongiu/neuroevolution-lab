@@ -1,0 +1,35 @@
+name: FlyLoop R12 actuator reachability
+on:
+  push:
+    branches: [experiment/flyloop-r12-actuator-reachability]
+  pull_request:
+    paths: ['neuroevolution/flyloop_r12.py','tests/test_flyloop_r12.py','.github/workflows/flyloop-r12.yml']
+permissions:
+  contents: read
+jobs:
+  reachability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R9–R12 regression tests
+        run: |
+          for i in 9 10 11 12; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -v
+          done
+      - name: Full frozen R12 campaign
+        run: python -m neuroevolution.flyloop_r12
+      - name: Repeat and compare
+        run: |
+          python -m neuroevolution.flyloop_r12 --out results/flyloop_r12/repeat.json
+          cmp results/flyloop_r12/results.json results/flyloop_r12/repeat.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r12-results
+          path: results/flyloop_r12/
+          retention-days: 30
