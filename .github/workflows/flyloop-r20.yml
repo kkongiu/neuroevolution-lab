@@ -1,0 +1,37 @@
+name: FlyLoop R20 reflex veto
+on:
+  push:
+    branches: [experiment/flyloop-r20-reflex-veto]
+  pull_request:
+    paths: ['neuroevolution/flyloop_r20.py','tests/test_flyloop_r20.py','.github/workflows/flyloop-r20.yml']
+permissions:
+  contents: read
+jobs:
+  reflex:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R11–R20 regression
+        run: |
+          for i in 11 12 13 14 15 16 17 18 19 20; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -v
+          done
+      - name: Full R20 campaign
+        run: python -m neuroevolution.flyloop_r20
+      - name: Deterministic repeat
+        run: |
+          python -m neuroevolution.flyloop_r20 --out results/flyloop_r20_repeat
+          diff -r results/flyloop_r20 results/flyloop_r20_repeat
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r20-results
+          path: results/flyloop_r20/
+          retention-days: 30
+          compression-level: 0
