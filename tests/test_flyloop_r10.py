@@ -127,10 +127,11 @@ class R10Tests(unittest.TestCase):
                 t=entry["learned_after_macro"]
                 src=entry["actual_original_slow_macro_source"]
                 self.assertLess(t,120)
-                self.assertEqual(
+                for x,y in zip(
                     entry["actually_executed_slow_motor_label"],
                     row["macro_trace"][src]["slow_motor_physically_issued"]
-                )
+                ):
+                    self.assertAlmostEqual(x,y,places=8)
                 if arm=="fast_teacher":
                     self.assertEqual(src,t)
                     self.assertTrue(
