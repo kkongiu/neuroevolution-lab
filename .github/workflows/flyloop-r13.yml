@@ -1,0 +1,39 @@
+name: FlyLoop R13 bidirectional recovery teacher
+on:
+  push:
+    branches: [experiment/flyloop-r13-bidirectional-teacher]
+  pull_request:
+    paths: ['neuroevolution/flyloop_r13.py','tests/test_flyloop_r13.py','.github/workflows/flyloop-r13.yml']
+permissions:
+  contents: read
+jobs:
+  recovery-teacher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R9–R13 regression
+        run: |
+          for i in 9 10 11 12 13; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -v
+          done
+      - name: Full paired R13 campaign
+        run: python -m neuroevolution.flyloop_r13
+      - name: Independent deterministic repeat
+        run: |
+          python -m neuroevolution.flyloop_r13 --out results/flyloop_r13_repeat
+          cmp results/flyloop_r13/summary.json results/flyloop_r13_repeat/summary.json
+          cmp results/flyloop_r13/lives.jsonl.gz results/flyloop_r13_repeat/lives.jsonl.gz
+          sha256sum results/flyloop_r13/*
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r13-results
+          path: results/flyloop_r13/
+          retention-days: 30
+          compression-level: 0
