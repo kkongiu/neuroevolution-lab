@@ -1,0 +1,39 @@
+name: FlyLoop R15 pretrained fast
+on:
+  push:
+    branches: [experiment/flyloop-r15-pretrained-fast]
+  pull_request:
+    paths: ['neuroevolution/flyloop_r15.py','tests/test_flyloop_r15.py','.github/workflows/flyloop-r15.yml']
+permissions:
+  contents: read
+jobs:
+  pretraining:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R11–R15 regression
+        run: |
+          for i in 11 12 13 14 15; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -v
+          done
+      - name: Full frozen R15 campaign
+        run: python -m neuroevolution.flyloop_r15
+      - name: Deterministic repeat
+        run: |
+          python -m neuroevolution.flyloop_r15 --out results/flyloop_r15_repeat
+          cmp results/flyloop_r15/summary.json results/flyloop_r15_repeat/summary.json
+          cmp results/flyloop_r15/lives.jsonl.gz results/flyloop_r15_repeat/lives.jsonl.gz
+          sha256sum results/flyloop_r15/*
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r15-results
+          path: results/flyloop_r15/
+          retention-days: 30
+          compression-level: 0
