@@ -542,9 +542,11 @@ def audit(rows):
             if row["arm"]=="fast_shuffled":
                 if (src not in true_accepted or src>t-TEACHER_SHAM_MIN_AGE):
                     valid_sham=False
-            if src is not None and (
-                lesson["actually_executed_slow_motor_label"]!=
-                macros[src]["slow_motor_physically_issued"]
+            if src is not None and any(
+                abs(x-y)>1e-8 for x,y in zip(
+                    lesson["actually_executed_slow_motor_label"],
+                    macros[src]["slow_motor_physically_issued"]
+                )
             ):
                 no_direct_label_leak=False
             if lesson["actual_teacher_fast_hidden"]!=macros[t][
