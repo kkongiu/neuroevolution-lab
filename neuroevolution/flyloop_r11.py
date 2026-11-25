@@ -488,7 +488,7 @@ def simulate(seed,geometry,regime,arm):
                 "contact_or_proximity_salience":fast_trigger,
                 "fast_actually_overrode_motor":override,
                 "fast_motor_exogenous_noise":[round(x,9) for x in fast_noise],
-                "actually_executed_analog_motor":[round(x,9) for x in actual],
+                "actually_executed_analog_motor":list(actual),
                 "actual_physical_body_after_micro":physically,
                 "actual_integrity_loss":round(
                     before_health-physically["integrity"],9
@@ -771,6 +771,35 @@ def audit(rows):
             matching_count=False
         first=life["raw_micro_trace"]
         good_by_tick={x["first_recovery_motor_micro"]:x for x in successful}
+        if any(
+            item["collision_micro"]>=len(first)
+            or not first[item["collision_micro"]][
+                "actual_physical_body_after_micro"
+            ]["collision"]
+            or item["first_post_contact_micro"]!=item["collision_micro"]+1
+            or item["first_recovery_motor_micro"] is None
+            or item["first_recovery_motor_micro"]+RECOVERY_FREE_MICROS>len(first)
+            or any(first[j]["actual_physical_body_after_micro"]["collision"]
+                   for j in range(item["first_recovery_motor_micro"],
+                                  item["first_recovery_motor_micro"]+
+                                  RECOVERY_FREE_MICROS))
+            or sum(first[j]["actual_physical_body_after_micro"]["moved"]
+                   for j in range(item["first_recovery_motor_micro"],
+                                  item["first_recovery_motor_micro"]+
+                                  RECOVERY_FREE_MICROS))<RECOVERY_DISTANCE
+            or any(abs(x-y)>1e-8 for x,y in zip(
+                item["actual_first_recovery_motor"],
+                first[item["first_recovery_motor_micro"]][
+                    "actually_executed_analog_motor"]
+            ))
+            or any(abs(x-y)>1e-8 for x,y in zip(
+                item["first_post_contact_fast_hidden"],
+                first[item["first_post_contact_micro"]][
+                    "four_fast_recurrent_states"]
+            ))
+            for item in successful
+        ):
+            teaching_ok=False
         if any(
             item["verified_recovered"] is False
             or item["first_post_contact_micro"] is None
