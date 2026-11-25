@@ -1,0 +1,26 @@
+name: Slow-fast benchmark preparation checks
+
+on:
+  push:
+    branches:
+      - experiment/slow-fast-circuit-benchmark
+  workflow_dispatch:
+
+jobs:
+  existing-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run existing M5.0 and M5.5A regression tests
+        run: python -m unittest tests.test_m5_0 tests.test_m5_5a -v
+      - name: Verify experiment preregistration and audit exist
+        run: |
+          test -s docs/SLOW_FAST_CIRCUIT_BENCHMARK_DRAFT.md
+          test -s docs/SLOW_FAST_INTEGRATION_AUDIT.md
+      - name: Declare sealed benchmark not yet executable
+        run: |
+          echo 'PREPARATION ONLY: no trained fast controller or sealed paired benchmark integrated.'
