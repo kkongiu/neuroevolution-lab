@@ -1,0 +1,37 @@
+name: FlyLoop R16 temporal alignment
+on:
+  push:
+    branches: [experiment/flyloop-r16-temporal-alignment]
+  pull_request:
+    paths: ['neuroevolution/flyloop_r16.py','tests/test_flyloop_r16.py','.github/workflows/flyloop-r16.yml']
+permissions:
+  contents: read
+jobs:
+  alignment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R11–R16 regression
+        run: |
+          for i in 11 12 13 14 15 16; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -v
+          done
+      - name: Full R16 campaign
+        run: python -m neuroevolution.flyloop_r16
+      - name: Deterministic repeat
+        run: |
+          python -m neuroevolution.flyloop_r16 --out results/flyloop_r16_repeat
+          diff -r results/flyloop_r16 results/flyloop_r16_repeat
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r16-results
+          path: results/flyloop_r16/
+          retention-days: 30
+          compression-level: 0
