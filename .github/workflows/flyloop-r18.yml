@@ -1,0 +1,37 @@
+name: FlyLoop R18 recovery replication
+on:
+  push:
+    branches: [experiment/flyloop-r18-recovery-replication]
+  pull_request:
+    paths: ['neuroevolution/flyloop_r18.py','tests/test_flyloop_r18.py','.github/workflows/flyloop-r18.yml']
+permissions:
+  contents: read
+jobs:
+  replication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      PYTHONHASHSEED: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: R11–R18 regression
+        run: |
+          for i in 11 12 13 14 15 16 17 18; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -v
+          done
+      - name: Full frozen R18 campaign
+        run: python -m neuroevolution.flyloop_r18
+      - name: Deterministic repeat
+        run: |
+          python -m neuroevolution.flyloop_r18 --out results/flyloop_r18_repeat
+          diff -r results/flyloop_r18 results/flyloop_r18_repeat
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r18-results
+          path: results/flyloop_r18/
+          retention-days: 30
+          compression-level: 0
