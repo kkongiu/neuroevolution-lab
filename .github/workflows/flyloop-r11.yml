@@ -1,0 +1,53 @@
+name: FlyLoop R11 Real Slow Recovery Teaches Fast Motor
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r11-slow-recovery-teacher
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r11.py'
+      - 'tests/test_flyloop_r11.py'
+      - '.github/workflows/flyloop-r11.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  slow-physical-recovery-to-fast-motor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Regress unchanged R1 through R10 original physical/neural experiments
+        run: |
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            python -m unittest discover -s tests -p "test_flyloop_r$i.py" -q
+          done
+      - name: R11 strict recovered real 4-micro physical episodes, provenance, exact paired/shuffled student sample count
+        run: python -m unittest discover -s tests -p 'test_flyloop_r11.py' -v
+      - name: Original 288-life preregistered R11 slow recovery training and fast student physical evaluation
+        run: python -m neuroevolution.flyloop_r11
+      - name: Repeat ALL 288 R11 worlds and full raw neural body histories byte-identically
+        run: |
+          python -m neuroevolution.flyloop_r11 --out results/flyloop_r11/r11_repeat.json
+          cmp results/flyloop_r11/r11_real_recovery_teacher.json results/flyloop_r11/r11_repeat.json
+          sha256sum results/flyloop_r11/r11_real_recovery_teacher.json results/flyloop_r11/r11_repeat.json
+      - name: Save full original and identical duplicated raw bodies, memories, fast lessons
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r11-contact-recovery-teacher-results
+          path: |
+            results/flyloop_r11/r11_real_recovery_teacher.json
+            results/flyloop_r11/r11_repeat.json
+          retention-days: 30
+          if-no-files-found: warn
+          compression-level: 6
