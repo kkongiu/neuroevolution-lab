@@ -1,0 +1,53 @@
+name: FlyLoop R10 Slow-Teacher to Fast-Student Distillation
+
+on:
+  push:
+    branches:
+      - experiment/flyloop-r10-slow-teacher-fast-distillation
+  pull_request:
+    paths:
+      - 'neuroevolution/flyloop_r10.py'
+      - 'tests/test_flyloop_r10.py'
+      - '.github/workflows/flyloop-r10.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  r10-slow-teacher-fast-student:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      PYTHONHASHSEED: '0'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Regress unchanged R1 through R9 original programs
+        run: |
+          for r in 1 2 3 4 5 6 7 8 9; do
+            python -m unittest discover -s tests -p "test_flyloop_r$r.py" -q
+          done
+      - name: R10 strict true slow experience, validated teacher, no fast physical reward, paired conditions
+        run: python -m unittest discover -s tests -p 'test_flyloop_r10.py' -v
+      - name: Original 288-life prospectively registered R10 experiment
+        run: python -m neuroevolution.flyloop_r10
+      - name: Full new 288-life repeat, byte-identical microscopic neuron, teacher and physical data
+        run: |
+          python -m neuroevolution.flyloop_r10 --out results/flyloop_r10/r10_repeat.json
+          cmp results/flyloop_r10/r10_slow_teaches_fast.json results/flyloop_r10/r10_repeat.json
+          sha256sum results/flyloop_r10/r10_slow_teaches_fast.json results/flyloop_r10/r10_repeat.json
+      - name: Archive complete 288-life original and byte-exact repeat raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flyloop-r10-slow-teacher-fast-student-results
+          path: |
+            results/flyloop_r10/r10_slow_teaches_fast.json
+            results/flyloop_r10/r10_repeat.json
+          retention-days: 30
+          if-no-files-found: warn
+          compression-level: 6
