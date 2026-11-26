@@ -1,0 +1,33 @@
+name: FlyLoop R16B obstacle curriculum
+on:
+  push:
+    branches: [experiment/flyloop-r16b-obstacle-curriculum]
+    paths:
+      - 'neuroevolution/flyloop_r16b.py'
+      - 'tests/test_flyloop_r16b.py'
+      - '.github/workflows/flyloop-r16b.yml'
+  pull_request:
+    branches: [experiment/flyloop-r16-hierarchical-veto]
+permissions:
+  contents: read
+jobs:
+  curriculum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m neuroevolution.flyloop_r16b --out results/r16b.json | tee results-summary.txt
+      - run: python -m neuroevolution.flyloop_r16b --out results/r16b-repeat.json
+      - run: cmp results/r16b.json results/r16b-repeat.json
+      - run: cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r16b-obstacle-curriculum
+          path: |
+            results/r16b*.json
+            results-summary.txt
