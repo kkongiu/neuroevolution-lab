@@ -1,0 +1,37 @@
+name: FlyLoop R13B sensory ablation
+on:
+  push:
+    branches: [experiment/flyloop-r13b-sensory-ablation]
+    paths:
+      - 'neuroevolution/flyloop_r13b.py'
+      - 'tests/test_flyloop_r13b.py'
+      - '.github/workflows/flyloop-r13b.yml'
+  pull_request:
+    branches: [experiment/flyloop-r13-body-learning]
+    paths:
+      - 'neuroevolution/flyloop_r13b.py'
+      - 'tests/test_flyloop_r13b.py'
+      - '.github/workflows/flyloop-r13b.yml'
+permissions:
+  contents: read
+jobs:
+  ablation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m neuroevolution.flyloop_r13b --out results/r13b.json | tee results-summary.txt
+      - run: python -m neuroevolution.flyloop_r13b --out results/r13b-repeat.json
+      - run: cmp results/r13b.json results/r13b-repeat.json
+      - run: cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r13b-sensory-ablation
+          path: |
+            results/r13b*.json
+            results-summary.txt
