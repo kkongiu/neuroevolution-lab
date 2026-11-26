@@ -141,6 +141,9 @@ def aggregate(rows):
 
 def run():
     rows=[simulate(s,a) for s in SEEDS for a in ARMS]
+    return summarize(rows)
+
+def summarize(rows):
     def scope(a,m,p,seed=None):
         return [ep for r in rows if r["arm"]==a and (seed is None or r["seed"]==seed)
                 for ep in r["tests"][m][p]]
