@@ -1,0 +1,63 @@
+name: FlyLoop R19D innate integration
+on:
+  push:
+    branches: [experiment/flyloop-r19d-innate-integration]
+    paths:
+      - 'neuroevolution/flyloop_r19d.py'
+      - 'tests/test_flyloop_r19d.py'
+      - '.github/workflows/flyloop-r19d.yml'
+  pull_request:
+    branches: [experiment/flyloop-r18b-learned-vision]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  stimulus:
+    needs: validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        seed: [25100, 25101, 25102, 25103, 25104, 25105, 25106, 25107, 25108, 25109, 25110, 25111, 25112, 25113, 25114, 25115, 25116, 25117, 25118, 25119, 25120, 25121, 25122, 25123]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m neuroevolution.flyloop_r19d --seed ${{ matrix.seed }} --out results/first
+      - run: python -m neuroevolution.flyloop_r19d --seed ${{ matrix.seed }} --out results/repeat
+      - run: diff -rq results/first results/repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r19d-seed-${{ matrix.seed }}
+          path: results/first/
+          retention-days: 3
+  aggregate:
+    needs: stimulus
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r19d-seed-*
+          path: results/shards
+      - run: |
+          set -o pipefail
+          python -m neuroevolution.flyloop_r19d --combine results/shards | tee results-summary.txt
+          cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r19d-summary
+          path: results-summary.txt
