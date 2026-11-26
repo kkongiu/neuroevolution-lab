@@ -1,0 +1,23 @@
+name: FlyLoop R12C body senses
+on:
+  push:
+    branches: [experiment/flyloop-r12c-body-senses]
+  pull_request:
+    branches: [experiment/flyloop-r12-motor-reachability]
+    paths:
+      - 'neuroevolution/flyloop_r12c.py'
+      - 'tests/test_flyloop_r12c.py'
+      - '.github/workflows/flyloop-r12c.yml'
+permissions:
+  contents: read
+jobs:
+  senses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_flyloop_r12c.py' -v
+      - run: python -m unittest discover -s tests -v
