@@ -1,0 +1,37 @@
+name: FlyLoop R14 metabolic learning
+on:
+  push:
+    branches: [experiment/flyloop-r14-metabolic-learning]
+    paths:
+      - 'neuroevolution/flyloop_r14.py'
+      - 'tests/test_flyloop_r14.py'
+      - '.github/workflows/flyloop-r14.yml'
+  pull_request:
+    branches: [experiment/flyloop-r13b-sensory-ablation]
+    paths:
+      - 'neuroevolution/flyloop_r14.py'
+      - 'tests/test_flyloop_r14.py'
+      - '.github/workflows/flyloop-r14.yml'
+permissions:
+  contents: read
+jobs:
+  metabolism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m neuroevolution.flyloop_r14 --out results/r14.json | tee results-summary.txt
+      - run: python -m neuroevolution.flyloop_r14 --out results/r14-repeat.json
+      - run: cmp results/r14.json results/r14-repeat.json
+      - run: cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r14-metabolic-learning
+          path: |
+            results/r14*.json
+            results-summary.txt
