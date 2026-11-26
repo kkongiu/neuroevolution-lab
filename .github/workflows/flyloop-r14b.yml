@@ -1,0 +1,29 @@
+name: FlyLoop R14B food credit
+on:
+  push:
+    branches: [experiment/flyloop-r14b-food-credit]
+  pull_request:
+    branches: [experiment/flyloop-r14-metabolic-learning]
+permissions:
+  contents: read
+jobs:
+  credit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m neuroevolution.flyloop_r14b --out results/r14b.json | tee results-summary.txt
+      - run: python -m neuroevolution.flyloop_r14b --out results/r14b-repeat.json
+      - run: cmp results/r14b.json results/r14b-repeat.json
+      - run: cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r14b-food-credit
+          path: |
+            results/r14b*.json
+            results-summary.txt
