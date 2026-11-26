@@ -1,0 +1,37 @@
+name: FlyLoop R12 motor reachability
+on:
+  pull_request:
+    branches: [experiment/flyloop-r11-slow-recovery-teacher]
+    paths:
+      - '.github/workflows/flyloop-r12.yml'
+      - 'neuroevolution/flyloop_r12.py'
+      - 'tests/test_flyloop_r12.py'
+  push:
+    branches: [experiment/flyloop-r12-motor-reachability]
+    paths:
+      - '.github/workflows/flyloop-r12.yml'
+      - 'neuroevolution/flyloop_r12.py'
+      - 'tests/test_flyloop_r12.py'
+permissions:
+  contents: read
+jobs:
+  reachability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m neuroevolution.flyloop_r12 --out results/r12.json
+      - run: python -m neuroevolution.flyloop_r12 --out results/r12-repeat.json
+      - run: cmp results/r12.json results/r12-repeat.json
+      - name: Publish scientific summary
+        run: |
+          python -c 'import json; d=json.load(open("results/r12.json")); print(json.dumps({k:d[k] for k in ("summary","snapshot_counts","advancement_gate")},indent=2))' | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r12-motor-reachability
+          path: results/r12*.json
