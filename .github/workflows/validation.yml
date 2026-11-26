@@ -102,4 +102,4 @@ jobs:
             results/m5-4b0r-smoke/
             results/m5-4c-smoke/
             results/m5-5a-smoke/
-          retention-days: 30
+          retention-days: 1
