@@ -1,0 +1,33 @@
+name: FlyLoop R18B learned vision
+on:
+  push:
+    branches: [experiment/flyloop-r18b-learned-vision]
+    paths:
+      - 'neuroevolution/flyloop_r18b.py'
+      - 'tests/test_flyloop_r18b.py'
+      - '.github/workflows/flyloop-r18b.yml'
+  pull_request:
+    branches: [experiment/flyloop-r18a-compound-eyes]
+permissions:
+  contents: read
+jobs:
+  vision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m neuroevolution.flyloop_r18b --out results/r18b.json | tee results-summary.txt
+      - run: python -m neuroevolution.flyloop_r18b --out results/r18b-repeat.json
+      - run: cmp results/r18b.json results/r18b-repeat.json
+      - run: cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flyloop-r18b-learned-vision
+          path: |
+            results/r18b*.json
+            results-summary.txt
