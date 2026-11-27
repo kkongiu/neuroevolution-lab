@@ -1,0 +1,63 @@
+name: FlyLoop R22A two prey
+on:
+  push:
+    branches: [experiment/flyloop-r22a-two-prey]
+    paths:
+      - 'neuroevolution/flyloop_r22a.py'
+      - 'tests/test_flyloop_r22a.py'
+      - '.github/workflows/flyloop-r22a.yml'
+  pull_request:
+    branches: [experiment/flyloop-r21d-energy-depletion]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  ecology:
+    needs: validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        seed: [34100, 34101, 34102, 34103, 34104, 34105, 34106, 34107, 34108, 34109, 34110, 34111, 34112, 34113, 34114, 34115, 34116, 34117, 34118, 34119, 34120, 34121, 34122, 34123]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m neuroevolution.flyloop_r22a --seed ${{ matrix.seed }} --out results/first
+      - run: python -m neuroevolution.flyloop_r22a --seed ${{ matrix.seed }} --out results/repeat
+      - run: diff -rq results/first results/repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r22a-seed-${{ matrix.seed }}
+          path: results/first/
+          retention-days: 3
+  aggregate:
+    needs: ecology
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r22a-seed-*
+          path: results/shards
+      - run: |
+          set -o pipefail
+          python -m neuroevolution.flyloop_r22a --combine results/shards | tee results-summary.txt
+          cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r22a-summary
+          path: results-summary.txt
