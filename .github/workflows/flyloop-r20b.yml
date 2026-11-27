@@ -1,0 +1,63 @@
+name: FlyLoop R20B homeostatic choice
+on:
+  push:
+    branches: [experiment/flyloop-r20b-homeostatic-choice]
+    paths:
+      - 'neuroevolution/flyloop_r20b.py'
+      - 'tests/test_flyloop_r20b.py'
+      - '.github/workflows/flyloop-r20b.yml'
+  pull_request:
+    branches: [experiment/flyloop-r20a-multisensory]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  choice:
+    needs: validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        seed: [27100, 27101, 27102, 27103, 27104, 27105, 27106, 27107, 27108, 27109, 27110, 27111, 27112, 27113, 27114, 27115, 27116, 27117, 27118, 27119, 27120, 27121, 27122, 27123]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m neuroevolution.flyloop_r20b --seed ${{ matrix.seed }} --out results/first
+      - run: python -m neuroevolution.flyloop_r20b --seed ${{ matrix.seed }} --out results/repeat
+      - run: diff -rq results/first results/repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r20b-seed-${{ matrix.seed }}
+          path: results/first/
+          retention-days: 3
+  aggregate:
+    needs: choice
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r20b-seed-*
+          path: results/shards
+      - run: |
+          set -o pipefail
+          python -m neuroevolution.flyloop_r20b --combine results/shards | tee results-summary.txt
+          cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r20b-summary
+          path: results-summary.txt
