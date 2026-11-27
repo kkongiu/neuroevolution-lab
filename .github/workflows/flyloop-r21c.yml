@@ -1,0 +1,63 @@
+name: FlyLoop R21C symmetric predator
+on:
+  push:
+    branches: [experiment/flyloop-r21c-symmetric-predator]
+    paths:
+      - 'neuroevolution/flyloop_r21c.py'
+      - 'tests/test_flyloop_r21c.py'
+      - '.github/workflows/flyloop-r21c.yml'
+  pull_request:
+    branches: [experiment/flyloop-r21b-thermal-inertia]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  clone:
+    needs: validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        seed: [32100, 32101, 32102, 32103, 32104, 32105, 32106, 32107, 32108, 32109, 32110, 32111, 32112, 32113, 32114, 32115, 32116, 32117, 32118, 32119, 32120, 32121, 32122, 32123]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m neuroevolution.flyloop_r21c --seed ${{ matrix.seed }} --out results/first
+      - run: python -m neuroevolution.flyloop_r21c --seed ${{ matrix.seed }} --out results/repeat
+      - run: diff -rq results/first results/repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r21c-seed-${{ matrix.seed }}
+          path: results/first/
+          retention-days: 3
+  aggregate:
+    needs: clone
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r21c-seed-*
+          path: results/shards
+      - run: |
+          set -o pipefail
+          python -m neuroevolution.flyloop_r21c --combine results/shards | tee results-summary.txt
+          cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r21c-summary
+          path: results-summary.txt
