@@ -64,8 +64,8 @@ def episode(seed,index,scenario,arm,horizon=r.HORIZON):
     brain=r1.Circuit(seed,"recurrent")
     start=(w.body.x,w.body.y,w.body.heading)
     dx,dy=w.lamp[0]-start[0],w.lamp[1]-start[1]
-    d=math.hypot(dx,dy)
-    blocked=any(w._ray_box(start[0],start[1],dx/d,dy/d,x0-r1.RADIUS,y0-r1.RADIUS,x1+r1.RADIUS,y1+r1.RADIUS)<d
+    direct_distance=math.hypot(dx,dy)
+    blocked=any(w._ray_box(start[0],start[1],dx/direct_distance,dy/direct_distance,x0-r1.RADIUS,y0-r1.RADIUS,x1+r1.RADIUS,y1+r1.RADIUS)<direct_distance
                 for x0,y0,x1,y1 in w.rectangles)
     trace=[]; crossed=False
     for t in range(horizon):
