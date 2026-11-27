@@ -1,0 +1,63 @@
+name: FlyLoop R20D lantern foraging
+on:
+  push:
+    branches: [experiment/flyloop-r20d-lantern-foraging]
+    paths:
+      - 'neuroevolution/flyloop_r20d.py'
+      - 'tests/test_flyloop_r20d.py'
+      - '.github/workflows/flyloop-r20d.yml'
+  pull_request:
+    branches: [experiment/flyloop-r20c-thermal-protection]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  foraging:
+    needs: validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        seed: [29100, 29101, 29102, 29103, 29104, 29105, 29106, 29107, 29108, 29109, 29110, 29111, 29112, 29113, 29114, 29115, 29116, 29117, 29118, 29119, 29120, 29121, 29122, 29123]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m neuroevolution.flyloop_r20d --seed ${{ matrix.seed }} --out results/first
+      - run: python -m neuroevolution.flyloop_r20d --seed ${{ matrix.seed }} --out results/repeat
+      - run: diff -rq results/first results/repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r20d-seed-${{ matrix.seed }}
+          path: results/first/
+          retention-days: 3
+  aggregate:
+    needs: foraging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r20d-seed-*
+          path: results/shards
+      - run: |
+          set -o pipefail
+          python -m neuroevolution.flyloop_r20d --combine results/shards | tee results-summary.txt
+          cat results-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r20d-summary
+          path: results-summary.txt
