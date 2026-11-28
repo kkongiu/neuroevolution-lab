@@ -1,5 +1,5 @@
 """R25C: transfer food sensory priority into renewable hot aquarium."""
-from neuroevolution import flyloop_r24b as old, flyloop_r25b as v
+from neuroevolution import flyloop_r24b as ground_model, flyloop_r25b as v
 import random
 from neuroevolution import flyloop_r24a as physics, flyloop_r12c as tactile
 from types import MethodType
@@ -25,7 +25,7 @@ def episode(genome,environment,index,arm,horizon=HORIZON):
     w=parent.world(environment,index,90,'adaptive_hot')
     eye=r.CompoundEye();brain=r1.Circuit(genome,'recurrent')
     source=w.initial_food[0];plan=schedule(source,'renew10',horizon)
-    w.micro_integrate=MethodType(old.ground_integrate,w)
+    w.micro_integrate=MethodType(ground_model.ground_integrate,w)
     distance=rotation=reverse=0.; flips=last_sign=0; peak_lat=0.
     w.food=[];cursor=0;tick=0;births=0;meals=[];returns=[]
     cost=damage=gain=0.;outside=inside=0;departures=[];departed=False
