@@ -1,0 +1,64 @@
+name: FlyLoop R25A apparent size
+on:
+  push:
+    branches: [experiment/flyloop-r25a-apparent-size]
+    paths:
+      - 'neuroevolution/flyloop_r25a.py'
+      - 'tests/test_flyloop_r25a.py'
+      - '.github/workflows/flyloop-r25a.yml'
+  pull_request:
+    branches: [experiment/flyloop-r24c-target-alignment]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  foraging:
+    needs: validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        seed: [35100, 35101, 35102, 35103, 35104, 35105, 35106, 35107, 35108, 35109, 35110, 35111, 37100, 37101, 37102, 37103, 37104, 37105, 37106, 37107, 37108, 37109, 37110, 37111]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m neuroevolution.flyloop_r25a --seed ${{ matrix.seed }} --out results/first
+      - run: python -m neuroevolution.flyloop_r25a --seed ${{ matrix.seed }} --out results/repeat
+      - run: diff -rq results/first results/repeat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r25a-seed-${{ matrix.seed }}
+          path: results/first/
+          retention-days: 3
+  aggregate:
+    needs: foraging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r25a-seed-*
+          path: results/shards
+      - run: |
+          set -o pipefail
+          python -m neuroevolution.flyloop_r25a --combine results/shards > results-summary.txt
+          python -c 'import json; d=json.load(open("results-summary.txt")); print(json.dumps({"summary":d["summary"]["all"],"new":d["summary"]["new"]},indent=2))' | tee compact-summary.txt
+          cat compact-summary.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r25a-summary
+          path: results-summary.txt
