@@ -1,0 +1,11 @@
+# Scientific progression and rollback
+Status: R22A completed, R22B environment module validated but not integrated. No new biological complexity approved beyond current experiments. Preserve all branches and raw results; no merge to main or deletion of history.
+## Immutable reference revisions
+- R20D bc337453604d38e548986bd4a634bcb6410586ef: single organism, finite meal, thermal and homeostatic foraging; 4/4 original gates. Not evidence of sustained survival.
+- R21B 4c2695e31d3803bd4e03009721cda5941d5bf561: thermal inertia, predator survival gate failed.
+- R21C d5451f9b018d7e57a51894a03024ec12a425ab94: symmetric predator, lantern survival gate failed.
+- R21D 4306fdb14237b5eb5a002afddd8a53e51de03448: energy-dependent capacity; no prey survives 200s.
+- R22A f72691d74d7bcef12be7ed9f5a31054ae97b0864: persistent three-agent ecology; zero survival in all arms, including no predator. Workflow 46080354982 succeeded technically; not scientific advancement.
+- R22B aa5d5c6f6bc97fb13eb0402a9df59ba99b7d819d: deterministic schedule module only, validation 46080867089 succeeded.
+## Next experiment: controlled rollback of complexity
+Branch from R20D reference, not the latest ecology. One organism, no predator, no reproduction, frozen neural and metabolic laws. Integrate only deterministic external resource schedule, independently seeded environment and genome, with a finite-resource baseline and matched renewable supply. Record births, ingestion, energy, temperature, motion, mortality, repeated feeding, and exact replay. Before choosing resource cadence, measure baseline energetic expenditure and choose predeclared supply levels; avoid tuning after seeing validation outcomes. Distinguish food offered from food obtained; survival alone is insufficient. Specify acceptance thresholds and crossed seeds before running. If failed, retain result, diagnose and repeat isolated test rather than add features. Reintroduce predator only after sustained single-agent feeding, then two prey, then sexual metadata/reproduction in separate experiments. Technical test success is not scientific validation. No rollback by destructive Git operations; branch from exact reference commit. User reviews scientific promotion.
